@@ -22,7 +22,9 @@ open(os.path.join(R, 'SHA256SUMS'), 'w', newline='\n').write(''.join(f"{v['sha25
 cfg = open(os.path.join(REPO, 'nextflow.config'), encoding='utf-8').read()
 import re
 ver = re.search(r"manifest\s*\{.*?version\s*=\s*'([^']+)'", cfg, re.S).group(1)
-raw = {f: sha(os.path.join(ROOT, 'data', 'raw', f)) for f in sorted(os.listdir(os.path.join(ROOT, 'data', 'raw'))) if f.endswith('_dag.html')}
+def sha_text(p):   # line-ending independent (git may check text files out with CRLF on Windows)
+    return hashlib.sha256(open(p, 'rb').read().replace(bytes([13, 10]), bytes([10]))).hexdigest()
+raw = {f: sha_text(os.path.join(ROOT, 'data', 'raw', f)) for f in sorted(os.listdir(os.path.join(ROOT, 'data', 'raw'))) if f.endswith('_dag.html')}
 try: import networkx, yaml; libs = {'networkx': networkx.__version__, 'pyyaml': yaml.__version__}
 except Exception: libs = {}
 counts = json.load(open(os.path.join(R, '_build_counts.json')))
