@@ -42,13 +42,13 @@ add('P06', 'Silver', TAR, 'high', None,
     'Real: the untarred Salmon index is the index slot of the Salmon quant input tuple; the index is consumed whole (modules/nf-core/salmon/quant/main.nf:12,49). Utility staging.')
 add('P07', 'Gold', 'analysis-data', 'high', None,
     'workflows/rnaseq/main.nf:369 (ch_unaligned_sequences = FASTQ_ALIGN_HISAT2.out.fastq); :364 save_unaligned arg; :716-722 selection; :725 KRAKEN2(ch_contaminant_sequences,...); nextflow.config:114 contaminant_screening_input = unmapped',
-    'Unaligned reads written by HISAT2 (--un-gz) are screened by Kraken2 under the default contaminant_screening_input=unmapped. The ternary selector (main.nf:716-722) is not part of the extractor\'s condition atoms, so this requirement is documented here.')
+    'Unaligned reads written by HISAT2 (--un-gz) are screened by Kraken2 under the default contaminant_screening_input=unmapped. The ternary selector (workflows/rnaseq/main.nf:716-722) is not part of the extractor\'s condition atoms, so this requirement is documented here.')
 add('P08', 'Gold', 'analysis-data', 'high', None,
     'subworkflows/nf-core/fastq_align_hisat2/main.nf:21 BAM_SORT_STATS_SAMTOOLS(HISAT2_ALIGN.out.bam, ch_fasta_fai); subworkflows/nf-core/bam_sort_stats_samtools/main.nf:15 SAMTOOLS_SORT(ch_bam, ch_fasta_fai, \'\')',
     'HISAT2 BAM is the sort input. Single-source channel.')
 add('P09', 'Gold', 'analysis-data', 'high', None,
     'workflows/rnaseq/main.nf:731 (ch_kraken_reports = KRAKEN2.out.report); :737-741 BRACKEN(ch_kraken_reports, ch_kraken_db); modules/nf-core/kraken2/kraken2/main.nf output path(\'*report.txt\') emit: report; bracken input path(kraken_report)',
-    'The Kraken2 report is the Bracken report input; branch requires contaminant_screening==kraken2_bracken (main.nf:737). Confirmed in the kraken2_bracken and hisat2_kraken2_bracken previews.')
+    'The Kraken2 report is the Bracken report input; branch requires contaminant_screening==kraken2_bracken (workflows/rnaseq/main.nf:737). Confirmed in the kraken2_bracken and hisat2_kraken2_bracken previews.')
 add('P10', 'Gold', 'analysis-data', 'high', lambda e: e['evidence_tier'].startswith('A'),
     'subworkflows/local/align_star/main.nf:51 PARABRICKS_RNA_FQ2BAM(...) at :51; :61 ch_orig_bam = ch_star_out.out.bam; :74 BAM_SORT_STATS_SAMTOOLS(ch_orig_bam, fasta_fai); subworkflows/nf-core/bam_sort_stats_samtools/main.nf:15',
     'Parabricks rna_fq2bam is an alternative STAR implementation; its BAM goes through the same samtools sort stage. Needs use_parabricks_star (preview: parabricks_star). Alternative-implementation pair.')

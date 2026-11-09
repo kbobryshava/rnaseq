@@ -12,13 +12,13 @@
   "high": 47,
   "low": 224
  },
- "v2_confidence": {
+ "final_confidence": {
   "high": 382,
   "medium": 547,
   "rejected": 83,
   "low": 222
  },
- "v1_to_v2": {
+ "v1_to_final": {
   "high->high": 47,
   "low->low": 222,
   "low->rejected": 2,
@@ -31,21 +31,9 @@
  "high_and_tierA": 26,
  "high_only": 21,
  "tierA_only": 148,
- "merged_channel_edges": 551,
- "merged_audit": {
-  "compatible": 479,
-  "PROJECTION-DROPPED": 31,
-  "INCOMPATIBLE": 1,
-  "INFEASIBLE-CALLSITE-CONSTANT": 6,
-  "MULTIMAP-SPLIT": 34
- },
- "direct_audit": {
-  "INCOMPATIBLE": 49,
-  "compatible": 281,
-  "unknown-producer-family": 21,
-  "INFEASIBLE-CALLSITE-CONSTANT": 4,
-  "PROJECTION-DROPPED": 4
- },
+ "merged_channel_edges": 0,
+ "merged_audit": {},
+ "direct_audit": {},
  "negative_controls": {
   "total_unique_ordered_pairs": 146,
   "by_kind": {

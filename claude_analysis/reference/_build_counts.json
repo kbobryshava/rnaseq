@@ -1,0 +1,21 @@
+{
+ "parquet_written": true,
+ "process_level": {
+  "algorithmic_negative_candidate": 172,
+  "algorithmic_supported": 814,
+  "source_verified_negative": 5,
+  "source_verified_positive": 115,
+  "unresolved": 128
+ },
+ "process_total": 1234,
+ "software_level": {
+  "Algorithmic_supported": 282,
+  "Gold": 29,
+  "Negative_unverified": 127,
+  "Negative_verified": 19,
+  "Silver": 22,
+  "Unresolved": 37
+ },
+ "software_total": 516,
+ "unclassified_breakdown": {}
+}

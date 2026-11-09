@@ -1,2 +1,4 @@
 __pycache__/
 *.pyc
+# the nf-core root .gitignore ignores "data/"; the analysis data ARE part of the deliverable
+!data/

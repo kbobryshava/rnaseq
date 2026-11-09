@@ -1,4 +1,4 @@
-pair_id,pair_decision,edge_id,src,dst,consumer_call,payload_audit,detail,confidence_v1,confidence_v2
+pair_id,pair_decision,edge_id,src,dst,consumer_call,payload_audit,detail,confidence_v1,confidence_final
 P13,Gold,E00304,MAKE_TRANSCRIPTS_FASTA.transcript_fasta,SALMON_QUANT,subworkflows/nf-core/fastq_subsample_fq_salmon/main.nf:48,compatible,,medium,high
 P18,Negative,E00041,SAMTOOLS_FAIDX.fai,BBMAP_BBSPLIT,subworkflows/local/prepare_genome_indices/main.nf:96,PROJECTION-DROPPED,subworkflows/local/prepare_genome_indices/main.nf:60 drops _fai,medium,rejected
 P19,Gold,E00642,SAMTOOLS_FAIDX.fai,PICARD_MARKDUPLICATES,subworkflows/nf-core/bam_markduplicates_picard/main.nf:15,compatible,,medium,high

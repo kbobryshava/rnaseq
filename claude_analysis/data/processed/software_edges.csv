@@ -1,0 +1,392 @@
+src_software,dst_software,self_loop,n_supporting_process_edges,classes,confidence_counts,best_confidence,only_reporting,conditional_fraction,observed_in_preview_configs,example_edge_ids,src_role,dst_role
+BBMap (BBSplit),BBMap (BBSplit),True,1,direct:1,high:1,high,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00137,analysis,analysis
+BBMap (BBSplit),Bowtie 2,False,3,direct:2;merged-channel:1,high:2;medium:1,high,False,1.0,,E00193;E00206;E00399,analysis,analysis
+BBMap (BBSplit),FastQC,False,1,direct:1,high:1,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00240,analysis,qc
+BBMap (BBSplit),fq,False,3,direct:3,high:3,high,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00138;E00225;E00280,analysis,qc
+BBMap (BBSplit),HISAT2,False,1,merged-channel:1,medium:1,medium,False,1.0,hisat2;hisat2_kraken2_bracken,E00432,analysis,analysis
+BBMap (BBSplit),kallisto,False,1,merged-channel:1,medium:1,medium,False,1.0,kallisto,E01097,analysis,quantification
+BBMap (BBSplit),Kraken 2,False,1,merged-channel:1,medium:1,medium,False,1.0,hisat2_kraken2_bracken;kraken2;kraken2_bracken,E01028,analysis,analysis
+BBMap (BBSplit),MultiQC,False,2,reporting-aggregation:2,medium:2,medium,True,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E01145;E01221,analysis,reporting
+BBMap (BBSplit),NVIDIA Parabricks rna_fq2bam (STAR-based),False,1,merged-channel:1,medium:1,medium,False,1.0,parabricks_star,E00335,analysis,analysis
+BBMap (BBSplit),RiboDetector,False,2,merged-channel:2,medium:2,medium,False,1.0,,E00166;E00178,analysis,analysis
+BBMap (BBSplit),Salmon,False,2,key-only-synchronization:1;merged-channel:1,low:1;medium:1,medium,False,1.0,hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;test,E00264;E01074,analysis,quantification
+BBMap (BBSplit),Sentieon STAR,False,1,merged-channel:1,medium:1,medium,False,1.0,sentieon_star,E00310,analysis,analysis
+BBMap (BBSplit),SeqKit,False,1,direct:1,high:1,high,False,1.0,,E00155,analysis,utility
+BBMap (BBSplit),SortMeRNA,False,1,direct:1,high:1,high,False,1.0,,E00140,analysis,analysis
+BBMap (BBSplit),STAR,False,1,merged-channel:1,medium:1,medium,False,1.0,kraken2;kraken2_bracken;star_rsem;test,E00359,analysis,analysis
+BBMap (BBSplit),Sylph,False,1,merged-channel:1,medium:1,medium,False,1.0,,E01052,analysis,analysis
+BEDTools,UCSC bedClip,False,3,direct:3,high:3,high,False,1.0,kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E01011;E01015;E01019,analysis,analysis
+Bowtie 2,BEDTools,False,3,gating-or-metadata:3,low:3,low,False,1.0,,E00978;E00994;E01010,analysis,analysis
+Bowtie 2,Bowtie 2,True,4,direct:3;merged-channel:1,high:3;medium:1,high,False,1.0,,E00204;E00217;E00397;E00412,analysis,analysis
+Bowtie 2,dupRadar,False,1,gating-or-metadata:1,low:1,low,False,1.0,,E00803,analysis,qc
+Bowtie 2,FastQC,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00238,analysis,qc
+Bowtie 2,featureCounts (Subread),False,1,gating-or-metadata:1,low:1,low,False,1.0,,E00756,analysis,quantification
+Bowtie 2,fq,False,2,merged-channel:2,medium:2,medium,False,1.0,,E00223;E00278,analysis,qc
+Bowtie 2,HISAT2,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00430,analysis,analysis
+Bowtie 2,kallisto,False,2,merged-channel:2,medium:1;rejected:1,medium,False,1.0,,E00604;E01095,analysis,quantification
+Bowtie 2,Kraken 2,False,1,merged-channel:1,medium:1,medium,False,1.0,,E01026,analysis,analysis
+Bowtie 2,MultiQC,False,4,reporting-aggregation:4,medium:4,medium,True,1.0,,E01149;E01150;E01158;E01219,analysis,reporting
+Bowtie 2,NVIDIA Parabricks rna_fq2bam (STAR-based),False,1,merged-channel:1,medium:1,medium,False,1.0,,E00333,analysis,analysis
+Bowtie 2,Picard,False,1,gating-or-metadata:1,low:1,low,False,1.0,,E00639,analysis,analysis
+Bowtie 2,Preseq,False,1,gating-or-metadata:1,low:1,low,False,1.0,,E00739,analysis,qc
+Bowtie 2,RSeQC,False,9,gating-or-metadata:9,low:9,low,False,1.0,,E00718;E00824;E00841;E00861;E00881;E00901,analysis,qc
+Bowtie 2,Salmon,False,3,key-only-synchronization:1;merged-channel:2,low:1;medium:2,medium,False,1.0,,E00262;E00589;E01072,analysis,quantification
+Bowtie 2,SAMtools,False,4,direct:2;gating-or-metadata:1;merged-channel:1,high:2;low:1;medium:1,high,False,1.0,,E00219;E00413;E00502;E00778,analysis,utility
+Bowtie 2,Sentieon STAR,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00308,analysis,analysis
+Bowtie 2,STAR,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00357,analysis,analysis
+Bowtie 2,StringTie,False,2,gating-or-metadata:2,low:2,low,False,1.0,,E00672;E00697,analysis,analysis
+Bowtie 2,Sylph,False,1,merged-channel:1,medium:1,medium,False,1.0,,E01050,analysis,analysis
+Bracken,MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,hisat2_kraken2_bracken;kraken2_bracken,E01199,analysis,reporting
+cat (GNU coreutils),BBMap (BBSplit),False,1,merged-channel:1,medium:1,medium,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00133,utility,analysis
+cat (GNU coreutils),Bowtie 2,False,3,merged-channel:3,medium:3,medium,False,1.0,,E00201;E00214;E00407,utility,analysis
+cat (GNU coreutils),fastp,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00115,utility,analysis
+cat (GNU coreutils),FastQC,False,3,merged-channel:3,medium:3,medium,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00103;E00110;E00248,utility,qc
+cat (GNU coreutils),fq,False,4,merged-channel:4,medium:4,medium,False,0.75,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00102;E00125;E00233;E00288,utility,qc
+cat (GNU coreutils),HISAT2,False,1,merged-channel:1,medium:1,medium,False,1.0,hisat2;hisat2_kraken2_bracken,E00440,utility,analysis
+cat (GNU coreutils),kallisto,False,1,merged-channel:1,medium:1,medium,False,1.0,kallisto,E01105,utility,quantification
+cat (GNU coreutils),Kraken 2,False,1,merged-channel:1,medium:1,medium,False,1.0,hisat2_kraken2_bracken;kraken2;kraken2_bracken,E01036,utility,analysis
+cat (GNU coreutils),MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E01225,utility,reporting
+cat (GNU coreutils),NVIDIA Parabricks rna_fq2bam (STAR-based),False,1,merged-channel:1,medium:1,medium,False,1.0,parabricks_star,E00343,utility,analysis
+cat (GNU coreutils),RiboDetector,False,2,merged-channel:2,medium:2,medium,False,1.0,,E00174;E00186,utility,analysis
+cat (GNU coreutils),Salmon,False,2,key-only-synchronization:1;merged-channel:1,low:1;medium:1,medium,False,1.0,hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;test,E00272;E01082,utility,quantification
+cat (GNU coreutils),Sentieon STAR,False,1,merged-channel:1,medium:1,medium,False,1.0,sentieon_star,E00318,utility,analysis
+cat (GNU coreutils),SeqKit,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00163,utility,utility
+cat (GNU coreutils),SortMeRNA,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00148,utility,analysis
+cat (GNU coreutils),STAR,False,1,merged-channel:1,medium:1,medium,False,1.0,kraken2;kraken2_bracken;star_rsem;test,E00367,utility,analysis
+cat (GNU coreutils),Sylph,False,1,merged-channel:1,medium:1,medium,False,1.0,,E01060,utility,analysis
+cat (GNU coreutils),Trim Galore,False,1,merged-channel:1,medium:1,medium,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00108,utility,analysis
+cat (GNU coreutils),UMI-tools,False,2,merged-channel:2,medium:2,medium,False,1.0,,E00105;E00112,utility,analysis
+DESeq2,MultiQC,False,6,reporting-aggregation:6,medium:6,medium,True,1.0,hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E01229;E01230;E01231;E01232;E01233;E01234,qc,reporting
+dupRadar,MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E01189,qc,reporting
+ea-utils gtf2bed,RSeQC,False,6,direct:6,high:6,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00845;E00865;E00885;E00905;E00925;E00962,reference-prep,qc
+fastp,BBMap (BBSplit),False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,,E00127;E00128,analysis,analysis
+fastp,Bowtie 2,False,6,gating-or-metadata:3;merged-channel:3,low:3;medium:3,medium,False,1.0,,E00195;E00196;E00208;E00209;E00401;E00402,analysis,analysis
+fastp,FastQC,False,4,gating-or-metadata:2;merged-channel:2,low:2;medium:2,medium,False,1.0,,E00117;E00118;E00242;E00243,analysis,qc
+fastp,fq,False,6,gating-or-metadata:3;merged-channel:3,low:3;medium:3,medium,False,1.0,,E00119;E00120;E00227;E00228;E00282;E00283,analysis,qc
+fastp,HISAT2,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,,E00434;E00435,analysis,analysis
+fastp,kallisto,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,,E01099;E01100,analysis,quantification
+fastp,Kraken 2,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,,E01030;E01031,analysis,analysis
+fastp,MultiQC,False,3,reporting-aggregation:3,medium:3,medium,True,1.0,,E01139;E01141;E01203,analysis,reporting
+fastp,NVIDIA Parabricks rna_fq2bam (STAR-based),False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,,E00337;E00338,analysis,analysis
+fastp,RiboDetector,False,4,gating-or-metadata:2;merged-channel:2,low:2;medium:2,medium,False,1.0,,E00168;E00169;E00180;E00181,analysis,analysis
+fastp,Salmon,False,4,gating-or-metadata:1;key-only-synchronization:2;merged-channel:1,low:3;medium:1,medium,False,1.0,,E00266;E00267;E01076;E01077,analysis,quantification
+fastp,Sentieon STAR,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,,E00312;E00313,analysis,analysis
+fastp,SeqKit,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,,E00157;E00158,analysis,utility
+fastp,SortMeRNA,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,,E00142;E00143,analysis,analysis
+fastp,STAR,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,,E00361;E00362,analysis,analysis
+fastp,Sylph,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,,E01054;E01055,analysis,analysis
+FastQC,MultiQC,False,4,reporting-aggregation:4,medium:4,medium,True,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E01135;E01136;E01137;E01151,qc,reporting
+featureCounts (Subread),nf-core custom script (Python),False,1,direct:1,high:1,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00762,quantification,utility
+fq,BBMap (BBSplit),False,2,key-only-synchronization:2,low:2,low,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00134;E00135,qc,analysis
+fq,Bowtie 2,False,10,key-only-synchronization:10,low:10,low,False,1.0,,E00194;E00202;E00203;E00207;E00215;E00216,qc,analysis
+fq,fastp,False,1,key-only-synchronization:1,low:1,low,False,1.0,,E00116,qc,analysis
+fq,FastQC,False,6,key-only-synchronization:6,low:6,low,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00104;E00111;E00241;E00249;E00250;E00251,qc,qc
+fq,fq,True,8,key-only-synchronization:8,low:8,low,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00126;E00226;E00234;E00235;E00281;E00289,qc,qc
+fq,HISAT2,False,4,key-only-synchronization:4,low:4,low,False,1.0,hisat2;hisat2_kraken2_bracken,E00433;E00441;E00442;E00443,qc,analysis
+fq,kallisto,False,4,key-only-synchronization:4,low:4,low,False,1.0,kallisto,E01098;E01106;E01107;E01108,qc,quantification
+fq,Kraken 2,False,4,key-only-synchronization:4,low:4,low,False,1.0,hisat2_kraken2_bracken;kraken2;kraken2_bracken,E01029;E01037;E01038;E01039,qc,analysis
+fq,MultiQC,False,4,reporting-aggregation:4,medium:4,medium,True,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E01222;E01226;E01227;E01228,qc,reporting
+fq,NVIDIA Parabricks rna_fq2bam (STAR-based),False,4,key-only-synchronization:4,low:4,low,False,1.0,parabricks_star,E00336;E00344;E00345;E00346,qc,analysis
+fq,RiboDetector,False,6,key-only-synchronization:6,low:6,low,False,1.0,,E00167;E00175;E00176;E00179;E00187;E00188,qc,analysis
+fq,Salmon,False,9,direct:1;key-only-synchronization:8,high:1;low:8,high,False,0.89,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00265;E00273;E00274;E00275;E00292;E01075,qc,quantification
+fq,Sentieon STAR,False,4,key-only-synchronization:4,low:4,low,False,1.0,sentieon_star,E00311;E00319;E00320;E00321,qc,analysis
+fq,SeqKit,False,3,key-only-synchronization:3,low:3,low,False,1.0,,E00156;E00164;E00165,qc,utility
+fq,SortMeRNA,False,3,key-only-synchronization:3,low:3,low,False,1.0,,E00141;E00149;E00150,qc,analysis
+fq,STAR,False,4,key-only-synchronization:4,low:4,low,False,1.0,kraken2;kraken2_bracken;star_rsem;test,E00360;E00368;E00369;E00370,qc,analysis
+fq,Sylph,False,4,key-only-synchronization:4,low:4,low,False,1.0,,E01053;E01061;E01062;E01063,qc,analysis
+fq,Trim Galore,False,1,key-only-synchronization:1,low:1,low,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00109,qc,analysis
+fq,UMI-tools,False,2,key-only-synchronization:2,low:2,low,False,1.0,,E00106;E00113,qc,analysis
+gawk,NVIDIA Parabricks rna_fq2bam (STAR-based),False,1,direct:1,high:1,high,False,1.0,,E00351,utility,analysis
+gawk,Sentieon STAR,False,1,direct:1,high:1,high,False,1.0,,E00323,utility,analysis
+gawk,STAR,False,1,direct:1,high:1,high,False,1.0,,E00371,utility,analysis
+GffRead,Bowtie 2,False,1,direct:1,high:1,high,False,1.0,,E00086,reference-prep,analysis
+GffRead,dupRadar,False,1,direct:1,high:1,high,False,1.0,,E00808,reference-prep,qc
+GffRead,ea-utils gtf2bed,False,1,direct:1,high:1,high,False,1.0,,E00017,reference-prep,reference-prep
+GffRead,featureCounts (Subread),False,1,direct:1,high:1,high,False,1.0,,E00761,reference-prep,quantification
+GffRead,GffRead,True,2,direct:2,high:2,high,False,1.0,,E00013;E00022,reference-prep,reference-prep
+GffRead,HISAT2,False,2,direct:2,high:2,high,False,1.0,,E00075;E00082,reference-prep,analysis
+GffRead,kallisto,False,3,direct:3,high:2;rejected:1,high,False,1.0,,E00099;E00608;E01114,reference-prep,quantification
+GffRead,nf-core custom script (Python),False,5,direct:5,high:5,high,False,1.0,,E00003;E00008;E00567;E00612;E01118,reference-prep,utility
+GffRead,Qualimap,False,1,direct:1,high:1,high,False,1.0,,E00787,reference-prep,qc
+GffRead,RSEM,False,2,direct:2,high:2,high,False,1.0,,E00036;E00071,reference-prep,quantification
+GffRead,RSeQC,False,7,direct:7,high:7,high,False,1.0,,E00723;E00844;E00864;E00884;E00904;E00924,reference-prep,qc
+GffRead,Salmon,False,7,direct:4;merged-channel:3,high:4;medium:3,high,False,1.0,,E00091;E00254;E00299;E00302;E00593;E00596,reference-prep,quantification
+GffRead,SAMtools,False,2,direct:2,high:2,high,False,1.0,,E00505;E00513,reference-prep,utility
+GffRead,Sentieon RSEM,False,2,direct:2,high:2,high,False,1.0,,E00030;E00064,reference-prep,quantification
+GffRead,Sentieon STAR,False,1,direct:1,high:1,high,False,1.0,,E00329,reference-prep,analysis
+GffRead,STAR,False,3,direct:3,high:3,high,False,1.0,,E00049;E00057;E00377,reference-prep,analysis
+GffRead,StringTie,False,3,direct:3,high:3,high,False,1.0,,E00676;E00681;E00702,reference-prep,analysis
+gzip (gunzip),BBMap (BBSplit),False,1,merged-channel:1,medium:1,medium,False,1.0,,E00040,utility,analysis
+gzip (gunzip),Bowtie 2,False,1,direct:1,high:1,high,False,1.0,,E00085,utility,analysis
+gzip (gunzip),dupRadar,False,1,direct:1,high:1,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00807,utility,qc
+gzip (gunzip),ea-utils gtf2bed,False,1,direct:1,high:1,high,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00016,utility,reference-prep
+gzip (gunzip),featureCounts (Subread),False,1,direct:1,high:1,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00760,utility,quantification
+gzip (gunzip),GffRead,False,4,direct:4,high:4,high,False,1.0,,E00001;E00012;E00021;E00024,utility,reference-prep
+gzip (gunzip),HISAT2,False,3,direct:2;merged-channel:1,high:2;medium:1,high,False,1.0,hisat2;hisat2_kraken2_bracken,E00074;E00077;E00081,utility,analysis
+gzip (gunzip),kallisto,False,3,direct:3,high:2;rejected:1,high,False,1.0,kallisto,E00098;E00607;E01113,utility,quantification
+gzip (gunzip),nf-core custom script (Python),False,8,direct:8,high:8,high,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00002;E00004;E00005;E00007;E00009;E00566,utility,utility
+gzip (gunzip),NVIDIA Parabricks rna_fq2bam (STAR-based),False,1,merged-channel:1,medium:1,medium,False,1.0,,E00348,utility,analysis
+gzip (gunzip),Picard,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00641,utility,analysis
+gzip (gunzip),Qualimap,False,1,direct:1,high:1,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00786,utility,qc
+gzip (gunzip),RSEM,False,4,direct:3;merged-channel:1,high:3;medium:1,high,False,1.0,kallisto;star_rsem,E00032;E00035;E00066;E00070,utility,quantification
+gzip (gunzip),RSeQC,False,7,direct:7,high:7,high,False,1.0,,E00722;E00843;E00863;E00883;E00903;E00923,utility,qc
+gzip (gunzip),Salmon,False,9,direct:4;key-only-synchronization:2;merged-channel:3,high:4;low:2;medium:3,high,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00090;E00095;E00253;E00258;E00298;E00301,utility,quantification
+gzip (gunzip),SAMtools,False,12,direct:3;merged-channel:9,high:3;medium:9,high,False,1.0,,E00038;E00382;E00388;E00415;E00421;E00449,utility,utility
+gzip (gunzip),sed,False,1,direct:1,high:1,high,False,1.0,,E00018,utility,utility
+gzip (gunzip),Sentieon RSEM,False,4,direct:3;merged-channel:1,high:3;medium:1,high,False,1.0,,E00026;E00029;E00059;E00063,utility,quantification
+gzip (gunzip),Sentieon STAR,False,1,direct:1,high:1,high,False,1.0,sentieon_star,E00328,utility,analysis
+gzip (gunzip),SeqKit,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00190,utility,utility
+gzip (gunzip),SortMeRNA,False,3,merged-channel:3,medium:3,medium,False,1.0,,E00042;E00139;E00151,utility,analysis
+gzip (gunzip),STAR,False,5,direct:3;merged-channel:2,high:3;medium:2,high,False,1.0,kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00044;E00048;E00052;E00056;E00376,utility,analysis
+gzip (gunzip),StringTie,False,3,direct:3,high:3,high,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00675;E00680;E00701,utility,analysis
+HISAT2,HISAT2,True,3,direct:2;merged-channel:1,high:2;medium:1,high,False,1.0,hisat2;hisat2_kraken2_bracken,E00083;E00445;E00446,analysis,analysis
+HISAT2,Kraken 2,False,1,direct:1,high:1,high,False,1.0,hisat2_kraken2_bracken,E01040,analysis,analysis
+HISAT2,MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,hisat2;hisat2_kraken2_bracken,E01162,analysis,reporting
+HISAT2,SAMtools,False,1,direct:1,high:1,high,False,1.0,hisat2;hisat2_kraken2_bracken,E00447,analysis,utility
+HISAT2,Sylph,False,1,direct:1,high:1,high,False,1.0,,E01064,analysis,analysis
+kallisto,kallisto,True,1,direct:1,high:1,high,False,1.0,kallisto,E01110,quantification,quantification
+kallisto,nf-core custom script (Python),False,2,direct:2,high:2,high,False,1.0,kallisto,E00614;E01120,quantification,utility
+kallisto,MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,kallisto,E01202,quantification,reporting
+kallisto,tximeta,False,2,direct:2,high:2,high,False,1.0,kallisto,E00616;E01122,quantification,quantification
+Kraken 2,Bracken,False,1,direct:1,high:1,high,False,1.0,hisat2_kraken2_bracken;kraken2_bracken,E01045,analysis,analysis
+Kraken 2,MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,hisat2_kraken2_bracken;kraken2;kraken2_bracken,E01198,analysis,reporting
+nf-core custom script (Python),BBMap (BBSplit),False,1,merged-channel:1,medium:1,medium,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00039,utility,analysis
+nf-core custom script (Python),dupRadar,False,2,direct:2,high:2,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00805;E00806,utility,qc
+nf-core custom script (Python),ea-utils gtf2bed,False,2,direct:2,high:2,high,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00014;E00015,utility,reference-prep
+nf-core custom script (Python),featureCounts (Subread),False,2,direct:2,high:2,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00758;E00759,utility,quantification
+nf-core custom script (Python),GffRead,False,5,direct:5,high:5,high,False,1.0,,E00010;E00011;E00019;E00020;E00023,utility,reference-prep
+nf-core custom script (Python),HISAT2,False,5,direct:4;merged-channel:1,high:4;medium:1,high,False,1.0,hisat2;hisat2_kraken2_bracken,E00072;E00073;E00076;E00079;E00080,utility,analysis
+nf-core custom script (Python),kallisto,False,4,direct:4,high:2;rejected:2,high,False,1.0,kallisto,E00605;E00606;E01111;E01112,utility,quantification
+nf-core custom script (Python),nf-core custom script (Python),True,7,direct:7,high:7,high,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00006;E00564;E00565;E00609;E00610;E01115,utility,utility
+nf-core custom script (Python),MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E01187,utility,reporting
+nf-core custom script (Python),NVIDIA Parabricks rna_fq2bam (STAR-based),False,1,merged-channel:1,medium:1,medium,False,1.0,parabricks_star,E00347,utility,analysis
+nf-core custom script (Python),Picard,False,1,merged-channel:1,medium:1,medium,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;salmon_pseudo;sentieon_star;star_rsem;test,E00640,utility,analysis
+nf-core custom script (Python),Qualimap,False,2,direct:2,high:2,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00784;E00785,utility,qc
+nf-core custom script (Python),RSEM,False,6,direct:5;merged-channel:1,high:5;medium:1,high,False,1.0,kallisto;star_rsem,E00031;E00033;E00034;E00065;E00068;E00069,utility,quantification
+nf-core custom script (Python),RSeQC,False,2,direct:2,high:2,high,False,1.0,,E00720;E00721,utility,qc
+nf-core custom script (Python),Salmon,False,8,direct:4;key-only-synchronization:2;merged-channel:2,high:4;low:2;medium:2,high,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00094;E00257;E00296;E00297;E00590;E00591,utility,quantification
+nf-core custom script (Python),SAMtools,False,10,direct:1;merged-channel:9,high:1;medium:9,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00037;E00381;E00387;E00414;E00420;E00448,utility,utility
+nf-core custom script (Python),Sentieon RSEM,False,6,direct:5;merged-channel:1,high:5;medium:1,high,False,1.0,,E00025;E00027;E00028;E00058;E00061;E00062,utility,quantification
+nf-core custom script (Python),Sentieon STAR,False,2,direct:2,high:2,high,False,1.0,sentieon_star,E00326;E00327,utility,analysis
+nf-core custom script (Python),STAR,False,8,direct:6;merged-channel:2,high:6;medium:2,high,False,1.0,kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00043;E00046;E00047;E00051;E00054;E00055,utility,analysis
+nf-core custom script (Python),StringTie,False,6,direct:6,high:6,high,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00673;E00674;E00678;E00679;E00699;E00700,utility,analysis
+nf-core custom script (Python),SummarizedExperiment,False,3,direct:3,high:3,high,False,1.0,hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00578;E00623;E01129,utility,quantification
+nf-core custom script (Python),tximeta,False,3,direct:3,high:3,high,False,1.0,hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00572;E00617;E01123,utility,quantification
+NVIDIA Parabricks rna_fq2bam (STAR-based),BEDTools,False,3,gating-or-metadata:3,low:3,low,False,1.0,parabricks_star,E00976;E00992;E01008,analysis,analysis
+NVIDIA Parabricks rna_fq2bam (STAR-based),dupRadar,False,1,gating-or-metadata:1,low:1,low,False,1.0,parabricks_star,E00801,analysis,qc
+NVIDIA Parabricks rna_fq2bam (STAR-based),featureCounts (Subread),False,1,gating-or-metadata:1,low:1,low,False,1.0,parabricks_star,E00754,analysis,quantification
+NVIDIA Parabricks rna_fq2bam (STAR-based),kallisto,False,1,merged-channel:1,rejected:1,rejected,False,1.0,,E00602,analysis,quantification
+NVIDIA Parabricks rna_fq2bam (STAR-based),Kraken 2,False,1,direct:1,high:1,high,False,1.0,,E01042,analysis,analysis
+NVIDIA Parabricks rna_fq2bam (STAR-based),MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,parabricks_star,E01153,analysis,reporting
+NVIDIA Parabricks rna_fq2bam (STAR-based),Picard,False,1,gating-or-metadata:1,low:1,low,False,1.0,,E00637,analysis,analysis
+NVIDIA Parabricks rna_fq2bam (STAR-based),Preseq,False,1,gating-or-metadata:1,low:1,low,False,1.0,parabricks_star,E00737,analysis,qc
+NVIDIA Parabricks rna_fq2bam (STAR-based),RSEM,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00556,analysis,quantification
+NVIDIA Parabricks rna_fq2bam (STAR-based),RSeQC,False,9,gating-or-metadata:9,low:9,low,False,1.0,parabricks_star,E00716;E00822;E00839;E00859;E00879;E00899,analysis,qc
+NVIDIA Parabricks rna_fq2bam (STAR-based),Salmon,False,1,merged-channel:1,medium:1,medium,False,1.0,parabricks_star,E00587,analysis,quantification
+NVIDIA Parabricks rna_fq2bam (STAR-based),SAMtools,False,3,direct:1;gating-or-metadata:1;merged-channel:1,high:1;low:1;medium:1,high,False,1.0,parabricks_star,E00379;E00500;E00776,analysis,utility
+NVIDIA Parabricks rna_fq2bam (STAR-based),StringTie,False,2,gating-or-metadata:2,low:2,low,False,1.0,parabricks_star,E00670;E00695,analysis,analysis
+NVIDIA Parabricks rna_fq2bam (STAR-based),Sylph,False,1,direct:1,high:1,high,False,1.0,,E01066,analysis,analysis
+Picard,BEDTools,False,3,direct:3,high:3,high,False,1.0,kallisto;kraken2;kraken2_bracken;salmon_pseudo;sentieon_star;star_rsem;test,E00963;E00979;E00995,analysis,analysis
+Picard,dupRadar,False,1,direct:1,high:1,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;sentieon_star;star_rsem;test,E00788,analysis,qc
+Picard,featureCounts (Subread),False,1,direct:1,high:1,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;sentieon_star;star_rsem;test,E00741,analysis,quantification
+Picard,MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;salmon_pseudo;sentieon_star;star_rsem;test,E01179,analysis,reporting
+Picard,Preseq,False,1,direct:1,high:1,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;sentieon_star;star_rsem;test,E00724,analysis,qc
+Picard,RSeQC,False,9,direct:9,high:9,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;sentieon_star;star_rsem;test,E00703;E00809;E00826;E00846;E00866;E00886,analysis,qc
+Picard,SAMtools,False,9,direct:1;merged-channel:8,high:1;medium:8,high,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;salmon_pseudo;sentieon_star;star_rsem;test,E00643;E00644;E00645;E00646;E00651;E00652,analysis,utility
+Picard,StringTie,False,2,direct:2,high:2,high,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;salmon_pseudo;sentieon_star;star_rsem;test,E00657;E00682,analysis,analysis
+Preseq,MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E01186,qc,reporting
+Qualimap,MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E01188,qc,reporting
+RiboDetector,Bowtie 2,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00396,analysis,analysis
+RiboDetector,FastQC,False,1,direct:1,high:1,high,False,1.0,,E00237,analysis,qc
+RiboDetector,fq,False,2,direct:2,high:2,high,False,1.0,,E00222;E00277,analysis,qc
+RiboDetector,HISAT2,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00429,analysis,analysis
+RiboDetector,kallisto,False,1,merged-channel:1,medium:1,medium,False,1.0,,E01094,analysis,quantification
+RiboDetector,Kraken 2,False,1,merged-channel:1,medium:1,medium,False,1.0,,E01025,analysis,analysis
+RiboDetector,MultiQC,False,2,reporting-aggregation:2,medium:2,medium,True,1.0,,E01147;E01218,analysis,reporting
+RiboDetector,NVIDIA Parabricks rna_fq2bam (STAR-based),False,1,merged-channel:1,medium:1,medium,False,1.0,,E00332,analysis,analysis
+RiboDetector,Salmon,False,2,key-only-synchronization:1;merged-channel:1,low:1;medium:1,medium,False,1.0,,E00261;E01071,analysis,quantification
+RiboDetector,Sentieon STAR,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00307,analysis,analysis
+RiboDetector,STAR,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00356,analysis,analysis
+RiboDetector,Sylph,False,1,merged-channel:1,medium:1,medium,False,1.0,,E01049,analysis,analysis
+RSEM,Bowtie 2,False,1,direct:1,high:1,high,False,1.0,,E00088,quantification,analysis
+RSEM,kallisto,False,1,direct:1,high:1,high,False,1.0,kallisto,E00101,quantification,quantification
+RSEM,nf-core custom script (Python),False,1,direct:1,high:1,high,False,1.0,star_rsem,E00569,quantification,utility
+RSEM,MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,star_rsem,E01175,quantification,reporting
+RSEM,RSEM,True,1,direct:1,high:1,high,False,1.0,star_rsem,E00559,quantification,quantification
+RSEM,Salmon,False,4,direct:2;merged-channel:2,high:2;medium:2,high,False,1.0,kallisto,E00093;E00256;E00304;E00598,quantification,quantification
+RSEM,SAMtools,False,2,direct:2,high:2,high,False,1.0,,E00507;E00515,quantification,utility
+RSEM,sed,False,2,direct:2,high:2,high,False,1.0,star_rsem,E00561;E00563,quantification,utility
+RSEM,tximeta,False,1,direct:1,high:1,high,False,1.0,star_rsem,E00571,quantification,quantification
+RSeQC,MultiQC,False,14,reporting-aggregation:14,medium:14,medium,True,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E01180;E01181;E01182;E01183;E01184;E01185,qc,reporting
+Salmon,Bowtie 2,False,1,metadata-dependency:1,low:1,low,False,1.0,,E00394,quantification,analysis
+Salmon,HISAT2,False,1,metadata-dependency:1,low:1,low,False,1.0,hisat2;hisat2_kraken2_bracken,E00427,quantification,analysis
+Salmon,kallisto,False,1,metadata-dependency:1,low:1,low,False,1.0,kallisto,E01092,quantification,quantification
+Salmon,Kraken 2,False,1,metadata-dependency:1,low:1,low,False,1.0,hisat2_kraken2_bracken;kraken2;kraken2_bracken,E01023,quantification,analysis
+Salmon,nf-core custom script (Python),False,2,direct:2,high:2,high,False,1.0,hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;test,E00613;E01119,quantification,utility
+Salmon,MultiQC,False,2,reporting-aggregation:2,medium:2,medium,True,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E01201;E01216,quantification,reporting
+Salmon,NVIDIA Parabricks rna_fq2bam (STAR-based),False,1,metadata-dependency:1,low:1,low,False,1.0,parabricks_star,E00330,quantification,analysis
+Salmon,Salmon,True,4,direct:1;merged-channel:2;metadata-dependency:1,high:1;low:1;medium:2,high,False,1.0,hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;test,E00293;E00295;E01069;E01087,quantification,quantification
+Salmon,Sentieon STAR,False,1,metadata-dependency:1,low:1,low,False,1.0,sentieon_star,E00305,quantification,analysis
+Salmon,STAR,False,1,metadata-dependency:1,low:1,low,False,1.0,kraken2;kraken2_bracken;star_rsem;test,E00354,quantification,analysis
+Salmon,Sylph,False,1,metadata-dependency:1,low:1,low,False,1.0,,E01047,quantification,analysis
+Salmon,tximeta,False,2,direct:2,high:2,high,False,1.0,hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;test,E00615;E01121,quantification,quantification
+SAMtools,BBMap (BBSplit),False,1,merged-channel:1,rejected:1,rejected,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00041,utility,analysis
+SAMtools,BEDTools,False,27,merged-channel:27,medium:9;rejected:18,medium,False,1.0,kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00966;E00967;E00968;E00969;E00970;E00971,utility,analysis
+SAMtools,Bowtie 2,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00398,utility,analysis
+SAMtools,dupRadar,False,10,direct:1;merged-channel:9,medium:3;rejected:7,medium,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00791;E00792;E00793;E00794;E00795;E00796,utility,qc
+SAMtools,FastQC,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00239,utility,qc
+SAMtools,featureCounts (Subread),False,10,direct:1;merged-channel:9,medium:3;rejected:7,medium,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00744;E00745;E00746;E00747;E00748;E00749,utility,quantification
+SAMtools,fq,False,2,merged-channel:2,medium:2,medium,False,1.0,,E00224;E00279,utility,qc
+SAMtools,HISAT2,False,2,merged-channel:2,medium:1;rejected:1,medium,False,1.0,,E00078;E00431,utility,analysis
+SAMtools,kallisto,False,2,merged-channel:2,medium:1;rejected:1,medium,False,1.0,,E00599;E01096,utility,quantification
+SAMtools,Kraken 2,False,1,merged-channel:1,medium:1,medium,False,1.0,,E01027,utility,analysis
+SAMtools,MultiQC,False,28,reporting-aggregation:28,medium:28,medium,True,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E01155;E01156;E01157;E01159;E01160;E01161,utility,reporting
+SAMtools,NVIDIA Parabricks rna_fq2bam (STAR-based),False,2,merged-channel:2,medium:1;rejected:1,medium,False,1.0,parabricks_star,E00334;E00349,utility,analysis
+SAMtools,Picard,False,8,merged-channel:8,medium:4;rejected:4,medium,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;salmon_pseudo;sentieon_star;star_rsem;test,E00629;E00630;E00631;E00632;E00633;E00634,utility,analysis
+SAMtools,Preseq,False,10,direct:1;merged-channel:9,medium:3;rejected:7,medium,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00727;E00728;E00729;E00730;E00731;E00732,utility,qc
+SAMtools,Qualimap,False,1,direct:1,high:1,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00783,utility,qc
+SAMtools,RSEM,False,2,merged-channel:2,medium:1;rejected:1,medium,False,1.0,star_rsem,E00067;E00554,utility,quantification
+SAMtools,RSeQC,False,90,direct:9;merged-channel:81,high:9;medium:81,high,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00706;E00707;E00708;E00709;E00710;E00711,utility,qc
+SAMtools,Salmon,False,5,key-only-synchronization:3;merged-channel:2,low:3;medium:2,medium,False,1.0,,E00096;E00259;E00263;E00584;E01073,utility,quantification
+SAMtools,SAMtools,True,74,direct:9;merged-channel:65,high:8;medium:59;rejected:7,high,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00220;E00383;E00384;E00385;E00386;E00389,utility,utility
+SAMtools,Sentieon RSEM,False,2,merged-channel:2,medium:1;rejected:1,medium,False,1.0,,E00060;E00549,utility,quantification
+SAMtools,Sentieon STAR,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00309,utility,analysis
+SAMtools,STAR,False,3,merged-channel:3,medium:1;rejected:2,medium,False,1.0,kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00045;E00053;E00358,utility,analysis
+SAMtools,StringTie,False,18,merged-channel:18,medium:6;rejected:12,medium,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00660;E00661;E00662;E00663;E00664;E00665,utility,analysis
+SAMtools,Sylph,False,1,merged-channel:1,medium:1,medium,False,1.0,,E01051,utility,analysis
+SAMtools,UCSC bedClip,False,3,direct:3,high:3,high,False,1.0,kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E01012;E01016;E01020,utility,analysis
+SAMtools,UCSC bedGraphToBigWig,False,3,direct:3,high:3,high,False,1.0,kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E01014;E01018;E01022,utility,analysis
+SAMtools,UMI-tools,False,14,direct:2;merged-channel:12,high:2;medium:12,high,False,1.0,,E00483;E00484;E00485;E00486;E00487;E00488,utility,analysis
+SAMtools,UMICollapse,False,9,direct:1;merged-channel:8,high:1;medium:8,high,False,1.0,,E00461;E00462;E00463;E00464;E00465;E00466,utility,analysis
+sed,Bowtie 2,False,1,direct:1,high:1,high,False,1.0,,E00084,utility,analysis
+sed,kallisto,False,1,direct:1,high:1,high,False,1.0,,E00097,utility,quantification
+sed,Salmon,False,4,direct:2;merged-channel:2,high:2;medium:2,high,False,1.0,,E00089;E00252;E00300;E00594,utility,quantification
+sed,SAMtools,False,2,direct:2,high:2,high,False,1.0,,E00503;E00511,utility,utility
+Sentieon RSEM,Bowtie 2,False,1,direct:1,high:1,high,False,1.0,,E00087,quantification,analysis
+Sentieon RSEM,kallisto,False,1,direct:1,high:1,high,False,1.0,,E00100,quantification,quantification
+Sentieon RSEM,nf-core custom script (Python),False,1,direct:1,high:1,high,False,1.0,,E00568,quantification,utility
+Sentieon RSEM,MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,,E01174,quantification,reporting
+Sentieon RSEM,Salmon,False,4,direct:2;merged-channel:2,high:2;medium:2,high,False,1.0,,E00092;E00255;E00303;E00597,quantification,quantification
+Sentieon RSEM,SAMtools,False,2,direct:2,high:2,high,False,1.0,,E00506;E00514,quantification,utility
+Sentieon RSEM,sed,False,2,direct:2,high:2,high,False,1.0,,E00560;E00562,quantification,utility
+Sentieon RSEM,Sentieon RSEM,True,1,direct:1,high:1,high,False,1.0,,E00553,quantification,quantification
+Sentieon RSEM,tximeta,False,1,direct:1,high:1,high,False,1.0,,E00570,quantification,quantification
+Sentieon STAR,BEDTools,False,3,gating-or-metadata:3,low:3,low,False,1.0,sentieon_star,E00975;E00991;E01007,analysis,analysis
+Sentieon STAR,dupRadar,False,1,gating-or-metadata:1,low:1,low,False,1.0,sentieon_star,E00800,analysis,qc
+Sentieon STAR,featureCounts (Subread),False,1,gating-or-metadata:1,low:1,low,False,1.0,sentieon_star,E00753,analysis,quantification
+Sentieon STAR,kallisto,False,1,merged-channel:1,rejected:1,rejected,False,1.0,,E00601,analysis,quantification
+Sentieon STAR,Kraken 2,False,1,direct:1,high:1,high,False,1.0,,E01041,analysis,analysis
+Sentieon STAR,MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,sentieon_star,E01152,analysis,reporting
+Sentieon STAR,Picard,False,1,gating-or-metadata:1,low:1,low,False,1.0,sentieon_star,E00636,analysis,analysis
+Sentieon STAR,Preseq,False,1,gating-or-metadata:1,low:1,low,False,1.0,sentieon_star,E00736,analysis,qc
+Sentieon STAR,RSeQC,False,9,gating-or-metadata:9,low:9,low,False,1.0,sentieon_star,E00715;E00821;E00838;E00858;E00878;E00898,analysis,qc
+Sentieon STAR,Salmon,False,1,merged-channel:1,medium:1,medium,False,1.0,sentieon_star,E00586,analysis,quantification
+Sentieon STAR,SAMtools,False,3,direct:1;gating-or-metadata:1;merged-channel:1,high:1;low:1;medium:1,high,False,1.0,sentieon_star,E00378;E00499;E00775,analysis,utility
+Sentieon STAR,Sentieon RSEM,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00551,analysis,quantification
+Sentieon STAR,StringTie,False,2,gating-or-metadata:2,low:2,low,False,1.0,sentieon_star,E00669;E00694,analysis,analysis
+Sentieon STAR,Sylph,False,1,direct:1,high:1,high,False,1.0,,E01065,analysis,analysis
+SeqKit,Bowtie 2,False,1,direct:1,high:1,high,False,1.0,,E00192,utility,analysis
+SeqKit,MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,,E01148,utility,reporting
+SeqKit,RiboDetector,False,2,gating-or-metadata:2,low:2,low,False,1.0,,E00177;E00189,utility,analysis
+SeqKit,SeqKit,True,1,direct:1,high:1,high,False,1.0,,E00191,utility,utility
+SortMeRNA,Bowtie 2,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00395,analysis,analysis
+SortMeRNA,FastQC,False,1,direct:1,high:1,high,False,1.0,,E00236,analysis,qc
+SortMeRNA,fq,False,2,direct:2,high:2,high,False,1.0,,E00221;E00276,analysis,qc
+SortMeRNA,HISAT2,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00428,analysis,analysis
+SortMeRNA,kallisto,False,1,merged-channel:1,medium:1,medium,False,1.0,,E01093,analysis,quantification
+SortMeRNA,Kraken 2,False,1,merged-channel:1,medium:1,medium,False,1.0,,E01024,analysis,analysis
+SortMeRNA,MultiQC,False,2,reporting-aggregation:2,medium:2,medium,True,1.0,,E01146;E01217,analysis,reporting
+SortMeRNA,NVIDIA Parabricks rna_fq2bam (STAR-based),False,1,merged-channel:1,medium:1,medium,False,1.0,,E00331,analysis,analysis
+SortMeRNA,Salmon,False,2,key-only-synchronization:1;merged-channel:1,low:1;medium:1,medium,False,1.0,,E00260;E01070,analysis,quantification
+SortMeRNA,Sentieon STAR,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00306,analysis,analysis
+SortMeRNA,SortMeRNA,True,2,direct:2,high:2,high,False,1.0,,E00152;E00154,analysis,analysis
+SortMeRNA,STAR,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00355,analysis,analysis
+SortMeRNA,Sylph,False,1,merged-channel:1,medium:1,medium,False,1.0,,E01048,analysis,analysis
+STAR,BEDTools,False,3,gating-or-metadata:3,low:3,low,False,1.0,kraken2;kraken2_bracken;star_rsem;test,E00977;E00993;E01009,analysis,analysis
+STAR,dupRadar,False,1,gating-or-metadata:1,low:1,low,False,1.0,kraken2;kraken2_bracken;star_rsem;test,E00802,analysis,qc
+STAR,featureCounts (Subread),False,1,gating-or-metadata:1,low:1,low,False,1.0,kraken2;kraken2_bracken;star_rsem;test,E00755,analysis,quantification
+STAR,kallisto,False,1,merged-channel:1,rejected:1,rejected,False,1.0,,E00603,analysis,quantification
+STAR,Kraken 2,False,1,direct:1,high:1,high,False,1.0,kraken2;kraken2_bracken,E01043,analysis,analysis
+STAR,MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,kraken2;kraken2_bracken;star_rsem;test,E01154,analysis,reporting
+STAR,NVIDIA Parabricks rna_fq2bam (STAR-based),False,2,direct:2,high:2,high,False,1.0,parabricks_star,E00350;E00353,analysis,analysis
+STAR,Picard,False,1,gating-or-metadata:1,low:1,low,False,1.0,kraken2;kraken2_bracken;star_rsem;test,E00638,analysis,analysis
+STAR,Preseq,False,1,gating-or-metadata:1,low:1,low,False,1.0,kraken2;kraken2_bracken;star_rsem;test,E00738,analysis,qc
+STAR,RSEM,False,1,merged-channel:1,medium:1,medium,False,1.0,star_rsem,E00557,analysis,quantification
+STAR,RSeQC,False,9,gating-or-metadata:9,low:9,low,False,1.0,kraken2;kraken2_bracken;star_rsem;test,E00717;E00823;E00840;E00860;E00880;E00900,analysis,qc
+STAR,Salmon,False,1,merged-channel:1,medium:1,medium,False,1.0,kraken2;kraken2_bracken;test,E00588,analysis,quantification
+STAR,SAMtools,False,3,direct:1;gating-or-metadata:1;merged-channel:1,high:1;low:1;medium:1,high,False,1.0,kraken2;kraken2_bracken;star_rsem;test,E00380;E00501;E00777,analysis,utility
+STAR,Sentieon STAR,False,2,direct:2,high:1;rejected:1,high,False,1.0,sentieon_star,E00322;E00325,analysis,analysis
+STAR,STAR,True,1,direct:1,high:1,high,False,1.0,kraken2;kraken2_bracken;star_rsem;test,E00373,analysis,analysis
+STAR,StringTie,False,2,gating-or-metadata:2,low:2,low,False,1.0,kraken2;kraken2_bracken;star_rsem;test,E00671;E00696,analysis,analysis
+STAR,Sylph,False,1,direct:1,high:1,high,False,1.0,,E01067,analysis,analysis
+StringTie,StringTie,True,2,direct:2,high:2,high,False,1.0,,E00677;E00698,analysis,analysis
+Sylph,sylph-tax,False,1,direct:1,high:1,high,False,1.0,,E01068,analysis,analysis
+sylph-tax,MultiQC,False,1,reporting-aggregation:1,medium:1,medium,True,1.0,,E01200,analysis,reporting
+Trim Galore,BBMap (BBSplit),False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00130;E00131,analysis,analysis
+Trim Galore,Bowtie 2,False,6,gating-or-metadata:3;merged-channel:3,low:3;medium:3,medium,False,1.0,,E00198;E00199;E00211;E00212;E00404;E00405,analysis,analysis
+Trim Galore,FastQC,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,hisat2;hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00245;E00246,analysis,qc
+Trim Galore,fq,False,6,gating-or-metadata:3;merged-channel:3,low:3;medium:3,medium,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00122;E00123;E00230;E00231;E00285;E00286,analysis,qc
+Trim Galore,HISAT2,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,hisat2;hisat2_kraken2_bracken,E00437;E00438,analysis,analysis
+Trim Galore,kallisto,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,kallisto,E01102;E01103,analysis,quantification
+Trim Galore,Kraken 2,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,hisat2_kraken2_bracken;kraken2;kraken2_bracken,E01033;E01034,analysis,analysis
+Trim Galore,MultiQC,False,4,reporting-aggregation:4,medium:4,medium,True,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E01138;E01140;E01142;E01204,analysis,reporting
+Trim Galore,NVIDIA Parabricks rna_fq2bam (STAR-based),False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,parabricks_star,E00340;E00341,analysis,analysis
+Trim Galore,RiboDetector,False,4,gating-or-metadata:2;merged-channel:2,low:2;medium:2,medium,False,1.0,,E00171;E00172;E00183;E00184,analysis,analysis
+Trim Galore,Salmon,False,4,gating-or-metadata:1;key-only-synchronization:2;merged-channel:1,low:3;medium:1,medium,False,1.0,hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;test,E00269;E00270;E01079;E01080,analysis,quantification
+Trim Galore,Sentieon STAR,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,sentieon_star,E00315;E00316,analysis,analysis
+Trim Galore,SeqKit,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,,E00160;E00161,analysis,utility
+Trim Galore,SortMeRNA,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,,E00145;E00146,analysis,analysis
+Trim Galore,STAR,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,kraken2;kraken2_bracken;star_rsem;test,E00364;E00365,analysis,analysis
+Trim Galore,Sylph,False,2,gating-or-metadata:1;merged-channel:1,low:1;medium:1,medium,False,1.0,,E01057;E01058,analysis,analysis
+tximeta,DESeq2,False,3,direct:3,high:3,high,False,1.0,hisat2_kraken2_bracken;kraken2;kraken2_bracken;parabricks_star;sentieon_star;star_rsem;test,E00583;E00628;E01134,quantification,qc
+tximeta,SummarizedExperiment,False,27,direct:3;merged-channel:24,high:3;medium:24,high,False,1.0,hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00573;E00574;E00575;E00576;E00577;E00579,quantification,quantification
+UCSC bedClip,UCSC bedGraphToBigWig,False,3,direct:3,high:3,high,False,1.0,kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E01013;E01017;E01021,analysis,analysis
+UMI-tools,BBMap (BBSplit),False,2,direct:2,high:2,high,False,1.0,,E00129;E00132,analysis,analysis
+UMI-tools,BEDTools,False,3,merged-channel:3,medium:3,medium,False,1.0,,E00965;E00981;E00997,analysis,analysis
+UMI-tools,Bowtie 2,False,6,direct:4;merged-channel:2,high:4;medium:2,high,False,1.0,,E00197;E00200;E00210;E00213;E00403;E00406,analysis,analysis
+UMI-tools,dupRadar,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00790,analysis,qc
+UMI-tools,fastp,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00114,analysis,analysis
+UMI-tools,FastQC,False,2,direct:2,high:2,high,False,1.0,,E00244;E00247,analysis,qc
+UMI-tools,featureCounts (Subread),False,1,merged-channel:1,medium:1,medium,False,1.0,,E00743,analysis,quantification
+UMI-tools,fq,False,6,direct:6,high:6,high,False,1.0,,E00121;E00124;E00229;E00232;E00284;E00287,analysis,qc
+UMI-tools,HISAT2,False,2,merged-channel:2,medium:2,medium,False,1.0,,E00436;E00439,analysis,analysis
+UMI-tools,kallisto,False,3,merged-channel:3,medium:2;rejected:1,medium,False,1.0,,E00600;E01101;E01104,analysis,quantification
+UMI-tools,Kraken 2,False,2,direct:2,high:2,high,False,1.0,,E01032;E01035,analysis,analysis
+UMI-tools,MultiQC,False,6,reporting-aggregation:6,medium:6,medium,True,1.0,,E01143;E01144;E01167;E01206;E01223;E01224,analysis,reporting
+UMI-tools,NVIDIA Parabricks rna_fq2bam (STAR-based),False,2,merged-channel:2,medium:2,medium,False,1.0,,E00339;E00342,analysis,analysis
+UMI-tools,Preseq,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00726,analysis,qc
+UMI-tools,RiboDetector,False,4,merged-channel:4,medium:4,medium,False,1.0,,E00170;E00173;E00182;E00185,analysis,analysis
+UMI-tools,RSEM,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00555,analysis,quantification
+UMI-tools,RSeQC,False,9,merged-channel:9,medium:9,medium,False,1.0,,E00705;E00811;E00828;E00848;E00868;E00888,analysis,qc
+UMI-tools,Salmon,False,5,key-only-synchronization:2;merged-channel:3,low:2;medium:3,medium,False,1.0,,E00268;E00271;E00585;E01078;E01081,analysis,quantification
+UMI-tools,SAMtools,False,10,direct:3;merged-channel:7,high:3;medium:7,high,False,1.0,,E00492;E00493;E00495;E00497;E00536;E00537,analysis,utility
+UMI-tools,Sentieon RSEM,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00550,analysis,quantification
+UMI-tools,Sentieon STAR,False,2,merged-channel:2,medium:2,medium,False,1.0,,E00314;E00317,analysis,analysis
+UMI-tools,SeqKit,False,2,direct:2,high:2,high,False,1.0,,E00159;E00162,analysis,utility
+UMI-tools,SortMeRNA,False,2,direct:2,high:2,high,False,1.0,,E00144;E00147,analysis,analysis
+UMI-tools,STAR,False,2,merged-channel:2,medium:2,medium,False,1.0,,E00363;E00366,analysis,analysis
+UMI-tools,StringTie,False,2,merged-channel:2,medium:2,medium,False,1.0,,E00659;E00684,analysis,analysis
+UMI-tools,Sylph,False,2,direct:2,high:2,high,False,1.0,,E01056;E01059,analysis,analysis
+UMI-tools,Trim Galore,False,1,direct:1,high:1,high,False,1.0,,E00107,analysis,analysis
+UMICollapse,BEDTools,False,3,merged-channel:3,medium:3,medium,False,1.0,,E00964;E00980;E00996,analysis,analysis
+UMICollapse,dupRadar,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00789,analysis,qc
+UMICollapse,featureCounts (Subread),False,1,merged-channel:1,medium:1,medium,False,1.0,,E00742,analysis,quantification
+UMICollapse,MultiQC,False,2,reporting-aggregation:2,medium:2,medium,True,1.0,,E01166;E01205,analysis,reporting
+UMICollapse,Preseq,False,1,merged-channel:1,medium:1,medium,False,1.0,,E00725,analysis,qc
+UMICollapse,RSeQC,False,9,merged-channel:9,medium:9,medium,False,1.0,,E00704;E00810;E00827;E00847;E00867;E00887,analysis,qc
+UMICollapse,SAMtools,False,10,direct:3;merged-channel:7,high:3;medium:7,high,False,1.0,,E00468;E00469;E00471;E00473;E00522;E00523,analysis,utility
+UMICollapse,StringTie,False,2,merged-channel:2,medium:2,medium,False,1.0,,E00658;E00683,analysis,analysis
+GNU tar,BBMap (BBSplit),False,1,direct:1,high:1,high,False,1.0,,E00136,utility,analysis
+GNU tar,Bowtie 2,False,3,direct:3,high:3,high,False,1.0,,E00205;E00218;E00411,utility,analysis
+GNU tar,Bracken,False,1,direct:1,high:1,high,False,1.0,hisat2_kraken2_bracken;kraken2_bracken,E01046,utility,analysis
+GNU tar,gawk,False,1,direct:1,high:1,high,False,1.0,,E00050,utility,utility
+GNU tar,HISAT2,False,1,direct:1,high:1,high,False,1.0,hisat2;hisat2_kraken2_bracken,E00444,utility,analysis
+GNU tar,kallisto,False,1,direct:1,high:1,high,False,1.0,,E01109,utility,quantification
+GNU tar,Kraken 2,False,1,direct:1,high:1,high,False,1.0,hisat2_kraken2_bracken;kraken2;kraken2_bracken,E01044,utility,analysis
+GNU tar,NVIDIA Parabricks rna_fq2bam (STAR-based),False,1,direct:1,high:1,high,False,1.0,,E00352,utility,analysis
+GNU tar,RSEM,False,1,direct:1,high:1,high,False,1.0,,E00558,utility,quantification
+GNU tar,Salmon,False,2,direct:2,high:2,high,False,1.0,hisat2;hisat2_kraken2_bracken;kallisto;kraken2;kraken2_bracken;parabricks_star;salmon_pseudo;sentieon_star;star_rsem;test,E00294;E01086,utility,quantification
+GNU tar,Sentieon RSEM,False,1,direct:1,high:1,high,False,1.0,,E00552,utility,quantification
+GNU tar,Sentieon STAR,False,1,direct:1,high:1,high,False,1.0,,E00324,utility,analysis
+GNU tar,SortMeRNA,False,1,direct:1,high:1,high,False,1.0,,E00153,utility,analysis
+GNU tar,STAR,False,1,direct:1,high:1,high,False,1.0,,E00372,utility,analysis

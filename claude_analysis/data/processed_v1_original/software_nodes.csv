@@ -1,0 +1,47 @@
+key,canonical_name,role,alternative_of,n_process_instances
+bbmap,BBMap (BBSplit),analysis,,2
+bedtools,BEDTools,analysis,,3
+bowtie2,Bowtie 2,analysis,,5
+bracken,Bracken,analysis,,1
+cat,cat (GNU coreutils),utility,,1
+deseq2,DESeq2,qc,,3
+dupradar,dupRadar,qc,,1
+eautils_gtf2bed,ea-utils gtf2bed,reference-prep,,1
+fastp,fastp,analysis,,1
+fastqc,FastQC,qc,,4
+featurecounts,featureCounts (Subread),quantification,,1
+fq,fq,qc,,5
+gawk,gawk,utility,,1
+gffread,GffRead,reference-prep,,3
+gunzip,gzip (gunzip),utility,,7
+hisat2,HISAT2,analysis,,3
+kallisto,kallisto,quantification,,3
+kraken2,Kraken 2,analysis,,1
+local_python,nf-core custom script (Python),utility,,6
+multiqc,MultiQC,reporting,,1
+parabricks_star,NVIDIA Parabricks rna_fq2bam (STAR-based),analysis,STAR,1
+picard,Picard,analysis,,1
+preseq,Preseq,qc,,1
+qualimap,Qualimap,qc,,1
+ribodetector,RiboDetector,analysis,,1
+rsem,RSEM,quantification,,3
+rseqc,RSeQC,qc,,9
+salmon,Salmon,quantification,,5
+samtools,SAMtools,utility,,50
+sed,sed,utility,,2
+sentieon_rsem,Sentieon RSEM,quantification,RSEM,3
+sentieon_star,Sentieon STAR,analysis,STAR,1
+seqkit,SeqKit,utility,,3
+sortmerna,SortMeRNA,analysis,,3
+star,STAR,analysis,,3
+stringtie,StringTie,analysis,,3
+summarizedexperiment,SummarizedExperiment,quantification,,6
+sylph,Sylph,analysis,,1
+sylphtax,sylph-tax,analysis,,1
+trimgalore,Trim Galore,analysis,,1
+tximeta,tximeta,quantification,,3
+ucsc_bedclip,UCSC bedClip,analysis,,3
+ucsc_bedgraphtobigwig,UCSC bedGraphToBigWig,analysis,,3
+umi_tools,UMI-tools,analysis,,5
+umicollapse,UMICollapse,analysis,,2
+untar,GNU tar,utility,,10

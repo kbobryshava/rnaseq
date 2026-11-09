@@ -1,0 +1,54 @@
+src_software,dst_software,n_process_edges_tierA
+"BBMap (BBSplit)","fq",1
+"BEDTools","UCSC bedClip",3
+"GNU tar","Bracken",1
+"GNU tar","HISAT2",1
+"GNU tar","Kraken 2",1
+"GNU tar","Salmon",2
+"HISAT2","Kraken 2",1
+"HISAT2","SAMtools",1
+"Kraken 2","Bracken",1
+"NVIDIA Parabricks rna_fq2bam (STAR-based)","SAMtools",1
+"Picard","BEDTools",3
+"Picard","StringTie",1
+"RSEM","Salmon",2
+"RSEM","kallisto",1
+"RSEM","nf-core custom script (Python)",1
+"RSEM","sed",2
+"RSEM","tximeta",1
+"SAMtools","BBMap (BBSplit)",1
+"SAMtools","Picard",1
+"SAMtools","Qualimap",1
+"SAMtools","UCSC bedClip",3
+"SAMtools","UCSC bedGraphToBigWig",3
+"STAR","Kraken 2",1
+"STAR","NVIDIA Parabricks rna_fq2bam (STAR-based)",1
+"STAR","SAMtools",1
+"STAR","Sentieon STAR",1
+"Salmon","nf-core custom script (Python)",2
+"Salmon","tximeta",2
+"Sentieon STAR","SAMtools",1
+"Trim Galore","BBMap (BBSplit)",2
+"Trim Galore","fq",2
+"UCSC bedClip","UCSC bedGraphToBigWig",3
+"ea-utils gtf2bed","RSeQC",5
+"featureCounts (Subread)","nf-core custom script (Python)",1
+"fq","BBMap (BBSplit)",1
+"fq","Salmon",1
+"gzip (gunzip)","nf-core custom script (Python)",2
+"kallisto","nf-core custom script (Python)",1
+"kallisto","tximeta",1
+"nf-core custom script (Python)","HISAT2",1
+"nf-core custom script (Python)","Qualimap",1
+"nf-core custom script (Python)","RSEM",3
+"nf-core custom script (Python)","STAR",5
+"nf-core custom script (Python)","Salmon",5
+"nf-core custom script (Python)","Sentieon STAR",1
+"nf-core custom script (Python)","StringTie",2
+"nf-core custom script (Python)","SummarizedExperiment",3
+"nf-core custom script (Python)","dupRadar",1
+"nf-core custom script (Python)","ea-utils gtf2bed",2
+"nf-core custom script (Python)","kallisto",1
+"nf-core custom script (Python)","tximeta",3
+"tximeta","DESeq2",3
+"tximeta","SummarizedExperiment",27

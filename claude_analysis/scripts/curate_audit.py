@@ -30,7 +30,7 @@ edges = rd(os.path.join(P, 'process_edges.csv')); E = {e['edge_id']: e for e in 
 EV = {}
 for l in open(os.path.join(P, 'process_edges_evidence.jsonl'), encoding='utf-8'):
     r = json.loads(l); EV[r['edge_id']] = r
-MA = {r['edge_id']: r for r in rd(os.path.join(A, 'payload_audit.csv'))}   # direct + merged edges
+MA = {r['edge_id']: {'family_verdict': e['payload_check'], 'verdict_reason': e['payload_check_detail'], 'edge_class': e['edge_class']} for e in edges}
 CORE = rd(os.path.join(A, 'core_pair_edges.csv'))
 SW = {r['process_instance']: r for r in rd(os.path.join(P, 'process_software_map.csv'))}
 CANON = {r['canonical_name']: r for r in rd(os.path.join(P, 'canonical_software.csv'))}
@@ -65,14 +65,14 @@ for d in D:
         'pair_id': pid, 'source_software': pr['src'], 'target_software': pr['dst'], 'decision': d['decision'], 'decision_confidence': d['decision_confidence'],
         'flow_type': d['flow_type'],
         'identity_flag': 'weak-identity (utility / local script)' if (set(SW[first['src_instance']]['primary_software_keys'].split(';')) | set(SW[first['dst_instance']]['primary_software_keys'].split(';'))) & WEAK else '',
-        'supporting_process_edges': ';'.join(e['edge_id'] for e in sup[:10]) + (f' (+{len(sup)-10} more)' if len(sup) > 10 else ''),
+        'supporting_process_edges': ';'.join(e['edge_id'] for e in sup),
         'n_supporting_process_edges': len(sup), 'n_edges_of_pair_total': len(allp), 'n_edges_of_pair_tierA': len(tierA),
         'process_relationship': ' | '.join(rel[:5]) + (f' (+{len(rel)-5} more)' if len(rel) > 5 else ''),
         'io_evidence': f"producer output: {first['src_output_decl']} => consumer input: {first['dst_input_decl']}",
         'source_lines_extractor': ';'.join(lines[:8]), 'source_lines_read_by_auditor': d['evidence'],
         'conditions_required': first['required_param_assumptions'], 'hubfree_dag_configs': ';'.join(configs),
         'original_edge_class': ';'.join(sorted({e['edge_class'] for e in sup} or {first['edge_class']})),
-        'original_confidence': ';'.join(sorted({e['confidence'] for e in sup} or {first['confidence']})),
+        'original_confidence': ';'.join(sorted({e['confidence_v1'] for e in sup} or {first['confidence_v1']})),
         'explanation': d['explanation']})
 wr(os.path.join(C, 'all_core_pair_decisions.csv'), dec_rows)
 wr(os.path.join(C, 'positive_controls.csv'), [r for r in dec_rows if r['decision'] in ('Gold', 'Silver')])
@@ -81,31 +81,21 @@ wr(os.path.join(C, 'positive_controls.csv'), [r for r in dec_rows if r['decision
 EXTRA_REJECT = {'E00353': 'infeasible: plain STAR_GENOMEGENERATE runs only when use_parabricks_star is false (subworkflows/local/prepare_genome_indices/main.nf:149 if-branch precedes :168), the Parabricks consumer needs it true'}
 rows_v2 = []
 for e in edges:
-    eid = e['edge_id']; ev = EV[eid]; v = MA.get(eid, {}).get('family_verdict', '')
-    flags = ev['flags']; alt = 'alternative-branch-in-channel-path' in flags
-    branches = [t['var'] for t in ev['channel_trail'] if t['var'].startswith('branch:')]
-    staging_alt = alt and branches and all(STAGING.search(b) for b in branches)
-    cls = e['edge_class']
-    if v in REJECT_VERDICTS: c2, why = 'rejected', f'merged-channel audit: {v}'
-    elif eid in EXTRA_REJECT: c2, why = 'rejected', EXTRA_REJECT[eid]
-    elif 'use_parabricks_star truthy True' in e['required_param_assumptions'] and 'use_sentieon_star truthy True' in e['required_param_assumptions']:
-        c2, why = 'rejected', 'pipeline validation forbids --use_parabricks_star together with --use_sentieon_star (subworkflows/local/utils_nfcore_rnaseq_pipeline/main.nf:323-325)'
+    eid = e['edge_id']; v = e['payload_check']
+    c2, why = e['confidence_v2'], 'canonical rule: ' + e['confidence_v2_reason']          # rule-based value from build_datasets.py
+    if eid in EXTRA_REJECT: c2, why = 'rejected', EXTRA_REJECT[eid]
     elif eid in verified_bad: c2, why = 'rejected', 'audit decision Negative (see curated/all_core_pair_decisions.csv)'
-    elif eid in verified_ok: c2, why = 'high', 'payload and consumer slot read in source (audit decision Gold/Silver)'
-    elif cls in ('key-only-synchronization', 'metadata-dependency', 'gating-or-metadata'): c2, why = 'low', 'no payload is consumed (sync/gate/metadata)'
-    elif cls == 'direct': c2, why = 'high', 'direct single-source path' + ('; channel is assigned on alternative if/else branches, which are mutually exclusive and recorded in required_param_assumptions (v1 wrongly demoted these)' if alt else '')
-    elif cls == 'merged-channel': c2, why = 'medium', 'merged channel; family check: ' + (v or 'n/a')
-    else: c2, why = 'medium', cls
+    elif eid in verified_ok and c2 != 'rejected': c2, why = 'high', 'payload and consumer slot read in source (audit decision Gold/Silver)'
     rows_v2.append({'edge_id': eid, 'src_instance': e['src_instance'], 'src_emit': e['src_emit'], 'dst_instance': e['dst_instance'], 'dst_input_index': e['dst_input_index'],
-                    'edge_class': cls, 'evidence_tier': e['evidence_tier'], 'confidence_v1': e['confidence'], 'confidence_v2': c2, 'v2_reason': why,
-                    'merged_audit_verdict': v, 'merged_audit_detail': MA.get(eid, {}).get('verdict_reason', '')})
-wr(os.path.join(A, 'process_edges_v2.csv'), rows_v2)
-V1 = {r['edge_id']: r['confidence_v1'] for r in rows_v2}; V2 = {r['edge_id']: r['confidence_v2'] for r in rows_v2}
-changed = [r for r in rows_v2 if r['confidence_v1'] != r['confidence_v2']]
-trans = collections.Counter((r['confidence_v1'], r['confidence_v2']) for r in rows_v2)
+                    'edge_class': e['edge_class'], 'evidence_tier': e['evidence_tier'], 'confidence_v1': e['confidence_v1'], 'confidence_v2_rule': e['confidence_v2'], 'confidence_final': c2, 'final_reason': why,
+                    'merged_audit_verdict': v, 'merged_audit_detail': e['payload_check_detail'],
+                    'manual_verification': 'verified_positive' if (eid in verified_ok and c2 == 'high') else ('verified_negative' if (eid in EXTRA_REJECT or eid in verified_bad or why.startswith('pipeline validation') or e['confidence_v2_reason'].startswith('pipeline validation')) else '')})
+wr(os.path.join(A, 'process_edges_final_confidence.csv'), rows_v2)
+V1 = {r['edge_id']: r['confidence_v1'] for r in rows_v2}; V2 = {r['edge_id']: r['confidence_final'] for r in rows_v2}
+trans = collections.Counter((r['confidence_v1'], r['confidence_final']) for r in rows_v2)
 
 # ------------------------------------------------------------------ reconciliation high (47) vs tier A (174)
-hi = {e['edge_id'] for e in edges if e['confidence'] == 'high'}; ta = {e['edge_id'] for e in edges if e['evidence_tier'].startswith('A')}
+hi = {e['edge_id'] for e in edges if e['confidence_v1'] == 'high'}; ta = {e['edge_id'] for e in edges if e['evidence_tier'].startswith('A')}
 both, hi_only, ta_only = hi & ta, hi - ta, ta - hi
 rec = []
 for eid in sorted(hi | ta):
@@ -118,7 +108,7 @@ for eid in sorted(hi | ta):
         alt = 'alternative-branch-in-channel-path' in ev['flags']
         why = f"class={e['edge_class']}" + ('; alternative-branch flag (rule demoted it)' if alt and e['edge_class'] == 'direct' else '')
     else: why = ''
-    rec.append({'edge_id': eid, 'bucket': where, 'edge_class': e['edge_class'], 'confidence_v1': e['confidence'], 'confidence_v2': V2[eid], 'src': f"{e['src_module']}.{e['src_emit']}", 'dst': e['dst_module'], 'reason': why})
+    rec.append({'edge_id': eid, 'bucket': where, 'edge_class': e['edge_class'], 'confidence_v1': e['confidence_v1'], 'confidence_final': V2[eid], 'src': f"{e['src_module']}.{e['src_emit']}", 'dst': e['dst_module'], 'reason': why})
 wr(os.path.join(A, 'reconciliation_high_vs_tierA.csv'), rec)
 ta_only_breakdown = collections.Counter(r['reason'] for r in rec if r['bucket'] == 'tierA only')
 hi_only_breakdown = collections.Counter(r['reason'] for r in rec if r['bucket'] == 'high only')
@@ -131,6 +121,7 @@ keys_of = lambda inst: [k for k in SW[inst]['primary_software_keys'].split(';') 
 members = collections.defaultdict(set)
 for inst in G:
     for k in keys_of(inst): members[k].add(inst)
+members = {k: sorted(v) for k, v in members.items()}   # deterministic iteration (string hashing is randomised per process)
 execd = {r['instance']: {c for c in CONFIGS if r[c] == '1'} for r in EXEC}
 EXCLUDE = WEAK | {'multiqc'}
 cand = sorted(k for k in members if k not in EXCLUDE)
@@ -236,14 +227,14 @@ for ka, kb in sorted(pos_pairs):
                 'evidence': f'{KEY2NAME[ka]} -> {KEY2NAME[kb]} is a source-verified data flow; no process of {KEY2NAME[kb]} reaches any process of {KEY2NAME[ka]} in the extracted graph (static process graph is acyclic)',
                 'verification': 'graph-computed on top of source-verified forward edge'})
 S1 = {'Preseq', 'Qualimap', 'dupRadar', 'featureCounts (Subread)', 'StringTie', 'BEDTools'}
-MANUAL = 'manual source read: all consume the genome BAM (workflows/rnaseq/main.nf:551 StringTie, :670-674 genomecov; subworkflows/nf-core/bam_qc_rnaseq/main.nf:29-70 Preseq/featureCounts/Qualimap/dupRadar with ch_genome_bam = ch_bam_bai.map{meta,bam,_bai -> ...}); outputs go only to their own downstream/MultiQC bundles'
+MANUAL = 'manual source read: all consume the genome BAM (workflows/rnaseq/main.nf:551 StringTie, :670-674 genomecov; subworkflows/nf-core/bam_qc_rnaseq/main.nf:27-70 Preseq/featureCounts/Qualimap/dupRadar with ch_genome_bam = ch_bam_bai.map{meta,bam,_bai -> ...}); outputs go only to their own downstream/MultiQC bundles'
 for r in neg:
     if r['source_software'] in S1 and r['target_software'] in S1 and r['negative_kind'] != 'mutually-exclusive-alternatives':
         r['verification'] = MANUAL; r['decision_confidence'] = 'high'
     if {r['source_software'], r['target_software']} == {'NVIDIA Parabricks rna_fq2bam (STAR-based)', 'Sentieon STAR'}:
         r['verification'] = 'manual source read: subworkflows/local/utils_nfcore_rnaseq_pipeline/main.nf:323-325 errors when both --use_parabricks_star and --use_sentieon_star are set'; r['decision_confidence'] = 'high'
     if {r['source_software'], r['target_software']} == {'fastp', 'Trim Galore'}:
-        r['verification'] = 'manual source read: subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/main.nf: if (trimmer == trimgalore) / if (trimmer == fastp) are separate blocks'; r['decision_confidence'] = 'high'
+        r['verification'] = 'manual source read: subworkflows/nf-core/fastq_qc_trim_filter_setstrandedness/main.nf:199 if (trimmer == trimgalore) and :234 if (trimmer == fastp) are separate blocks'; r['decision_confidence'] = 'high'
 neg_all = manual_neg + nopayload + rev + neg
 # one row per ordered pair: manual reads win, other supporting rules are kept in also_supported_by
 merged = collections.OrderedDict()
@@ -262,8 +253,8 @@ wr(os.path.join(C, 'unresolved.csv'), infodep + [dict(source_software=r['source_
 # ------------------------------------------------------------------ summary
 cnt = collections.Counter(r['decision'] for r in dec_rows)
 summary = {'core_pairs': len(dec_rows), 'decisions_core53': {k: cnt.get(k, 0) for k in ('Gold', 'Silver', 'Negative', 'Unresolved')},
-           'edges_total': len(edges), 'v1_confidence': dict(collections.Counter(V1.values())), 'v2_confidence': dict(collections.Counter(V2.values())),
-           'v1_to_v2': {f'{a}->{b}': n for (a, b), n in sorted(trans.items())},
+           'edges_total': len(edges), 'v1_confidence': dict(collections.Counter(V1.values())), 'final_confidence': dict(collections.Counter(V2.values())),
+           'v1_to_final': {f'{a}->{b}': n for (a, b), n in sorted(trans.items())},
            'high_v1': len(hi), 'tierA': len(ta), 'high_and_tierA': len(both), 'high_only': len(hi_only), 'tierA_only': len(ta_only),
            'merged_channel_edges': sum(1 for r in MA.values() if r['edge_class'] == 'merged-channel'), 'merged_audit': dict(collections.Counter(r['family_verdict'] for r in MA.values() if r['edge_class'] == 'merged-channel')), 'direct_audit': dict(collections.Counter(r['family_verdict'] for r in MA.values() if r['edge_class'] == 'direct')),
            'negative_controls': {'total_unique_ordered_pairs': len(neg_all), 'by_kind': dict(collections.Counter(r['negative_kind'] for r in neg_all)), 'rows_before_dedup': len(manual_neg) + len(nopayload) + len(rev) + len(neg), 'manual_from_core53': len(manual_neg), 'extractor_artifact_or_sync_only': len(nopayload), 'reverse_of_verified_positive': len(rev), 'manually_verified': sum(1 for r in neg_all if r['verification'].startswith('manual')), 'unresolved_information_dependency': len(infodep),

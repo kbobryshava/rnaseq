@@ -1,0 +1,146 @@
+{
+ "dataset": "nf-core/rnaseq directed software-relationship reference dataset",
+ "pipeline": "nf-core/rnaseq",
+ "pipeline_version": "3.27.0",
+ "pipeline_commit_sha": "a1fcdddd3b826fe46eb46f0479f2ff8a7815af05",
+ "pipeline_commit_verified_in_checkout": true,
+ "analysis_repository": "https://github.com/kbobryshava/rnaseq (fork), branch claude/directed-software-analysis-3.27.0",
+ "analysis_base_commit": "b49dddebc7dbd91bd47742d659e053bd15ca094a",
+ "generation_date_utc": "2026-11-09",
+ "python": "3.13.1",
+ "libraries": {
+  "networkx": "3.5",
+  "pyyaml": "6.0.2"
+ },
+ "nextflow_for_preview_dags": "26.10.5 (preview only, run in WSL Ubuntu 22.04, Java 17)",
+ "record_counts": {
+  "parquet_written": true,
+  "process_level": {
+   "algorithmic_negative_candidate": 172,
+   "algorithmic_supported": 814,
+   "source_verified_negative": 5,
+   "source_verified_positive": 115,
+   "unresolved": 128
+  },
+  "process_total": 1234,
+  "software_level": {
+   "Algorithmic_supported": 282,
+   "Gold": 29,
+   "Negative_unverified": 127,
+   "Negative_verified": 19,
+   "Silver": 22,
+   "Unresolved": 37
+  },
+  "software_total": 516,
+  "unclassified_breakdown": {}
+ },
+ "validation": {
+  "pass": 37,
+  "warn": 1,
+  "fail": 0
+ },
+ "preview_dag_inputs_sha256": {
+  "hisat2_dag.html": "d90d863a3d689d28f68c58278960ba622759710135ae5465c0dcf432be61d39f",
+  "hisat2_kraken2_bracken_dag.html": "ce3470ca1bd56795c46d9e88b79bca810e2420596b2d025a87fb773e3491ce56",
+  "kallisto_dag.html": "a6402bf18099c5d9f1146ae1dc7dc84db604b6c295165df48281ba3a54e212d7",
+  "kraken2_bracken_dag.html": "fbc20ef372a2feee1a250cc21203f0316602e67dc0a1531004e02cae324fb12b",
+  "kraken2_dag.html": "5590259c8e1c8f0164c69c31de797907e2858123ca514c960b0b13e520b3cdd5",
+  "parabricks_star_dag.html": "c04e672ccb7e71e37824f04f9af03a9da6865d9e3810f4dac3161367f42e9476",
+  "salmon_pseudo_dag.html": "baca295b4bf9402ddd4cbc667bf58b81fdce12672b7f79178ee306573e75d36d",
+  "sentieon_star_dag.html": "14416f2b6188f0f2255a7a317432ee38859c7277e6f9daece07232f1ad33b054",
+  "star_rsem_dag.html": "8552a24676e04c4bbe86600df433def2dd070db0df5d1b989ee55d085405990d",
+  "test_dag.html": "a443bc09a8b62c56e4d017dd1436e206c332c59097342b7e051746aa5e780d91"
+ },
+ "files": {
+  "DATA_DICTIONARY.md": {
+   "sha256": "29ba0a2aa88f4ba1ebaf29b9a051c29c41db9d9b8ad03f1abd9b48717dba0816",
+   "bytes": 7416
+  },
+  "METHODOLOGY.md": {
+   "sha256": "2dded34ccc0865dc29173934e1124a68cc5d382038ec0756fbb48d9ca5da5c76",
+   "bytes": 7714
+  },
+  "README.md": {
+   "sha256": "a72404787690079ab2be2ec056d5534a26263d0e98fe9e32039deddd51a49377",
+   "bytes": 5361
+  },
+  "VALIDATION_SUMMARY.md": {
+   "sha256": "5c68dd923bfa762d393b96125c0bd6e6c76bc9e5347aaf4b33c974c5f1e8c51c",
+   "bytes": 5398
+  },
+  "_build_counts.json": {
+   "sha256": "d42c6564a3139ddac7d3c19cbd1d0054348b6b40c4ed9e6f7da7d49b18512055",
+   "bytes": 475
+  },
+  "process_level/process_algorithmic_negative_candidates.csv": {
+   "sha256": "1a404312120aba9e78fd704d8fe39972fd55a6453a4bc0332f562ee5b4fa0e41",
+   "bytes": 157615,
+   "records": 172
+  },
+  "process_level/process_algorithmic_supported.csv": {
+   "sha256": "6554c248fb529f5ec541cd199dd13bb4b88c4185a8d69aa505cf5aa4341803f8",
+   "bytes": 703419,
+   "records": 814
+  },
+  "process_level/process_relationships_all.csv": {
+   "sha256": "1b6c29d4352f184b196fd10f1e66adfc6a9ebad9d5c206fd7e375259ff750942",
+   "bytes": 1100935,
+   "records": 1234
+  },
+  "process_level/process_source_verified_negative.csv": {
+   "sha256": "d87ad8827d0d4f81b7df0a1964e98533d999337320f834457d0f310197cb2047",
+   "bytes": 5416,
+   "records": 5
+  },
+  "process_level/process_source_verified_positive.csv": {
+   "sha256": "ac6b5817ee7ef8d1d36c241206e746acd6f125b3abb71da10646f3aebd6b27bd",
+   "bytes": 122432,
+   "records": 115
+  },
+  "process_level/process_unresolved.csv": {
+   "sha256": "9a3c137f6a7b627b5b411f115e33b1b5730f61ded5f8807b809099d453242607",
+   "bytes": 114009,
+   "records": 128
+  },
+  "software_level/algorithmic_supported_pairs.csv": {
+   "sha256": "061a87f223e54658cfecf36fdc4269d1d53bd3e4668b2fc1a161d70c655fca49",
+   "bytes": 82843,
+   "records": 282
+  },
+  "software_level/gold_positive_controls.csv": {
+   "sha256": "9a733bf83e784e9f002b1d3c691e1d43ced57cd15f59276104d5aa50e05c7b79",
+   "bytes": 21203,
+   "records": 29
+  },
+  "software_level/negative_candidates_unverified.csv": {
+   "sha256": "77a522ac636aa427496d4f087a00f272532d6a2d060ca4d6525f392b867f3185",
+   "bytes": 66400,
+   "records": 127
+  },
+  "software_level/negative_controls_verified.csv": {
+   "sha256": "0646049951202efc6a2440d8e0e0962f4c21d4fb32abf434f483c7b5d378fe67",
+   "bytes": 13897,
+   "records": 19
+  },
+  "software_level/silver_positive_controls.csv": {
+   "sha256": "928845509337912826bbdf6b3ba8bfe988729efbe449090f6d7738484706578d",
+   "bytes": 19584,
+   "records": 22
+  },
+  "software_level/software_relationships_all.csv": {
+   "sha256": "0d9cb99504b6e1889f06409660516d800d892f71b12ec0053b93615f563ba449",
+   "bytes": 228023,
+   "records": 516
+  },
+  "software_level/unresolved_gate_metadata.csv": {
+   "sha256": "efc0858411312b916627bb8d05c28fef7888fd7dcbbbc84a3828000a0e9959df",
+   "bytes": 25811,
+   "records": 37
+  },
+  "validation.json": {
+   "sha256": "cdbcc26a0ef2178f35283f97ad0260b7152c654bcbc813702e10c4a507259844",
+   "bytes": 7146
+  }
+ },
+ "checksum_file": "SHA256SUMS (verify with: cd claude_analysis/reference && sha256sum -c SHA256SUMS)"
+}

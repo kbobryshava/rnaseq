@@ -5,11 +5,11 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); A = os.path.
 rd = lambda p: list(csv.DictReader(open(p, encoding='utf-8')))
 S = json.load(open(os.path.join(A, 'summary.json')))
 dec = rd(os.path.join(C, 'all_core_pair_decisions.csv'))
-v2 = {r['edge_id']: r for r in rd(os.path.join(A, 'process_edges_v2.csv'))}
+v2 = {r['edge_id']: r for r in rd(os.path.join(A, 'process_edges_final_confidence.csv'))}
 pa = {r['edge_id']: r for r in rd(os.path.join(A, 'payload_audit.csv'))}
 core = rd(os.path.join(A, 'core_pair_edges.csv'))
 TA = {r['edge_id'] for r in rd(os.path.join(ROOT, 'data', 'processed', 'process_edges.csv')) if r['evidence_tier'].startswith('A')}
-ta_v2 = collections.Counter(v2[e]['confidence_v2'] for e in TA)
+ta_v2 = collections.Counter(v2[e]['confidence_final'] for e in TA)
 neg = rd(os.path.join(C, 'negative_controls.csv')); unr = rd(os.path.join(C, 'unresolved.csv'))
 decp = {d['pair_id']: d for d in dec}
 cnt = collections.Counter(d['decision'] for d in dec)
@@ -20,10 +20,10 @@ for r in core:
     if r['evidence_tier'].startswith('A') and r['edge_class'] == 'merged-channel':
         rows.append({'pair_id': r['pair_id'], 'pair_decision': decp[r['pair_id']]['decision'], 'edge_id': r['edge_id'], 'src': r['src_instance'].split(':')[-1] + '.' + r['src_emit'],
                      'dst': r['dst_instance'].split(':')[-1], 'consumer_call': r['consumer_call'], 'payload_audit': pa[r['edge_id']]['family_verdict'], 'detail': pa[r['edge_id']]['verdict_reason'],
-                     'confidence_v1': r['confidence'], 'confidence_v2': v2[r['edge_id']]['confidence_v2']})
+                     'confidence_v1': r['confidence_v1'], 'confidence_final': v2[r['edge_id']]['confidence_final']})
 with open(os.path.join(A, 'core_pairs_merged_edges.csv'), 'w', newline='', encoding='utf-8') as f:
     w = csv.DictWriter(f, fieldnames=list(rows[0].keys())); w.writeheader(); w.writerows(rows)
-mc = collections.Counter((x['payload_audit'], x['confidence_v2']) for x in rows)
+mc = collections.Counter((x['payload_audit'], x['confidence_final']) for x in rows)
 
 def tbl(rows_, cols, head):
     o = ['| ' + ' | '.join(head) + ' |', '|' + '---|' * len(head)]
@@ -46,7 +46,7 @@ Pipeline commit `a1fcdddd3b826fe46eb46f0479f2ff8a7815af05`. Scope: nf-core/rnase
 
 * Positive control = Gold + Silver = **{cnt['Gold'] + cnt['Silver']}** pairs (`curated/positive_controls.csv`). Gold is the conservative set to use as ground truth.
 * Why no Unresolved among the 53: every one could be decided by reading the call site and the module declarations. What stays unproven is stated in section 8, not hidden in a label.
-* Edge level (all {S['edges_total']} process edges, `process_edges_v2.csv`): confidence v1 {S['v1_confidence']} -> v2 {S['v2_confidence']}. {S['v2_confidence']['rejected']} edges are rejected as extractor artifacts or infeasible paths.
+* Edge level (all {S['edges_total']} process edges, `process_edges_final_confidence.csv`): confidence v1 {S['v1_confidence']} -> final {S['final_confidence']}. {S['final_confidence']['rejected']} edges are rejected as extractor artifacts or infeasible paths.
 
 Decision rules (identical for all pairs; implemented in `scripts/audit_decisions.py`):
 * **Gold** - the producer's output is passed to the consumer's input slot with its payload intact (read in the source), both ends are named bioinformatics tools, and the path is feasible under a stated parameter set.
@@ -97,7 +97,7 @@ Method (`scripts/audit_merged.py`, outputs `payload_audit.csv`, `merged_channel_
 | verdict | merged edges | direct edges | mechanism (source) |
 |---|---|---|---|
 | compatible (family fits a consumer slot) | {S['merged_audit'].get('compatible', 0)} | {S['direct_audit'].get('compatible', 0)} | not a proof of consumption; it only means the payload type fits |
-| **PROJECTION-DROPPED** | {S['merged_audit'].get('PROJECTION-DROPPED', 0)} | {S['direct_audit'].get('PROJECTION-DROPPED', 0)} | a closure drops the element: `ch_fasta_fai.map {{ _meta, fasta_file, _fai -> fasta_file }}` (`prepare_genome_indices/main.nf:60`), `ch_bam_bai.map {{ meta, bam, _bai -> [meta, bam] }}` (`bam_qc_rnaseq/main.nf:29`), `fasta_fai.map {{ meta, fasta, _fai -> [meta, fasta] }}` (`align_star/main.nf:51`) |
+| **PROJECTION-DROPPED** | {S['merged_audit'].get('PROJECTION-DROPPED', 0)} | {S['direct_audit'].get('PROJECTION-DROPPED', 0)} | a closure drops the element: `ch_fasta_fai.map {{ _meta, fasta_file, _fai -> fasta_file }}` (`prepare_genome_indices/main.nf:60`), `ch_bam_bai.map {{ meta, bam, _bai -> [meta, bam] }}` (`bam_qc_rnaseq/main.nf:27`), `fasta_fai.map {{ meta, fasta, _fai -> [meta, fasta] }}` (`align_star/main.nf:51`) |
 | **MULTIMAP-SPLIT** | {S['merged_audit'].get('MULTIMAP-SPLIT', 0)} | 0 | `.multiMap {{ ... bam: [...]  index: [...] }}` separates bam and index (`workflows/rnaseq/main.nf:495-512`); the analyzer unions the branches |
 | **INFEASIBLE-CALLSITE-CONSTANT** | {S['merged_audit'].get('INFEASIBLE-CALLSITE-CONSTANT', 0)} | {S['direct_audit'].get('INFEASIBLE-CALLSITE-CONSTANT', 0)} | `QUANTIFY_BAM_SALMON` is called with the literal `'salmon'` (`workflows/rnaseq/main.nf:461`), so its `KALLISTO_QUANT` branch cannot run |
 | INCOMPATIBLE (heuristic, left medium) | {S['merged_audit'].get('INCOMPATIBLE', 0)} | {S['direct_audit'].get('INCOMPATIBLE', 0)} (noisy: GTF/GFF/bed naming; not used) | E00190 gunzip rRNA FASTA -> SeqKit `fastx` is in fact compatible |
@@ -136,7 +136,7 @@ Verification level: {S['negative_controls']['manually_verified']} rows were conf
 | `curated/all_core_pair_decisions.csv` | all 53 decisions incl. the 2 Negative |
 | `curated/negative_controls.csv` | {S['negative_controls']['total_unique_ordered_pairs']} negative ordered pairs |
 | `curated/unresolved.csv` | {S['negative_controls']['unresolved_information_dependency']} definition-dependent pairs |
-| `process_edges_v2.csv` | every edge: v1 and v2 confidence, reason, payload-audit verdict |
+| `process_edges_final_confidence.csv` | every edge: v1 and v2 confidence, reason, payload-audit verdict |
 | `reconciliation_high_vs_tierA.csv`, `payload_audit.csv`, `merged_sites.csv`, `core_pairs_merged_edges.csv`, `core_pair_dossier.md`, `core_pair_edges.csv`, `summary.json` | evidence |
 
 ## 8. Limitations
@@ -153,7 +153,7 @@ Verification level: {S['negative_controls']['manually_verified']} rows were conf
 ## 9. Change log (nothing overwritten)
 
 New: `scripts/audit_dossier.py`, `scripts/audit_merged.py`, `scripts/audit_decisions.py`, `scripts/curate_audit.py`, `scripts/render_audit_report.py`, `scripts/reproduce_audit.sh`, and everything under `audit/`.
-Unchanged: `data/**`, `reports/**`, `documentation/**`, `scripts/build_datasets.py`, `scripts/nf_static_analyzer.py`, original nf-core sources. The v1 confidence column in `data/processed/process_edges.csv` is kept as the record of the original extraction; `confidence_v2` lives only in `audit/process_edges_v2.csv`.
+Unchanged: `data/**`, `reports/**`, `documentation/**`, `scripts/build_datasets.py`, `scripts/nf_static_analyzer.py`, original nf-core sources. The v1 confidence column in `data/processed/process_edges.csv` is kept as the record of the original extraction; `confidence_v2` lives only in `audit/process_edges_final_confidence.csv`.
 Reproduce: `bash claude_analysis/scripts/reproduce_audit.sh`.
 
 ## Appendix A: the 53 core pairs

@@ -1,3 +1,7 @@
+> **Frozen reference dataset: see [`reference/README.md`](reference/README.md)** (software- and process-level tables, validation, manifest, checksums).
+> Reproduce everything with `bash claude_analysis/scripts/reproduce_all.sh`. The first-release material below is kept for history; the original results are preserved in `data/processed_v1_original/`.
+> Schema change since the first release: `process_edges.csv` now has `confidence_v1` (original rule) and `confidence_v2` (corrected rule) instead of `confidence`.
+
 # Directed software relationships from nf-core/rnaseq 3.27.0
 
 Positive-control dataset of directed software relationships (A -> B: data produced by a process using A is consumed by a process using B).

@@ -1,0 +1,266 @@
+[
+ {
+  "id": "D1",
+  "title": "no duplicate ordered software pair in software_relationships_all",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "D2",
+  "title": "no duplicate process edge_id",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "D3",
+  "title": "no duplicate (source instance, emit, target instance, input slot)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "D4",
+  "title": "every software pair appears in exactly one category file",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "D5",
+  "title": "category files add up to the combined table",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "C1",
+  "title": "no pair is both positive and negative/unresolved (independent source files)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "C2",
+  "title": "consolidated sets equal the independent curated sets",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "C3",
+  "title": "no negative pair has a live (high/medium) process edge",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "C4",
+  "title": "every Gold/Silver pair has a source-verified positive supporting edge and no rejected supporting edge",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "C5",
+  "title": "no verified-positive process edge is rejected by the payload check",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "C6",
+  "title": "no source-verified-negative process edge also appears in a Gold/Silver pair",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "C7",
+  "title": "reverse-direction positives (A->B and B->A both positive): software identity reused at different stages",
+  "status": "WARN",
+  "detail": "3 issue(s): ('RSEM', 'nf-core custom script (Python)'); ('Salmon', 'nf-core custom script (Python)'); ('kallisto', 'nf-core custom script (Python)')"
+ },
+ {
+  "id": "M1",
+  "title": "every process instance in an edge has a software mapping",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "M2",
+  "title": "mapped software keys exist in the canonical software table",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "M3",
+  "title": "edge src/dst software equals the process->software map",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "M4",
+  "title": "one module -> one software (no module is mapped to different software in different instances)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "M5",
+  "title": "no multi-tool process mapped (software pairs would be ambiguous)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "M6",
+  "title": "no process mapping is auto-derived/unreviewed",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "M7",
+  "title": "curated mapping differs from meta.yml tools (reviewed, curated value kept)",
+  "status": "INFO",
+  "detail": "12 modules, e.g. CUSTOM_GTFFILTER: meta.yml='gtffilter' -> nf-core custom script (Python); CUSTOM_RSEMMERGECOUNTS: meta.yml='custom' -> sed; RSEM_CALCULATEEXPRESSION: meta.yml='rseqc' -> RSEM; RSEM_PREPAREREFERENCE: meta.yml='rseqc' -> RSEM; RUSTQC: meta.yml='rustqc' -> RSeQC"
+ },
+ {
+  "id": "M8",
+  "title": "every pair with process edges records the operation actually performed",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "M9",
+  "title": "RSEM -> kallisto is recorded as rsem-prepare-reference transcript extraction (not RSEM quantification)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "M10",
+  "title": "software nodes standing for several different operations",
+  "status": "INFO",
+  "detail": "SAMtools: 9; RSeQC: 9; nf-core custom script (Python): 4; HISAT2: 3; Sentieon RSEM: 3; RSEM: 3 (see src_operation / dst_operation; always join pairs back to process level)"
+ },
+ {
+  "id": "R1",
+  "title": "process graph is acyclic (no process-level cycle)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "R2",
+  "title": "no process edge from an instance to itself",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "R3",
+  "title": "source emit is a declared output of the producer and the input slot exists on the consumer",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "R4",
+  "title": "direction of each Gold/Silver supporting edge matches the pair (producer = source)",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "E1",
+  "title": "no positive edge has contradictory execution conditions",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "E2",
+  "title": "'conditional' flag is consistent with recorded conditions",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "E3",
+  "title": "Gold/Silver pairs without hub-free preview-DAG confirmation (verified by source reading only)",
+  "status": "INFO",
+  "detail": "0 of 51: "
+ },
+ {
+  "id": "E4",
+  "title": "Gold/Silver pairs whose supporting edges carry no recorded conditions (always active)",
+  "status": "INFO",
+  "detail": "1: P36"
+ },
+ {
+  "id": "E5",
+  "title": "condition atoms of positives that are not --params (derived variables, documented in evidence text)",
+  "status": "INFO",
+  "detail": "fasta_provided, filter_gtf_needed, markdups_done, skip_merge"
+ },
+ {
+  "id": "P1",
+  "title": "all 5354 file:line references resolve to an existing file and a line inside it",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "P2",
+  "title": "20 content anchors (the lines the key decisions rest on) contain the expected text",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "P3",
+  "title": "every positive/negative software record carries evidence text and (for process-backed records) a call-site line",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "P4",
+  "title": "every process record has producer_call, consumer_call and module file:line",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "A1",
+  "title": "audit confidence table covers exactly the canonical edge ids",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "A2",
+  "title": "audit payload verdicts equal the verdicts stored in the canonical build",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "A3",
+  "title": "audit summary counts equal reference counts",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "A4",
+  "title": "original (v1) confidence preserved: confidence_v1 equals the frozen original results for every edge",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "A5",
+  "title": "edge sets of canonical and original results are identical",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "A6",
+  "title": "process category counts add up",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "A7",
+  "title": "confidence_v1 -> confidence_final transitions",
+  "status": "INFO",
+  "detail": "high->high: 47, low->low: 222, low->rejected: 2, medium->high: 335, medium->medium: 547, medium->rejected: 81"
+ },
+ {
+  "id": "F1",
+  "title": "record counts equal the frozen release",
+  "status": "PASS",
+  "detail": ""
+ },
+ {
+  "id": "F2",
+  "title": "verified-negative software pairs include the two negatives from the 53 core pairs",
+  "status": "PASS",
+  "detail": ""
+ }
+]

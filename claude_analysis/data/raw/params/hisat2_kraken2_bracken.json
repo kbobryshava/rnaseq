@@ -1,0 +1,1 @@
+{"aligner":"hisat2","skip_bigwig":true,"contaminant_screening":"kraken2_bracken"}

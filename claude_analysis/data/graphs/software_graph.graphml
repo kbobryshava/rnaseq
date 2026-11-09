@@ -1,0 +1,2099 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d3" for="edge" attr.name="self_loop" attr.type="boolean"/>
+<key id="d2" for="edge" attr.name="confidence" attr.type="string"/>
+<key id="d1" for="edge" attr.name="n" attr.type="long"/>
+<key id="d0" for="node" attr.name="role" attr.type="string"/>
+<graph edgedefault="directed"><node id="gzip (gunzip)">
+  <data key="d0">utility</data>
+</node>
+<node id="GffRead">
+  <data key="d0">reference-prep</data>
+</node>
+<node id="nf-core custom script (Python)">
+  <data key="d0">utility</data>
+</node>
+<node id="ea-utils gtf2bed">
+  <data key="d0">reference-prep</data>
+</node>
+<node id="sed">
+  <data key="d0">utility</data>
+</node>
+<node id="Sentieon RSEM">
+  <data key="d0">quantification</data>
+</node>
+<node id="RSEM">
+  <data key="d0">quantification</data>
+</node>
+<node id="SAMtools">
+  <data key="d0">utility</data>
+</node>
+<node id="GNU tar">
+  <data key="d0">utility</data>
+</node>
+<node id="BBMap (BBSplit)">
+  <data key="d0">analysis</data>
+</node>
+<node id="SortMeRNA">
+  <data key="d0">analysis</data>
+</node>
+<node id="STAR">
+  <data key="d0">analysis</data>
+</node>
+<node id="gawk">
+  <data key="d0">utility</data>
+</node>
+<node id="HISAT2">
+  <data key="d0">analysis</data>
+</node>
+<node id="Bowtie 2">
+  <data key="d0">analysis</data>
+</node>
+<node id="Salmon">
+  <data key="d0">quantification</data>
+</node>
+<node id="kallisto">
+  <data key="d0">quantification</data>
+</node>
+<node id="cat (GNU coreutils)">
+  <data key="d0">utility</data>
+</node>
+<node id="fq">
+  <data key="d0">qc</data>
+</node>
+<node id="FastQC">
+  <data key="d0">qc</data>
+</node>
+<node id="UMI-tools">
+  <data key="d0">analysis</data>
+</node>
+<node id="Trim Galore">
+  <data key="d0">analysis</data>
+</node>
+<node id="fastp">
+  <data key="d0">analysis</data>
+</node>
+<node id="SeqKit">
+  <data key="d0">utility</data>
+</node>
+<node id="RiboDetector">
+  <data key="d0">analysis</data>
+</node>
+<node id="Sentieon STAR">
+  <data key="d0">analysis</data>
+</node>
+<node id="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d0">analysis</data>
+</node>
+<node id="UMICollapse">
+  <data key="d0">analysis</data>
+</node>
+<node id="tximeta">
+  <data key="d0">quantification</data>
+</node>
+<node id="SummarizedExperiment">
+  <data key="d0">quantification</data>
+</node>
+<node id="DESeq2">
+  <data key="d0">qc</data>
+</node>
+<node id="Picard">
+  <data key="d0">analysis</data>
+</node>
+<node id="StringTie">
+  <data key="d0">analysis</data>
+</node>
+<node id="RSeQC">
+  <data key="d0">qc</data>
+</node>
+<node id="Preseq">
+  <data key="d0">qc</data>
+</node>
+<node id="featureCounts (Subread)">
+  <data key="d0">quantification</data>
+</node>
+<node id="Qualimap">
+  <data key="d0">qc</data>
+</node>
+<node id="dupRadar">
+  <data key="d0">qc</data>
+</node>
+<node id="BEDTools">
+  <data key="d0">analysis</data>
+</node>
+<node id="UCSC bedClip">
+  <data key="d0">analysis</data>
+</node>
+<node id="UCSC bedGraphToBigWig">
+  <data key="d0">analysis</data>
+</node>
+<node id="Kraken 2">
+  <data key="d0">analysis</data>
+</node>
+<node id="Bracken">
+  <data key="d0">analysis</data>
+</node>
+<node id="Sylph">
+  <data key="d0">analysis</data>
+</node>
+<node id="sylph-tax">
+  <data key="d0">analysis</data>
+</node>
+<node id="MultiQC">
+  <data key="d0">reporting</data>
+</node>
+<edge source="gzip (gunzip)" target="BBMap (BBSplit)">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="Bowtie 2">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="dupRadar">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="ea-utils gtf2bed">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="featureCounts (Subread)">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="GffRead">
+  <data key="d1">4</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="HISAT2">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="kallisto">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="nf-core custom script (Python)">
+  <data key="d1">8</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="Picard">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="Qualimap">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="RSEM">
+  <data key="d1">4</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="RSeQC">
+  <data key="d1">7</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="Salmon">
+  <data key="d1">9</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="SAMtools">
+  <data key="d1">12</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="sed">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="Sentieon RSEM">
+  <data key="d1">4</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="Sentieon STAR">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="SeqKit">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="SortMeRNA">
+  <data key="d1">3</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="STAR">
+  <data key="d1">5</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="StringTie">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="Bowtie 2">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="dupRadar">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="ea-utils gtf2bed">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="featureCounts (Subread)">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="GffRead">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">True</data>
+</edge>
+<edge source="GffRead" target="HISAT2">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="kallisto">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="nf-core custom script (Python)">
+  <data key="d1">5</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="Qualimap">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="RSEM">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="RSeQC">
+  <data key="d1">7</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="Salmon">
+  <data key="d1">7</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="SAMtools">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="Sentieon RSEM">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="Sentieon STAR">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="STAR">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="StringTie">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="BBMap (BBSplit)">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="dupRadar">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="ea-utils gtf2bed">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="featureCounts (Subread)">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="GffRead">
+  <data key="d1">5</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="HISAT2">
+  <data key="d1">5</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="kallisto">
+  <data key="d1">4</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="nf-core custom script (Python)">
+  <data key="d1">7</data>
+  <data key="d2">high</data>
+  <data key="d3">True</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="Picard">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="Qualimap">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="RSEM">
+  <data key="d1">6</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="RSeQC">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="Salmon">
+  <data key="d1">8</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="SAMtools">
+  <data key="d1">10</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="Sentieon RSEM">
+  <data key="d1">6</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="Sentieon STAR">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="STAR">
+  <data key="d1">8</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="StringTie">
+  <data key="d1">6</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="SummarizedExperiment">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="nf-core custom script (Python)" target="tximeta">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="ea-utils gtf2bed" target="RSeQC">
+  <data key="d1">6</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="sed" target="Bowtie 2">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="sed" target="kallisto">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="sed" target="Salmon">
+  <data key="d1">4</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="sed" target="SAMtools">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon RSEM" target="Bowtie 2">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon RSEM" target="kallisto">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon RSEM" target="nf-core custom script (Python)">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon RSEM" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon RSEM" target="Salmon">
+  <data key="d1">4</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon RSEM" target="SAMtools">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon RSEM" target="sed">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon RSEM" target="Sentieon RSEM">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">True</data>
+</edge>
+<edge source="Sentieon RSEM" target="tximeta">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RSEM" target="Bowtie 2">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RSEM" target="kallisto">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RSEM" target="nf-core custom script (Python)">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RSEM" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RSEM" target="RSEM">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">True</data>
+</edge>
+<edge source="RSEM" target="Salmon">
+  <data key="d1">4</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RSEM" target="SAMtools">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RSEM" target="sed">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RSEM" target="tximeta">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="BBMap (BBSplit)">
+  <data key="d1">1</data>
+  <data key="d2">rejected</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="BEDTools">
+  <data key="d1">27</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="Bowtie 2">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="dupRadar">
+  <data key="d1">10</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="FastQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="featureCounts (Subread)">
+  <data key="d1">10</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="fq">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="HISAT2">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="kallisto">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="Kraken 2">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="MultiQC">
+  <data key="d1">28</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="Picard">
+  <data key="d1">8</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="Preseq">
+  <data key="d1">10</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="Qualimap">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="RSEM">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="RSeQC">
+  <data key="d1">90</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="Salmon">
+  <data key="d1">5</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="SAMtools">
+  <data key="d1">74</data>
+  <data key="d2">high</data>
+  <data key="d3">True</data>
+</edge>
+<edge source="SAMtools" target="Sentieon RSEM">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="Sentieon STAR">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="STAR">
+  <data key="d1">3</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="StringTie">
+  <data key="d1">18</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="Sylph">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="UCSC bedClip">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="UCSC bedGraphToBigWig">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="UMI-tools">
+  <data key="d1">14</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="UMICollapse">
+  <data key="d1">9</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GNU tar" target="BBMap (BBSplit)">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GNU tar" target="Bowtie 2">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GNU tar" target="Bracken">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GNU tar" target="gawk">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GNU tar" target="HISAT2">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GNU tar" target="kallisto">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GNU tar" target="Kraken 2">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GNU tar" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GNU tar" target="RSEM">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GNU tar" target="Salmon">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GNU tar" target="Sentieon RSEM">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GNU tar" target="Sentieon STAR">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GNU tar" target="SortMeRNA">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GNU tar" target="STAR">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="BBMap (BBSplit)">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">True</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="Bowtie 2">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="FastQC">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="fq">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="HISAT2">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="kallisto">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="Kraken 2">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="MultiQC">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="RiboDetector">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="Salmon">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="Sentieon STAR">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="SeqKit">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="SortMeRNA">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="STAR">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BBMap (BBSplit)" target="Sylph">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SortMeRNA" target="Bowtie 2">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SortMeRNA" target="FastQC">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SortMeRNA" target="fq">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SortMeRNA" target="HISAT2">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SortMeRNA" target="kallisto">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SortMeRNA" target="Kraken 2">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SortMeRNA" target="MultiQC">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SortMeRNA" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SortMeRNA" target="Salmon">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SortMeRNA" target="Sentieon STAR">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SortMeRNA" target="SortMeRNA">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">True</data>
+</edge>
+<edge source="SortMeRNA" target="STAR">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SortMeRNA" target="Sylph">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="BEDTools">
+  <data key="d1">3</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="dupRadar">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="featureCounts (Subread)">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="kallisto">
+  <data key="d1">1</data>
+  <data key="d2">rejected</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="Kraken 2">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="Picard">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="Preseq">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="RSEM">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="RSeQC">
+  <data key="d1">9</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="Salmon">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="SAMtools">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="Sentieon STAR">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="STAR">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">True</data>
+</edge>
+<edge source="STAR" target="StringTie">
+  <data key="d1">2</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="Sylph">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gawk" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gawk" target="Sentieon STAR">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gawk" target="STAR">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="HISAT2" target="HISAT2">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">True</data>
+</edge>
+<edge source="HISAT2" target="Kraken 2">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="HISAT2" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="HISAT2" target="SAMtools">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="HISAT2" target="Sylph">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="BEDTools">
+  <data key="d1">3</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="Bowtie 2">
+  <data key="d1">4</data>
+  <data key="d2">high</data>
+  <data key="d3">True</data>
+</edge>
+<edge source="Bowtie 2" target="dupRadar">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="FastQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="featureCounts (Subread)">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="fq">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="HISAT2">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="kallisto">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="Kraken 2">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="MultiQC">
+  <data key="d1">4</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="Picard">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="Preseq">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="RSeQC">
+  <data key="d1">9</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="Salmon">
+  <data key="d1">3</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="SAMtools">
+  <data key="d1">4</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="Sentieon STAR">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="STAR">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="StringTie">
+  <data key="d1">2</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="Sylph">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Salmon" target="Bowtie 2">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Salmon" target="HISAT2">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Salmon" target="kallisto">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Salmon" target="Kraken 2">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Salmon" target="nf-core custom script (Python)">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Salmon" target="MultiQC">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Salmon" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Salmon" target="Salmon">
+  <data key="d1">4</data>
+  <data key="d2">high</data>
+  <data key="d3">True</data>
+</edge>
+<edge source="Salmon" target="Sentieon STAR">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Salmon" target="STAR">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Salmon" target="Sylph">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Salmon" target="tximeta">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="kallisto" target="kallisto">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">True</data>
+</edge>
+<edge source="kallisto" target="nf-core custom script (Python)">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="kallisto" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="kallisto" target="tximeta">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="BBMap (BBSplit)">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="Bowtie 2">
+  <data key="d1">3</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="fastp">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="FastQC">
+  <data key="d1">3</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="fq">
+  <data key="d1">4</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="HISAT2">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="kallisto">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="Kraken 2">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="RiboDetector">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="Salmon">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="Sentieon STAR">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="SeqKit">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="SortMeRNA">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="STAR">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="Sylph">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="Trim Galore">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="cat (GNU coreutils)" target="UMI-tools">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="BBMap (BBSplit)">
+  <data key="d1">2</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="Bowtie 2">
+  <data key="d1">10</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="fastp">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="FastQC">
+  <data key="d1">6</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="fq">
+  <data key="d1">8</data>
+  <data key="d2">low</data>
+  <data key="d3">True</data>
+</edge>
+<edge source="fq" target="HISAT2">
+  <data key="d1">4</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="kallisto">
+  <data key="d1">4</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="Kraken 2">
+  <data key="d1">4</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="MultiQC">
+  <data key="d1">4</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">4</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="RiboDetector">
+  <data key="d1">6</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="Salmon">
+  <data key="d1">9</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="Sentieon STAR">
+  <data key="d1">4</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="SeqKit">
+  <data key="d1">3</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="SortMeRNA">
+  <data key="d1">3</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="STAR">
+  <data key="d1">4</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="Sylph">
+  <data key="d1">4</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="Trim Galore">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fq" target="UMI-tools">
+  <data key="d1">2</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="FastQC" target="MultiQC">
+  <data key="d1">4</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="BBMap (BBSplit)">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="BEDTools">
+  <data key="d1">3</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="Bowtie 2">
+  <data key="d1">6</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="dupRadar">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="fastp">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="FastQC">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="featureCounts (Subread)">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="fq">
+  <data key="d1">6</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="HISAT2">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="kallisto">
+  <data key="d1">3</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="Kraken 2">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="MultiQC">
+  <data key="d1">6</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="Preseq">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="RiboDetector">
+  <data key="d1">4</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="RSEM">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="RSeQC">
+  <data key="d1">9</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="Salmon">
+  <data key="d1">5</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="SAMtools">
+  <data key="d1">10</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="Sentieon RSEM">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="Sentieon STAR">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="SeqKit">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="SortMeRNA">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="STAR">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="StringTie">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="Sylph">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="Trim Galore">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="BBMap (BBSplit)">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="Bowtie 2">
+  <data key="d1">6</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="FastQC">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="fq">
+  <data key="d1">6</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="HISAT2">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="kallisto">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="Kraken 2">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="MultiQC">
+  <data key="d1">4</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="RiboDetector">
+  <data key="d1">4</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="Salmon">
+  <data key="d1">4</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="Sentieon STAR">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="SeqKit">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="SortMeRNA">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="STAR">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Trim Galore" target="Sylph">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="BBMap (BBSplit)">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="Bowtie 2">
+  <data key="d1">6</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="FastQC">
+  <data key="d1">4</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="fq">
+  <data key="d1">6</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="HISAT2">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="kallisto">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="Kraken 2">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="MultiQC">
+  <data key="d1">3</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="RiboDetector">
+  <data key="d1">4</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="Salmon">
+  <data key="d1">4</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="Sentieon STAR">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="SeqKit">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="SortMeRNA">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="STAR">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="fastp" target="Sylph">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SeqKit" target="Bowtie 2">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SeqKit" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SeqKit" target="RiboDetector">
+  <data key="d1">2</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SeqKit" target="SeqKit">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">True</data>
+</edge>
+<edge source="RiboDetector" target="Bowtie 2">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RiboDetector" target="FastQC">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RiboDetector" target="fq">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RiboDetector" target="HISAT2">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RiboDetector" target="kallisto">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RiboDetector" target="Kraken 2">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RiboDetector" target="MultiQC">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RiboDetector" target="NVIDIA Parabricks rna_fq2bam (STAR-based)">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RiboDetector" target="Salmon">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RiboDetector" target="Sentieon STAR">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RiboDetector" target="STAR">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RiboDetector" target="Sylph">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon STAR" target="BEDTools">
+  <data key="d1">3</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon STAR" target="dupRadar">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon STAR" target="featureCounts (Subread)">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon STAR" target="kallisto">
+  <data key="d1">1</data>
+  <data key="d2">rejected</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon STAR" target="Kraken 2">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon STAR" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon STAR" target="Picard">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon STAR" target="Preseq">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon STAR" target="RSeQC">
+  <data key="d1">9</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon STAR" target="Salmon">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon STAR" target="SAMtools">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon STAR" target="Sentieon RSEM">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon STAR" target="StringTie">
+  <data key="d1">2</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon STAR" target="Sylph">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="BEDTools">
+  <data key="d1">3</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="dupRadar">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="featureCounts (Subread)">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="kallisto">
+  <data key="d1">1</data>
+  <data key="d2">rejected</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="Kraken 2">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="Picard">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="Preseq">
+  <data key="d1">1</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="RSEM">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="RSeQC">
+  <data key="d1">9</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="Salmon">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="SAMtools">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="StringTie">
+  <data key="d1">2</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="Sylph">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMICollapse" target="BEDTools">
+  <data key="d1">3</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMICollapse" target="dupRadar">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMICollapse" target="featureCounts (Subread)">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMICollapse" target="MultiQC">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMICollapse" target="Preseq">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMICollapse" target="RSeQC">
+  <data key="d1">9</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMICollapse" target="SAMtools">
+  <data key="d1">10</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMICollapse" target="StringTie">
+  <data key="d1">2</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="tximeta" target="DESeq2">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="tximeta" target="SummarizedExperiment">
+  <data key="d1">27</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="DESeq2" target="MultiQC">
+  <data key="d1">6</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Picard" target="BEDTools">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Picard" target="dupRadar">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Picard" target="featureCounts (Subread)">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Picard" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Picard" target="Preseq">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Picard" target="RSeQC">
+  <data key="d1">9</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Picard" target="SAMtools">
+  <data key="d1">9</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Picard" target="StringTie">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="StringTie" target="StringTie">
+  <data key="d1">2</data>
+  <data key="d2">high</data>
+  <data key="d3">True</data>
+</edge>
+<edge source="RSeQC" target="MultiQC">
+  <data key="d1">14</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Preseq" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="featureCounts (Subread)" target="nf-core custom script (Python)">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Qualimap" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="dupRadar" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="BEDTools" target="UCSC bedClip">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UCSC bedClip" target="UCSC bedGraphToBigWig">
+  <data key="d1">3</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Kraken 2" target="Bracken">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Kraken 2" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bracken" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sylph" target="sylph-tax">
+  <data key="d1">1</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="sylph-tax" target="MultiQC">
+  <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+</graph></graphml>

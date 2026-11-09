@@ -1,0 +1,51 @@
+{
+ "process_instances": 178,
+ "process_edges(emit-level)": 1234,
+ "process_pairs": 1125,
+ "software_nodes": 46,
+ "software_edges_total": 391,
+ "software_self_loops": 15,
+ "static_process_graph_sccs>1": [],
+ "software_graph_sccs>1": [
+  [
+   "BBMap (BBSplit)",
+   "Bowtie 2",
+   "GffRead",
+   "HISAT2",
+   "NVIDIA Parabricks rna_fq2bam (STAR-based)",
+   "Picard",
+   "RSEM",
+   "RiboDetector",
+   "SAMtools",
+   "STAR",
+   "Salmon",
+   "Sentieon RSEM",
+   "Sentieon STAR",
+   "SeqKit",
+   "SortMeRNA",
+   "Trim Galore",
+   "UMI-tools",
+   "UMICollapse",
+   "fastp",
+   "featureCounts (Subread)",
+   "fq",
+   "kallisto",
+   "nf-core custom script (Python)",
+   "sed"
+  ]
+ ],
+ "edge_class_counts": {
+  "direct": 359,
+  "merged-channel": 551,
+  "key-only-synchronization": 96,
+  "gating-or-metadata": 119,
+  "metadata-dependency": 9,
+  "reporting-aggregation": 100
+ },
+ "confidence_counts": {
+  "high": 350,
+  "medium": 580,
+  "rejected": 80,
+  "low": 224
+ }
+}

@@ -13,6 +13,7 @@ import yaml
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from parse_dag import parse as parse_dag
 from nf_static_analyzer import cond_atoms
+from payload_checks import payload_verdict, REJECT_VERDICTS
 
 # --------------------------------------------------------------------------
 # Curated canonical software table.  key -> (canonical name, role, note)
@@ -181,16 +182,29 @@ def main():
         elif ops & {'mix', 'join', 'combine', 'merge', 'cross', 'concat'}: cls = 'merged-channel'
         else: cls = 'direct'
         alt = 'alternative-branch-in-channel-path' in flags
+        # confidence_v1: ORIGINAL rule, kept unchanged for comparison. Defect: any alternative-branch flag demoted a direct edge to medium
         if cls == 'direct' and not alt: conf = 'high'
         elif cls in ('direct', 'merged-channel', 'reporting-aggregation'): conf = 'medium'
         else: conf = 'low'
+        # confidence_v2: corrected rule. Exclusive if/else branches are recorded as conditions and are not payload ambiguity; edges that the
+        # payload check proves to be extractor artifacts (dropped tuple element, multiMap split, constant call argument) or that the pipeline
+        # itself forbids (--use_parabricks_star with --use_sentieon_star, utils_nfcore_rnaseq_pipeline/main.nf:323-325) are 'rejected'.
+        pv, pr = 'not-checked', ''   # payload check is defined for direct and merged-channel edges only
+        if cls in ('direct', 'merged-channel'): pv, pr, _pf, _cf = payload_verdict({'src_emit': e['src_emit'] or '', 'src_output_decl': e['src_output_decl'], 'dst_input_decl': e['dst_input_decl'], 'dst_module': dst_mod,
+                                            'dst_instance': d, 'channel_trail': e['channel_trail'], 'consumer_call': e['consumer_call'], 'src_module': insts[s]['module']}, a.repo)
+        if pv in REJECT_VERDICTS: conf2, why2 = 'rejected', 'payload check: ' + pv
+        elif cls in ('key-only-synchronization', 'metadata-dependency', 'gating-or-metadata'): conf2, why2 = 'low', 'no payload consumed (synchronisation / gate / metadata)'
+        elif cls == 'direct': conf2, why2 = 'high', 'direct single-source path' + ('; exclusive alternative branches recorded as conditions' if alt else '')
+        else: conf2, why2 = 'medium', cls + ' (payload check: ' + pv + ')'
         atoms = sorted({f'{k} {o} {v}' for c in (e['conditions_consumer'] + e['path_branch_conditions'] + e['conditions_producer']) for k, o, v in cond_atoms(c)})
+        if 'use_parabricks_star truthy True' in atoms and 'use_sentieon_star truthy True' in atoms:
+            conf2, why2 = 'rejected', 'pipeline validation forbids --use_parabricks_star with --use_sentieon_star (subworkflows/local/utils_nfcore_rnaseq_pipeline/main.nf:323-325)'
         crosses = any(st['var'].startswith('emit:') for st in e['channel_trail'])
         ex = [c for c in configs if s in dagsets[c] and d in dagsets[c]]
         conf_by_dag = [c for c in ex if (s, d) in dagfree[c]]
         tier = 'A-dag-confirmed' if conf_by_dag else ('B-static-only' if cls in ('direct', 'merged-channel', 'reporting-aggregation') else 'C-review')
         row = {'edge_id': f'E{len(edges)+1:05d}', 'src_instance': s, 'src_module': insts[s]['module'], 'src_emit': e['src_emit'],
-               'dst_instance': d, 'dst_module': dst_mod, 'dst_input_index': e['dst_input_index'], 'edge_class': cls, 'confidence': conf, 'evidence_tier': tier,
+               'dst_instance': d, 'dst_module': dst_mod, 'dst_input_index': e['dst_input_index'], 'edge_class': cls, 'confidence_v1': conf, 'confidence_v2': conf2, 'confidence_v2_reason': why2, 'payload_check': pv, 'payload_check_detail': pr, 'evidence_tier': tier,
                'src_software': pm[s]['primary_software'], 'dst_software': pm[d]['primary_software'],
                'required_param_assumptions': ' & '.join(atoms), 'conditional': bool(e['conditions_consumer'] or e['conditions_producer'] or alt),
                'crosses_subworkflow_interface': crosses, 'operators': ';'.join(e['operators']),
@@ -201,7 +215,7 @@ def main():
                      'conditions_consumer': e['conditions_consumer'], 'conditions_producer': e['conditions_producer'],
                      'path_branch_conditions': e['path_branch_conditions'], 'channel_trail': e['channel_trail'], 'flags': flags,
                      'src_module_file': f"{insts[s]['module_file']}:{insts[s]['module_line']}", 'dst_module_file': f"{insts[d]['module_file']}:{insts[d]['module_line']}"})
-        if conf == 'low':
+        if conf2 == 'low':
             review.append({'edge_id': row['edge_id'], 'reason': cls + ': synchronisation/metadata dependency, payload not (fully) consumed; exclude from positive control unless verified', 'src': s, 'emit': e['src_emit'], 'dst': d, 'call': e['consumer_call']})
     cols = list(edges[0].keys())
     csvw(os.path.join(proc, 'process_edges.csv'), edges, cols)
@@ -213,8 +227,8 @@ def main():
     for r in edges:
         k = (r['src_instance'], r['dst_instance'])
         q = pairs.setdefault(k, {'src_instance': k[0], 'dst_instance': k[1], 'emits': set(), 'classes': set(), 'confidences': set(), 'edge_ids': []})
-        q['emits'].add(r['src_emit']); q['classes'].add(r['edge_class']); q['confidences'].add(r['confidence']); q['edge_ids'].append(r['edge_id'])
-    rank = {'high': 3, 'medium': 2, 'low': 1}
+        q['emits'].add(r['src_emit']); q['classes'].add(r['edge_class']); q['confidences'].add(r['confidence_v2']); q['edge_ids'].append(r['edge_id'])
+    rank = {'high': 3, 'medium': 2, 'low': 1, 'rejected': 0}
     pair_rows = [{'src_instance': q['src_instance'], 'dst_instance': q['dst_instance'], 'emits': ';'.join(sorted(q['emits'])),
                   'classes': ';'.join(sorted(q['classes'])), 'best_confidence': max(q['confidences'], key=rank.get), 'n_edges': len(q['edge_ids'])} for q in pairs.values()]
     csvw(os.path.join(proc, 'process_pairs.csv'), pair_rows, list(pair_rows[0].keys()))
@@ -238,7 +252,7 @@ def main():
             for dk in pm[r['dst_instance']]['primary_software_keys'].split(';'):
                 q = sw.setdefault((sk, dk), {'src': CANON[sk][0], 'dst': CANON[dk][0], 'src_key': sk, 'dst_key': dk, 'n': 0, 'cls': collections.Counter(),
                                               'conf': collections.Counter(), 'ex': set(), 'p': [], 'cond': 0})
-                q['n'] += 1; q['cls'][r['edge_class']] += 1; q['conf'][r['confidence']] += 1
+                q['n'] += 1; q['cls'][r['edge_class']] += 1; q['conf'][r['confidence_v2']] += 1
                 q['cond'] += int(r['conditional'])
                 if len(q['p']) < 6: q['p'].append(r['edge_id'])
                 for c in r['both_endpoints_in_configs'].split(';'):
@@ -276,7 +290,7 @@ def main():
     PG = nx.MultiDiGraph()
     for p, i in insts.items():
         if i['kind'] == 'process': PG.add_node(p, module=i['module'], software=pm[p]['primary_software'], conditional=bool(i['conds']))
-    for r in edges: PG.add_edge(r['src_instance'], r['dst_instance'], key=r['edge_id'], emit=r['src_emit'], edge_class=r['edge_class'], confidence=r['confidence'])
+    for r in edges: PG.add_edge(r['src_instance'], r['dst_instance'], key=r['edge_id'], emit=r['src_emit'], edge_class=r['edge_class'], confidence=r['confidence_v2'])
     nx.write_graphml(PG, os.path.join(gr, 'process_graph.graphml'))
     SG = nx.DiGraph()
     for k, v in canon_used.items(): SG.add_node(v[0], role=v[1])
@@ -288,7 +302,7 @@ def main():
              'static_process_graph_sccs>1': [sorted(c) for c in nx.strongly_connected_components(nx.DiGraph(PG)) if len(c) > 1],
              'software_graph_sccs>1': [sorted(c) for c in nx.strongly_connected_components(nonloop) if len(c) > 1],
              'edge_class_counts': dict(collections.Counter(r['edge_class'] for r in edges)),
-             'confidence_counts': dict(collections.Counter(r['confidence'] for r in edges))}
+             'confidence_counts': dict(collections.Counter(r['confidence_v2'] for r in edges))}
     json.dump(stats, open(os.path.join(proc, 'summary_stats.json'), 'w'), indent=1)
     json.dump({'process_nodes': [{'id': p, **{k: v for k, v in PG.nodes[p].items()}} for p in PG.nodes], 'process_edges': evid,
                'software_nodes': [{'id': n, **SG.nodes[n]} for n in SG.nodes], 'software_edges': srows},

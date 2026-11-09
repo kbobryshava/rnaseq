@@ -46,3 +46,8 @@ All paths are relative to `claude_analysis/`. Pipeline: nf-core/rnaseq **3.27.0*
 * **key-only-synchronization** - the producer channel was reduced to the sample key (`.map { meta, _x -> meta }`); the consumer waits for the producer but does not consume its data.
 * **metadata-dependency** - producer output travels into `meta` (e.g. inferred strandedness) or acts as a gate.
 * **reporting-aggregation** - consumer is MultiQC.
+
+## Update (reference release)
+* `process_edges.csv`: column `confidence` was replaced by `confidence_v1` (original rule, unchanged values), `confidence_v2` (corrected rule), `confidence_v2_reason`, `payload_check`, `payload_check_detail`. The pre-change files are in `data/processed_v1_original/`.
+* `software_edges.csv`: `best_confidence` / `confidence_counts` are computed from `confidence_v2`; `rejected` edges (extractor artifacts) are possible values.
+* The frozen reference tables and their dictionary are in `reference/` (`DATA_DICTIONARY.md`).

@@ -1,4 +1,4 @@
-edge_id,bucket,edge_class,confidence_v1,confidence_v2,src,dst,reason
+edge_id,bucket,edge_class,confidence_v1,confidence_final,src,dst,reason
 E00002,tierA only,direct,medium,high,GUNZIP.gunzip,CUSTOM_GTFFILTER,class=direct; alternative-branch flag (rule demoted it)
 E00006,tierA only,direct,medium,high,CUSTOM_GTFFILTER.gtf,CUSTOM_CATADDITIONALFASTA,class=direct; alternative-branch flag (rule demoted it)
 E00009,tierA only,direct,medium,high,GUNZIP.gunzip,CUSTOM_CATADDITIONALFASTA,class=direct; alternative-branch flag (rule demoted it)

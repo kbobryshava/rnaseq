@@ -13,7 +13,7 @@ Pipeline commit `a1fcdddd3b826fe46eb46f0479f2ff8a7815af05`. Scope: nf-core/rnase
 
 * Positive control = Gold + Silver = **51** pairs (`curated/positive_controls.csv`). Gold is the conservative set to use as ground truth.
 * Why no Unresolved among the 53: every one could be decided by reading the call site and the module declarations. What stays unproven is stated in section 8, not hidden in a label.
-* Edge level (all 1234 process edges, `process_edges_v2.csv`): confidence v1 {'medium': 963, 'high': 47, 'low': 224} -> v2 {'high': 382, 'medium': 547, 'rejected': 83, 'low': 222}. 83 edges are rejected as extractor artifacts or infeasible paths.
+* Edge level (all 1234 process edges, `process_edges_final_confidence.csv`): confidence v1 {'medium': 963, 'high': 47, 'low': 224} -> final {'high': 382, 'medium': 547, 'rejected': 83, 'low': 222}. 83 edges are rejected as extractor artifacts or infeasible paths.
 
 Decision rules (identical for all pairs; implemented in `scripts/audit_decisions.py`):
 * **Gold** - the producer's output is passed to the consumer's input slot with its payload intact (read in the source), both ends are named bioinformatics tools, and the path is feasible under a stated parameter set.
@@ -57,19 +57,19 @@ They are **two independent axes**, and neither is a refinement of the other.
 * **"nf-core custom script (Python)" (14 Silver pairs)** merges GTF filtering, additional-FASTA concatenation, tx2gene and MultiQC biotype formatting into one software node. Process-level flows are verified; the software identity is not informative.
 * **Recall problem found while reading (not fixed here):** the headline *STAR -> Salmon* (transcriptome BAM, `QUANTIFY_BAM_SALMON`, `workflows/rnaseq/main.nf:454-463`; Salmon alignment mode `modules/nf-core/salmon/quant/main.nf:28-39`) is **not among the 53 core pairs**, because its DAG path crosses a fused node and it is therefore only tier B. Tier A under-represents real relationships; use tier A as a precision filter, not as a complete list.
 
-## 5. The 551 merged-channel edges
+## 5. The 0 merged-channel edges
 
 Method (`scripts/audit_merged.py`, outputs `payload_audit.csv`, `merged_channel_audit.csv`, `merged_sites.csv`; 79 distinct merge sites): for every direct and merged edge, compare the family of the producer's output (emit name and glob) with the consumer's input slots, and read the source statements on the channel trail for three false-positive mechanisms that a "union" analyzer cannot see.
 
 | verdict | merged edges | direct edges | mechanism (source) |
 |---|---|---|---|
-| compatible (family fits a consumer slot) | 479 | 281 | not a proof of consumption; it only means the payload type fits |
-| **PROJECTION-DROPPED** | 31 | 4 | a closure drops the element: `ch_fasta_fai.map { _meta, fasta_file, _fai -> fasta_file }` (`prepare_genome_indices/main.nf:60`), `ch_bam_bai.map { meta, bam, _bai -> [meta, bam] }` (`bam_qc_rnaseq/main.nf:29`), `fasta_fai.map { meta, fasta, _fai -> [meta, fasta] }` (`align_star/main.nf:51`) |
-| **MULTIMAP-SPLIT** | 34 | 0 | `.multiMap { ... bam: [...]  index: [...] }` separates bam and index (`workflows/rnaseq/main.nf:495-512`); the analyzer unions the branches |
-| **INFEASIBLE-CALLSITE-CONSTANT** | 6 | 4 | `QUANTIFY_BAM_SALMON` is called with the literal `'salmon'` (`workflows/rnaseq/main.nf:461`), so its `KALLISTO_QUANT` branch cannot run |
-| INCOMPATIBLE (heuristic, left medium) | 1 | 49 (noisy: GTF/GFF/bed naming; not used) | E00190 gunzip rRNA FASTA -> SeqKit `fastx` is in fact compatible |
+| compatible (family fits a consumer slot) | 0 | 0 | not a proof of consumption; it only means the payload type fits |
+| **PROJECTION-DROPPED** | 0 | 0 | a closure drops the element: `ch_fasta_fai.map { _meta, fasta_file, _fai -> fasta_file }` (`prepare_genome_indices/main.nf:60`), `ch_bam_bai.map { meta, bam, _bai -> [meta, bam] }` (`bam_qc_rnaseq/main.nf:27`), `fasta_fai.map { meta, fasta, _fai -> [meta, fasta] }` (`align_star/main.nf:51`) |
+| **MULTIMAP-SPLIT** | 0 | 0 | `.multiMap { ... bam: [...]  index: [...] }` separates bam and index (`workflows/rnaseq/main.nf:495-512`); the analyzer unions the branches |
+| **INFEASIBLE-CALLSITE-CONSTANT** | 0 | 0 | `QUANTIFY_BAM_SALMON` is called with the literal `'salmon'` (`workflows/rnaseq/main.nf:461`), so its `KALLISTO_QUANT` branch cannot run |
+| INCOMPATIBLE (heuristic, left medium) | 0 | 0 (noisy: GTF/GFF/bed naming; not used) | E00190 gunzip rRNA FASTA -> SeqKit `fastx` is in fact compatible |
 
-So **71 of 551 merged edges (about 13 %) are false positives**, and 8 direct edges as well. They matter for the core pairs because tier A inherited some of them (the DAG also fuses nodes there).
+So **0 of 551 merged edges (about 0 %) are false positives**, and 8 direct edges as well. They matter for the core pairs because tier A inherited some of them (the DAG also fuses nodes there).
 
 Merged edges that sit **inside the 53 core pairs** (34 tier-A merged edges; `core_pairs_merged_edges.csv`): verdict x corrected confidence = {('compatible', 'high'): 33, ('PROJECTION-DROPPED', 'rejected'): 1}. Adjudicated by reading the merge sites:
 * `FAIDX.fai -> BBSplit/index builders` (P18): dropped -> Negative. `FAIDX.fai -> Picard` (P19): whole tuple consumed -> Gold.
@@ -103,7 +103,7 @@ Verification level: 19 rows were confirmed by reading the source (FastQC -> Trim
 | `curated/all_core_pair_decisions.csv` | all 53 decisions incl. the 2 Negative |
 | `curated/negative_controls.csv` | 146 negative ordered pairs |
 | `curated/unresolved.csv` | 37 definition-dependent pairs |
-| `process_edges_v2.csv` | every edge: v1 and v2 confidence, reason, payload-audit verdict |
+| `process_edges_final_confidence.csv` | every edge: v1 and v2 confidence, reason, payload-audit verdict |
 | `reconciliation_high_vs_tierA.csv`, `payload_audit.csv`, `merged_sites.csv`, `core_pairs_merged_edges.csv`, `core_pair_dossier.md`, `core_pair_edges.csv`, `summary.json` | evidence |
 
 ## 8. Limitations
@@ -111,7 +111,7 @@ Verification level: 19 rows were confirmed by reading the source (FastQC -> Trim
 1. **Gold means "verified in the source for the stated parameters", not "observed executing".** No `-stub` or real run was done, so output optionality (`optional: true` emits), empty channels, and runtime `ext.args` are read, not observed.
 2. **The software layer is a lossy projection.** One software node can stand for several processes (the custom-script node, SAMtools in many roles); a pair is Gold if its verified supporting edges are Gold, but a different process pair under the same names may not be. Always join back to `supporting_process_edges`.
 3. **Parameter dependence.** Several Gold pairs exist only under non-default options (Parabricks, Sentieon, UMI, Kraken/Bracken, kallisto, `--additional_fasta`). `conditions_required` lists the atoms the extractor recorded; the ternary `contaminant_screening_input` selector (`workflows/rnaseq/main.nf:716-722`) is not an extractor atom and is documented in the evidence text instead.
-4. **The audit rules are source-verified patterns, not a general proof.** Three false-positive mechanisms were found and encoded; there may be a fourth. `compatible` (479 merged, 281 direct) is a type check, not a proof of consumption. v2 `high` for un-reviewed direct edges means "single-source path with no known artifact pattern". Edge-level `high (audit decision)` means the pair's call site and input slot were read; sibling edges that share that call site and slot (e.g. the three bigWig branches, the five RSeQC modules) are treated as verified without being read one by one.
+4. **The audit rules are source-verified patterns, not a general proof.** Three false-positive mechanisms were found and encoded; there may be a fourth. `compatible` (0 merged, 0 direct) is a type check, not a proof of consumption. v2 `high` for un-reviewed direct edges means "single-source path with no known artifact pattern". Edge-level `high (audit decision)` means the pair's call site and input slot were read; sibling edges that share that call site and slot (e.g. the three bigWig branches, the five RSeQC modules) are treated as verified without being read one by one.
 5. **Tier A is biased:** it excludes real flows whose DAG path is fused (STAR -> Salmon is the clearest case) and includes the false positives above. It must not be used as a recall estimate.
 6. **Negative controls assert absence of a path in the extracted graph.** Graph incompleteness (e.g. flows through Groovy functions or `ch.view`-style side channels, which the analyzer cannot see) would turn a negative into a missed positive. Shared-input negatives are conditional on the preview configuration in which both tools co-occur.
 7. **Alias and utility handling.** `PARABRICKS_STARGENOMEGENERATE` is the STAR module with a Parabricks container, `MAKE_TRANSCRIPTS_FASTA` is the RSEM module; the software map follows the module, which is why "STAR -> Parabricks" and "RSEM -> kallisto" read as they do.
@@ -120,7 +120,7 @@ Verification level: 19 rows were confirmed by reading the source (FastQC -> Trim
 ## 9. Change log (nothing overwritten)
 
 New: `scripts/audit_dossier.py`, `scripts/audit_merged.py`, `scripts/audit_decisions.py`, `scripts/curate_audit.py`, `scripts/render_audit_report.py`, `scripts/reproduce_audit.sh`, and everything under `audit/`.
-Unchanged: `data/**`, `reports/**`, `documentation/**`, `scripts/build_datasets.py`, `scripts/nf_static_analyzer.py`, original nf-core sources. The v1 confidence column in `data/processed/process_edges.csv` is kept as the record of the original extraction; `confidence_v2` lives only in `audit/process_edges_v2.csv`.
+Unchanged: `data/**`, `reports/**`, `documentation/**`, `scripts/build_datasets.py`, `scripts/nf_static_analyzer.py`, original nf-core sources. The v1 confidence column in `data/processed/process_edges.csv` is kept as the record of the original extraction; `confidence_v2` lives only in `audit/process_edges_final_confidence.csv`.
 Reproduce: `bash claude_analysis/scripts/reproduce_audit.sh`.
 
 ## Appendix A: the 53 core pairs
@@ -133,9 +133,9 @@ Reproduce: `bash claude_analysis/scripts/reproduce_audit.sh`.
 | P04 | GNU tar -> HISAT2 | Silver | utility staging | E00444 | Real: untarred HISAT2 index is the index input of HISAT2_ALIGN. Only when --hisat2_index is a .tar.gz archive. Utility staging. |
 | P05 | GNU tar -> Kraken 2 | Silver | utility staging | E01044 | Real: untarred database is the db input of KRAKEN2. Utility staging. |
 | P06 | GNU tar -> Salmon | Silver | utility staging | E00294;E01086 | Real: the untarred Salmon index is the index slot of the Salmon quant input tuple; the index is consumed whole (modules/nf-core/salmon/quant/main.nf:12,49). Utility stagi |
-| P07 | HISAT2 -> Kraken 2 | Gold | analysis-data | E01040 | Unaligned reads written by HISAT2 (--un-gz) are screened by Kraken2 under the default contaminant_screening_input=unmapped. The ternary selector (main.nf:716-722) is not  |
+| P07 | HISAT2 -> Kraken 2 | Gold | analysis-data | E01040 | Unaligned reads written by HISAT2 (--un-gz) are screened by Kraken2 under the default contaminant_screening_input=unmapped. The ternary selector (workflows/rnaseq/main.nf |
 | P08 | HISAT2 -> SAMtools | Gold | analysis-data | E00447 | HISAT2 BAM is the sort input. Single-source channel. |
-| P09 | Kraken 2 -> Bracken | Gold | analysis-data | E01045 | The Kraken2 report is the Bracken report input; branch requires contaminant_screening==kraken2_bracken (main.nf:737). Confirmed in the kraken2_bracken and hisat2_kraken2_ |
+| P09 | Kraken 2 -> Bracken | Gold | analysis-data | E01045 | The Kraken2 report is the Bracken report input; branch requires contaminant_screening==kraken2_bracken (workflows/rnaseq/main.nf:737). Confirmed in the kraken2_bracken an |
 | P10 | NVIDIA Parabricks rna_fq2bam (STAR-based) -> SAMtools | Gold | analysis-data | E00379 | Parabricks rna_fq2bam is an alternative STAR implementation; its BAM goes through the same samtools sort stage. Needs use_parabricks_star (preview: parabricks_star). Alte |
 | P11 | Picard -> BEDTools | Gold | analysis-data | E00963;E00979;E00995 | Picard-deduplicated BAM replaces ch_genome_bam and feeds genomecov. Needs skip_markduplicates=false, with_umi=false, no Parabricks mark-duplicates, skip_bigwig=false. |
 | P12 | Picard -> StringTie | Gold | analysis-data | E00682 | Picard BAM (srbam slot) goes to StringTie; needs skip_stringtie=false and the same markduplicates conditions as P11. |

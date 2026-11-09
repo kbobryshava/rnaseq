@@ -1,0 +1,6852 @@
+{
+ "source_file": "C:/Users/554256/dev/rnaseq/claude_analysis\\data\\raw\\hisat2_kraken2_bracken_dag.html",
+ "nodes": [
+  {
+   "id": "v0",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v2",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v6",
+   "kind": "channel",
+   "label": "channel.of",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v9",
+   "kind": "channel",
+   "label": "ch_fasta",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v15",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v17",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v24",
+   "kind": "channel",
+   "label": "biotype",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v31",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v37",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v39",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v41",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v44",
+   "kind": "channel",
+   "label": "get_sizes",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v55",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v57",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v59",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v64",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v66",
+   "kind": "channel",
+   "label": "channel.from",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v72",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v73",
+   "kind": "channel",
+   "label": "index",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v74",
+   "kind": "channel",
+   "label": "only_build_index",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v81",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v83",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v85",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v87",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v89",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v91",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v98",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v102",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v104",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v106",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v110",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v116",
+   "kind": "channel",
+   "label": "ch_transcript_fasta",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v119",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v120",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v122",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v124",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v126",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v128",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v130",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v132",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v138",
+   "kind": "channel",
+   "label": "channel.fromList",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v154",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v156",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v158",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v160",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v161",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v163",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v165",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v167",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v169",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v171",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v173",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v175",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v177",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v179",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v181",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v183",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v185",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v187",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v189",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v191",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v193",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v194",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v195",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v196",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v197",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v199",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v201",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v203",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v213",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v215",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v220",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v221",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v223",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v225",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v227",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v229",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v231",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v233",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v259",
+   "kind": "channel",
+   "label": "primary_ref",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v260",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v261",
+   "kind": "channel",
+   "label": "only_build_index",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v314",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v316",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v320",
+   "kind": "channel",
+   "label": "save_unaligned",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v324",
+   "kind": "channel",
+   "label": "index_format",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v382",
+   "kind": "channel",
+   "label": "mode",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v389",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v404",
+   "kind": "channel",
+   "label": "ch_biotypes_header",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v409",
+   "kind": "channel",
+   "label": "index_format",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v429",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v433",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v435",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v437",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v439",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v441",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v443",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v449",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v453",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v455",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v457",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v459",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v461",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v463",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v465",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v467",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v473",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v475",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v477",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v483",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v487",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v489",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v491",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v493",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v495",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v501",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v502",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v530",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v534",
+   "kind": "channel",
+   "label": "save_output_fastqs",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v535",
+   "kind": "channel",
+   "label": "save_reads_assignment",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v548",
+   "kind": "channel",
+   "label": "ch_samplesheet",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v551",
+   "kind": "channel",
+   "label": "transcript_fasta",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v562",
+   "kind": "channel",
+   "label": "quant_type",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v563",
+   "kind": "channel",
+   "label": "id",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v564",
+   "kind": "channel",
+   "label": "extra",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v570",
+   "kind": "channel",
+   "label": "quant_type",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v573",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v575",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v597",
+   "kind": "channel",
+   "label": "pca_header_multiqc",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v598",
+   "kind": "channel",
+   "label": "clustering_header_multiqc",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v617",
+   "kind": "channel",
+   "label": "channel.of",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v621",
+   "kind": "channel",
+   "label": "channel.empty",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v642",
+   "kind": "channel",
+   "label": "channel.of",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v644",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v646",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v1",
+   "kind": "channel",
+   "label": "ch_gtf",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v4",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v7",
+   "kind": "channel",
+   "label": "ch_fasta",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v12",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v16",
+   "kind": "channel",
+   "label": "ch_add_fasta",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v19",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v26",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v32",
+   "kind": "channel",
+   "label": "ch_gene_bed",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v35",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v38",
+   "kind": "channel",
+   "label": "ch_transcript_fasta",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v40",
+   "kind": "channel",
+   "label": "ch_fasta_fai",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v42",
+   "kind": "channel",
+   "label": "ch_chrom_sizes",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v46",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v47",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v48",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v50",
+   "kind": "channel",
+   "label": "ch_chrom_sizes",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v56",
+   "kind": "channel",
+   "label": "ch_rrna_fastas",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v58",
+   "kind": "channel",
+   "label": "ch_kraken_db",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v61",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v65",
+   "kind": "channel",
+   "label": "ch_bbsplit_index",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v76",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v77",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v78",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v79",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v80",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v82",
+   "kind": "channel",
+   "label": "ch_sortmerna_index",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v84",
+   "kind": "channel",
+   "label": "bowtie2_index",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v86",
+   "kind": "channel",
+   "label": "ch_star_index",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v88",
+   "kind": "channel",
+   "label": "ch_rsem_index",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v90",
+   "kind": "channel",
+   "label": "ch_splicesites",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v92",
+   "kind": "channel",
+   "label": "ch_hisat2_index",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v95",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v96",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v100",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v103",
+   "kind": "channel",
+   "label": "ch_bowtie2_index",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v105",
+   "kind": "channel",
+   "label": "ch_salmon_index",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v108",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v111",
+   "kind": "channel",
+   "label": "ch_kallisto_index",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v113",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v118",
+   "kind": "channel",
+   "label": "ch_transcript_fasta_fai",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v121",
+   "kind": "channel",
+   "label": "ch_trim_status",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v123",
+   "kind": "channel",
+   "label": "ch_map_status",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v125",
+   "kind": "channel",
+   "label": "ch_strand_status",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v127",
+   "kind": "channel",
+   "label": "ch_percent_mapped",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v129",
+   "kind": "channel",
+   "label": "ch_unaligned_sequences",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v131",
+   "kind": "channel",
+   "label": "ch_mqc_per_sample_bundle",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v147",
+   "kind": "channel",
+   "label": "ch_transcriptome_bam",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v151",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v155",
+   "kind": "channel",
+   "label": "ch_filtered_reads",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v157",
+   "kind": "channel",
+   "label": "ch_trim_read_count",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v159",
+   "kind": "channel",
+   "label": "trim_reads_merged",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v162",
+   "kind": "channel",
+   "label": "ch_lint_log_raw",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v164",
+   "kind": "channel",
+   "label": "ch_lint_log_trimmed",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v166",
+   "kind": "channel",
+   "label": "ch_lint_log_bbsplit",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v168",
+   "kind": "channel",
+   "label": "lint_log_ribo",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v170",
+   "kind": "channel",
+   "label": "ch_fastqc_raw_html",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v172",
+   "kind": "channel",
+   "label": "ch_fastqc_raw_zip",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v174",
+   "kind": "channel",
+   "label": "ch_fastqc_trim_html",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v176",
+   "kind": "channel",
+   "label": "ch_fastqc_trim_zip",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v178",
+   "kind": "channel",
+   "label": "trim_html",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v180",
+   "kind": "channel",
+   "label": "trim_zip",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v182",
+   "kind": "channel",
+   "label": "ch_trim_log",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v184",
+   "kind": "channel",
+   "label": "ch_trim_json",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v186",
+   "kind": "channel",
+   "label": "ch_trim_unpaired",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v188",
+   "kind": "channel",
+   "label": "ch_umi_log",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v190",
+   "kind": "channel",
+   "label": "ch_umi_reads",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v192",
+   "kind": "channel",
+   "label": "ch_bbsplit_stats",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v198",
+   "kind": "channel",
+   "label": "seqkit_prefixed",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v200",
+   "kind": "channel",
+   "label": "seqkit_converted",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v202",
+   "kind": "channel",
+   "label": "ch_fastqc_filtered_html",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v204",
+   "kind": "channel",
+   "label": "ch_fastqc_filtered_zip",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v207",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v210",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v214",
+   "kind": "channel",
+   "label": "ch_fastqc_html",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v216",
+   "kind": "channel",
+   "label": "ch_fastqc_zip",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v218",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v219",
+   "kind": "channel",
+   "label": "fastqc_raw_html",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v222",
+   "kind": "channel",
+   "label": "umi_reads",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v224",
+   "kind": "channel",
+   "label": "ch_trim_unpaired",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v226",
+   "kind": "channel",
+   "label": "ch_trim_html",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v228",
+   "kind": "channel",
+   "label": "ch_trim_zip",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v230",
+   "kind": "channel",
+   "label": "ch_trim_log",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v232",
+   "kind": "channel",
+   "label": "ch_trim_json",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v234",
+   "kind": "channel",
+   "label": "ch_trim_read_count",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v236",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v237",
+   "kind": "channel",
+   "label": "fastqc_trim_html",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v238",
+   "kind": "channel",
+   "label": "trim_unpaired",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v256",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v263",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v264",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v265",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v266",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v269",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v273",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v274",
+   "kind": "channel",
+   "label": "fastqc_filtered_html",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v281",
+   "kind": "channel",
+   "label": "ch_genome_fasta",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v285",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v289",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v290",
+   "kind": "channel",
+   "label": "json_info",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v291",
+   "kind": "channel",
+   "label": "results",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v315",
+   "kind": "channel",
+   "label": "ch_star_log",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v317",
+   "kind": "channel",
+   "label": "ch_bowtie2_log",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v322",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v323",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v326",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v327",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v328",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v329",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v331",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v334",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v335",
+   "kind": "channel",
+   "label": "stats",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v337",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v338",
+   "kind": "channel",
+   "label": "flagstat",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v340",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v341",
+   "kind": "channel",
+   "label": "idxstats",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v345",
+   "kind": "channel",
+   "label": "ch_unprocessed_bams",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v353",
+   "kind": "channel",
+   "label": "ch_percent_mapped",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v357",
+   "kind": "channel",
+   "label": "ch_genome_bam_index",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v359",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v360",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v363",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v366",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v368",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v370",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v384",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v385",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v386",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v387",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v388",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v390",
+   "kind": "channel",
+   "label": "ch_inferexperiment_txt",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v396",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v397",
+   "kind": "channel",
+   "label": "preseq_log",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v402",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v403",
+   "kind": "channel",
+   "label": "featurecounts_summary",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v406",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v407",
+   "kind": "channel",
+   "label": "biotype_rrna",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v411",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v412",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v413",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v414",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v416",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v419",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v420",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v421",
+   "kind": "channel",
+   "label": "dupradar_intercept_slope",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v422",
+   "kind": "channel",
+   "label": "dupradar_dupmatrix",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v423",
+   "kind": "channel",
+   "label": "dupradar_hist",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v424",
+   "kind": "channel",
+   "label": "dupradar_boxplot",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v425",
+   "kind": "channel",
+   "label": "dupradar_scatter2d",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v430",
+   "kind": "channel",
+   "label": "bamstat_txt",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v432",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v434",
+   "kind": "channel",
+   "label": "innerdistance_all",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v436",
+   "kind": "channel",
+   "label": "innerdistance_distance",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v438",
+   "kind": "channel",
+   "label": "innerdistance_freq",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v440",
+   "kind": "channel",
+   "label": "innerdistance_mean",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v442",
+   "kind": "channel",
+   "label": "innerdistance_pdf",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v444",
+   "kind": "channel",
+   "label": "innerdistance_rscript",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v446",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v448",
+   "kind": "channel",
+   "label": "innerdistance_all",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v450",
+   "kind": "channel",
+   "label": "inferexperiment_txt",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v452",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v454",
+   "kind": "channel",
+   "label": "junctionannotation_all",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v456",
+   "kind": "channel",
+   "label": "junctionannotation_bed",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v458",
+   "kind": "channel",
+   "label": "junctionannotation_interact_bed",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v460",
+   "kind": "channel",
+   "label": "junctionannotation_xls",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v462",
+   "kind": "channel",
+   "label": "junctionannotation_pdf",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v464",
+   "kind": "channel",
+   "label": "junctionannotation_events_pdf",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v466",
+   "kind": "channel",
+   "label": "junctionannotation_rscript",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v468",
+   "kind": "channel",
+   "label": "junctionannotation_log",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v470",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v472",
+   "kind": "channel",
+   "label": "junctionannotation_all",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v474",
+   "kind": "channel",
+   "label": "junctionsaturation_all",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v476",
+   "kind": "channel",
+   "label": "junctionsaturation_pdf",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v478",
+   "kind": "channel",
+   "label": "junctionsaturation_rscript",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v480",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v482",
+   "kind": "channel",
+   "label": "junctionsaturation_all",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v484",
+   "kind": "channel",
+   "label": "readdistribution_txt",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v486",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v488",
+   "kind": "channel",
+   "label": "readduplication_all",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v490",
+   "kind": "channel",
+   "label": "readduplication_seq_xls",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v492",
+   "kind": "channel",
+   "label": "readduplication_pos_xls",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v494",
+   "kind": "channel",
+   "label": "readduplication_pdf",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v496",
+   "kind": "channel",
+   "label": "readduplication_rscript",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v498",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v500",
+   "kind": "channel",
+   "label": "readduplication_all",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v531",
+   "kind": "channel",
+   "label": "ch_strand_data",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v537",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v538",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v539",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v540",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v541",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v543",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v544",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v555",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v556",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v557",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v566",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v572",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v574",
+   "kind": "channel",
+   "label": "ch_merged_gene_rds",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v576",
+   "kind": "channel",
+   "label": "ch_merged_transcript_rds",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v583",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v584",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v585",
+   "kind": "channel",
+   "label": "merged_gene_rds_unified",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v590",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v591",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v592",
+   "kind": "channel",
+   "label": "merged_transcript_rds_unified",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v600",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v601",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v602",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v603",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v604",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v605",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v606",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v607",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v622",
+   "kind": "channel",
+   "label": "ch_multiqc_report",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v676",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v677",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v678",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v681",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v683",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v685",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v687",
+   "kind": "channel",
+   "label": "",
+   "scope": "",
+   "scope_path": [
+    ""
+   ]
+  },
+  {
+   "id": "v3",
+   "kind": "process",
+   "label": "GUNZIP_GTF",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v11",
+   "kind": "process",
+   "label": "CUSTOM_GTFFILTER",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v18",
+   "kind": "process",
+   "label": "GUNZIP_ADDITIONAL_FASTA",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v25",
+   "kind": "process",
+   "label": "CUSTOM_CATADDITIONALFASTA",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v34",
+   "kind": "process",
+   "label": "EAUTILS_GTF2BED",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v45",
+   "kind": "process",
+   "label": "SAMTOOLS_FAIDX",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v60",
+   "kind": "process",
+   "label": "UNTAR_KRAKEN_DB",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v5",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v10",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v13",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v20",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v27",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v29",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v36",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v49",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v62",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES"
+   ]
+  },
+  {
+   "id": "v75",
+   "kind": "process",
+   "label": "BBMAP_BBSPLIT",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_INDICES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_INDICES"
+   ]
+  },
+  {
+   "id": "v94",
+   "kind": "process",
+   "label": "HISAT2_EXTRACTSPLICESITES",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_INDICES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_INDICES"
+   ]
+  },
+  {
+   "id": "v99",
+   "kind": "process",
+   "label": "UNTAR_HISAT2_INDEX",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_INDICES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_INDICES"
+   ]
+  },
+  {
+   "id": "v107",
+   "kind": "process",
+   "label": "UNTAR_SALMON_INDEX",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_INDICES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_INDICES"
+   ]
+  },
+  {
+   "id": "v63",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_INDICES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_INDICES"
+   ]
+  },
+  {
+   "id": "v67",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_INDICES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_INDICES"
+   ]
+  },
+  {
+   "id": "v93",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_INDICES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_INDICES"
+   ]
+  },
+  {
+   "id": "v97",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_INDICES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_INDICES"
+   ]
+  },
+  {
+   "id": "v101",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_INDICES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_INDICES"
+   ]
+  },
+  {
+   "id": "v109",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:PREPARE_GENOME_INDICES",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:PREPARE_GENOME_INDICES"
+   ]
+  },
+  {
+   "id": "v150",
+   "kind": "process",
+   "label": "SAMTOOLS_INDEX",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v206",
+   "kind": "process",
+   "label": "CAT_FASTQ",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS"
+   ]
+  },
+  {
+   "id": "v209",
+   "kind": "process",
+   "label": "FQ_LINT",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS"
+   ]
+  },
+  {
+   "id": "v217",
+   "kind": "process",
+   "label": "FASTQC",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE"
+   ]
+  },
+  {
+   "id": "v235",
+   "kind": "process",
+   "label": "TRIMGALORE",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE"
+   ]
+  },
+  {
+   "id": "v239",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE"
+   ]
+  },
+  {
+   "id": "v255",
+   "kind": "process",
+   "label": "FQ_LINT_AFTER_TRIMMING",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS"
+   ]
+  },
+  {
+   "id": "v262",
+   "kind": "process",
+   "label": "BBMAP_BBSPLIT",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS"
+   ]
+  },
+  {
+   "id": "v268",
+   "kind": "process",
+   "label": "FQ_LINT_AFTER_BBSPLIT",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS"
+   ]
+  },
+  {
+   "id": "v272",
+   "kind": "process",
+   "label": "FASTQC_FILTERED",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS"
+   ]
+  },
+  {
+   "id": "v284",
+   "kind": "process",
+   "label": "FQ_SUBSAMPLE",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON"
+   ]
+  },
+  {
+   "id": "v288",
+   "kind": "process",
+   "label": "SALMON_QUANT",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON"
+   ]
+  },
+  {
+   "id": "v282",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON"
+   ]
+  },
+  {
+   "id": "v205",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS"
+   ]
+  },
+  {
+   "id": "v244",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS"
+   ]
+  },
+  {
+   "id": "v257",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS"
+   ]
+  },
+  {
+   "id": "v270",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS"
+   ]
+  },
+  {
+   "id": "v295",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS"
+   ]
+  },
+  {
+   "id": "v321",
+   "kind": "process",
+   "label": "HISAT2_ALIGN",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2"
+   ]
+  },
+  {
+   "id": "v325",
+   "kind": "process",
+   "label": "SAMTOOLS_SORT",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS"
+   ]
+  },
+  {
+   "id": "v330",
+   "kind": "process",
+   "label": "SAMTOOLS_INDEX",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS"
+   ]
+  },
+  {
+   "id": "v333",
+   "kind": "process",
+   "label": "SAMTOOLS_STATS",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS"
+   ]
+  },
+  {
+   "id": "v336",
+   "kind": "process",
+   "label": "SAMTOOLS_FLAGSTAT",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS"
+   ]
+  },
+  {
+   "id": "v339",
+   "kind": "process",
+   "label": "SAMTOOLS_IDXSTATS",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS"
+   ]
+  },
+  {
+   "id": "v332",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2",
+    "NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS"
+   ]
+  },
+  {
+   "id": "v358",
+   "kind": "process",
+   "label": "PICARD_MARKDUPLICATES",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD"
+   ]
+  },
+  {
+   "id": "v362",
+   "kind": "process",
+   "label": "SAMTOOLS_INDEX",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD"
+   ]
+  },
+  {
+   "id": "v365",
+   "kind": "process",
+   "label": "SAMTOOLS_STATS",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD:BAM_STATS_SAMTOOLS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD",
+    "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD:BAM_STATS_SAMTOOLS"
+   ]
+  },
+  {
+   "id": "v367",
+   "kind": "process",
+   "label": "SAMTOOLS_FLAGSTAT",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD:BAM_STATS_SAMTOOLS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD",
+    "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD:BAM_STATS_SAMTOOLS"
+   ]
+  },
+  {
+   "id": "v369",
+   "kind": "process",
+   "label": "SAMTOOLS_IDXSTATS",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD:BAM_STATS_SAMTOOLS",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD",
+    "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD:BAM_STATS_SAMTOOLS"
+   ]
+  },
+  {
+   "id": "v361",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD"
+   ]
+  },
+  {
+   "id": "v371",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD"
+   ]
+  },
+  {
+   "id": "v383",
+   "kind": "process",
+   "label": "STRINGTIE_STRINGTIE",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v395",
+   "kind": "process",
+   "label": "PRESEQ_LCEXTRAP",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ"
+   ]
+  },
+  {
+   "id": "v401",
+   "kind": "process",
+   "label": "SUBREAD_FEATURECOUNTS",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ"
+   ]
+  },
+  {
+   "id": "v405",
+   "kind": "process",
+   "label": "CUSTOM_MULTIQCCUSTOMBIOTYPE",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ"
+   ]
+  },
+  {
+   "id": "v410",
+   "kind": "process",
+   "label": "SAMTOOLS_SORT_QUALIMAP",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ"
+   ]
+  },
+  {
+   "id": "v415",
+   "kind": "process",
+   "label": "QUALIMAP_RNASEQ",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ"
+   ]
+  },
+  {
+   "id": "v418",
+   "kind": "process",
+   "label": "DUPRADAR",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ"
+   ]
+  },
+  {
+   "id": "v431",
+   "kind": "process",
+   "label": "RSEQC_BAMSTAT",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC"
+   ]
+  },
+  {
+   "id": "v445",
+   "kind": "process",
+   "label": "RSEQC_INNERDISTANCE",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC"
+   ]
+  },
+  {
+   "id": "v451",
+   "kind": "process",
+   "label": "RSEQC_INFEREXPERIMENT",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC"
+   ]
+  },
+  {
+   "id": "v469",
+   "kind": "process",
+   "label": "RSEQC_JUNCTIONANNOTATION",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC"
+   ]
+  },
+  {
+   "id": "v479",
+   "kind": "process",
+   "label": "RSEQC_JUNCTIONSATURATION",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC"
+   ]
+  },
+  {
+   "id": "v485",
+   "kind": "process",
+   "label": "RSEQC_READDISTRIBUTION",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC"
+   ]
+  },
+  {
+   "id": "v497",
+   "kind": "process",
+   "label": "RSEQC_READDUPLICATION",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC"
+   ]
+  },
+  {
+   "id": "v428",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC"
+   ]
+  },
+  {
+   "id": "v447",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC"
+   ]
+  },
+  {
+   "id": "v471",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC"
+   ]
+  },
+  {
+   "id": "v481",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC"
+   ]
+  },
+  {
+   "id": "v499",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:BAM_RSEQC"
+   ]
+  },
+  {
+   "id": "v393",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ"
+   ]
+  },
+  {
+   "id": "v426",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ"
+   ]
+  },
+  {
+   "id": "v503",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ"
+   ]
+  },
+  {
+   "id": "v515",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ"
+   ]
+  },
+  {
+   "id": "v536",
+   "kind": "process",
+   "label": "KRAKEN2",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v542",
+   "kind": "process",
+   "label": "BRACKEN",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v554",
+   "kind": "process",
+   "label": "SALMON_QUANT",
+   "scope": "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT"
+   ]
+  },
+  {
+   "id": "v565",
+   "kind": "process",
+   "label": "CUSTOM_TX2GENE",
+   "scope": "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT"
+   ]
+  },
+  {
+   "id": "v571",
+   "kind": "process",
+   "label": "TXIMETA_TXIMPORT",
+   "scope": "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT"
+   ]
+  },
+  {
+   "id": "v582",
+   "kind": "process",
+   "label": "SE_GENE_UNIFIED",
+   "scope": "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT"
+   ]
+  },
+  {
+   "id": "v589",
+   "kind": "process",
+   "label": "SE_TRANSCRIPT_UNIFIED",
+   "scope": "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT"
+   ]
+  },
+  {
+   "id": "v558",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT"
+   ]
+  },
+  {
+   "id": "v561",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT"
+   ]
+  },
+  {
+   "id": "v567",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT"
+   ]
+  },
+  {
+   "id": "v577",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT"
+   ]
+  },
+  {
+   "id": "v586",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT:QUANT_TXIMPORT_SUMMARIZEDEXPERIMENT"
+   ]
+  },
+  {
+   "id": "v550",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:QUANTIFY_PSEUDO_ALIGNMENT"
+   ]
+  },
+  {
+   "id": "v599",
+   "kind": "process",
+   "label": "DESEQ2_QC_PSEUDO",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v675",
+   "kind": "process",
+   "label": "MULTIQC",
+   "scope": "NFCORE_RNASEQ:RNASEQ:MULTIQC_RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:MULTIQC_RNASEQ"
+   ]
+  },
+  {
+   "id": "v623",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:MULTIQC_RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:MULTIQC_RNASEQ"
+   ]
+  },
+  {
+   "id": "v679",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ:MULTIQC_RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ:MULTIQC_RNASEQ"
+   ]
+  },
+  {
+   "id": "v114",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v117",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v133",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v139",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v152",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v307",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v308",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v318",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v319",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v381",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v391",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v392",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v532",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v549",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v596",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ:RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ",
+    "NFCORE_RNASEQ:RNASEQ"
+   ]
+  },
+  {
+   "id": "v112",
+   "kind": "operator",
+   "label": "",
+   "scope": "NFCORE_RNASEQ",
+   "scope_path": [
+    "NFCORE_RNASEQ"
+   ]
+  },
+  {
+   "id": "v680",
+   "kind": "operator",
+   "label": "",
+   "scope": "PIPELINE_COMPLETION",
+   "scope_path": [
+    "PIPELINE_COMPLETION"
+   ]
+  },
+  {
+   "id": "v682",
+   "kind": "operator",
+   "label": "",
+   "scope": "PIPELINE_COMPLETION",
+   "scope_path": [
+    "PIPELINE_COMPLETION"
+   ]
+  },
+  {
+   "id": "v684",
+   "kind": "operator",
+   "label": "",
+   "scope": "PIPELINE_COMPLETION",
+   "scope_path": [
+    "PIPELINE_COMPLETION"
+   ]
+  },
+  {
+   "id": "v686",
+   "kind": "operator",
+   "label": "",
+   "scope": "PIPELINE_COMPLETION",
+   "scope_path": [
+    "PIPELINE_COMPLETION"
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "src": "v0",
+   "dst": "v1",
+   "channel_label": ""
+  },
+  {
+   "src": "v2",
+   "dst": "v3",
+   "channel_label": ""
+  },
+  {
+   "src": "v3",
+   "dst": "v4",
+   "channel_label": ""
+  },
+  {
+   "src": "v3",
+   "dst": "v5",
+   "channel_label": ""
+  },
+  {
+   "src": "v6",
+   "dst": "v7",
+   "channel_label": ""
+  },
+  {
+   "src": "v9",
+   "dst": "v10",
+   "channel_label": ""
+  },
+  {
+   "src": "v9",
+   "dst": "v13",
+   "channel_label": ""
+  },
+  {
+   "src": "v5",
+   "dst": "v11",
+   "channel_label": ""
+  },
+  {
+   "src": "v10",
+   "dst": "v11",
+   "channel_label": ""
+  },
+  {
+   "src": "v11",
+   "dst": "v12",
+   "channel_label": ""
+  },
+  {
+   "src": "v11",
+   "dst": "v13",
+   "channel_label": ""
+  },
+  {
+   "src": "v15",
+   "dst": "v16",
+   "channel_label": ""
+  },
+  {
+   "src": "v17",
+   "dst": "v18",
+   "channel_label": ""
+  },
+  {
+   "src": "v18",
+   "dst": "v19",
+   "channel_label": ""
+  },
+  {
+   "src": "v18",
+   "dst": "v20",
+   "channel_label": ""
+  },
+  {
+   "src": "v24",
+   "dst": "v25",
+   "channel_label": ""
+  },
+  {
+   "src": "v13",
+   "dst": "v25",
+   "channel_label": ""
+  },
+  {
+   "src": "v20",
+   "dst": "v25",
+   "channel_label": ""
+  },
+  {
+   "src": "v25",
+   "dst": "v26",
+   "channel_label": ""
+  },
+  {
+   "src": "v25",
+   "dst": "v27",
+   "channel_label": ""
+  },
+  {
+   "src": "v25",
+   "dst": "v29",
+   "channel_label": ""
+  },
+  {
+   "src": "v31",
+   "dst": "v32",
+   "channel_label": ""
+  },
+  {
+   "src": "v29",
+   "dst": "v34",
+   "channel_label": ""
+  },
+  {
+   "src": "v34",
+   "dst": "v35",
+   "channel_label": ""
+  },
+  {
+   "src": "v34",
+   "dst": "v36",
+   "channel_label": ""
+  },
+  {
+   "src": "v37",
+   "dst": "v38",
+   "channel_label": ""
+  },
+  {
+   "src": "v39",
+   "dst": "v40",
+   "channel_label": ""
+  },
+  {
+   "src": "v41",
+   "dst": "v42",
+   "channel_label": ""
+  },
+  {
+   "src": "v44",
+   "dst": "v45",
+   "channel_label": ""
+  },
+  {
+   "src": "v27",
+   "dst": "v45",
+   "channel_label": ""
+  },
+  {
+   "src": "v45",
+   "dst": "v48",
+   "channel_label": ""
+  },
+  {
+   "src": "v45",
+   "dst": "v47",
+   "channel_label": ""
+  },
+  {
+   "src": "v45",
+   "dst": "v46",
+   "channel_label": ""
+  },
+  {
+   "src": "v45",
+   "dst": "v27",
+   "channel_label": ""
+  },
+  {
+   "src": "v45",
+   "dst": "v49",
+   "channel_label": ""
+  },
+  {
+   "src": "v49",
+   "dst": "v50",
+   "channel_label": ""
+  },
+  {
+   "src": "v55",
+   "dst": "v56",
+   "channel_label": ""
+  },
+  {
+   "src": "v57",
+   "dst": "v58",
+   "channel_label": ""
+  },
+  {
+   "src": "v59",
+   "dst": "v60",
+   "channel_label": ""
+  },
+  {
+   "src": "v60",
+   "dst": "v61",
+   "channel_label": ""
+  },
+  {
+   "src": "v60",
+   "dst": "v62",
+   "channel_label": ""
+  },
+  {
+   "src": "v64",
+   "dst": "v65",
+   "channel_label": ""
+  },
+  {
+   "src": "v66",
+   "dst": "v67",
+   "channel_label": ""
+  },
+  {
+   "src": "v72",
+   "dst": "v75",
+   "channel_label": ""
+  },
+  {
+   "src": "v73",
+   "dst": "v75",
+   "channel_label": ""
+  },
+  {
+   "src": "v74",
+   "dst": "v75",
+   "channel_label": ""
+  },
+  {
+   "src": "v63",
+   "dst": "v75",
+   "channel_label": ""
+  },
+  {
+   "src": "v67",
+   "dst": "v75",
+   "channel_label": ""
+  },
+  {
+   "src": "v75",
+   "dst": "v262",
+   "channel_label": ""
+  },
+  {
+   "src": "v75",
+   "dst": "v80",
+   "channel_label": ""
+  },
+  {
+   "src": "v75",
+   "dst": "v79",
+   "channel_label": ""
+  },
+  {
+   "src": "v75",
+   "dst": "v78",
+   "channel_label": ""
+  },
+  {
+   "src": "v75",
+   "dst": "v77",
+   "channel_label": ""
+  },
+  {
+   "src": "v75",
+   "dst": "v76",
+   "channel_label": ""
+  },
+  {
+   "src": "v81",
+   "dst": "v82",
+   "channel_label": ""
+  },
+  {
+   "src": "v83",
+   "dst": "v84",
+   "channel_label": ""
+  },
+  {
+   "src": "v85",
+   "dst": "v86",
+   "channel_label": ""
+  },
+  {
+   "src": "v87",
+   "dst": "v88",
+   "channel_label": ""
+  },
+  {
+   "src": "v89",
+   "dst": "v90",
+   "channel_label": ""
+  },
+  {
+   "src": "v91",
+   "dst": "v92",
+   "channel_label": ""
+  },
+  {
+   "src": "v93",
+   "dst": "v94",
+   "channel_label": ""
+  },
+  {
+   "src": "v94",
+   "dst": "v96",
+   "channel_label": ""
+  },
+  {
+   "src": "v94",
+   "dst": "v95",
+   "channel_label": ""
+  },
+  {
+   "src": "v94",
+   "dst": "v97",
+   "channel_label": ""
+  },
+  {
+   "src": "v98",
+   "dst": "v99",
+   "channel_label": ""
+  },
+  {
+   "src": "v99",
+   "dst": "v100",
+   "channel_label": ""
+  },
+  {
+   "src": "v99",
+   "dst": "v101",
+   "channel_label": ""
+  },
+  {
+   "src": "v102",
+   "dst": "v103",
+   "channel_label": ""
+  },
+  {
+   "src": "v104",
+   "dst": "v105",
+   "channel_label": ""
+  },
+  {
+   "src": "v106",
+   "dst": "v107",
+   "channel_label": ""
+  },
+  {
+   "src": "v107",
+   "dst": "v108",
+   "channel_label": ""
+  },
+  {
+   "src": "v107",
+   "dst": "v109",
+   "channel_label": ""
+  },
+  {
+   "src": "v110",
+   "dst": "v111",
+   "channel_label": ""
+  },
+  {
+   "src": "v112",
+   "dst": "v113",
+   "channel_label": ""
+  },
+  {
+   "src": "v116",
+   "dst": "v117",
+   "channel_label": ""
+  },
+  {
+   "src": "v116",
+   "dst": "v282",
+   "channel_label": ""
+  },
+  {
+   "src": "v117",
+   "dst": "v118",
+   "channel_label": ""
+  },
+  {
+   "src": "v119",
+   "dst": "v307",
+   "channel_label": ""
+  },
+  {
+   "src": "v120",
+   "dst": "v121",
+   "channel_label": ""
+  },
+  {
+   "src": "v122",
+   "dst": "v123",
+   "channel_label": ""
+  },
+  {
+   "src": "v124",
+   "dst": "v125",
+   "channel_label": ""
+  },
+  {
+   "src": "v126",
+   "dst": "v127",
+   "channel_label": ""
+  },
+  {
+   "src": "v128",
+   "dst": "v129",
+   "channel_label": ""
+  },
+  {
+   "src": "v130",
+   "dst": "v131",
+   "channel_label": ""
+  },
+  {
+   "src": "v132",
+   "dst": "v133",
+   "channel_label": ""
+  },
+  {
+   "src": "v138",
+   "dst": "v139",
+   "channel_label": ""
+  },
+  {
+   "src": "v139",
+   "dst": "v147",
+   "channel_label": ""
+  },
+  {
+   "src": "v139",
+   "dst": "v150",
+   "channel_label": ""
+  },
+  {
+   "src": "v150",
+   "dst": "v151",
+   "channel_label": ""
+  },
+  {
+   "src": "v150",
+   "dst": "v139",
+   "channel_label": ""
+  },
+  {
+   "src": "v154",
+   "dst": "v155",
+   "channel_label": ""
+  },
+  {
+   "src": "v156",
+   "dst": "v157",
+   "channel_label": ""
+  },
+  {
+   "src": "v158",
+   "dst": "v159",
+   "channel_label": ""
+  },
+  {
+   "src": "v160",
+   "dst": "v244",
+   "channel_label": ""
+  },
+  {
+   "src": "v161",
+   "dst": "v162",
+   "channel_label": ""
+  },
+  {
+   "src": "v163",
+   "dst": "v164",
+   "channel_label": ""
+  },
+  {
+   "src": "v165",
+   "dst": "v166",
+   "channel_label": ""
+  },
+  {
+   "src": "v167",
+   "dst": "v168",
+   "channel_label": ""
+  },
+  {
+   "src": "v169",
+   "dst": "v170",
+   "channel_label": ""
+  },
+  {
+   "src": "v171",
+   "dst": "v172",
+   "channel_label": ""
+  },
+  {
+   "src": "v173",
+   "dst": "v174",
+   "channel_label": ""
+  },
+  {
+   "src": "v175",
+   "dst": "v176",
+   "channel_label": ""
+  },
+  {
+   "src": "v177",
+   "dst": "v178",
+   "channel_label": ""
+  },
+  {
+   "src": "v179",
+   "dst": "v180",
+   "channel_label": ""
+  },
+  {
+   "src": "v181",
+   "dst": "v182",
+   "channel_label": ""
+  },
+  {
+   "src": "v183",
+   "dst": "v184",
+   "channel_label": ""
+  },
+  {
+   "src": "v185",
+   "dst": "v186",
+   "channel_label": ""
+  },
+  {
+   "src": "v187",
+   "dst": "v188",
+   "channel_label": ""
+  },
+  {
+   "src": "v189",
+   "dst": "v190",
+   "channel_label": ""
+  },
+  {
+   "src": "v191",
+   "dst": "v192",
+   "channel_label": ""
+  },
+  {
+   "src": "v193",
+   "dst": "v295",
+   "channel_label": ""
+  },
+  {
+   "src": "v194",
+   "dst": "v295",
+   "channel_label": ""
+  },
+  {
+   "src": "v195",
+   "dst": "v295",
+   "channel_label": ""
+  },
+  {
+   "src": "v196",
+   "dst": "v295",
+   "channel_label": ""
+  },
+  {
+   "src": "v197",
+   "dst": "v198",
+   "channel_label": ""
+  },
+  {
+   "src": "v199",
+   "dst": "v200",
+   "channel_label": ""
+  },
+  {
+   "src": "v201",
+   "dst": "v202",
+   "channel_label": ""
+  },
+  {
+   "src": "v203",
+   "dst": "v204",
+   "channel_label": ""
+  },
+  {
+   "src": "v205",
+   "dst": "v206",
+   "channel_label": ""
+  },
+  {
+   "src": "v206",
+   "dst": "v207",
+   "channel_label": ""
+  },
+  {
+   "src": "v206",
+   "dst": "v205",
+   "channel_label": ""
+  },
+  {
+   "src": "v205",
+   "dst": "v209",
+   "channel_label": ""
+  },
+  {
+   "src": "v209",
+   "dst": "v210",
+   "channel_label": ""
+  },
+  {
+   "src": "v209",
+   "dst": "v205",
+   "channel_label": ""
+  },
+  {
+   "src": "v213",
+   "dst": "v214",
+   "channel_label": ""
+  },
+  {
+   "src": "v215",
+   "dst": "v216",
+   "channel_label": ""
+  },
+  {
+   "src": "v205",
+   "dst": "v217",
+   "channel_label": ""
+  },
+  {
+   "src": "v217",
+   "dst": "v219",
+   "channel_label": ""
+  },
+  {
+   "src": "v217",
+   "dst": "v218",
+   "channel_label": ""
+  },
+  {
+   "src": "v217",
+   "dst": "v244",
+   "channel_label": ""
+  },
+  {
+   "src": "v217",
+   "dst": "v295",
+   "channel_label": ""
+  },
+  {
+   "src": "v220",
+   "dst": "v244",
+   "channel_label": ""
+  },
+  {
+   "src": "v220",
+   "dst": "v295",
+   "channel_label": ""
+  },
+  {
+   "src": "v221",
+   "dst": "v222",
+   "channel_label": ""
+  },
+  {
+   "src": "v223",
+   "dst": "v224",
+   "channel_label": ""
+  },
+  {
+   "src": "v225",
+   "dst": "v226",
+   "channel_label": ""
+  },
+  {
+   "src": "v227",
+   "dst": "v228",
+   "channel_label": ""
+  },
+  {
+   "src": "v229",
+   "dst": "v230",
+   "channel_label": ""
+  },
+  {
+   "src": "v231",
+   "dst": "v232",
+   "channel_label": ""
+  },
+  {
+   "src": "v233",
+   "dst": "v234",
+   "channel_label": ""
+  },
+  {
+   "src": "v205",
+   "dst": "v235",
+   "channel_label": ""
+  },
+  {
+   "src": "v235",
+   "dst": "v238",
+   "channel_label": ""
+  },
+  {
+   "src": "v235",
+   "dst": "v237",
+   "channel_label": ""
+  },
+  {
+   "src": "v235",
+   "dst": "v236",
+   "channel_label": ""
+  },
+  {
+   "src": "v235",
+   "dst": "v239",
+   "channel_label": ""
+  },
+  {
+   "src": "v235",
+   "dst": "v244",
+   "channel_label": ""
+  },
+  {
+   "src": "v235",
+   "dst": "v295",
+   "channel_label": ""
+  },
+  {
+   "src": "v239",
+   "dst": "v255",
+   "channel_label": ""
+  },
+  {
+   "src": "v255",
+   "dst": "v256",
+   "channel_label": ""
+  },
+  {
+   "src": "v255",
+   "dst": "v257",
+   "channel_label": ""
+  },
+  {
+   "src": "v259",
+   "dst": "v262",
+   "channel_label": ""
+  },
+  {
+   "src": "v260",
+   "dst": "v262",
+   "channel_label": ""
+  },
+  {
+   "src": "v261",
+   "dst": "v262",
+   "channel_label": ""
+  },
+  {
+   "src": "v257",
+   "dst": "v262",
+   "channel_label": ""
+  },
+  {
+   "src": "v262",
+   "dst": "v266",
+   "channel_label": ""
+  },
+  {
+   "src": "v262",
+   "dst": "v268",
+   "channel_label": ""
+  },
+  {
+   "src": "v262",
+   "dst": "v265",
+   "channel_label": ""
+  },
+  {
+   "src": "v262",
+   "dst": "v264",
+   "channel_label": ""
+  },
+  {
+   "src": "v262",
+   "dst": "v263",
+   "channel_label": ""
+  },
+  {
+   "src": "v262",
+   "dst": "v244",
+   "channel_label": ""
+  },
+  {
+   "src": "v262",
+   "dst": "v270",
+   "channel_label": ""
+  },
+  {
+   "src": "v262",
+   "dst": "v295",
+   "channel_label": ""
+  },
+  {
+   "src": "v268",
+   "dst": "v269",
+   "channel_label": ""
+  },
+  {
+   "src": "v268",
+   "dst": "v270",
+   "channel_label": ""
+  },
+  {
+   "src": "v270",
+   "dst": "v272",
+   "channel_label": ""
+  },
+  {
+   "src": "v272",
+   "dst": "v274",
+   "channel_label": ""
+  },
+  {
+   "src": "v272",
+   "dst": "v273",
+   "channel_label": ""
+  },
+  {
+   "src": "v272",
+   "dst": "v244",
+   "channel_label": ""
+  },
+  {
+   "src": "v272",
+   "dst": "v295",
+   "channel_label": ""
+  },
+  {
+   "src": "v270",
+   "dst": "v281",
+   "channel_label": ""
+  },
+  {
+   "src": "v270",
+   "dst": "v284",
+   "channel_label": ""
+  },
+  {
+   "src": "v284",
+   "dst": "v288",
+   "channel_label": ""
+  },
+  {
+   "src": "v284",
+   "dst": "v285",
+   "channel_label": ""
+  },
+  {
+   "src": "v282",
+   "dst": "v288",
+   "channel_label": ""
+  },
+  {
+   "src": "v288",
+   "dst": "v291",
+   "channel_label": ""
+  },
+  {
+   "src": "v288",
+   "dst": "v290",
+   "channel_label": ""
+  },
+  {
+   "src": "v288",
+   "dst": "v289",
+   "channel_label": ""
+  },
+  {
+   "src": "v288",
+   "dst": "v270",
+   "channel_label": ""
+  },
+  {
+   "src": "v314",
+   "dst": "v315",
+   "channel_label": ""
+  },
+  {
+   "src": "v316",
+   "dst": "v317",
+   "channel_label": ""
+  },
+  {
+   "src": "v320",
+   "dst": "v321",
+   "channel_label": ""
+  },
+  {
+   "src": "v270",
+   "dst": "v321",
+   "channel_label": ""
+  },
+  {
+   "src": "v318",
+   "dst": "v321",
+   "channel_label": ""
+  },
+  {
+   "src": "v319",
+   "dst": "v321",
+   "channel_label": ""
+  },
+  {
+   "src": "v321",
+   "dst": "v325",
+   "channel_label": ""
+  },
+  {
+   "src": "v321",
+   "dst": "v536",
+   "channel_label": ""
+  },
+  {
+   "src": "v321",
+   "dst": "v323",
+   "channel_label": ""
+  },
+  {
+   "src": "v321",
+   "dst": "v322",
+   "channel_label": ""
+  },
+  {
+   "src": "v321",
+   "dst": "v139",
+   "channel_label": ""
+  },
+  {
+   "src": "v321",
+   "dst": "v307",
+   "channel_label": ""
+  },
+  {
+   "src": "v324",
+   "dst": "v325",
+   "channel_label": ""
+  },
+  {
+   "src": "v27",
+   "dst": "v325",
+   "channel_label": ""
+  },
+  {
+   "src": "v325",
+   "dst": "v330",
+   "channel_label": ""
+  },
+  {
+   "src": "v325",
+   "dst": "v329",
+   "channel_label": ""
+  },
+  {
+   "src": "v325",
+   "dst": "v328",
+   "channel_label": ""
+  },
+  {
+   "src": "v325",
+   "dst": "v327",
+   "channel_label": ""
+  },
+  {
+   "src": "v325",
+   "dst": "v326",
+   "channel_label": ""
+  },
+  {
+   "src": "v325",
+   "dst": "v139",
+   "channel_label": ""
+  },
+  {
+   "src": "v325",
+   "dst": "v332",
+   "channel_label": ""
+  },
+  {
+   "src": "v330",
+   "dst": "v331",
+   "channel_label": ""
+  },
+  {
+   "src": "v330",
+   "dst": "v139",
+   "channel_label": ""
+  },
+  {
+   "src": "v330",
+   "dst": "v332",
+   "channel_label": ""
+  },
+  {
+   "src": "v27",
+   "dst": "v333",
+   "channel_label": ""
+  },
+  {
+   "src": "v332",
+   "dst": "v333",
+   "channel_label": ""
+  },
+  {
+   "src": "v333",
+   "dst": "v335",
+   "channel_label": ""
+  },
+  {
+   "src": "v333",
+   "dst": "v334",
+   "channel_label": ""
+  },
+  {
+   "src": "v332",
+   "dst": "v336",
+   "channel_label": ""
+  },
+  {
+   "src": "v336",
+   "dst": "v338",
+   "channel_label": ""
+  },
+  {
+   "src": "v336",
+   "dst": "v337",
+   "channel_label": ""
+  },
+  {
+   "src": "v332",
+   "dst": "v339",
+   "channel_label": ""
+  },
+  {
+   "src": "v339",
+   "dst": "v341",
+   "channel_label": ""
+  },
+  {
+   "src": "v339",
+   "dst": "v340",
+   "channel_label": ""
+  },
+  {
+   "src": "v139",
+   "dst": "v345",
+   "channel_label": ""
+  },
+  {
+   "src": "v139",
+   "dst": "v353",
+   "channel_label": ""
+  },
+  {
+   "src": "v139",
+   "dst": "v357",
+   "channel_label": ""
+  },
+  {
+   "src": "v27",
+   "dst": "v358",
+   "channel_label": ""
+  },
+  {
+   "src": "v139",
+   "dst": "v358",
+   "channel_label": ""
+  },
+  {
+   "src": "v358",
+   "dst": "v360",
+   "channel_label": ""
+  },
+  {
+   "src": "v358",
+   "dst": "v359",
+   "channel_label": ""
+  },
+  {
+   "src": "v358",
+   "dst": "v307",
+   "channel_label": ""
+  },
+  {
+   "src": "v358",
+   "dst": "v361",
+   "channel_label": ""
+  },
+  {
+   "src": "v358",
+   "dst": "v371",
+   "channel_label": ""
+  },
+  {
+   "src": "v358",
+   "dst": "v381",
+   "channel_label": ""
+  },
+  {
+   "src": "v358",
+   "dst": "v391",
+   "channel_label": ""
+  },
+  {
+   "src": "v361",
+   "dst": "v362",
+   "channel_label": ""
+  },
+  {
+   "src": "v362",
+   "dst": "v363",
+   "channel_label": ""
+  },
+  {
+   "src": "v362",
+   "dst": "v361",
+   "channel_label": ""
+  },
+  {
+   "src": "v362",
+   "dst": "v391",
+   "channel_label": ""
+  },
+  {
+   "src": "v27",
+   "dst": "v365",
+   "channel_label": ""
+  },
+  {
+   "src": "v361",
+   "dst": "v365",
+   "channel_label": ""
+  },
+  {
+   "src": "v365",
+   "dst": "v366",
+   "channel_label": ""
+  },
+  {
+   "src": "v365",
+   "dst": "v307",
+   "channel_label": ""
+  },
+  {
+   "src": "v365",
+   "dst": "v371",
+   "channel_label": ""
+  },
+  {
+   "src": "v361",
+   "dst": "v367",
+   "channel_label": ""
+  },
+  {
+   "src": "v367",
+   "dst": "v368",
+   "channel_label": ""
+  },
+  {
+   "src": "v367",
+   "dst": "v307",
+   "channel_label": ""
+  },
+  {
+   "src": "v367",
+   "dst": "v371",
+   "channel_label": ""
+  },
+  {
+   "src": "v361",
+   "dst": "v369",
+   "channel_label": ""
+  },
+  {
+   "src": "v369",
+   "dst": "v370",
+   "channel_label": ""
+  },
+  {
+   "src": "v369",
+   "dst": "v307",
+   "channel_label": ""
+  },
+  {
+   "src": "v369",
+   "dst": "v371",
+   "channel_label": ""
+  },
+  {
+   "src": "v382",
+   "dst": "v383",
+   "channel_label": ""
+  },
+  {
+   "src": "v29",
+   "dst": "v383",
+   "channel_label": ""
+  },
+  {
+   "src": "v381",
+   "dst": "v383",
+   "channel_label": ""
+  },
+  {
+   "src": "v383",
+   "dst": "v388",
+   "channel_label": ""
+  },
+  {
+   "src": "v383",
+   "dst": "v387",
+   "channel_label": ""
+  },
+  {
+   "src": "v383",
+   "dst": "v386",
+   "channel_label": ""
+  },
+  {
+   "src": "v383",
+   "dst": "v385",
+   "channel_label": ""
+  },
+  {
+   "src": "v383",
+   "dst": "v384",
+   "channel_label": ""
+  },
+  {
+   "src": "v389",
+   "dst": "v390",
+   "channel_label": ""
+  },
+  {
+   "src": "v393",
+   "dst": "v395",
+   "channel_label": ""
+  },
+  {
+   "src": "v395",
+   "dst": "v397",
+   "channel_label": ""
+  },
+  {
+   "src": "v395",
+   "dst": "v396",
+   "channel_label": ""
+  },
+  {
+   "src": "v395",
+   "dst": "v503",
+   "channel_label": ""
+  },
+  {
+   "src": "v395",
+   "dst": "v515",
+   "channel_label": ""
+  },
+  {
+   "src": "v393",
+   "dst": "v401",
+   "channel_label": ""
+  },
+  {
+   "src": "v401",
+   "dst": "v405",
+   "channel_label": ""
+  },
+  {
+   "src": "v401",
+   "dst": "v403",
+   "channel_label": ""
+  },
+  {
+   "src": "v401",
+   "dst": "v402",
+   "channel_label": ""
+  },
+  {
+   "src": "v404",
+   "dst": "v405",
+   "channel_label": ""
+  },
+  {
+   "src": "v405",
+   "dst": "v407",
+   "channel_label": ""
+  },
+  {
+   "src": "v405",
+   "dst": "v406",
+   "channel_label": ""
+  },
+  {
+   "src": "v405",
+   "dst": "v503",
+   "channel_label": ""
+  },
+  {
+   "src": "v405",
+   "dst": "v515",
+   "channel_label": ""
+  },
+  {
+   "src": "v409",
+   "dst": "v410",
+   "channel_label": ""
+  },
+  {
+   "src": "v27",
+   "dst": "v410",
+   "channel_label": ""
+  },
+  {
+   "src": "v393",
+   "dst": "v410",
+   "channel_label": ""
+  },
+  {
+   "src": "v410",
+   "dst": "v415",
+   "channel_label": ""
+  },
+  {
+   "src": "v410",
+   "dst": "v414",
+   "channel_label": ""
+  },
+  {
+   "src": "v410",
+   "dst": "v413",
+   "channel_label": ""
+  },
+  {
+   "src": "v410",
+   "dst": "v412",
+   "channel_label": ""
+  },
+  {
+   "src": "v410",
+   "dst": "v411",
+   "channel_label": ""
+  },
+  {
+   "src": "v392",
+   "dst": "v415",
+   "channel_label": ""
+  },
+  {
+   "src": "v415",
+   "dst": "v416",
+   "channel_label": ""
+  },
+  {
+   "src": "v415",
+   "dst": "v503",
+   "channel_label": ""
+  },
+  {
+   "src": "v415",
+   "dst": "v515",
+   "channel_label": ""
+  },
+  {
+   "src": "v392",
+   "dst": "v418",
+   "channel_label": ""
+  },
+  {
+   "src": "v393",
+   "dst": "v418",
+   "channel_label": ""
+  },
+  {
+   "src": "v418",
+   "dst": "v425",
+   "channel_label": ""
+  },
+  {
+   "src": "v418",
+   "dst": "v424",
+   "channel_label": ""
+  },
+  {
+   "src": "v418",
+   "dst": "v423",
+   "channel_label": ""
+  },
+  {
+   "src": "v418",
+   "dst": "v422",
+   "channel_label": ""
+  },
+  {
+   "src": "v418",
+   "dst": "v421",
+   "channel_label": ""
+  },
+  {
+   "src": "v418",
+   "dst": "v420",
+   "channel_label": ""
+  },
+  {
+   "src": "v418",
+   "dst": "v419",
+   "channel_label": ""
+  },
+  {
+   "src": "v418",
+   "dst": "v503",
+   "channel_label": ""
+  },
+  {
+   "src": "v418",
+   "dst": "v515",
+   "channel_label": ""
+  },
+  {
+   "src": "v429",
+   "dst": "v430",
+   "channel_label": ""
+  },
+  {
+   "src": "v428",
+   "dst": "v431",
+   "channel_label": ""
+  },
+  {
+   "src": "v431",
+   "dst": "v432",
+   "channel_label": ""
+  },
+  {
+   "src": "v431",
+   "dst": "v503",
+   "channel_label": ""
+  },
+  {
+   "src": "v431",
+   "dst": "v515",
+   "channel_label": ""
+  },
+  {
+   "src": "v433",
+   "dst": "v434",
+   "channel_label": ""
+  },
+  {
+   "src": "v435",
+   "dst": "v436",
+   "channel_label": ""
+  },
+  {
+   "src": "v437",
+   "dst": "v438",
+   "channel_label": ""
+  },
+  {
+   "src": "v439",
+   "dst": "v440",
+   "channel_label": ""
+  },
+  {
+   "src": "v441",
+   "dst": "v442",
+   "channel_label": ""
+  },
+  {
+   "src": "v443",
+   "dst": "v444",
+   "channel_label": ""
+  },
+  {
+   "src": "v36",
+   "dst": "v445",
+   "channel_label": ""
+  },
+  {
+   "src": "v428",
+   "dst": "v445",
+   "channel_label": ""
+  },
+  {
+   "src": "v445",
+   "dst": "v446",
+   "channel_label": ""
+  },
+  {
+   "src": "v445",
+   "dst": "v447",
+   "channel_label": ""
+  },
+  {
+   "src": "v445",
+   "dst": "v503",
+   "channel_label": ""
+  },
+  {
+   "src": "v445",
+   "dst": "v515",
+   "channel_label": ""
+  },
+  {
+   "src": "v447",
+   "dst": "v448",
+   "channel_label": ""
+  },
+  {
+   "src": "v449",
+   "dst": "v450",
+   "channel_label": ""
+  },
+  {
+   "src": "v36",
+   "dst": "v451",
+   "channel_label": ""
+  },
+  {
+   "src": "v428",
+   "dst": "v451",
+   "channel_label": ""
+  },
+  {
+   "src": "v451",
+   "dst": "v452",
+   "channel_label": ""
+  },
+  {
+   "src": "v451",
+   "dst": "v503",
+   "channel_label": ""
+  },
+  {
+   "src": "v451",
+   "dst": "v515",
+   "channel_label": ""
+  },
+  {
+   "src": "v451",
+   "dst": "v532",
+   "channel_label": ""
+  },
+  {
+   "src": "v453",
+   "dst": "v454",
+   "channel_label": ""
+  },
+  {
+   "src": "v455",
+   "dst": "v456",
+   "channel_label": ""
+  },
+  {
+   "src": "v457",
+   "dst": "v458",
+   "channel_label": ""
+  },
+  {
+   "src": "v459",
+   "dst": "v460",
+   "channel_label": ""
+  },
+  {
+   "src": "v461",
+   "dst": "v462",
+   "channel_label": ""
+  },
+  {
+   "src": "v463",
+   "dst": "v464",
+   "channel_label": ""
+  },
+  {
+   "src": "v465",
+   "dst": "v466",
+   "channel_label": ""
+  },
+  {
+   "src": "v467",
+   "dst": "v468",
+   "channel_label": ""
+  },
+  {
+   "src": "v36",
+   "dst": "v469",
+   "channel_label": ""
+  },
+  {
+   "src": "v428",
+   "dst": "v469",
+   "channel_label": ""
+  },
+  {
+   "src": "v469",
+   "dst": "v470",
+   "channel_label": ""
+  },
+  {
+   "src": "v469",
+   "dst": "v471",
+   "channel_label": ""
+  },
+  {
+   "src": "v469",
+   "dst": "v503",
+   "channel_label": ""
+  },
+  {
+   "src": "v469",
+   "dst": "v515",
+   "channel_label": ""
+  },
+  {
+   "src": "v471",
+   "dst": "v472",
+   "channel_label": ""
+  },
+  {
+   "src": "v473",
+   "dst": "v474",
+   "channel_label": ""
+  },
+  {
+   "src": "v475",
+   "dst": "v476",
+   "channel_label": ""
+  },
+  {
+   "src": "v477",
+   "dst": "v478",
+   "channel_label": ""
+  },
+  {
+   "src": "v36",
+   "dst": "v479",
+   "channel_label": ""
+  },
+  {
+   "src": "v428",
+   "dst": "v479",
+   "channel_label": ""
+  },
+  {
+   "src": "v479",
+   "dst": "v480",
+   "channel_label": ""
+  },
+  {
+   "src": "v479",
+   "dst": "v481",
+   "channel_label": ""
+  },
+  {
+   "src": "v479",
+   "dst": "v503",
+   "channel_label": ""
+  },
+  {
+   "src": "v479",
+   "dst": "v515",
+   "channel_label": ""
+  },
+  {
+   "src": "v481",
+   "dst": "v482",
+   "channel_label": ""
+  },
+  {
+   "src": "v483",
+   "dst": "v484",
+   "channel_label": ""
+  },
+  {
+   "src": "v36",
+   "dst": "v485",
+   "channel_label": ""
+  },
+  {
+   "src": "v428",
+   "dst": "v485",
+   "channel_label": ""
+  },
+  {
+   "src": "v485",
+   "dst": "v486",
+   "channel_label": ""
+  },
+  {
+   "src": "v485",
+   "dst": "v503",
+   "channel_label": ""
+  },
+  {
+   "src": "v485",
+   "dst": "v515",
+   "channel_label": ""
+  },
+  {
+   "src": "v487",
+   "dst": "v488",
+   "channel_label": ""
+  },
+  {
+   "src": "v489",
+   "dst": "v490",
+   "channel_label": ""
+  },
+  {
+   "src": "v491",
+   "dst": "v492",
+   "channel_label": ""
+  },
+  {
+   "src": "v493",
+   "dst": "v494",
+   "channel_label": ""
+  },
+  {
+   "src": "v495",
+   "dst": "v496",
+   "channel_label": ""
+  },
+  {
+   "src": "v428",
+   "dst": "v497",
+   "channel_label": ""
+  },
+  {
+   "src": "v497",
+   "dst": "v498",
+   "channel_label": ""
+  },
+  {
+   "src": "v497",
+   "dst": "v499",
+   "channel_label": ""
+  },
+  {
+   "src": "v497",
+   "dst": "v503",
+   "channel_label": ""
+  },
+  {
+   "src": "v497",
+   "dst": "v515",
+   "channel_label": ""
+  },
+  {
+   "src": "v499",
+   "dst": "v500",
+   "channel_label": ""
+  },
+  {
+   "src": "v501",
+   "dst": "v503",
+   "channel_label": ""
+  },
+  {
+   "src": "v501",
+   "dst": "v515",
+   "channel_label": ""
+  },
+  {
+   "src": "v502",
+   "dst": "v503",
+   "channel_label": ""
+  },
+  {
+   "src": "v530",
+   "dst": "v531",
+   "channel_label": ""
+  },
+  {
+   "src": "v534",
+   "dst": "v536",
+   "channel_label": ""
+  },
+  {
+   "src": "v535",
+   "dst": "v536",
+   "channel_label": ""
+  },
+  {
+   "src": "v62",
+   "dst": "v536",
+   "channel_label": ""
+  },
+  {
+   "src": "v536",
+   "dst": "v541",
+   "channel_label": ""
+  },
+  {
+   "src": "v536",
+   "dst": "v540",
+   "channel_label": ""
+  },
+  {
+   "src": "v536",
+   "dst": "v539",
+   "channel_label": ""
+  },
+  {
+   "src": "v536",
+   "dst": "v542",
+   "channel_label": ""
+  },
+  {
+   "src": "v536",
+   "dst": "v538",
+   "channel_label": ""
+  },
+  {
+   "src": "v536",
+   "dst": "v537",
+   "channel_label": ""
+  },
+  {
+   "src": "v62",
+   "dst": "v542",
+   "channel_label": ""
+  },
+  {
+   "src": "v542",
+   "dst": "v544",
+   "channel_label": ""
+  },
+  {
+   "src": "v542",
+   "dst": "v543",
+   "channel_label": ""
+  },
+  {
+   "src": "v542",
+   "dst": "v139",
+   "channel_label": ""
+  },
+  {
+   "src": "v542",
+   "dst": "v307",
+   "channel_label": ""
+  },
+  {
+   "src": "v548",
+   "dst": "v549",
+   "channel_label": ""
+  },
+  {
+   "src": "v551",
+   "dst": "v550",
+   "channel_label": ""
+  },
+  {
+   "src": "v270",
+   "dst": "v554",
+   "channel_label": ""
+  },
+  {
+   "src": "v550",
+   "dst": "v554",
+   "channel_label": ""
+  },
+  {
+   "src": "v554",
+   "dst": "v557",
+   "channel_label": ""
+  },
+  {
+   "src": "v554",
+   "dst": "v556",
+   "channel_label": ""
+  },
+  {
+   "src": "v554",
+   "dst": "v555",
+   "channel_label": ""
+  },
+  {
+   "src": "v554",
+   "dst": "v139",
+   "channel_label": ""
+  },
+  {
+   "src": "v554",
+   "dst": "v307",
+   "channel_label": ""
+  },
+  {
+   "src": "v554",
+   "dst": "v558",
+   "channel_label": ""
+  },
+  {
+   "src": "v554",
+   "dst": "v567",
+   "channel_label": ""
+  },
+  {
+   "src": "v562",
+   "dst": "v565",
+   "channel_label": ""
+  },
+  {
+   "src": "v563",
+   "dst": "v565",
+   "channel_label": ""
+  },
+  {
+   "src": "v564",
+   "dst": "v565",
+   "channel_label": ""
+  },
+  {
+   "src": "v558",
+   "dst": "v565",
+   "channel_label": ""
+  },
+  {
+   "src": "v561",
+   "dst": "v565",
+   "channel_label": ""
+  },
+  {
+   "src": "v565",
+   "dst": "v571",
+   "channel_label": ""
+  },
+  {
+   "src": "v565",
+   "dst": "v566",
+   "channel_label": ""
+  },
+  {
+   "src": "v565",
+   "dst": "v582",
+   "channel_label": ""
+  },
+  {
+   "src": "v570",
+   "dst": "v571",
+   "channel_label": ""
+  },
+  {
+   "src": "v567",
+   "dst": "v571",
+   "channel_label": ""
+  },
+  {
+   "src": "v571",
+   "dst": "v589",
+   "channel_label": ""
+  },
+  {
+   "src": "v571",
+   "dst": "v572",
+   "channel_label": ""
+  },
+  {
+   "src": "v571",
+   "dst": "v577",
+   "channel_label": ""
+  },
+  {
+   "src": "v571",
+   "dst": "v586",
+   "channel_label": ""
+  },
+  {
+   "src": "v571",
+   "dst": "v596",
+   "channel_label": ""
+  },
+  {
+   "src": "v573",
+   "dst": "v574",
+   "channel_label": ""
+  },
+  {
+   "src": "v575",
+   "dst": "v576",
+   "channel_label": ""
+  },
+  {
+   "src": "v549",
+   "dst": "v582",
+   "channel_label": ""
+  },
+  {
+   "src": "v577",
+   "dst": "v582",
+   "channel_label": ""
+  },
+  {
+   "src": "v582",
+   "dst": "v585",
+   "channel_label": ""
+  },
+  {
+   "src": "v582",
+   "dst": "v584",
+   "channel_label": ""
+  },
+  {
+   "src": "v582",
+   "dst": "v583",
+   "channel_label": ""
+  },
+  {
+   "src": "v549",
+   "dst": "v589",
+   "channel_label": ""
+  },
+  {
+   "src": "v586",
+   "dst": "v589",
+   "channel_label": ""
+  },
+  {
+   "src": "v589",
+   "dst": "v592",
+   "channel_label": ""
+  },
+  {
+   "src": "v589",
+   "dst": "v591",
+   "channel_label": ""
+  },
+  {
+   "src": "v589",
+   "dst": "v590",
+   "channel_label": ""
+  },
+  {
+   "src": "v597",
+   "dst": "v599",
+   "channel_label": ""
+  },
+  {
+   "src": "v598",
+   "dst": "v599",
+   "channel_label": ""
+  },
+  {
+   "src": "v596",
+   "dst": "v599",
+   "channel_label": ""
+  },
+  {
+   "src": "v599",
+   "dst": "v607",
+   "channel_label": ""
+  },
+  {
+   "src": "v599",
+   "dst": "v606",
+   "channel_label": ""
+  },
+  {
+   "src": "v599",
+   "dst": "v605",
+   "channel_label": ""
+  },
+  {
+   "src": "v599",
+   "dst": "v604",
+   "channel_label": ""
+  },
+  {
+   "src": "v599",
+   "dst": "v603",
+   "channel_label": ""
+  },
+  {
+   "src": "v599",
+   "dst": "v602",
+   "channel_label": ""
+  },
+  {
+   "src": "v599",
+   "dst": "v601",
+   "channel_label": ""
+  },
+  {
+   "src": "v599",
+   "dst": "v600",
+   "channel_label": ""
+  },
+  {
+   "src": "v599",
+   "dst": "v307",
+   "channel_label": ""
+  },
+  {
+   "src": "v617",
+   "dst": "v133",
+   "channel_label": ""
+  },
+  {
+   "src": "v621",
+   "dst": "v622",
+   "channel_label": ""
+  },
+  {
+   "src": "v642",
+   "dst": "v623",
+   "channel_label": ""
+  },
+  {
+   "src": "v644",
+   "dst": "v623",
+   "channel_label": ""
+  },
+  {
+   "src": "v646",
+   "dst": "v623",
+   "channel_label": ""
+  },
+  {
+   "src": "v623",
+   "dst": "v675",
+   "channel_label": ""
+  },
+  {
+   "src": "v675",
+   "dst": "v678",
+   "channel_label": ""
+  },
+  {
+   "src": "v675",
+   "dst": "v677",
+   "channel_label": ""
+  },
+  {
+   "src": "v675",
+   "dst": "v676",
+   "channel_label": ""
+  },
+  {
+   "src": "v675",
+   "dst": "v679",
+   "channel_label": ""
+  },
+  {
+   "src": "v680",
+   "dst": "v681",
+   "channel_label": ""
+  },
+  {
+   "src": "v682",
+   "dst": "v683",
+   "channel_label": ""
+  },
+  {
+   "src": "v684",
+   "dst": "v685",
+   "channel_label": ""
+  },
+  {
+   "src": "v686",
+   "dst": "v687",
+   "channel_label": ""
+  },
+  {
+   "src": "v27",
+   "dst": "v63",
+   "channel_label": ""
+  },
+  {
+   "src": "v27",
+   "dst": "v112",
+   "channel_label": ""
+  },
+  {
+   "src": "v27",
+   "dst": "v114",
+   "channel_label": ""
+  },
+  {
+   "src": "v29",
+   "dst": "v93",
+   "channel_label": ""
+  },
+  {
+   "src": "v29",
+   "dst": "v282",
+   "channel_label": ""
+  },
+  {
+   "src": "v29",
+   "dst": "v392",
+   "channel_label": ""
+  },
+  {
+   "src": "v29",
+   "dst": "v550",
+   "channel_label": ""
+  },
+  {
+   "src": "v29",
+   "dst": "v561",
+   "channel_label": ""
+  },
+  {
+   "src": "v97",
+   "dst": "v319",
+   "channel_label": ""
+  },
+  {
+   "src": "v101",
+   "dst": "v318",
+   "channel_label": ""
+  },
+  {
+   "src": "v109",
+   "dst": "v152",
+   "channel_label": ""
+  },
+  {
+   "src": "v109",
+   "dst": "v550",
+   "channel_label": ""
+  },
+  {
+   "src": "v114",
+   "dst": "v270",
+   "channel_label": ""
+  },
+  {
+   "src": "v133",
+   "dst": "v623",
+   "channel_label": ""
+  },
+  {
+   "src": "v295",
+   "dst": "v139",
+   "channel_label": ""
+  },
+  {
+   "src": "v371",
+   "dst": "v139",
+   "channel_label": ""
+  },
+  {
+   "src": "v515",
+   "dst": "v139",
+   "channel_label": ""
+  },
+  {
+   "src": "v139",
+   "dst": "v205",
+   "channel_label": ""
+  },
+  {
+   "src": "v139",
+   "dst": "v623",
+   "channel_label": ""
+  },
+  {
+   "src": "v139",
+   "dst": "v684",
+   "channel_label": ""
+  },
+  {
+   "src": "v152",
+   "dst": "v282",
+   "channel_label": ""
+  },
+  {
+   "src": "v239",
+   "dst": "v244",
+   "channel_label": ""
+  },
+  {
+   "src": "v239",
+   "dst": "v257",
+   "channel_label": ""
+  },
+  {
+   "src": "v239",
+   "dst": "v308",
+   "channel_label": ""
+  },
+  {
+   "src": "v239",
+   "dst": "v623",
+   "channel_label": ""
+  },
+  {
+   "src": "v244",
+   "dst": "v307",
+   "channel_label": ""
+  },
+  {
+   "src": "v503",
+   "dst": "v307",
+   "channel_label": ""
+  },
+  {
+   "src": "v307",
+   "dst": "v623",
+   "channel_label": ""
+  },
+  {
+   "src": "v308",
+   "dst": "v682",
+   "channel_label": ""
+  },
+  {
+   "src": "v391",
+   "dst": "v393",
+   "channel_label": ""
+  },
+  {
+   "src": "v391",
+   "dst": "v426",
+   "channel_label": ""
+  },
+  {
+   "src": "v392",
+   "dst": "v393",
+   "channel_label": ""
+  },
+  {
+   "src": "v426",
+   "dst": "v428",
+   "channel_label": ""
+  },
+  {
+   "src": "v532",
+   "dst": "v623",
+   "channel_label": ""
+  },
+  {
+   "src": "v532",
+   "dst": "v686",
+   "channel_label": ""
+  },
+  {
+   "src": "v679",
+   "dst": "v680",
+   "channel_label": ""
+  }
+ ]
+}
