@@ -1,0 +1,81 @@
+{
+ "core_pairs": 53,
+ "decisions_core53": {
+  "Gold": 29,
+  "Silver": 22,
+  "Negative": 2,
+  "Unresolved": 0
+ },
+ "edges_total": 1234,
+ "v1_confidence": {
+  "medium": 963,
+  "high": 47,
+  "low": 224
+ },
+ "v2_confidence": {
+  "high": 382,
+  "medium": 547,
+  "rejected": 83,
+  "low": 222
+ },
+ "v1_to_v2": {
+  "high->high": 47,
+  "low->low": 222,
+  "low->rejected": 2,
+  "medium->high": 335,
+  "medium->medium": 547,
+  "medium->rejected": 81
+ },
+ "high_v1": 47,
+ "tierA": 174,
+ "high_and_tierA": 26,
+ "high_only": 21,
+ "tierA_only": 148,
+ "merged_channel_edges": 551,
+ "merged_audit": {
+  "compatible": 479,
+  "PROJECTION-DROPPED": 31,
+  "INCOMPATIBLE": 1,
+  "INFEASIBLE-CALLSITE-CONSTANT": 6,
+  "MULTIMAP-SPLIT": 34
+ },
+ "direct_audit": {
+  "INCOMPATIBLE": 49,
+  "compatible": 281,
+  "unknown-producer-family": 21,
+  "INFEASIBLE-CALLSITE-CONSTANT": 4,
+  "PROJECTION-DROPPED": 4
+ },
+ "negative_controls": {
+  "total_unique_ordered_pairs": 146,
+  "by_kind": {
+   "extractor-false-positive": 1,
+   "key-only-synchronisation": 1,
+   "extractor-artifact-or-sync-only": 18,
+   "reverse-of-verified-positive": 21,
+   "shared-input": 96,
+   "mutually-exclusive-alternatives": 7,
+   "same-subworkflow-no-exchange": 2
+  },
+  "rows_before_dedup": 158,
+  "manual_from_core53": 2,
+  "extractor_artifact_or_sync_only": 20,
+  "reverse_of_verified_positive": 21,
+  "manually_verified": 19,
+  "unresolved_information_dependency": 37,
+  "shared_input_directional": 70,
+  "shared-input": 106,
+  "same-subworkflow-no-exchange": 2,
+  "mutually-exclusive-alternatives": 7
+ },
+ "tierA_only_breakdown": {
+  "class=direct; alternative-branch flag (rule demoted it)": 69,
+  "class=merged-channel": 35,
+  "class=gating-or-metadata": 2,
+  "class=key-only-synchronization": 1,
+  "class=reporting-aggregation": 41
+ },
+ "high_only_breakdown": {
+  "no preview DAG contains both endpoints": 21
+ }
+}

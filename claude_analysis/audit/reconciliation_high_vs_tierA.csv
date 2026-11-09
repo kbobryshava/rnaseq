@@ -1,0 +1,196 @@
+edge_id,bucket,edge_class,confidence_v1,confidence_v2,src,dst,reason
+E00002,tierA only,direct,medium,high,GUNZIP.gunzip,CUSTOM_GTFFILTER,class=direct; alternative-branch flag (rule demoted it)
+E00006,tierA only,direct,medium,high,CUSTOM_GTFFILTER.gtf,CUSTOM_CATADDITIONALFASTA,class=direct; alternative-branch flag (rule demoted it)
+E00009,tierA only,direct,medium,high,GUNZIP.gunzip,CUSTOM_CATADDITIONALFASTA,class=direct; alternative-branch flag (rule demoted it)
+E00014,tierA only,direct,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,EAUTILS_GTF2BED,class=direct; alternative-branch flag (rule demoted it)
+E00015,tierA only,direct,medium,high,CUSTOM_GTFFILTER.gtf,EAUTILS_GTF2BED,class=direct; alternative-branch flag (rule demoted it)
+E00034,tierA only,direct,medium,high,CUSTOM_GTFFILTER.gtf,RSEM_PREPAREREFERENCE,class=direct; alternative-branch flag (rule demoted it)
+E00041,tierA only,merged-channel,medium,rejected,SAMTOOLS_FAIDX.fai,BBMAP_BBSPLIT,class=merged-channel
+E00043,tierA only,merged-channel,medium,high,CUSTOM_CATADDITIONALFASTA.fasta,STAR_GENOMEGENERATE,class=merged-channel
+E00046,tierA only,direct,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,STAR_GENOMEGENERATE,class=direct; alternative-branch flag (rule demoted it)
+E00050,high only,direct,high,high,UNTAR.untar,STAR_GENOMEPARAMS_UPGRADE,no preview DAG contains both endpoints
+E00051,tierA only,merged-channel,medium,high,CUSTOM_CATADDITIONALFASTA.fasta,STAR_GENOMEGENERATE,class=merged-channel
+E00054,tierA only,direct,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,STAR_GENOMEGENERATE,class=direct; alternative-branch flag (rule demoted it)
+E00065,tierA only,merged-channel,medium,high,CUSTOM_CATADDITIONALFASTA.fasta,RSEM_PREPAREREFERENCE,class=merged-channel
+E00068,tierA only,direct,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,RSEM_PREPAREREFERENCE,class=direct; alternative-branch flag (rule demoted it)
+E00072,tierA only,direct,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,HISAT2_EXTRACTSPLICESITES,class=direct; alternative-branch flag (rule demoted it)
+E00101,tierA only,direct,medium,high,RSEM_PREPAREREFERENCE.transcript_fasta,KALLISTO_INDEX,class=direct; alternative-branch flag (rule demoted it)
+E00122,tierA only,merged-channel,medium,high,TRIMGALORE.reads,FQ_LINT,class=merged-channel
+E00123,tierA only,gating-or-metadata,low,low,TRIMGALORE.log,FQ_LINT,class=gating-or-metadata
+E00130,tierA only,merged-channel,medium,high,TRIMGALORE.reads,BBMAP_BBSPLIT,class=merged-channel
+E00131,tierA only,gating-or-metadata,low,low,TRIMGALORE.log,BBMAP_BBSPLIT,class=gating-or-metadata
+E00135,tierA only,key-only-synchronization,low,rejected,FQ_LINT.lint,BBMAP_BBSPLIT,class=key-only-synchronization
+E00137,tierA only,direct,medium,high,BBMAP_BBSPLIT.index,BBMAP_BBSPLIT,class=direct; alternative-branch flag (rule demoted it)
+E00138,high & tierA,direct,high,high,BBMAP_BBSPLIT.primary_fastq,FQ_LINT,
+E00191,high only,direct,high,high,SEQKIT_REPLACE.fastx,SEQKIT_REPLACE,no preview DAG contains both endpoints
+E00192,high only,direct,high,high,SEQKIT_REPLACE.fastx,BOWTIE2_BUILD,no preview DAG contains both endpoints
+E00219,high only,direct,high,high,BOWTIE2_ALIGN.bam,SAMTOOLS_VIEW,no preview DAG contains both endpoints
+E00220,high only,direct,high,high,SAMTOOLS_VIEW.bam,SAMTOOLS_FASTQ,no preview DAG contains both endpoints
+E00292,high & tierA,direct,high,high,FQ_SUBSAMPLE.fastq,SALMON_QUANT,
+E00294,tierA only,direct,medium,high,UNTAR.untar,SALMON_QUANT,class=direct; alternative-branch flag (rule demoted it)
+E00296,tierA only,merged-channel,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,SALMON_QUANT,class=merged-channel
+E00297,tierA only,merged-channel,medium,high,CUSTOM_GTFFILTER.gtf,SALMON_QUANT,class=merged-channel
+E00304,tierA only,merged-channel,medium,high,RSEM_PREPAREREFERENCE.transcript_fasta,SALMON_QUANT,class=merged-channel
+E00325,tierA only,direct,medium,high,STAR_GENOMEGENERATE.index,SENTIEON_STARALIGN,class=direct; alternative-branch flag (rule demoted it)
+E00326,tierA only,direct,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,SENTIEON_STARALIGN,class=direct; alternative-branch flag (rule demoted it)
+E00350,tierA only,direct,medium,high,STAR_GENOMEGENERATE.index,PARABRICKS_RNAFQ2BAM,class=direct; alternative-branch flag (rule demoted it)
+E00373,tierA only,direct,medium,high,STAR_GENOMEGENERATE.index,STAR_ALIGN,class=direct; alternative-branch flag (rule demoted it)
+E00374,tierA only,direct,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,STAR_ALIGN,class=direct; alternative-branch flag (rule demoted it)
+E00378,tierA only,direct,medium,high,SENTIEON_STARALIGN.bam,SAMTOOLS_SORT,class=direct; alternative-branch flag (rule demoted it)
+E00379,tierA only,direct,medium,high,PARABRICKS_RNAFQ2BAM.bam,SAMTOOLS_SORT,class=direct; alternative-branch flag (rule demoted it)
+E00380,tierA only,direct,medium,high,STAR_ALIGN.bam,SAMTOOLS_SORT,class=direct; alternative-branch flag (rule demoted it)
+E00384,high & tierA,direct,high,high,SAMTOOLS_SORT.bam,SAMTOOLS_INDEX,
+E00413,high only,direct,high,high,BOWTIE2_ALIGN.bam,SAMTOOLS_SORT,no preview DAG contains both endpoints
+E00417,high only,direct,high,high,SAMTOOLS_SORT.bam,SAMTOOLS_INDEX,no preview DAG contains both endpoints
+E00444,tierA only,direct,medium,high,UNTAR.untar,HISAT2_ALIGN,class=direct; alternative-branch flag (rule demoted it)
+E00446,tierA only,direct,medium,high,HISAT2_EXTRACTSPLICESITES.txt,HISAT2_ALIGN,class=direct; alternative-branch flag (rule demoted it)
+E00447,high & tierA,direct,high,high,HISAT2_ALIGN.bam,SAMTOOLS_SORT,
+E00451,high & tierA,direct,high,high,SAMTOOLS_SORT.bam,SAMTOOLS_INDEX,
+E00464,high only,direct,high,high,SAMTOOLS_INDEX.index,UMICOLLAPSE,no preview DAG contains both endpoints
+E00468,high only,direct,high,high,UMICOLLAPSE.bam,SAMTOOLS_INDEX,no preview DAG contains both endpoints
+E00478,high only,direct,high,high,SAMTOOLS_INDEX.index,SAMTOOLS_VIEW,no preview DAG contains both endpoints
+E00482,high only,direct,high,high,SAMTOOLS_VIEW.bam,SAMTOOLS_INDEX,no preview DAG contains both endpoints
+E00492,high only,direct,high,high,UMITOOLS_DEDUP.bam,SAMTOOLS_INDEX,no preview DAG contains both endpoints
+E00508,high only,direct,high,high,SAMTOOLS_SORT.bam,SAMTOOLS_INDEX,no preview DAG contains both endpoints
+E00522,high only,direct,high,high,UMICOLLAPSE.bam,SAMTOOLS_INDEX,no preview DAG contains both endpoints
+E00531,high only,direct,high,high,SAMTOOLS_VIEW.bam,SAMTOOLS_INDEX,no preview DAG contains both endpoints
+E00536,high only,direct,high,high,UMITOOLS_DEDUP.bam,SAMTOOLS_INDEX,no preview DAG contains both endpoints
+E00543,high only,direct,high,high,UMICOLLAPSE.bam,SAMTOOLS_SORT,no preview DAG contains both endpoints
+E00544,high only,direct,high,high,UMITOOLS_DEDUP.bam,SAMTOOLS_SORT,no preview DAG contains both endpoints
+E00548,high only,direct,high,high,SAMTOOLS_SORT.bam,UMITOOLS_PREPAREFORRSEM,no preview DAG contains both endpoints
+E00559,tierA only,direct,medium,high,RSEM_PREPAREREFERENCE.index,RSEM_CALCULATEEXPRESSION,class=direct; alternative-branch flag (rule demoted it)
+E00561,tierA only,direct,medium,high,RSEM_CALCULATEEXPRESSION.counts_gene,CUSTOM_RSEMMERGECOUNTS,class=direct; alternative-branch flag (rule demoted it)
+E00563,tierA only,direct,medium,high,RSEM_CALCULATEEXPRESSION.counts_transcript,CUSTOM_RSEMMERGECOUNTS,class=direct; alternative-branch flag (rule demoted it)
+E00564,tierA only,direct,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,CUSTOM_TX2GENE,class=direct; alternative-branch flag (rule demoted it)
+E00569,tierA only,direct,medium,high,RSEM_CALCULATEEXPRESSION.counts_transcript,CUSTOM_TX2GENE,class=direct; alternative-branch flag (rule demoted it)
+E00571,tierA only,direct,medium,high,RSEM_CALCULATEEXPRESSION.counts_transcript,TXIMETA_TXIMPORT,class=direct; alternative-branch flag (rule demoted it)
+E00572,high & tierA,direct,high,high,CUSTOM_TX2GENE.tx2gene,TXIMETA_TXIMPORT,
+E00573,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.counts_gene,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00574,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.counts_gene_length_scaled,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00575,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.counts_gene_scaled,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00576,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.lengths_gene,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00577,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.tpm_gene,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00578,high & tierA,direct,high,high,CUSTOM_TX2GENE.tx2gene,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,
+E00579,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.counts_transcript,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00580,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.lengths_transcript,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00581,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.tpm_transcript,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00582,high & tierA,direct,high,high,TXIMETA_TXIMPORT.tx2gene_augmented,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,
+E00583,high & tierA,direct,high,high,TXIMETA_TXIMPORT.counts_gene_length_scaled,DESEQ2_QC,
+E00590,tierA only,direct,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,SALMON_QUANT,class=direct; alternative-branch flag (rule demoted it)
+E00591,tierA only,direct,medium,high,CUSTOM_GTFFILTER.gtf,SALMON_QUANT,class=direct; alternative-branch flag (rule demoted it)
+E00598,tierA only,direct,medium,high,RSEM_PREPAREREFERENCE.transcript_fasta,SALMON_QUANT,class=direct; alternative-branch flag (rule demoted it)
+E00609,tierA only,direct,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,CUSTOM_TX2GENE,class=direct; alternative-branch flag (rule demoted it)
+E00610,tierA only,direct,medium,high,CUSTOM_GTFFILTER.gtf,CUSTOM_TX2GENE,class=direct; alternative-branch flag (rule demoted it)
+E00613,tierA only,direct,medium,high,SALMON_QUANT.results,CUSTOM_TX2GENE,class=direct; alternative-branch flag (rule demoted it)
+E00615,tierA only,direct,medium,high,SALMON_QUANT.results,TXIMETA_TXIMPORT,class=direct; alternative-branch flag (rule demoted it)
+E00617,high & tierA,direct,high,high,CUSTOM_TX2GENE.tx2gene,TXIMETA_TXIMPORT,
+E00618,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.counts_gene,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00619,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.counts_gene_length_scaled,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00620,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.counts_gene_scaled,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00621,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.lengths_gene,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00622,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.tpm_gene,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00623,high & tierA,direct,high,high,CUSTOM_TX2GENE.tx2gene,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,
+E00624,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.counts_transcript,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00625,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.lengths_transcript,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00626,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.tpm_transcript,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E00627,high & tierA,direct,high,high,TXIMETA_TXIMPORT.tx2gene_augmented,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,
+E00628,high & tierA,direct,high,high,TXIMETA_TXIMPORT.counts_gene_length_scaled,DESEQ2_QC,
+E00642,tierA only,merged-channel,medium,high,SAMTOOLS_FAIDX.fai,PICARD_MARKDUPLICATES,class=merged-channel
+E00650,tierA only,merged-channel,medium,medium,SAMTOOLS_FAIDX.fai,SAMTOOLS_STATS,class=merged-channel
+E00677,high only,direct,high,high,STRINGTIE_STRINGTIE.transcript_gtf,STRINGTIE_MERGE,no preview DAG contains both endpoints
+E00682,tierA only,direct,medium,high,PICARD_MARKDUPLICATES.bam,STRINGTIE_STRINGTIE,class=direct; alternative-branch flag (rule demoted it)
+E00699,tierA only,direct,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,STRINGTIE_STRINGTIE,class=direct; alternative-branch flag (rule demoted it)
+E00700,tierA only,direct,medium,high,CUSTOM_GTFFILTER.gtf,STRINGTIE_STRINGTIE,class=direct; alternative-branch flag (rule demoted it)
+E00762,high & tierA,direct,high,high,SUBREAD_FEATURECOUNTS.counts,CUSTOM_MULTIQCCUSTOMBIOTYPE,
+E00783,high & tierA,direct,high,high,SAMTOOLS_SORT.bam,QUALIMAP_RNASEQ,
+E00784,tierA only,direct,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,QUALIMAP_RNASEQ,class=direct; alternative-branch flag (rule demoted it)
+E00805,tierA only,direct,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,DUPRADAR,class=direct; alternative-branch flag (rule demoted it)
+E00845,tierA only,direct,medium,high,EAUTILS_GTF2BED.bed,RSEQC_INNERDISTANCE,class=direct; alternative-branch flag (rule demoted it)
+E00865,tierA only,direct,medium,high,EAUTILS_GTF2BED.bed,RSEQC_INFEREXPERIMENT,class=direct; alternative-branch flag (rule demoted it)
+E00885,tierA only,direct,medium,high,EAUTILS_GTF2BED.bed,RSEQC_JUNCTIONANNOTATION,class=direct; alternative-branch flag (rule demoted it)
+E00905,tierA only,direct,medium,high,EAUTILS_GTF2BED.bed,RSEQC_JUNCTIONSATURATION,class=direct; alternative-branch flag (rule demoted it)
+E00925,tierA only,direct,medium,high,EAUTILS_GTF2BED.bed,RSEQC_READDISTRIBUTION,class=direct; alternative-branch flag (rule demoted it)
+E00963,tierA only,direct,medium,high,PICARD_MARKDUPLICATES.bam,BEDTOOLS_GENOMECOV,class=direct; alternative-branch flag (rule demoted it)
+E00979,tierA only,direct,medium,high,PICARD_MARKDUPLICATES.bam,BEDTOOLS_GENOMECOV,class=direct; alternative-branch flag (rule demoted it)
+E00995,tierA only,direct,medium,high,PICARD_MARKDUPLICATES.bam,BEDTOOLS_GENOMECOV,class=direct; alternative-branch flag (rule demoted it)
+E01011,high & tierA,direct,high,high,BEDTOOLS_GENOMECOV.genomecov,UCSC_BEDCLIP,
+E01012,tierA only,direct,medium,high,SAMTOOLS_FAIDX.sizes,UCSC_BEDCLIP,class=direct; alternative-branch flag (rule demoted it)
+E01013,high & tierA,direct,high,high,UCSC_BEDCLIP.bedgraph,UCSC_BEDGRAPHTOBIGWIG,
+E01014,tierA only,direct,medium,high,SAMTOOLS_FAIDX.sizes,UCSC_BEDGRAPHTOBIGWIG,class=direct; alternative-branch flag (rule demoted it)
+E01015,high & tierA,direct,high,high,BEDTOOLS_GENOMECOV.genomecov,UCSC_BEDCLIP,
+E01016,tierA only,direct,medium,high,SAMTOOLS_FAIDX.sizes,UCSC_BEDCLIP,class=direct; alternative-branch flag (rule demoted it)
+E01017,high & tierA,direct,high,high,UCSC_BEDCLIP.bedgraph,UCSC_BEDGRAPHTOBIGWIG,
+E01018,tierA only,direct,medium,high,SAMTOOLS_FAIDX.sizes,UCSC_BEDGRAPHTOBIGWIG,class=direct; alternative-branch flag (rule demoted it)
+E01019,high & tierA,direct,high,high,BEDTOOLS_GENOMECOV.genomecov,UCSC_BEDCLIP,
+E01020,tierA only,direct,medium,high,SAMTOOLS_FAIDX.sizes,UCSC_BEDCLIP,class=direct; alternative-branch flag (rule demoted it)
+E01021,high & tierA,direct,high,high,UCSC_BEDCLIP.bedgraph,UCSC_BEDGRAPHTOBIGWIG,
+E01022,tierA only,direct,medium,high,SAMTOOLS_FAIDX.sizes,UCSC_BEDGRAPHTOBIGWIG,class=direct; alternative-branch flag (rule demoted it)
+E01040,tierA only,direct,medium,high,HISAT2_ALIGN.fastq,KRAKEN2_KRAKEN2,class=direct; alternative-branch flag (rule demoted it)
+E01043,tierA only,direct,medium,high,STAR_ALIGN.fastq,KRAKEN2_KRAKEN2,class=direct; alternative-branch flag (rule demoted it)
+E01044,tierA only,direct,medium,high,UNTAR.untar,KRAKEN2_KRAKEN2,class=direct; alternative-branch flag (rule demoted it)
+E01045,high & tierA,direct,high,high,KRAKEN2_KRAKEN2.report,BRACKEN_BRACKEN,
+E01046,tierA only,direct,medium,high,UNTAR.untar,BRACKEN_BRACKEN,class=direct; alternative-branch flag (rule demoted it)
+E01068,high only,direct,high,high,SYLPH_PROFILE.profile_out,SYLPHTAX_TAXPROF,no preview DAG contains both endpoints
+E01086,tierA only,direct,medium,high,UNTAR.untar,SALMON_QUANT,class=direct; alternative-branch flag (rule demoted it)
+E01088,tierA only,direct,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,SALMON_QUANT,class=direct; alternative-branch flag (rule demoted it)
+E01110,tierA only,direct,medium,high,KALLISTO_INDEX.index,KALLISTO_QUANT,class=direct; alternative-branch flag (rule demoted it)
+E01112,tierA only,direct,medium,high,CUSTOM_GTFFILTER.gtf,KALLISTO_QUANT,class=direct; alternative-branch flag (rule demoted it)
+E01115,tierA only,direct,medium,high,CUSTOM_CATADDITIONALFASTA.gtf,CUSTOM_TX2GENE,class=direct; alternative-branch flag (rule demoted it)
+E01116,tierA only,direct,medium,high,CUSTOM_GTFFILTER.gtf,CUSTOM_TX2GENE,class=direct; alternative-branch flag (rule demoted it)
+E01119,tierA only,direct,medium,high,SALMON_QUANT.results,CUSTOM_TX2GENE,class=direct; alternative-branch flag (rule demoted it)
+E01120,tierA only,direct,medium,high,KALLISTO_QUANT.results,CUSTOM_TX2GENE,class=direct; alternative-branch flag (rule demoted it)
+E01121,tierA only,direct,medium,high,SALMON_QUANT.results,TXIMETA_TXIMPORT,class=direct; alternative-branch flag (rule demoted it)
+E01122,tierA only,direct,medium,high,KALLISTO_QUANT.results,TXIMETA_TXIMPORT,class=direct; alternative-branch flag (rule demoted it)
+E01123,high & tierA,direct,high,high,CUSTOM_TX2GENE.tx2gene,TXIMETA_TXIMPORT,
+E01124,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.counts_gene,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E01125,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.counts_gene_length_scaled,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E01126,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.counts_gene_scaled,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E01127,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.lengths_gene,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E01128,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.tpm_gene,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E01129,high & tierA,direct,high,high,CUSTOM_TX2GENE.tx2gene,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,
+E01130,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.counts_transcript,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E01131,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.lengths_transcript,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E01132,tierA only,merged-channel,medium,high,TXIMETA_TXIMPORT.tpm_transcript,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,class=merged-channel
+E01133,high & tierA,direct,high,high,TXIMETA_TXIMPORT.tx2gene_augmented,SUMMARIZEDEXPERIMENT_SUMMARIZEDEXPERIMENT,
+E01134,high & tierA,direct,high,high,TXIMETA_TXIMPORT.counts_gene_length_scaled,DESEQ2_QC,
+E01136,tierA only,reporting-aggregation,medium,medium,FASTQC.zip,MULTIQC,class=reporting-aggregation
+E01138,tierA only,reporting-aggregation,medium,medium,TRIMGALORE.zip,MULTIQC,class=reporting-aggregation
+E01140,tierA only,reporting-aggregation,medium,medium,TRIMGALORE.log,MULTIQC,class=reporting-aggregation
+E01142,tierA only,reporting-aggregation,medium,medium,TRIMGALORE.json,MULTIQC,class=reporting-aggregation
+E01145,tierA only,reporting-aggregation,medium,medium,BBMAP_BBSPLIT.stats,MULTIQC,class=reporting-aggregation
+E01151,tierA only,reporting-aggregation,medium,medium,FASTQC.zip,MULTIQC,class=reporting-aggregation
+E01152,tierA only,reporting-aggregation,medium,medium,SENTIEON_STARALIGN.log_final,MULTIQC,class=reporting-aggregation
+E01153,tierA only,reporting-aggregation,medium,medium,PARABRICKS_RNAFQ2BAM.log_final,MULTIQC,class=reporting-aggregation
+E01154,tierA only,reporting-aggregation,medium,medium,STAR_ALIGN.log_final,MULTIQC,class=reporting-aggregation
+E01155,tierA only,reporting-aggregation,medium,medium,SAMTOOLS_STATS.stats,MULTIQC,class=reporting-aggregation
+E01156,tierA only,reporting-aggregation,medium,medium,SAMTOOLS_FLAGSTAT.flagstat,MULTIQC,class=reporting-aggregation
+E01157,tierA only,reporting-aggregation,medium,medium,SAMTOOLS_IDXSTATS.idxstats,MULTIQC,class=reporting-aggregation
+E01162,tierA only,reporting-aggregation,medium,medium,HISAT2_ALIGN.summary,MULTIQC,class=reporting-aggregation
+E01175,tierA only,reporting-aggregation,medium,medium,RSEM_CALCULATEEXPRESSION.stat,MULTIQC,class=reporting-aggregation
+E01176,tierA only,reporting-aggregation,medium,medium,SAMTOOLS_STATS.stats,MULTIQC,class=reporting-aggregation
+E01177,tierA only,reporting-aggregation,medium,medium,SAMTOOLS_FLAGSTAT.flagstat,MULTIQC,class=reporting-aggregation
+E01178,tierA only,reporting-aggregation,medium,medium,SAMTOOLS_IDXSTATS.idxstats,MULTIQC,class=reporting-aggregation
+E01179,tierA only,reporting-aggregation,medium,medium,PICARD_MARKDUPLICATES.metrics,MULTIQC,class=reporting-aggregation
+E01186,tierA only,reporting-aggregation,medium,medium,PRESEQ_LCEXTRAP.lc_extrap,MULTIQC,class=reporting-aggregation
+E01187,tierA only,reporting-aggregation,medium,medium,CUSTOM_MULTIQCCUSTOMBIOTYPE.tsv,MULTIQC,class=reporting-aggregation
+E01188,tierA only,reporting-aggregation,medium,medium,QUALIMAP_RNASEQ.results,MULTIQC,class=reporting-aggregation
+E01189,tierA only,reporting-aggregation,medium,medium,DUPRADAR.multiqc,MULTIQC,class=reporting-aggregation
+E01190,tierA only,reporting-aggregation,medium,medium,RSEQC_BAMSTAT.txt,MULTIQC,class=reporting-aggregation
+E01191,tierA only,reporting-aggregation,medium,medium,RSEQC_INFEREXPERIMENT.txt,MULTIQC,class=reporting-aggregation
+E01192,tierA only,reporting-aggregation,medium,medium,RSEQC_INNERDISTANCE.freq,MULTIQC,class=reporting-aggregation
+E01193,tierA only,reporting-aggregation,medium,medium,RSEQC_JUNCTIONANNOTATION.log,MULTIQC,class=reporting-aggregation
+E01194,tierA only,reporting-aggregation,medium,medium,RSEQC_JUNCTIONSATURATION.rscript,MULTIQC,class=reporting-aggregation
+E01195,tierA only,reporting-aggregation,medium,medium,RSEQC_READDISTRIBUTION.txt,MULTIQC,class=reporting-aggregation
+E01196,tierA only,reporting-aggregation,medium,medium,RSEQC_READDUPLICATION.pos_xls,MULTIQC,class=reporting-aggregation
+E01198,tierA only,reporting-aggregation,medium,medium,KRAKEN2_KRAKEN2.report,MULTIQC,class=reporting-aggregation
+E01199,tierA only,reporting-aggregation,medium,medium,BRACKEN_BRACKEN.txt,MULTIQC,class=reporting-aggregation
+E01201,tierA only,reporting-aggregation,medium,medium,SALMON_QUANT.results,MULTIQC,class=reporting-aggregation
+E01202,tierA only,reporting-aggregation,medium,medium,KALLISTO_QUANT.log,MULTIQC,class=reporting-aggregation
+E01204,tierA only,reporting-aggregation,medium,medium,TRIMGALORE.reads,MULTIQC,class=reporting-aggregation
+E01221,tierA only,reporting-aggregation,medium,medium,BBMAP_BBSPLIT.primary_fastq,MULTIQC,class=reporting-aggregation
+E01229,tierA only,reporting-aggregation,medium,medium,DESEQ2_QC.pca_multiqc,MULTIQC,class=reporting-aggregation
+E01230,tierA only,reporting-aggregation,medium,medium,DESEQ2_QC.dists_multiqc,MULTIQC,class=reporting-aggregation
+E01231,tierA only,reporting-aggregation,medium,medium,DESEQ2_QC.pca_multiqc,MULTIQC,class=reporting-aggregation
+E01232,tierA only,reporting-aggregation,medium,medium,DESEQ2_QC.dists_multiqc,MULTIQC,class=reporting-aggregation
+E01233,tierA only,reporting-aggregation,medium,medium,DESEQ2_QC.pca_multiqc,MULTIQC,class=reporting-aggregation
+E01234,tierA only,reporting-aggregation,medium,medium,DESEQ2_QC.dists_multiqc,MULTIQC,class=reporting-aggregation
