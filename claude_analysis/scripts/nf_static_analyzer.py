@@ -157,6 +157,48 @@ def better(new, old):
     if is_key(old) != is_key(new): return is_key(old)
     return len(new) < len(old)
 
+
+# ------------------------------------------------ light-weight condition feasibility
+_ATOM_EQ = re.compile(r"^!?\(?\s*(?:params\.)?([A-Za-z_]\w*)\s*(==|!=)\s*['\"]([^'\"]+)['\"]\s*\)?$")
+_ATOM_BOOL = re.compile(r"^(!?)\(?\s*(?:params\.)?([A-Za-z_]\w*)\s*\)?$")
+
+def _atom(t):
+    t = t.strip()
+    m = _ATOM_EQ.match(t)
+    if m:
+        neg = t.startswith('!'); op = m.group(2)
+        eq = (op == '==') != neg
+        return (m.group(1), 'eq' if eq else 'ne', m.group(3))
+    m = _ATOM_BOOL.match(t)
+    if m: return (m.group(2), 'truthy', m.group(1) != '!')
+    return None
+
+def cond_atoms(cond):
+    cond = cond.strip()
+    if cond.startswith('NOT(') and cond.endswith(')'):
+        inner = cond[4:-1]
+        if '&&' in inner or '||' in inner: return []
+        a = _atom(inner)
+        if not a: return []
+        k, op, v = a
+        return [(k, {'eq': 'ne', 'ne': 'eq'}.get(op, op), (not v) if op == 'truthy' else v)]
+    if '||' in cond: return []
+    atoms = []
+    for part in cond.split('&&'):
+        a = _atom(part)
+        if a: atoms.append(a)
+    return atoms
+
+def infeasible(conds):
+    atoms = [a for c in conds for a in cond_atoms(c)]
+    for i, (k1, o1, v1) in enumerate(atoms):
+        for (k2, o2, v2) in atoms[i + 1:]:
+            if k1 != k2: continue
+            if o1 == 'eq' and o2 == 'eq' and v1 != v2: return True
+            if {o1, o2} == {'eq', 'ne'} and v1 == v2: return True
+            if o1 == o2 == 'truthy' and v1 != v2: return True
+    return False
+
 # --------------------------------------------------------------- file model
 class NFFile:
     def __init__(self, path, root):
@@ -247,6 +289,7 @@ class Analyzer:
         self.edges = []
         self.registry = {}      # wf instance -> {emit: prov}
         self.unresolved = []
+        self.infeasible = []
         self.entry = self.load(os.path.join(self.root, entry))
 
     def load(self, p):
@@ -536,6 +579,10 @@ class Analyzer:
         return {('wf', inst): ()}
 
     def add_edge(self, dst, idx, decl, port, trail, ctx, f, line):
+        allc = list(ctx['conds']) + [st[0][7:] for st in trail if st[0].startswith('branch:')] + list(self.instances.get(port[1], {}).get('conds', []))
+        if infeasible(allc):
+            self.infeasible.append({'src': port[1], 'emit': port[2], 'dst': dst, 'call': f'{f.rel}:{line}', 'conditions': allc})
+            return
         self.edges.append({'src_instance': port[1], 'src_emit': port[2], 'dst_instance': dst, 'dst_input_index': idx,
                            'dst_input_decl': decl, 'call_file': f.rel, 'call_line': line, 'conds': list(ctx['conds']), 'trail': trail})
 
@@ -577,7 +624,7 @@ if __name__ == '__main__':
     args = ap.parse_args()
     a, edges = build(args.root)
     os.makedirs(args.out, exist_ok=True)
-    json.dump({'instances': list(a.instances.values()), 'edges': edges, 'unresolved': a.unresolved},
+    json.dump({'instances': list(a.instances.values()), 'edges': edges, 'unresolved': a.unresolved, 'infeasible_edges_dropped': a.infeasible},
               open(os.path.join(args.out, 'static_graph.json'), 'w'), indent=1)
     procs = [i for i in a.instances.values() if i['kind'] == 'process']
-    print(len(procs), 'process instances;', len([i for i in a.instances.values() if i['kind'] == 'workflow']), 'workflow instances;', len(edges), 'edges;', len(a.unresolved), 'unresolved')
+    print(len(procs), 'process instances;', len([i for i in a.instances.values() if i['kind'] == 'workflow']), 'workflow instances;', len(edges), 'edges;', len(a.unresolved), 'unresolved;', len(a.infeasible), 'infeasible emit-edges dropped')

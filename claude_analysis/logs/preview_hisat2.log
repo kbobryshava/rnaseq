@@ -1,7 +1,7 @@
 
  N E X T F L O W   ~  version 26.10.5
 
-Launching `./main.nf` [romantic_magritte] revision: 049e37714e
+Launching `./main.nf` [trusting_chandrasekhar] revision: 049e37714e
 
 
 ------------------------------------------------------
@@ -50,10 +50,10 @@ Institutional config options
   config_profile_description: Minimal test dataset to check pipeline function
 
 Generic options
-  trace_report_suffix       : 2026-11-09_18-28-41
+  trace_report_suffix       : 2026-11-09_18-30-36
 
 Core Nextflow options
-  runName                   : romantic_magritte
+  runName                   : trusting_chandrasekhar
   launchDir                 : /mnt/c/Users/554256/dev/rnaseq
   workDir                   : /mnt/c/Users/554256/dev/rnaseq/work
   projectDir                : /mnt/c/Users/554256/dev/rnaseq
@@ -73,12 +73,298 @@ Core Nextflow options
 * Software dependencies
     https://github.com/nf-core/rnaseq/blob/master/CITATIONS.md
 
-ERROR ~ Validation of pipeline parameters failed!
+WARN: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Both '--gtf' and '--gff' parameters have been provided.
+  Using GTF file as priority.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+WARN: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  '--transcript_fasta' parameter has been provided.
+  Make sure transcript names in this file match those in the GFF/GTF file.
 
- -- Check '.nextflow.log' file for details
-The following invalid input values have been detected:
+  Please see:
+  https://github.com/nf-core/rnaseq/issues/753
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+WARN: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  When using '--additional_fasta <FASTA_FILE>' the aligner index will not
+  be re-built with the transgenes incorporated by default since you have 
+  already provided an index via '--hisat2_index <INDEX>'.
 
-* --skip_bigwig (true): Value is [string] but should be [boolean]
-* --skip_pseudo_alignment (true): Value is [string] but should be [boolean]
+  Set '--additional_fasta <FASTA_FILE> --hisat2_index false --gene_bed false --save_reference'
+  to re-build the index with transgenes included and the index and gene BED file will be saved in
+  'results/genome/index/hisat2/' for re-use with '--hisat2_index'.
 
- -- Check script 'subworkflows/nf-core/utils_nfschema_plugin/main.nf' at line: 72 or see '.nextflow.log' file for more details
+  Ignore this warning if you know that the index already contains transgenes.
+
+  Please see:
+  https://github.com/nf-core/rnaseq/issues/556
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_GTF -
+
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_GTF                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_GTFFILTER          -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_ADDITIONAL_FASTA   -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_CATADDITIONALFASTA -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:EAUTILS_GTF2BED           -
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_GTF                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_GTFFILTER          -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_ADDITIONAL_FASTA   -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_CATADDITIONALFASTA -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:EAUTILS_GTF2BED           -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:SAMTOOLS_FAIDX            -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:BBMAP_BBSPLIT                -
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_GTF                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_GTFFILTER          -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_ADDITIONAL_FASTA   -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_CATADDITIONALFASTA -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:EAUTILS_GTF2BED           -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:SAMTOOLS_FAIDX            -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:BBMAP_BBSPLIT                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:HISAT2_EXTRACTSPLICESITES    -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_HISAT2_INDEX           -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_SALMON_INDEX           -
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_GTF                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_GTFFILTER          -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_ADDITIONAL_FASTA   -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_CATADDITIONALFASTA -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:EAUTILS_GTF2BED           -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:SAMTOOLS_FAIDX            -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:BBMAP_BBSPLIT                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:HISAT2_EXTRACTSPLICESITES    -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_HISAT2_INDEX           -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_SALMON_INDEX           -
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_GTF                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_GTFFILTER          -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_ADDITIONAL_FASTA   -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_CATADDITIONALFASTA -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:EAUTILS_GTF2BED           -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:SAMTOOLS_FAIDX            -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:BBMAP_BBSPLIT                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:HISAT2_EXTRACTSPLICESITES    -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_HISAT2_INDEX           -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_SALMON_INDEX           -
+[-        ] NFCORE_RNASEQ:RNASEQ:SAMTOOLS_INDEX                               -
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_GTF                     -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_GTFFILTER               -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_ADDITIONAL_FASTA        -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_CATADDITIONALFASTA      -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:EAUTILS_GTF2BED                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:SAMTOOLS_FAIDX                 -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:BBMAP_BBSPLIT                     -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:HISAT2_EXTRACTSPLICESITES         -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_HISAT2_INDEX                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_SALMON_INDEX                -
+[-        ] NFCORE_RNASEQ:RNASEQ:SAMTOOLS_INDEX                                    -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:CAT_FASTQ    -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT      -
+[-        ] NFC…RIM_FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC -
+[-        ] NFC…FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE -
+[-        ] NFC…RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT_AFTER_TRIMMING -
+[-        ] NFC…E_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:BBMAP_BBSPLIT -
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_GTF                     -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_GTFFILTER               -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_ADDITIONAL_FASTA        -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_CATADDITIONALFASTA      -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:EAUTILS_GTF2BED                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:SAMTOOLS_FAIDX                 -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:BBMAP_BBSPLIT                     -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:HISAT2_EXTRACTSPLICESITES         -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_HISAT2_INDEX                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_SALMON_INDEX                -
+[-        ] NFCORE_RNASEQ:RNASEQ:SAMTOOLS_INDEX                                    -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:CAT_FASTQ    -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT      -
+[-        ] NFC…RIM_FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC -
+[-        ] NFC…FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE -
+[-        ] NFC…RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT_AFTER_TRIMMING -
+[-        ] NFC…E_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:BBMAP_BBSPLIT -
+[-        ] NFC…:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT_AFTER_BBSPLIT -
+[-        ] NFC…RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQC_FILTERED -
+[-        ] NFC…TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON:FQ_SUBSAMPLE -
+[-        ] NFC…TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON:SALMON_QUANT -
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_GTF                     -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_GTFFILTER               -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_ADDITIONAL_FASTA        -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_CATADDITIONALFASTA      -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:EAUTILS_GTF2BED                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:SAMTOOLS_FAIDX                 -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:BBMAP_BBSPLIT                     -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:HISAT2_EXTRACTSPLICESITES         -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_HISAT2_INDEX                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_SALMON_INDEX                -
+[-        ] NFCORE_RNASEQ:RNASEQ:SAMTOOLS_INDEX                                    -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:CAT_FASTQ    -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT      -
+[-        ] NFC…RIM_FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC -
+[-        ] NFC…FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE -
+[-        ] NFC…RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT_AFTER_TRIMMING -
+[-        ] NFC…E_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:BBMAP_BBSPLIT -
+[-        ] NFC…:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT_AFTER_BBSPLIT -
+[-        ] NFC…RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQC_FILTERED -
+[-        ] NFC…TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON:FQ_SUBSAMPLE -
+[-        ] NFC…TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON:SALMON_QUANT -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:HISAT2_ALIGN                   -
+[-        ] NFC…EQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_SORT -
+[-        ] NFC…Q:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_INDEX -
+[-        ] NFC…N_HISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS:SAMTOOLS_STATS -
+[-        ] NFC…ISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS:SAMTOOLS_FLAGSTAT -
+Plus 4 more processes waiting for tasks…
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_GTF                     -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_GTFFILTER               -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_ADDITIONAL_FASTA        -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_CATADDITIONALFASTA      -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:EAUTILS_GTF2BED                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:SAMTOOLS_FAIDX                 -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:BBMAP_BBSPLIT                     -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:HISAT2_EXTRACTSPLICESITES         -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_HISAT2_INDEX                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_SALMON_INDEX                -
+[-        ] NFCORE_RNASEQ:RNASEQ:SAMTOOLS_INDEX                                    -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:CAT_FASTQ    -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT      -
+[-        ] NFC…RIM_FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC -
+[-        ] NFC…FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE -
+[-        ] NFC…RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT_AFTER_TRIMMING -
+[-        ] NFC…E_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:BBMAP_BBSPLIT -
+[-        ] NFC…:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT_AFTER_BBSPLIT -
+[-        ] NFC…RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQC_FILTERED -
+[-        ] NFC…TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON:FQ_SUBSAMPLE -
+[-        ] NFC…TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON:SALMON_QUANT -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:HISAT2_ALIGN                   -
+[-        ] NFC…EQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_SORT -
+[-        ] NFC…Q:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_INDEX -
+[-        ] NFC…N_HISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS:SAMTOOLS_STATS -
+[-        ] NFC…ISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS:SAMTOOLS_FLAGSTAT -
+Plus 11 more processes waiting for tasks…
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_GTF                     -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_GTFFILTER               -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_ADDITIONAL_FASTA        -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_CATADDITIONALFASTA      -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:EAUTILS_GTF2BED                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:SAMTOOLS_FAIDX                 -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:BBMAP_BBSPLIT                     -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:HISAT2_EXTRACTSPLICESITES         -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_HISAT2_INDEX                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_SALMON_INDEX                -
+[-        ] NFCORE_RNASEQ:RNASEQ:SAMTOOLS_INDEX                                    -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:CAT_FASTQ    -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT      -
+[-        ] NFC…RIM_FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC -
+[-        ] NFC…FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE -
+[-        ] NFC…RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT_AFTER_TRIMMING -
+[-        ] NFC…E_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:BBMAP_BBSPLIT -
+[-        ] NFC…:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT_AFTER_BBSPLIT -
+[-        ] NFC…RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQC_FILTERED -
+[-        ] NFC…TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON:FQ_SUBSAMPLE -
+[-        ] NFC…TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON:SALMON_QUANT -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:HISAT2_ALIGN                   -
+[-        ] NFC…EQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_SORT -
+[-        ] NFC…Q:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_INDEX -
+[-        ] NFC…N_HISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS:SAMTOOLS_STATS -
+[-        ] NFC…ISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS:SAMTOOLS_FLAGSTAT -
+Plus 19 more processes waiting for tasks…
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_GTF                     -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_GTFFILTER               -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_ADDITIONAL_FASTA        -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_CATADDITIONALFASTA      -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:EAUTILS_GTF2BED                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:SAMTOOLS_FAIDX                 -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:BBMAP_BBSPLIT                     -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:HISAT2_EXTRACTSPLICESITES         -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_HISAT2_INDEX                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_SALMON_INDEX                -
+[-        ] NFCORE_RNASEQ:RNASEQ:SAMTOOLS_INDEX                                    -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:CAT_FASTQ    -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT      -
+[-        ] NFC…RIM_FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC -
+[-        ] NFC…FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE -
+[-        ] NFC…RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT_AFTER_TRIMMING -
+[-        ] NFC…E_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:BBMAP_BBSPLIT -
+[-        ] NFC…:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT_AFTER_BBSPLIT -
+[-        ] NFC…RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQC_FILTERED -
+[-        ] NFC…TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON:FQ_SUBSAMPLE -
+[-        ] NFC…TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON:SALMON_QUANT -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:HISAT2_ALIGN                   -
+[-        ] NFC…EQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_SORT -
+[-        ] NFC…Q:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_INDEX -
+[-        ] NFC…N_HISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS:SAMTOOLS_STATS -
+[-        ] NFC…ISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS:SAMTOOLS_FLAGSTAT -
+Plus 20 more processes waiting for tasks…
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_GTF                     -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_GTFFILTER               -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:GUNZIP_ADDITIONAL_FASTA        -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:CUSTOM_CATADDITIONALFASTA      -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:EAUTILS_GTF2BED                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_REFERENCES:SAMTOOLS_FAIDX                 -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:BBMAP_BBSPLIT                     -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:HISAT2_EXTRACTSPLICESITES         -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_HISAT2_INDEX                -
+[-        ] NFCORE_RNASEQ:PREPARE_GENOME_INDICES:UNTAR_SALMON_INDEX                -
+[-        ] NFCORE_RNASEQ:RNASEQ:SAMTOOLS_INDEX                                    -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:CAT_FASTQ    -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT      -
+[-        ] NFC…RIM_FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC -
+[-        ] NFC…FILTER_SETSTRANDEDNESS:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE -
+[-        ] NFC…RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT_AFTER_TRIMMING -
+[-        ] NFC…E_RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:BBMAP_BBSPLIT -
+[-        ] NFC…:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FQ_LINT_AFTER_BBSPLIT -
+[-        ] NFC…RNASEQ:RNASEQ:FASTQ_QC_TRIM_FILTER_SETSTRANDEDNESS:FASTQC_FILTERED -
+[-        ] NFC…TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON:FQ_SUBSAMPLE -
+[-        ] NFC…TRIM_FILTER_SETSTRANDEDNESS:FASTQ_SUBSAMPLE_FQ_SALMON:SALMON_QUANT -
+[-        ] NFCORE_RNASEQ:RNASEQ:FASTQ_ALIGN_HISAT2:HISAT2_ALIGN                   -
+[-        ] NFC…EQ:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_SORT -
+[-        ] NFC…Q:RNASEQ:FASTQ_ALIGN_HISAT2:BAM_SORT_STATS_SAMTOOLS:SAMTOOLS_INDEX -
+[-        ] NFC…N_HISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS:SAMTOOLS_STATS -
+[-        ] NFC…ISAT2:BAM_SORT_STATS_SAMTOOLS:BAM_STATS_SAMTOOLS:SAMTOOLS_FLAGSTAT -
+Plus 21 more processes waiting for tasks…
+-[nf-core/rnaseq] Pipeline completed successfully -
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+WARN: The operator `first` is useless when applied to a value channel which returns a single value by definition
+

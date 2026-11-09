@@ -1,1 +1,18 @@
-=== hisat2: --aligner hisat2 --skip_bigwig --skip_pseudo_alignment
+=== hisat2: {"aligner":"hisat2","skip_bigwig":true,"skip_pseudo_alignment":true}
+ok
+=== hisat2_kraken2_bracken: {"aligner":"hisat2","skip_bigwig":true,"contaminant_screening":"kraken2_bracken"}
+ok
+=== kallisto: {"pseudo_aligner":"kallisto","skip_qc":true,"skip_alignment":true,"additional_fasta":null,"transcript_fasta":null}
+ok
+=== kraken2: {"contaminant_screening":"kraken2"}
+ok
+=== kraken2_bracken: {"contaminant_screening":"kraken2_bracken"}
+ok
+=== parabricks_star: {"use_parabricks_star":true}
+ok
+=== salmon_pseudo: {"pseudo_aligner":"salmon","skip_qc":true,"skip_alignment":true}
+ok
+=== sentieon_star: {"use_sentieon_star":true}
+ok
+=== star_rsem: {"aligner":"star_rsem","skip_pseudo_alignment":true}
+ok
