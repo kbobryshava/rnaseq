@@ -1,0 +1,82 @@
+
+ N E X T F L O W   ~  version 26.10.5
+
+Launching `./main.nf` [friendly_kalman] revision: 049e37714e
+
+
+------------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/rnaseq 3.27.0
+------------------------------------------------------
+
+Input/output options
+  input                     : https://raw.githubusercontent.com/nf-core/test-datasets/626c8fab639062eade4b10747e919341cbf9b41a/samplesheet/v3.10/samplesheet_test.csv
+  outdir                    : /tmp/rnaseq-preview-star_rsem
+
+Reference genome options
+  fasta                     : https://raw.githubusercontent.com/nf-core/test-datasets/626c8fab639062eade4b10747e919341cbf9b41a/reference/genome.fasta
+  gtf                       : https://raw.githubusercontent.com/nf-core/test-datasets/626c8fab639062eade4b10747e919341cbf9b41a/reference/genes_with_empty_tid.gtf.gz
+  gff                       : https://raw.githubusercontent.com/nf-core/test-datasets/626c8fab639062eade4b10747e919341cbf9b41a/reference/genes.gff.gz
+  transcript_fasta          : https://raw.githubusercontent.com/nf-core/test-datasets/626c8fab639062eade4b10747e919341cbf9b41a/reference/transcriptome.fasta
+  additional_fasta          : https://raw.githubusercontent.com/nf-core/test-datasets/626c8fab639062eade4b10747e919341cbf9b41a/reference/gfp.fa.gz
+  hisat2_index              : https://raw.githubusercontent.com/nf-core/test-datasets/626c8fab639062eade4b10747e919341cbf9b41a/reference/hisat2.tar.gz
+  salmon_index              : https://raw.githubusercontent.com/nf-core/test-datasets/cad884e7fbe5617dcd55bdd07d9ddf65b54febe4/reference/salmon_2.7.0.tar.gz
+
+Read filtering options
+  bbsplit_fasta_list        : https://raw.githubusercontent.com/nf-core/test-datasets/626c8fab639062eade4b10747e919341cbf9b41a/reference/bbsplit_fasta_list.txt
+
+UMI options
+  umitools_bc_pattern       : NNNN
+  umi_discard_read          : 0
+
+Alignment options
+  aligner                   : star_rsem
+  pseudo_aligner            : salmon
+
+Quality Control
+  kraken_db                 : https://raw.githubusercontent.com/nf-core/test-datasets/eb0cbf73c3f103f8aeda9878ba200e92b4d045d8/data/genomics/sarscov2/genome/db/kraken2.tar.gz
+
+Process skipping options
+  skip_bbsplit              : false
+  skip_pseudo_alignment     : true
+
+Institutional config options
+  config_profile_name       : Test profile
+  config_profile_description: Minimal test dataset to check pipeline function
+
+Generic options
+  trace_report_suffix       : 2026-11-09_18-26-52
+
+Core Nextflow options
+  runName                   : friendly_kalman
+  launchDir                 : /mnt/c/Users/554256/dev/rnaseq
+  workDir                   : /mnt/c/Users/554256/dev/rnaseq/work
+  projectDir                : /mnt/c/Users/554256/dev/rnaseq
+  userName                  : xeni
+  profile                   : test
+  configFiles               : /mnt/c/Users/554256/dev/rnaseq/nextflow.config
+
+!! Only displaying parameters that differ from the pipeline defaults !!
+------------------------------------------------------
+
+* The pipeline
+    https://doi.org/10.5281/zenodo.1400710
+
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/rnaseq/blob/master/CITATIONS.md
+
+ERROR ~ Validation of pipeline parameters failed!
+
+ -- Check '.nextflow.log' file for details
+The following invalid input values have been detected:
+
+* --skip_pseudo_alignment (true): Value is [string] but should be [boolean]
+
+ -- Check script 'subworkflows/nf-core/utils_nfschema_plugin/main.nf' at line: 72 or see '.nextflow.log' file for more details
