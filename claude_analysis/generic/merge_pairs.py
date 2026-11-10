@@ -11,7 +11,7 @@ Writes:
   pairs_merged_long.csv    one row per (pipeline, pair): names, category, trust level, number of process edges
   pairs_merged_unique.csv  one row per distinct directed pair: in how many pipelines it appears (positive / negative), which, best trust level
   pairs_merged_unique_positive.csv  the same, only pairs with n_pipelines_positive > 0 (no negative-only pairs)
-  control_pool.csv   the control pool: pairs valid in >= 1 pipeline where BOTH tools have at least one identifier; pool_tier = gold / silver / curated_algorithmic / candidate_algorithmic / metadata_gate
+  control_pool.csv   the control pool, 8 columns (names, keys, bio.tools IDs, n_pipelines_positive, reverse_direction_pipelines); control_pool_full.csv has every column. Pool rule: pairs valid in >= 1 pipeline where BOTH tools have at least one identifier; pool_tier = gold / silver / curated_algorithmic / candidate_algorithmic / metadata_gate
   pairs_merged_summary.md  the most frequent pairs (analysis tools only)
 
 Software names are normalised for matching only (lower case, text in brackets removed, non-letters removed: 'SAMtools' = 'samtools', 'Trim Galore' = 'trimgalore').
@@ -140,8 +140,11 @@ def main():
     if BTID or ANYID:   # control pool: valid in >= 1 pipeline AND both tools have at least one identifier; A->B and B->A are separate rows
         pool = [dict(u, pool_tier=TIER[u['best_trust']]) for u in uniq if u['n_pipelines_positive'] >= 1 and u['source_has_any_id'] and u['target_has_any_id']]
         pool.sort(key=lambda u: (u['best_trust_rank'], -u['n_pipelines_positive'], u['source_key'], u['target_key']))
-        with open(os.path.join(out, 'control_pool.csv'), 'w', newline='', encoding='utf-8') as fh:
+        with open(os.path.join(out, 'control_pool_full.csv'), 'w', newline='', encoding='utf-8') as fh:   # every column, incl. pool_tier, trust, pipelines
             w = csv.DictWriter(fh, fieldnames=['pool_tier'] + list(uniq[0].keys()), lineterminator=chr(10)); w.writeheader(); w.writerows(pool)
+        SLIM = ['source_software', 'target_software', 'source_key', 'target_key', 'source_biotools_id', 'target_biotools_id', 'n_pipelines_positive', 'reverse_direction_pipelines']
+        with open(os.path.join(out, 'control_pool.csv'), 'w', newline='', encoding='utf-8') as fh:
+            w = csv.DictWriter(fh, fieldnames=SLIM, extrasaction='ignore', lineterminator=chr(10)); w.writeheader(); w.writerows(pool)
         print('control_pool.csv:', len(pool), 'directed pairs by tier', dict(collections.Counter(u['pool_tier'] for u in pool)), '| pairs also present in the reverse direction:', sum(1 for u in pool if u['reverse_direction_pipelines']))
     elif a.tool_ids is None: print('NOTE: control_pool.csv needs --tool-ids (run `ids` first)')
     posu = [u for u in uniq if u['n_pipelines_positive']]
