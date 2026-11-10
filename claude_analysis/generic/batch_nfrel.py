@@ -12,6 +12,7 @@ import argparse, concurrent.futures as cf, csv, json, os, re, subprocess, sys, t
 H = os.path.dirname(os.path.abspath(__file__))
 ap = argparse.ArgumentParser()
 ap.add_argument('--root', required=True); ap.add_argument('--out', required=True)
+ap.add_argument('--limit', type=int, default=0, help='analyse only the first N pipelines (for a test run)'); ap.add_argument('--only', default='', help='only pipelines whose path contains this text')
 ap.add_argument('--jobs', type=int, default=2); ap.add_argument('--timeout', type=int, default=900); ap.add_argument('--list-only', action='store_true')
 a = ap.parse_args()
 UNNAMED = re.compile(r'^\s*workflow\s*\{', re.M)
@@ -55,6 +56,8 @@ def run_one(repo):
 
 
 pipes = find_pipelines(a.root)
+if a.only: pipes = [p for p in pipes if a.only in p]
+if a.limit: pipes = pipes[:a.limit]
 print(len(pipes), 'pipelines found under', a.root)
 if a.list_only:
     print('\n'.join(pipes)); sys.exit(0)
