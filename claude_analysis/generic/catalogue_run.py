@@ -10,6 +10,7 @@ Steps (run them in this order, from the terminal):
   python catalogue_run.py run                   # all runnable pipelines (minutes)
   python catalogue_run.py report                # summary + software pairs that recur across pipelines
   python catalogue_run.py ids --lookup          # collect tool identifiers (bio.tools ID, bioconda package, DOI) -> tool_identifiers.csv
+  python catalogue_run.py match                 # fill missing bio.tools IDs from a local bio.tools dump (biotools_raw*.jsonl): DOI match is stronger than name match
   python catalogue_run.py merge                 # ONE table of all pairs (verified rnaseq + candidates from the other pipelines) with a trust level and the number of pipelines per pair
 
 Options: --catalogue DIR (default: current folder)  --tools DIR (default: ~/nfrel_tools)  --out DIR (default: <catalogue>/../../processed/nfrel_results if it exists, else ./nfrel_results)
@@ -22,10 +23,10 @@ BRANCH = 'claude/directed-software-analysis-3.27.0'
 UNNAMED = re.compile(r'^\s*workflow\s*\{', re.M)
 
 ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-ap.add_argument('step', nargs='?', choices=['setup', 'survey', 'run', 'report', 'ids', 'merge'])
+ap.add_argument('step', nargs='?', choices=['setup', 'survey', 'run', 'report', 'ids', 'match', 'merge'])
 ap.add_argument('--catalogue', default='.'); ap.add_argument('--tools', default=os.path.expanduser('~/nfrel_tools'))
 ap.add_argument('--out'); ap.add_argument('--limit', type=int, default=0); ap.add_argument('--only', default=''); ap.add_argument('--jobs', type=int, default=4)
-ap.add_argument('--timeout', type=int, default=900); ap.add_argument('--no-update', action='store_true'); ap.add_argument('--only-with-ids', choices=['biotools', 'any'], help='merge step: also write *_with_ids.csv with only pairs whose two tools both have a bio.tools ID (biotools) or any identifier (any)'); ap.add_argument('--lookup', action='store_true', help='ids step: also ask bio.tools (needs internet)')
+ap.add_argument('--timeout', type=int, default=900); ap.add_argument('--no-update', action='store_true'); ap.add_argument('--only-with-ids', choices=['biotools', 'any'], help='merge step: also write *_with_ids.csv with only pairs whose two tools both have a bio.tools ID (biotools) or any identifier (any)'); ap.add_argument('--biotools-jsonl', help='match step: local bio.tools dump (JSON lines); default: the newest biotools_raw*.jsonl in the results folder'); ap.add_argument('--lookup', action='store_true', help='ids step: also ask bio.tools (needs internet)')
 a = ap.parse_args()
 if not a.step: ap.print_help(); sys.exit(0)
 cat = os.path.abspath(a.catalogue)
@@ -147,9 +148,16 @@ def ids():
     sys.exit(sh(*cmd).returncode)
 
 
+def match():
+    import glob
+    f = a.biotools_jsonl or next(iter(sorted(glob.glob(os.path.join(out, 'biotools_raw*.jsonl')), key=os.path.getmtime, reverse=True)), None)
+    if not f or not os.path.exists(f): sys.exit('no bio.tools dump found - pass --biotools-jsonl FILE or put biotools_raw*.jsonl into ' + out)
+    sys.exit(sh(sys.executable, os.path.join(G, 'biotools_match.py'), '--tools', os.path.join(out, 'tool_identifiers.csv'), '--jsonl', f, '--out', out).returncode)
+
+
 def merge():
     ref = os.path.join(a.tools, 'claude_analysis', 'reference', 'software_level', 'software_relationships_all.csv')
     sys.exit(sh(sys.executable, os.path.join(G, 'merge_pairs.py'), '--results', out, '--rnaseq-reference', ref, *(['--tool-ids', os.path.join(out, 'tool_identifiers.csv')] if os.path.exists(os.path.join(out, 'tool_identifiers.csv')) else []), *(['--only-with-ids', a.only_with_ids] if a.only_with_ids else [])).returncode)
 
 
-{'setup': setup, 'survey': survey, 'run': run, 'report': report, 'ids': ids, 'merge': merge}[a.step]()
+{'setup': setup, 'survey': survey, 'run': run, 'report': report, 'ids': ids, 'match': match, 'merge': merge}[a.step]()

@@ -131,6 +131,20 @@ def lookup(k, name, known_id, cache):
     return out
 
 
+def resolve_parents(rows):
+    """names that are a known tool plus an operation (star_align -> star) get parent_key / parent_biotools_id / operation_suffix / parent_confidence"""
+    with_id = {r['tool_key']: r['biotools_id'] for r in rows if r['biotools_id'] and r['tool_key'] not in NO_NAME_LOOKUP and len(r['tool_key']) >= 3}
+    for r in rows:
+        r.update({'parent_key': '', 'parent_biotools_id': '', 'operation_suffix': '', 'parent_confidence': ''})
+        if r['biotools_id']: continue
+        toks = [t for t in re.split(r'[_\-\s]+', re.sub(r'\(.*?\)', '', r['tool_name']).lower()) if t]
+        if len(toks) < 2: continue
+        par = key(toks[0])
+        if par in with_id and par != r['tool_key']:
+            rest = toks[1:]
+            r.update({'parent_key': par, 'parent_biotools_id': with_id[par], 'operation_suffix': ' '.join(rest), 'parent_confidence': 'operation-suffix' if all(t in OPS or t.isdigit() for t in rest) else 'first-word-review'})
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--catalogue', required=True); ap.add_argument('--results'); ap.add_argument('--out', default='.'); ap.add_argument('--lookup', action='store_true'); ap.add_argument('--jobs', type=int, default=4)
@@ -159,16 +173,7 @@ def main():
                      'bioconda_package': pick(t['conda']), 'doi': ';'.join(d for d, _ in t['doi'].most_common(3)), 'homepage': pick(t['homepage']) or res.get('homepage', ''),
                      'documentation': pick(t['doc']), 'other_ids': ';'.join(res.get('other_ids', [])), 'publications': ';'.join(res.get('publications', [])),
                      'n_modules': len(t['modules']), 'n_pipelines': len(t['pipelines']), 'name_variants': ' | '.join(n for n, _ in t['names'].most_common(4))})
-    with_id = {r['tool_key']: r['biotools_id'] for r in rows if r['biotools_id'] and r['tool_key'] not in NO_NAME_LOOKUP and len(r['tool_key']) >= 3}
-    for r in rows:
-        r.update({'parent_key': '', 'parent_biotools_id': '', 'operation_suffix': '', 'parent_confidence': ''})
-        if r['biotools_id']: continue
-        toks = [t for t in re.split(r'[_\-\s]+', re.sub(r'\(.*?\)', '', r['tool_name']).lower()) if t]
-        if len(toks) < 2: continue
-        par = key(toks[0])
-        if par in with_id and par != r['tool_key']:
-            rest = toks[1:]
-            r.update({'parent_key': par, 'parent_biotools_id': with_id[par], 'operation_suffix': ' '.join(rest), 'parent_confidence': 'operation-suffix' if all(t in OPS or t.isdigit() for t in rest) else 'first-word-review'})
+    resolve_parents(rows)
     rows.sort(key=lambda r: (-r['n_pipelines'], r['tool_key']))
     f = os.path.join(a.out, 'tool_identifiers.csv')
     with open(f, 'w', newline='', encoding='utf-8') as fh:
@@ -179,4 +184,5 @@ def main():
     print('with a bioconda package:', sum(1 for r in rows if r['bioconda_package']), '| with a DOI:', sum(1 for r in rows if r['doi'] or r['publications']))
 
 
-main()
+if __name__ == '__main__':
+    main()
