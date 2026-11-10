@@ -61,3 +61,10 @@ Optional rules the analysis cannot see go in the map file: `callsite_infeasible`
 * `Negative_candidate / shared-input-no-path` can also be mutually exclusive alternatives; the tool labels them `mutually-exclusive-alternatives` only when `if` conditions contradict (not for `.branch { }` splits).
 * Worked example (tested): `generic/examples/fetchngs/` - nf-core/fetchngs 1.13.0, 52 files / 235 KB downloaded, 9 processes, 14 edges, curated in minutes.
 * Self-test: `python claude_analysis/generic/tests/test_generic.py` (synthetic mini pipeline, no network).
+
+## Old-style (DSL1) pipelines
+Pipelines without an unnamed `workflow { }` block but with `process x { input: ... from ch  output: ... into ch2 }` in `main.nf` are analysed by `scripts/dsl1_analyzer.py`
+(selected automatically by `nfrel.py`, `batch_nfrel.py` and `catalogue_run.py`). Edges follow `from`/`into` channels through `.set{}`, `.into{}`, assignments and operators (union semantics).
+Software has no module metadata there: it is guessed from `container`/`conda` directives and the commands of the script block, and is always UNREVIEWED.
+Limits: only `main.nf` is read; for/while/try blocks and channels built in functions are not interpreted.
+Self-test: `python generic/tests/test_generic.py` (includes `tests/mini_dsl1`).

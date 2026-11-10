@@ -26,7 +26,13 @@ def run(*cmd):
 
 
 py = sys.executable
-run(py, '-I', os.path.join(S, 'nf_static_analyzer.py'), '--root', repo, '--out', os.path.join(out, 'data', 'processed'))
+import re
+_main = open(os.path.join(repo, a.entry), encoding='utf-8', errors='replace').read()
+if not re.search(r'^\s*workflow\s*\{', _main, re.M) and re.search(r'^[ \t]*process[ \t]+\w+[ \t]*\{', _main, re.M):
+    print('old-style (DSL1) pipeline: using dsl1_analyzer.py')       # no unnamed workflow block: processes are wired with `from` / `into`
+    run(py, '-I', os.path.join(S, 'dsl1_analyzer.py'), '--root', repo, '--out', os.path.join(out, 'data', 'processed'), '--entry', a.entry)
+else:
+    run(py, '-I', os.path.join(S, 'nf_static_analyzer.py'), '--root', repo, '--out', os.path.join(out, 'data', 'processed'))
 import json
 g = json.load(open(os.path.join(out, 'data', 'processed', 'static_graph.json')))
 if not g['edges']:     # e.g. pipelines made of independent processes: a valid result, nothing to tabulate

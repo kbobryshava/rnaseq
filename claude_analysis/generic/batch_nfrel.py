@@ -16,6 +16,7 @@ ap.add_argument('--limit', type=int, default=0, help='analyse only the first N p
 ap.add_argument('--jobs', type=int, default=2); ap.add_argument('--timeout', type=int, default=900); ap.add_argument('--list-only', action='store_true')
 a = ap.parse_args()
 UNNAMED = re.compile(r'^\s*workflow\s*\{', re.M)
+DSL1_PROC = re.compile(r'^[ \t]*process[ \t]+\w+[ \t]*\{', re.M)
 SKIP_PARENTS = ('modules', 'subworkflows', 'tests', 'test', '.git', 'work')
 
 
@@ -29,6 +30,8 @@ def find_pipelines(root):
         try: txt = open(os.path.join(dp, 'main.nf'), encoding='utf-8', errors='replace').read()
         except OSError: continue
         if UNNAMED.search(txt) and any(os.path.isdir(os.path.join(dp, d)) for d in ('workflows', 'subworkflows', 'modules')):
+            found.append(dp); dn[:] = [d for d in dn if d not in ('modules', 'subworkflows', 'workflows', 'conf', 'tests')]
+        elif not UNNAMED.search(txt) and DSL1_PROC.search(txt) and re.search(r'\binto\b', txt):   # old-style (DSL1): processes wired with from/into, all in main.nf
             found.append(dp); dn[:] = [d for d in dn if d not in ('modules', 'subworkflows', 'workflows', 'conf', 'tests')]
     return sorted(found)
 

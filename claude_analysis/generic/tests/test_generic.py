@@ -18,3 +18,12 @@ assert not any(k[0] == 'Qualimap' and k[1] == 'SAMtools' for k in rows), 'revers
 val = {x['check']: x['status'] for x in __import__('json').load(open(os.path.join(out, 'reference', 'validation.json')))}
 assert 'FAIL' not in val.values(), val
 print('generic self-test OK ->', out)
+
+# ---- old-style (DSL1) pipeline: edges come from `into` / `from`, never from source order or the shared reference channel
+out2 = tempfile.mkdtemp(prefix='nfrel_dsl1_test_')
+r = subprocess.run([sys.executable, os.path.join(G, 'nfrel.py'), '--repo', os.path.join(H, 'mini_dsl1'), '--out', out2], capture_output=True, text=True)
+assert r.returncode == 0, r.stdout[-800:] + r.stderr[-800:]
+pe = {(x['src_instance'], x['dst_instance']) for x in csv.DictReader(open(os.path.join(out2, 'data', 'processed', 'process_edges.csv'), encoding='utf-8'))}
+want = {('trim', 'align'), ('trim', 'qc'), ('align', 'call'), ('qc', 'report'), ('call', 'report')}
+assert pe == want, (sorted(pe ^ want))
+print('dsl1 self-test OK ->', out2)

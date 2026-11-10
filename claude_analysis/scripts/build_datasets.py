@@ -157,12 +157,13 @@ def main():
     pmap, canon_used = [], {}
     for p, i in insts.items():
         if i['kind'] != 'process': continue
-        tools, env = module_meta(a.repo, i['module_file'])
+        if i.get('dsl1'): tools, env = [], list(i.get('software_hint') or [])   # old-style pipeline: no module metadata; hints come from container/conda directives and script commands
+        else: tools, env = module_meta(a.repo, i['module_file'])
         tt = topic_tools(i['outputs'])
         prim = PRIMARY.get(i['module'])
         method = 'curated'
         if not prim:
-            method = 'auto-from-environment-yml (UNREVIEWED)'
+            method = 'auto-from-script-and-directives (UNREVIEWED)' if i.get('dsl1') else 'auto-from-environment-yml (UNREVIEWED)'
             helpers = {'htslib', 'coreutils', 'grep', 'gzip', 'lbzip2', 'sed', 'tar', 'pigz', 'python', 'r-base'}
             prim = [e for e in env if e not in helpers][:1] or tools[:1] or [i['module'].lower()]   # last resort: the module name itself
             for k in prim: CANON.setdefault(k, (k, 'unknown'))

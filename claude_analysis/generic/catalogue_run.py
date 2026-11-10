@@ -65,7 +65,7 @@ def pipelines():
         subs = sorted(d for d in os.listdir(pd) if os.path.isdir(os.path.join(pd, d)) and not d.startswith('.'))
         for v in subs or ['']:
             d = os.path.join(pd, v) if v else pd
-            row = {'pipeline': p, 'version': v, 'path': d, 'has_main_nf': os.path.exists(os.path.join(d, 'main.nf')), 'unnamed_workflow': False, 'n_module_mainnf': 0, 'n_subworkflow_nf': 0,
+            row = {'pipeline': p, 'version': v, 'path': d, 'has_main_nf': os.path.exists(os.path.join(d, 'main.nf')), 'unnamed_workflow': False, 'dsl1': False, 'n_module_mainnf': 0, 'n_subworkflow_nf': 0,
                    'has_workflows_dir': os.path.isdir(os.path.join(d, 'workflows')), 'has_config': os.path.exists(os.path.join(d, 'nextflow.config')), 'has_git': os.path.isdir(os.path.join(d, '.git')), 'logs': ''}
             if row['has_main_nf']:
                 row['unnamed_workflow'] = bool(UNNAMED.search(open(os.path.join(d, 'main.nf'), encoding='utf-8', errors='replace').read()))
@@ -74,7 +74,11 @@ def pipelines():
                     row[key] += sum(1 for f in fs if f.endswith('.nf'))
             row['logs'] = ';'.join(f for f in os.listdir(d) if f.endswith('.log')) if os.path.isdir(d) else ''
             if not row['has_main_nf']: row['status'] = 'no main.nf' + (' (only a download log)' if row['logs'] else '')
-            elif not row['unnamed_workflow']: row['status'] = 'main.nf has no unnamed workflow {} block (old style or different entry)'
+            elif not row['unnamed_workflow']:
+                _t = open(os.path.join(d, 'main.nf'), encoding='utf-8', errors='replace').read()
+                is_dsl1 = bool(re.search(r'^[ \t]*process[ \t]+\w+[ \t]*\{', _t, re.M) and re.search(r'\binto\b', _t))
+                row['status'] = 'runnable' if is_dsl1 else 'main.nf has no unnamed workflow {} block and no processes (different entry)'
+                row['dsl1'] = is_dsl1
             elif not (row['has_workflows_dir'] or row['n_module_mainnf'] or row['n_subworkflow_nf']): row['status'] = 'no workflows/modules/subworkflows'
             else: row['status'] = 'runnable'
             rows.append(row)
