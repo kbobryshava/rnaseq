@@ -66,7 +66,7 @@ def trust_of(category, curated):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('--results', required=True); ap.add_argument('--rnaseq-reference'); ap.add_argument('--out'); ap.add_argument('--aliases'); ap.add_argument('--only-with-ids', choices=['biotools', 'any'], help='also write *_with_ids.csv files that keep only pairs where BOTH tools have a bio.tools ID (biotools) or at least one identifier of any kind (any); needs --tool-ids'); ap.add_argument('--tool-list', help='tools_with_ids.csv (from tools_with_ids.py): the ONLY tools allowed in the control pool; a pair is kept when both tools are in this list'); ap.add_argument('--tool-ids', help='tool_identifiers.csv from tool_ids.py: tools with the same bio.tools ID are merged and the ID is added to the output')
+    ap.add_argument('--results', required=True); ap.add_argument('--rnaseq-reference'); ap.add_argument('--out'); ap.add_argument('--aliases'); ap.add_argument('--only-with-ids', choices=['biotools', 'any'], help='also write *_with_ids.csv files that keep only pairs where BOTH tools have a bio.tools ID (biotools) or at least one identifier of any kind (any); needs --tool-ids'); ap.add_argument('--pool-ids', choices=['any', 'biotools'], default='any', help='control pool rule: both tools need at least one identifier of any kind (any) or a bio.tools ID (biotools)'); ap.add_argument('--tool-list', help='tools_with_ids.csv (from tools_with_ids.py): the ONLY tools allowed in the control pool; a pair is kept when both tools are in this list'); ap.add_argument('--tool-ids', help='tool_identifiers.csv from tool_ids.py: tools with the same bio.tools ID are merged and the ID is added to the output')
     a = ap.parse_args()
     out = a.out or a.results; os.makedirs(out, exist_ok=True)
     aliases = {}
@@ -142,7 +142,9 @@ def main():
         w = csv.DictWriter(fh, fieldnames=list(uniq[0].keys()) if uniq else ['x'], lineterminator=chr(10)); w.writeheader(); w.writerows([u for u in uniq if u['n_pipelines_positive']])
     TIER = {'verified_pair': 'gold', 'verified_family_rule': 'silver', 'algorithmic_curated_names': 'curated_algorithmic', 'algorithmic_unreviewed_names': 'candidate_algorithmic', 'gate_metadata': 'metadata_gate'}
     if BTID or ANYID:   # control pool: valid in >= 1 pipeline AND both tools have at least one identifier; A->B and B->A are separate rows
-        pool = [dict(u, pool_tier=TIER[u['best_trust']]) for u in uniq if u['n_pipelines_positive'] >= 1 and u['source_has_any_id'] and u['target_has_any_id']]
+        s_ok = (lambda u: bool(u['source_biotools_id'])) if a.pool_ids == 'biotools' else (lambda u: bool(u['source_has_any_id']))
+        t_ok = (lambda u: bool(u['target_biotools_id'])) if a.pool_ids == 'biotools' else (lambda u: bool(u['target_has_any_id']))
+        pool = [dict(u, pool_tier=TIER[u['best_trust']]) for u in uniq if u['n_pipelines_positive'] >= 1 and s_ok(u) and t_ok(u)]
         pool.sort(key=lambda u: (u['best_trust_rank'], -u['n_pipelines_positive'], u['source_key'], u['target_key']))
         with open(os.path.join(out, 'control_pool_full.csv'), 'w', newline='', encoding='utf-8') as fh:   # every column, incl. pool_tier, trust, pipelines
             w = csv.DictWriter(fh, fieldnames=['pool_tier'] + list(uniq[0].keys()), lineterminator=chr(10)); w.writeheader(); w.writerows(pool)
@@ -151,11 +153,11 @@ def main():
             w = csv.DictWriter(fh, fieldnames=SLIM, extrasaction='ignore', lineterminator=chr(10)); w.writeheader(); w.writerows(pool)
         print('control_pool.csv:', len(pool), 'directed pairs by tier', dict(collections.Counter(u['pool_tier'] for u in pool)), '| pairs also present in the reverse direction:', sum(1 for u in pool if u['reverse_direction_pipelines']))
         lacking = [dict(source_software=u['source_software'], target_software=u['target_software'], source_key=u['source_key'], target_key=u['target_key'], n_pipelines_positive=u['n_pipelines_positive'],
-                        tool_without_id=('both' if not u['source_has_any_id'] and not u['target_has_any_id'] else ('source' if not u['source_has_any_id'] else 'target')))
-                   for u in uniq if u['n_pipelines_positive'] >= 1 and not (u['source_has_any_id'] and u['target_has_any_id'])]
+                        tool_without_id=('both' if not s_ok(u) and not t_ok(u) else ('source' if not s_ok(u) else 'target')))
+                   for u in uniq if u['n_pipelines_positive'] >= 1 and not (s_ok(u) and t_ok(u))]
         with open(os.path.join(out, 'control_pool_excluded.csv'), 'w', newline='', encoding='utf-8') as fh:   # valid pairs left out because a tool is not in the tool list
             w = csv.DictWriter(fh, fieldnames=['source_software', 'target_software', 'source_key', 'target_key', 'n_pipelines_positive', 'tool_without_id'], lineterminator=chr(10)); w.writeheader(); w.writerows(lacking)
-        print('valid pairs kept in the pool:', len(pool), '| valid pairs left out because a tool has no ID:', len(lacking), '(control_pool_excluded.csv)')
+        print('pool rule:', 'both tools have a bio.tools ID' if a.pool_ids == 'biotools' else 'both tools have at least one identifier', '| valid pairs kept in the pool:', len(pool), '| valid pairs left out because a tool has no ID:', len(lacking), '(control_pool_excluded.csv)')
     elif a.tool_ids is None: print('NOTE: control_pool.csv needs --tool-ids (run `ids` first)')
     posu = [u for u in uniq if u['n_pipelines_positive']]
     core = [u for u in posu if not u['involves_utility_or_reporting']]
