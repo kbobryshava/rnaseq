@@ -162,7 +162,7 @@ def idtable():
 
 def merge():
     ref = os.path.join(a.tools, 'claude_analysis', 'reference', 'software_level', 'software_relationships_all.csv')
-    sys.exit(sh(sys.executable, os.path.join(G, 'merge_pairs.py'), '--results', out, '--rnaseq-reference', ref, *(['--tool-ids', os.path.join(out, 'tool_identifiers.csv')] if os.path.exists(os.path.join(out, 'tool_identifiers.csv')) else []), *(['--only-with-ids', a.only_with_ids] if a.only_with_ids else [])).returncode)
+    sys.exit(sh(sys.executable, os.path.join(G, 'merge_pairs.py'), '--results', out, '--rnaseq-reference', ref, *(['--tool-ids', os.path.join(out, 'tool_identifiers.csv')] if os.path.exists(os.path.join(out, 'tool_identifiers.csv')) else []), *(['--only-with-ids', a.only_with_ids] if a.only_with_ids else []), *(['--tool-list', os.path.join(out, 'tools_with_ids.csv')] if os.path.exists(os.path.join(out, 'tools_with_ids.csv')) else [])).returncode)
 
 
 {'setup': setup, 'survey': survey, 'run': run, 'report': report, 'ids': ids, 'match': match, 'idtable': idtable, 'merge': merge}[a.step]()
