@@ -102,7 +102,7 @@
 <node id="StringTie">
   <data key="d0">analysis</data>
 </node>
-<node id="RSeQC">
+<node id="RustQC">
   <data key="d0">qc</data>
 </node>
 <node id="Preseq">
@@ -115,6 +115,9 @@
   <data key="d0">qc</data>
 </node>
 <node id="dupRadar">
+  <data key="d0">qc</data>
+</node>
+<node id="RSeQC">
   <data key="d0">qc</data>
 </node>
 <node id="BEDTools">
@@ -207,7 +210,12 @@
   <data key="d3">False</data>
 </edge>
 <edge source="gzip (gunzip)" target="RSeQC">
-  <data key="d1">7</data>
+  <data key="d1">6</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="gzip (gunzip)" target="RustQC">
+  <data key="d1">1</data>
   <data key="d2">high</data>
   <data key="d3">False</data>
 </edge>
@@ -307,7 +315,12 @@
   <data key="d3">False</data>
 </edge>
 <edge source="GffRead" target="RSeQC">
-  <data key="d1">7</data>
+  <data key="d1">6</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="GffRead" target="RustQC">
+  <data key="d1">1</data>
   <data key="d2">high</data>
   <data key="d3">False</data>
 </edge>
@@ -406,7 +419,7 @@
   <data key="d2">high</data>
   <data key="d3">False</data>
 </edge>
-<edge source="nf-core custom script (Python)" target="RSeQC">
+<edge source="nf-core custom script (Python)" target="RustQC">
   <data key="d1">2</data>
   <data key="d2">high</data>
   <data key="d3">False</data>
@@ -647,7 +660,12 @@
   <data key="d3">False</data>
 </edge>
 <edge source="SAMtools" target="RSeQC">
-  <data key="d1">90</data>
+  <data key="d1">80</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="SAMtools" target="RustQC">
+  <data key="d1">10</data>
   <data key="d2">high</data>
   <data key="d3">False</data>
 </edge>
@@ -972,7 +990,12 @@
   <data key="d3">False</data>
 </edge>
 <edge source="STAR" target="RSeQC">
-  <data key="d1">9</data>
+  <data key="d1">8</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="STAR" target="RustQC">
+  <data key="d1">1</data>
   <data key="d2">low</data>
   <data key="d3">False</data>
 </edge>
@@ -1112,7 +1135,12 @@
   <data key="d3">False</data>
 </edge>
 <edge source="Bowtie 2" target="RSeQC">
-  <data key="d1">9</data>
+  <data key="d1">8</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Bowtie 2" target="RustQC">
+  <data key="d1">1</data>
   <data key="d2">low</data>
   <data key="d3">False</data>
 </edge>
@@ -1502,7 +1530,12 @@
   <data key="d3">False</data>
 </edge>
 <edge source="UMI-tools" target="RSeQC">
-  <data key="d1">9</data>
+  <data key="d1">8</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMI-tools" target="RustQC">
+  <data key="d1">1</data>
   <data key="d2">medium</data>
   <data key="d3">False</data>
 </edge>
@@ -1837,7 +1870,12 @@
   <data key="d3">False</data>
 </edge>
 <edge source="Sentieon STAR" target="RSeQC">
-  <data key="d1">9</data>
+  <data key="d1">8</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Sentieon STAR" target="RustQC">
+  <data key="d1">1</data>
   <data key="d2">low</data>
   <data key="d3">False</data>
 </edge>
@@ -1912,7 +1950,12 @@
   <data key="d3">False</data>
 </edge>
 <edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="RSeQC">
-  <data key="d1">9</data>
+  <data key="d1">8</data>
+  <data key="d2">low</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="NVIDIA Parabricks rna_fq2bam (STAR-based)" target="RustQC">
+  <data key="d1">1</data>
   <data key="d2">low</data>
   <data key="d3">False</data>
 </edge>
@@ -1962,7 +2005,12 @@
   <data key="d3">False</data>
 </edge>
 <edge source="UMICollapse" target="RSeQC">
-  <data key="d1">9</data>
+  <data key="d1">8</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="UMICollapse" target="RustQC">
+  <data key="d1">1</data>
   <data key="d2">medium</data>
   <data key="d3">False</data>
 </edge>
@@ -2017,7 +2065,12 @@
   <data key="d3">False</data>
 </edge>
 <edge source="Picard" target="RSeQC">
-  <data key="d1">9</data>
+  <data key="d1">8</data>
+  <data key="d2">high</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="Picard" target="RustQC">
+  <data key="d1">1</data>
   <data key="d2">high</data>
   <data key="d3">False</data>
 </edge>
@@ -2036,8 +2089,8 @@
   <data key="d2">high</data>
   <data key="d3">True</data>
 </edge>
-<edge source="RSeQC" target="MultiQC">
-  <data key="d1">14</data>
+<edge source="RustQC" target="MultiQC">
+  <data key="d1">6</data>
   <data key="d2">medium</data>
   <data key="d3">False</data>
 </edge>
@@ -2058,6 +2111,11 @@
 </edge>
 <edge source="dupRadar" target="MultiQC">
   <data key="d1">1</data>
+  <data key="d2">medium</data>
+  <data key="d3">False</data>
+</edge>
+<edge source="RSeQC" target="MultiQC">
+  <data key="d1">8</data>
   <data key="d2">medium</data>
   <data key="d3">False</data>
 </edge>

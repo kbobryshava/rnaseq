@@ -36,6 +36,8 @@ md = f"""# Audit of the extracted nf-core/rnaseq 3.27.0 relationship dataset
 Pipeline commit `a1fcdddd3b826fe46eb46f0479f2ff8a7815af05`. Scope: nf-core/rnaseq only; no other pipeline; no workflow execution (the audit is source reading plus the existing extraction and preview DAGs).
 **Nothing in `data/`, `reports/` or the earlier scripts was changed or overwritten**; everything here is new under `claude_analysis/audit/` and `claude_analysis/scripts/` (see section 9).
 
+> **Update (review release).** This report describes the audit of the 53 core pairs. Afterwards the remaining pairs were adjudicated per workflow family (`audit/curated/family_pair_decisions.csv`), RustQC was split from RSeQC, sibling-QC negatives were added and gate/metadata pairs became their own category. Current totals: `reference/README.md`.
+
 ## 1. Result
 
 | Set | Gold | Silver | Negative | Unresolved |

@@ -8,7 +8,9 @@ import csv, json, os, re, sys, collections
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 P = os.path.join(ROOT, 'data', 'processed'); A = os.path.join(ROOT, 'audit'); C = os.path.join(A, 'curated')
 R = os.path.join(ROOT, 'reference'); RP = os.path.join(R, 'process_level'); RS = os.path.join(R, 'software_level')
-for d in (RP, RS): os.makedirs(d, exist_ok=True)
+import shutil
+for d in (RP, RS):
+    shutil.rmtree(d, ignore_errors=True); os.makedirs(d, exist_ok=True)   # no stale files from earlier builds
 
 
 def rd(path): return list(csv.DictReader(open(path, encoding='utf-8', newline='')))
@@ -38,13 +40,21 @@ OPERATION = {   # by process (call) name first, then by module; default = module
     'DESEQ2_QC': 'DESeq2 QC (local R script)', 'UNTAR': 'tar extraction', 'GUNZIP': 'gunzip', 'CAT_FASTQ': 'cat (FASTQ concatenation)'}
 
 
-def operation(instance, module):
-    leaf = instance.split(':')[-1]
-    if leaf in OPERATION: return OPERATION[leaf]
-    if re.match(r'UNTAR_', leaf): return 'tar extraction'
-    if re.match(r'GUNZIP_', leaf): return 'gunzip'
-    if module in OPERATION: return OPERATION[module]
-    return module.lower().replace('_', ' ', 1)
+def operation(instance, module, emit=''):
+    parts = instance.split(':'); leaf = parts[-1]; parent = parts[-2] if len(parts) > 1 else ''
+    if leaf in OPERATION: base = OPERATION[leaf]
+    elif re.match(r'UNTAR_', leaf): base = 'tar extraction'
+    elif re.match(r'GUNZIP_', leaf): base = 'gunzip'
+    elif module in OPERATION: base = OPERATION[module]
+    else: base = module.lower().replace('_', ' ', 1)
+    if module == 'SALMON_QUANT':   # the same process has three different roles
+        base = {'FASTQ_SUBSAMPLE_FQ_SALMON': 'salmon quant on a FASTQ subsample (library-type / strandedness inference only)', 'QUANTIFY_BAM_SALMON': 'salmon quant in alignment mode (quantifies the transcriptome BAM)',
+                'QUANTIFY_PSEUDO_ALIGNMENT': 'salmon quant, mapping-based pseudo-alignment (quantification)'}.get(parent, base)
+    if module in ('STAR_ALIGN', 'SENTIEON_STARALIGN', 'PARABRICKS_RNAFQ2BAM', 'HISAT2_ALIGN', 'BOWTIE2_ALIGN') and emit:
+        role = {'bam': 'genome BAM', 'bam_transcript': 'transcriptome BAM', 'fastq': 'unaligned/filtered reads', 'log_final': 'alignment log (Log.final.out)'}.get(emit)
+        if role: base += f' [output: {role}]'
+    if module.startswith(('SAMTOOLS_', 'UMITOOLS_', 'UMICOLLAPSE', 'PICARD')) and parent: base += f' [in {parent}]'
+    return base
 
 
 def short(i): return i.split(':')[-1]
@@ -67,19 +77,20 @@ PAIR_DEC = {d['pair_id']: d['decision'] for d in DEC}
 prow = []
 for e in edges:
     f = FIN[e['edge_id']]; ev = EV[e['edge_id']]; cls = e['edge_class']; fin = f['confidence_final']; mv = f['manual_verification']
-    if mv == 'verified_positive': cat, sub, basis = 'source_verified_positive', 'gold_or_silver_supporting_edge', 'call site and input slot read in source (audit/curated/all_core_pair_decisions.csv)'
+    if mv == 'verified_positive' and f['verification_level'] == 'family': cat, sub, basis = 'source_verified_positive', 'family_rule_supporting_edge', 'workflow family read once in source; edge live and ordered (audit/curated/family_pair_decisions.csv)'
+    elif mv == 'verified_positive': cat, sub, basis = 'source_verified_positive', 'gold_or_silver_supporting_edge', 'call site and input slot read in source (audit/curated/all_core_pair_decisions.csv)'
     elif mv == 'verified_negative': cat, sub, basis = 'source_verified_negative', 'artifact_or_infeasible', f['final_reason']
     elif fin == 'rejected': cat, sub, basis = 'algorithmic_negative_candidate', 'payload_check_rejected', e['payload_check'] + ': ' + e['payload_check_detail']
     elif cls == 'key-only-synchronization': cat, sub, basis = 'algorithmic_negative_candidate', 'key_only_synchronisation', 'channel reduced to the sample key (.map { meta, _x -> meta }); payload not consumed'
-    elif cls in ('gating-or-metadata', 'metadata-dependency'): cat, sub, basis = 'unresolved', 'gate_or_metadata', 'output used as a gate or travels in meta; whether this counts as data is a definition choice'
+    elif cls in ('gating-or-metadata', 'metadata-dependency'): cat, sub, basis = 'functional_dependency_non_data', 'gate_or_metadata', 'output is not consumed as data: it gates processing or sets meta/parameters (e.g. inferred strandedness, percent-mapped filter)'
     else: cat, sub, basis = 'algorithmic_supported', 'reporting_aggregation' if cls == 'reporting-aggregation' else 'static_channel_provenance', 'static analysis' + (' + hub-free preview DAG' if e['evidence_tier'].startswith('A') else '')
     sm, dm = SWM[e['src_instance']], SWM[e['dst_instance']]
     prow.append({
         'edge_id': e['edge_id'], 'validation_category': cat, 'validation_subtype': sub, 'validation_basis': basis, 'pair_id': CORE_OF.get(e['edge_id'], ''),
         'src_instance': e['src_instance'], 'src_process': short(e['src_instance']), 'src_module': e['src_module'], 'src_emit': e['src_emit'],
         'dst_instance': e['dst_instance'], 'dst_process': short(e['dst_instance']), 'dst_module': e['dst_module'], 'dst_input_index': e['dst_input_index'],
-        'src_software': sm['primary_software'], 'dst_software': dm['primary_software'],
-        'src_operation': operation(e['src_instance'], e['src_module']), 'dst_operation': operation(e['dst_instance'], e['dst_module']),
+        'verification_level': ('family' if f['verification_level'] == 'family' else 'pair') if cat == 'source_verified_positive' else '', 'src_software': sm['primary_software'], 'dst_software': dm['primary_software'],
+        'src_operation': operation(e['src_instance'], e['src_module'], e['src_emit']), 'dst_operation': operation(e['dst_instance'], e['dst_module']),
         'edge_class': cls, 'evidence_tier': e['evidence_tier'], 'confidence_v1': e['confidence_v1'], 'confidence_v2_rule': e['confidence_v2'], 'confidence_final': fin,
         'payload_check': e['payload_check'], 'required_params': e['required_param_assumptions'], 'conditional': e['conditional'],
         'producer_call': e['producer_call'], 'consumer_call': e['consumer_call'], 'src_module_file': ev['src_module_file'], 'dst_module_file': ev['dst_module_file'],
@@ -91,7 +102,7 @@ PCOLS = list(prow[0].keys())
 n_all = wr(os.path.join(RP, 'process_relationships_all.csv'), prow, PCOLS)
 cnt_p = collections.Counter(r['validation_category'] for r in prow)
 for cat, fn in (('source_verified_positive', 'process_source_verified_positive.csv'), ('source_verified_negative', 'process_source_verified_negative.csv'),
-                ('algorithmic_supported', 'process_algorithmic_supported.csv'), ('algorithmic_negative_candidate', 'process_algorithmic_negative_candidates.csv'), ('unresolved', 'process_unresolved.csv')):
+                ('algorithmic_supported', 'process_algorithmic_supported.csv'), ('algorithmic_negative_candidate', 'process_algorithmic_negative_candidates.csv'), ('functional_dependency_non_data', 'process_dependencies_gate_metadata.csv')):
     wr(os.path.join(RP, fn), [r for r in prow if r['validation_category'] == cat], PCOLS)
 
 # ---------------------------------------------------------------- software level
@@ -110,7 +121,7 @@ def agg(rows):
 srows, used = [], set()
 def add(src, dst, category, vcat, sub, conf, basis, expl, rows, pair_id='', flow='', ident=''):
     d = {'source_software': src, 'target_software': dst, 'category': category, 'validation_category': vcat, 'validation_subtype': sub, 'decision_confidence': conf,
-         'pair_id': pair_id, 'flow_type': flow, 'identity_flag': ident, 'evidence_basis': basis, 'explanation': expl, 'is_self_loop': src == dst,
+         'pair_id': pair_id, 'flow_type': flow, 'identity_flag': ident, 'evidence_basis': basis, 'explanation': expl, 'verification_level': '', 'is_self_loop': src == dst,
          'only_reporting': bool(rows) and all(r['edge_class'] == 'reporting-aggregation' for r in rows)}
     d.update(agg(rows)); srows.append(d); used.add((src, dst))
 
@@ -120,16 +131,29 @@ for d in DEC:
     ids = set(d['supporting_process_edges'].split(';')); rows = [r for r in prow if r['edge_id'] in ids]
     ev = EV[sorted(ids)[0]]
     add(d['source_software'], d['target_software'], d['decision'], 'source_verified_positive', d['flow_type'], d['decision_confidence'], d['source_lines_read_by_auditor'], d['explanation'], rows, d['pair_id'], d['flow_type'], d['identity_flag'])
-    srows[-1]['required_params'] = d['conditions_required']
+    srows[-1]['required_params'] = d['conditions_required']; srows[-1]['verification_level'] = 'pair'
+FAMD = rd(os.path.join(C, 'family_pair_decisions.csv'))
+for d in FAMD:
+    ids = set(d['supporting_process_edges'].split(';')); rows = [r for r in prow if r['edge_id'] in ids]
+    add(d['source_software'], d['target_software'], d['decision'], 'source_verified_positive', d['flow_type'], d['decision_confidence'], d['source_lines_read_by_auditor'], d['explanation'], rows, d['pair_id'], d['flow_type'],
+        'weak-identity (utility / local script)' if d['decision'] == 'Silver' else '')
+    srows[-1]['verification_level'] = 'family-rule'; srows[-1]['required_params'] = '; '.join(sorted({r['required_params'] for r in rows if r['required_params']})[:3])
 for n in NEG:
     key = (n['source_software'], n['target_software']); rows = [r for r in by_pair.get(key, [])]
     ver = n['verification'].startswith('manual')
     pid = next((d['pair_id'] for d in DEC if (d['source_software'], d['target_software']) == key and d['decision'] == 'Negative'), '')
     add(key[0], key[1], 'Negative_verified' if ver else 'Negative_unverified', 'source_verified_negative' if ver else 'algorithmic_negative_candidate', n['negative_kind'], n['decision_confidence'],
         n['verification'] + ' || ' + n['evidence'], n['direction_tested'], rows, pid)
+def dep_subtype(rows):
+    em = {r['src_emit'] for r in rows}
+    if 'lib_format_counts' in em: return 'strandedness-inference (Salmon lib_format_counts -> meta.strandedness -> parameters of aligners/QC)'
+    if any(r['edge_class'] == 'gating-or-metadata' for r in rows) and any(r['src_module'] in ('STAR_ALIGN', 'SENTIEON_STARALIGN', 'PARABRICKS_RNAFQ2BAM', 'HISAT2_ALIGN', 'BOWTIE2_ALIGN') for r in rows): return 'percent-mapped gate (min_mapped_reads filters BAMs)'
+    if any(r['src_module'] in ('TRIMGALORE', 'FASTP') for r in rows): return 'trimming-yield gate (min_trimmed_reads)'
+    return 'other gate / metadata'
 for u in UNR:
     key = (u['source_software'], u['target_software']); rows = by_pair.get(key, [])
-    add(key[0], key[1], 'Unresolved', 'unresolved', u['negative_kind'], u['decision_confidence'], u['verification'] + ' || ' + u['evidence'], 'gate/metadata-only dependency; definition-dependent', rows)
+    add(key[0], key[1], 'Dependency_gate_metadata', 'functional_dependency_non_data', dep_subtype(rows), u['decision_confidence'], u['verification'] + ' || ' + u['evidence'], 'functional dependency that is not a data payload: output gates processing or sets parameters', rows)
+    srows[-1]['verification_level'] = 'pair'
 # remaining extracted software pairs: algorithmic
 leftover = collections.Counter()
 for key in sorted(by_pair):
@@ -142,17 +166,17 @@ for key in sorted(by_pair):
     else:
         kinds = {r['validation_category'] for r in rows}
         leftover[tuple(sorted(kinds))] += 1
-        add(key[0], key[1], 'Unclassified_no_live_edge', 'unresolved' if 'unresolved' in kinds else 'algorithmic_negative_candidate', 'only_rejected_gate_or_sync_edges', 'low',
+        add(key[0], key[1], 'Unclassified_no_live_edge', 'functional_dependency_non_data' if 'functional_dependency_non_data' in kinds else 'algorithmic_negative_candidate', 'only_rejected_gate_or_sync_edges', 'low',
             'every extracted edge is rejected, key-only or gate/metadata; pair involves a utility/reporting node excluded from the curated negative sets', 'not adjudicated', rows)
 srows.sort(key=lambda r: (r['category'], r['source_software'], r['target_software']))
 for i, r in enumerate(srows, 1): r['software_pair_id'] = f'SW{i:04d}'
 SCOLS = ['software_pair_id', 'source_software', 'target_software', 'category', 'validation_category', 'validation_subtype', 'decision_confidence', 'pair_id', 'flow_type', 'identity_flag',
-         'is_self_loop', 'only_reporting', 'n_process_edges', 'process_edge_ids', 'source_processes', 'target_processes', 'source_operations', 'target_operations', 'required_params',
+         'verification_level', 'is_self_loop', 'only_reporting', 'n_process_edges', 'process_edge_ids', 'source_processes', 'target_processes', 'source_operations', 'target_operations', 'required_params',
          'hubfree_dag_configs', 'in_default_test_profile', 'evidence_basis', 'explanation']
 for r in srows: r.setdefault('required_params', '')
 wr(os.path.join(RS, 'software_relationships_all.csv'), srows, SCOLS)
 for cat, fn in (('Gold', 'gold_positive_controls.csv'), ('Silver', 'silver_positive_controls.csv'), ('Negative_verified', 'negative_controls_verified.csv'), ('Negative_unverified', 'negative_candidates_unverified.csv'),
-                ('Unresolved', 'unresolved_gate_metadata.csv'), ('Algorithmic_supported', 'algorithmic_supported_pairs.csv'), ('Unclassified_no_live_edge', 'unclassified_pairs.csv')):
+                ('Dependency_gate_metadata', 'dependencies_gate_metadata.csv'), ('Algorithmic_supported', 'algorithmic_supported_pairs.csv'), ('Unclassified_no_live_edge', 'unclassified_pairs.csv')):
     rows_ = [r for r in srows if r['category'] == cat]
     if rows_ or cat != 'Unclassified_no_live_edge': wr(os.path.join(RS, fn), rows_, SCOLS)
 cnt_s = collections.Counter(r['category'] for r in srows)

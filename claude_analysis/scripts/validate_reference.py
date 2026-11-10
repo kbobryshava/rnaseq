@@ -9,7 +9,7 @@ import networkx as nx
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE); REPO = os.path.dirname(ROOT)
 P = os.path.join(ROOT, 'data', 'processed'); A = os.path.join(ROOT, 'audit'); C = os.path.join(A, 'curated'); R = os.path.join(ROOT, 'reference')
 RP = os.path.join(R, 'process_level'); RS = os.path.join(R, 'software_level')
-FROZEN = {'Gold': 29, 'Silver': 22, 'Negative_verified': 19, 'Negative_unverified': 127, 'Unresolved': 37}   # record counts of the frozen release
+FROZEN = {'Gold': 203, 'Silver': 91, 'Negative_verified': 56, 'Negative_unverified': 229, 'Dependency_gate_metadata': 41, 'Algorithmic_supported': 46}   # record counts of the frozen release
 rd = lambda p: list(csv.DictReader(open(p, encoding='utf-8', newline='')))
 res = []   # (id, title, status, detail)
 def check(cid, title, bad, info='', warn=False):
@@ -39,8 +39,9 @@ check('D5', 'category files add up to the combined table', [] if sum(len(v) for 
 # ---- 2 contradictions
 pos = {(r['source_software'], r['target_software']) for r in SW if r['category'] in ('Gold', 'Silver')}
 neg = {(r['source_software'], r['target_software']) for r in SW if r['category'].startswith('Negative')}
-unr = {(r['source_software'], r['target_software']) for r in SW if r['category'] == 'Unresolved'}
-ind_pos = {(r['source_software'], r['target_software']) for r in rd(os.path.join(C, 'positive_controls.csv'))}
+unr = {(r['source_software'], r['target_software']) for r in SW if r['category'] == 'Dependency_gate_metadata'}
+FAMD = rd(os.path.join(C, 'family_pair_decisions.csv'))
+ind_pos = {(r['source_software'], r['target_software']) for r in rd(os.path.join(C, 'positive_controls.csv')) + FAMD}
 ind_neg = {(r['source_software'], r['target_software']) for r in rd(os.path.join(C, 'negative_controls.csv'))}
 ind_unr = {(r['source_software'], r['target_software']) for r in rd(os.path.join(C, 'unresolved.csv'))}
 check('C1', 'no pair is both positive and negative/unresolved (independent source files)', sorted((ind_pos & ind_neg) | (ind_pos & ind_unr) | (ind_neg & ind_unr)))
@@ -175,13 +176,26 @@ pa = {r['edge_id']: r['family_verdict'] for r in rd(os.path.join(A, 'payload_aud
 check('A2', 'audit payload verdicts equal the verdicts stored in the canonical build', [e for e, v in pa.items() if EDGES[e]['payload_check'] != v])
 aud = json.load(open(os.path.join(A, 'summary.json')))
 cnt = collections.Counter(r['category'] for r in SW)
-check('A3', 'audit summary counts equal reference counts', [] if (aud['decisions_core53']['Gold'] == cnt['Gold'] and aud['decisions_core53']['Silver'] == cnt['Silver'] and aud['negative_controls']['manually_verified'] == cnt['Negative_verified'] and aud['negative_controls']['unresolved_information_dependency'] == cnt['Unresolved'] and aud['negative_controls']['total_unique_ordered_pairs'] == cnt['Negative_verified'] + cnt['Negative_unverified']) else [str(aud['decisions_core53']), dict(cnt)])
+core_g = sum(1 for r in rd(os.path.join(C, 'all_core_pair_decisions.csv')) if r['decision'] == 'Gold'); core_s = sum(1 for r in rd(os.path.join(C, 'all_core_pair_decisions.csv')) if r['decision'] == 'Silver')
+fam_g = sum(1 for r in FAMD if r['decision'] == 'Gold'); fam_s = sum(1 for r in FAMD if r['decision'] == 'Silver')
+check('A3', 'audit decision files (53 core + family rules) equal reference counts', [] if (core_g + fam_g == cnt['Gold'] and core_s + fam_s == cnt['Silver'] and aud['negative_controls']['manually_verified'] == cnt['Negative_verified'] and aud['negative_controls']['unresolved_information_dependency'] == cnt['Dependency_gate_metadata'] and aud['negative_controls']['total_unique_ordered_pairs'] == cnt['Negative_verified'] + cnt['Negative_unverified']) else [f'core {core_g}/{core_s} + family {fam_g}/{fam_s} vs {dict(cnt)}'])
 v1 = {r['edge_id']: r['confidence'] for r in rd(os.path.join(ROOT, 'data', 'processed_v1_original', 'process_edges.csv'))}
 check('A4', 'original (v1) confidence preserved: confidence_v1 equals the frozen original results for every edge', [e for e in EDGES if v1.get(e) != EDGES[e]['confidence_v1']])
 check('A5', 'edge sets of canonical and original results are identical', [] if set(v1) == set(EDGES) else ['edge id sets differ'])
 check('A6', 'process category counts add up', [] if sum(collections.Counter(r['validation_category'] for r in PR).values()) == len(EDGES) else ['mismatch'])
 chg = collections.Counter((r['confidence_v1'], r['confidence_final']) for r in PR)
 info('A7', 'confidence_v1 -> confidence_final transitions', ', '.join(f'{a}->{b}: {n}' for (a, b), n in sorted(chg.items())))
+
+# ---- family rules are re-applied independently
+from family_rules import classify
+EDG = {e['edge_id']: e for e in rd(os.path.join(P, 'process_edges.csv'))}
+badf = [(r['software_pair_id'], e) for r in SW if r['verification_level'] == 'family-rule' for e in r['process_edge_ids'].split(';') if classify(EDG[e]) is None]
+check('V1', 'every edge behind a family-rule Gold/Silver pair still satisfies the family rule (live edge, stage order)', badf)
+check('V2', 'every positive pair states its verification level (pair or family-rule)', [r['software_pair_id'] for r in SW if r['category'] in ('Gold', 'Silver') and r['verification_level'] not in ('pair', 'family-rule')])
+check('V3', 'no weak-identity (tar/gzip/cat/sed/gawk/custom script) pair is Gold', [r['software_pair_id'] for r in SW if r['category'] == 'Gold' and r['identity_flag']])
+check('V4', 'RustQC is its own software node (not RSeQC)', [] if any(r['source_software'] == 'RustQC' or r['target_software'] == 'RustQC' for r in SW) and not any('RUSTQC' in (r['source_processes'] + r['target_processes']) and 'RSeQC' in (r['source_software'] + r['target_software']) for r in SW) else ['RustQC mapped to RSeQC'])
+sal = {r['source_operations'] for r in SW if r['source_software'] == 'Salmon' and r['category'] in ('Gold', 'Silver')} | {r['target_operations'] for r in SW if r['target_software'] == 'Salmon' and r['category'] in ('Gold', 'Silver')}
+check('V5', 'Salmon roles are distinguished (strandedness inference vs quantification) in the operation columns', [] if any('strandedness' in x for x in sal) and any('quantification' in x or 'quantifies' in x for x in sal) else ['roles not distinguished'])
 
 # ---- 8 frozen counts
 check('F1', 'record counts equal the frozen release', [f'{k}: {cnt[k]} != {v}' for k, v in FROZEN.items() if cnt[k] != v])

@@ -141,7 +141,7 @@ NFCORE_RNASEQ:RNASEQ:BAM_MARKDUPLICATES_PICARD:BAM_STATS_SAMTOOLS:SAMTOOLS_IDXST
 NFCORE_RNASEQ:RNASEQ:BAM_STRINGTIE_MERGE:STRINGTIE_STRINGTIE,STRINGTIE_STRINGTIE,modules/nf-core/stringtie/stringtie/main.nf,1,stringtie,StringTie,analysis,,stringtie2,stringtie,stringtie,False,curated,
 NFCORE_RNASEQ:RNASEQ:BAM_STRINGTIE_MERGE:STRINGTIE_MERGE,STRINGTIE_MERGE,modules/nf-core/stringtie/merge/main.nf,1,stringtie,StringTie,analysis,,stringtie2,stringtie,stringtie,False,curated,
 NFCORE_RNASEQ:RNASEQ:STRINGTIE_STRINGTIE,STRINGTIE_STRINGTIE,modules/nf-core/stringtie/stringtie/main.nf,1,stringtie,StringTie,analysis,,stringtie2,stringtie,stringtie,False,curated,
-NFCORE_RNASEQ:RNASEQ:RUSTQC,RUSTQC,modules/nf-core/rustqc/main.nf,1,rseqc,RSeQC,qc,,rustqc,rustqc,rustqc,False,curated,
+NFCORE_RNASEQ:RNASEQ:RUSTQC,RUSTQC,modules/nf-core/rustqc/main.nf,1,rustqc,RustQC,qc,,rustqc,rustqc,rustqc,False,curated,"RustQC (rustqc rna) is a distinct Rust re-implementation of RSeQC/dupRadar/featureCounts/Preseq/Qualimap-style QC, not RSeQC"
 NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:PRESEQ_LCEXTRAP,PRESEQ_LCEXTRAP,modules/nf-core/preseq/lcextrap/main.nf,1,preseq,Preseq,qc,,preseq,preseq,preseq,False,curated,
 NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:SUBREAD_FEATURECOUNTS,SUBREAD_FEATURECOUNTS,modules/nf-core/subread/featurecounts/main.nf,1,featurecounts,featureCounts (Subread),quantification,,featurecounts,subread,subread,False,curated,
 NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:CUSTOM_MULTIQCCUSTOMBIOTYPE,CUSTOM_MULTIQCCUSTOMBIOTYPE,modules/nf-core/custom/multiqccustombiotype/main.nf,1,local_python,nf-core custom script (Python),utility,,custom,python,,False,curated,

@@ -25,7 +25,8 @@ preseq,Preseq,qc,,1
 qualimap,Qualimap,qc,,1
 ribodetector,RiboDetector,analysis,,1
 rsem,RSEM,quantification,,3
-rseqc,RSeQC,qc,,9
+rseqc,RSeQC,qc,,8
+rustqc,RustQC,qc,,1
 salmon,Salmon,quantification,,5
 samtools,SAMtools,utility,,50
 sed,sed,utility,,2

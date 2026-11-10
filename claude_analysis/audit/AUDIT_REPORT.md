@@ -3,17 +3,19 @@
 Pipeline commit `a1fcdddd3b826fe46eb46f0479f2ff8a7815af05`. Scope: nf-core/rnaseq only; no other pipeline; no workflow execution (the audit is source reading plus the existing extraction and preview DAGs).
 **Nothing in `data/`, `reports/` or the earlier scripts was changed or overwritten**; everything here is new under `claude_analysis/audit/` and `claude_analysis/scripts/` (see section 9).
 
+> **Update (review release).** This report describes the audit of the 53 core pairs. Afterwards the remaining pairs were adjudicated per workflow family (`audit/curated/family_pair_decisions.csv`), RustQC was split from RSeQC, sibling-QC negatives were added and gate/metadata pairs became their own category. Current totals: `reference/README.md`.
+
 ## 1. Result
 
 | Set | Gold | Silver | Negative | Unresolved |
 |---|---|---|---|---|
 | The 53 core (tier A) software pairs | **29** | **22** | **2** | **0** |
-| Separate negative-control dataset (ordered software pairs, includes the 2 above) | - | - | **146** (19 read in source, the rest graph- or rule-computed) | - |
-| Pairs set aside outside the 53 (gate/metadata-only dependencies, definition-dependent) | - | - | - | **37** |
+| Separate negative-control dataset (ordered software pairs, includes the 2 above) | - | - | **285** (56 read in source, the rest graph- or rule-computed) | - |
+| Pairs set aside outside the 53 (gate/metadata-only dependencies, definition-dependent) | - | - | - | **41** |
 
 * Positive control = Gold + Silver = **51** pairs (`curated/positive_controls.csv`). Gold is the conservative set to use as ground truth.
 * Why no Unresolved among the 53: every one could be decided by reading the call site and the module declarations. What stays unproven is stated in section 8, not hidden in a label.
-* Edge level (all 1234 process edges, `process_edges_final_confidence.csv`): confidence v1 {'medium': 963, 'high': 47, 'low': 224} -> final {'high': 382, 'medium': 547, 'rejected': 83, 'low': 222}. 83 edges are rejected as extractor artifacts or infeasible paths.
+* Edge level (all 1234 process edges, `process_edges_final_confidence.csv`): confidence v1 {'medium': 963, 'high': 47, 'low': 224} -> final {'high': 749, 'rejected': 83, 'medium': 180, 'low': 222}. 83 edges are rejected as extractor artifacts or infeasible paths.
 
 Decision rules (identical for all pairs; implemented in `scripts/audit_decisions.py`):
 * **Gold** - the producer's output is passed to the consumer's input slot with its payload intact (read in the source), both ends are named bioinformatics tools, and the path is feasible under a stated parameter set.
@@ -78,22 +80,22 @@ Merged edges that sit **inside the 53 core pairs** (34 tier-A merged edges; `cor
 * `RSEM transcript_fasta -> Salmon` (P13): third tuple slot, used as `-t` in alignment mode (`salmon/quant/main.nf:39`); also backed by the direct edge E00598 -> Gold.
 * `tximeta -> SummarizedExperiment` (P53): `join` of eight sibling outputs of the same producer, `tuple(row[0], row.tail())` keeps all -> Gold.
 
-## 6. Negative controls (`curated/negative_controls.csv`, 146 ordered pairs)
+## 6. Negative controls (`curated/negative_controls.csv`, 285 ordered pairs)
 
 Negative means: **no directed path from any process of A to any process of B in the extracted graph (all 1234 edges, including low-confidence ones), or only payload-free edges.** It says nothing about B -> A.
 
 | kind | n | evidence |
 |---|---|---|
-| shared-input | 96 | A and B consume the same producer output in at least one preview configuration (edge ids and call lines in `evidence`), and there is no path A => B; many are directional (B => A exists, e.g. FastQC -> Trim Galore) |
-| reverse-of-verified-positive | 21 | the reverse of a Gold/Silver flow when B cannot reach A anywhere |
+| shared-input | 98 | A and B consume the same producer output in at least one preview configuration (edge ids and call lines in `evidence`), and there is no path A => B; many are directional (B => A exists, e.g. FastQC -> Trim Galore) |
+| reverse-of-verified-positive | 148 | the reverse of a Gold/Silver flow when B cannot reach A anywhere |
 | extractor-artifact-or-sync-only | 18 | every extracted edge is a key-only join (fq lint) or a rejected artifact |
-| mutually-exclusive-alternatives | 7 | contradictory conditions, or the pipeline forbids the combination (fastp vs Trim Galore; Parabricks vs Sentieon STAR `utils_nfcore_rnaseq_pipeline/main.nf:323-325`) |
+| mutually-exclusive-alternatives | 17 | contradictory conditions, or the pipeline forbids the combination (fastp vs Trim Galore; Parabricks vs Sentieon STAR `utils_nfcore_rnaseq_pipeline/main.nf:323-325`) |
 | same-subworkflow-no-exchange | 2 | run in the same sub-workflow scope, no shared producer, no path |
 | from the 53 core pairs | 2 | P18 (projection), P35 (key-only) |
 
-Verification level: 19 rows were confirmed by reading the source (FastQC -> Trim Galore, `fastq_fastqc_umitools_trimgalore/main.nf:42,74`; the BAM-consumer family Preseq/Qualimap/dupRadar/featureCounts/StringTie/BEDTools; fastp vs Trim Galore; Parabricks vs Sentieon; P18; P35). The remaining rows are graph-computed and conditional: "shared input" through `CAT_FASTQ.reads` or `BBMAP_BBSPLIT.primary_fastq` holds only for configurations in which no later step intervenes (e.g. trimming skipped).
+Verification level: 56 rows were confirmed by reading the source (FastQC -> Trim Galore, `fastq_fastqc_umitools_trimgalore/main.nf:42,74`; the BAM-consumer family Preseq/Qualimap/dupRadar/featureCounts/StringTie/BEDTools; fastp vs Trim Galore; Parabricks vs Sentieon; P18; P35). The remaining rows are graph-computed and conditional: "shared input" through `CAT_FASTQ.reads` or `BBMAP_BBSPLIT.primary_fastq` holds only for configurations in which no later step intervenes (e.g. trimming skipped).
 
-**37 pairs are Unresolved, not negative** (`curated/unresolved.csv`): all their extracted edges are gates or metadata (e.g. `STAR.log_final` filters BAMs by percent mapped, `workflows/rnaseq/main.nf:479-512`; Salmon `lib_format_counts` sets `meta` strandedness, `:655-662`). Whether a control signal counts as "data consumed" is a definition choice, so they are excluded from both control sets.
+**41 pairs are Unresolved, not negative** (`curated/unresolved.csv`): all their extracted edges are gates or metadata (e.g. `STAR.log_final` filters BAMs by percent mapped, `workflows/rnaseq/main.nf:479-512`; Salmon `lib_format_counts` sets `meta` strandedness, `:655-662`). Whether a control signal counts as "data consumed" is a definition choice, so they are excluded from both control sets.
 
 ## 7. Curated outputs
 
@@ -101,8 +103,8 @@ Verification level: 19 rows were confirmed by reading the source (FastQC -> Trim
 |---|---|
 | `curated/positive_controls.csv` | 51 Gold/Silver pairs with decision, supporting process edges, I/O declarations, extractor and auditor line references, required parameters, DAG configs, explanation |
 | `curated/all_core_pair_decisions.csv` | all 53 decisions incl. the 2 Negative |
-| `curated/negative_controls.csv` | 146 negative ordered pairs |
-| `curated/unresolved.csv` | 37 definition-dependent pairs |
+| `curated/negative_controls.csv` | 285 negative ordered pairs |
+| `curated/unresolved.csv` | 41 definition-dependent pairs |
 | `process_edges_final_confidence.csv` | every edge: v1 and v2 confidence, reason, payload-audit verdict |
 | `reconciliation_high_vs_tierA.csv`, `payload_audit.csv`, `merged_sites.csv`, `core_pairs_merged_edges.csv`, `core_pair_dossier.md`, `core_pair_edges.csv`, `summary.json` | evidence |
 

@@ -79,6 +79,19 @@ wr(os.path.join(C, 'positive_controls.csv'), [r for r in dec_rows if r['decision
 
 # ------------------------------------------------------------------ corrected confidence (v2) for every edge
 EXTRA_REJECT = {'E00353': 'infeasible: plain STAR_GENOMEGENERATE runs only when use_parabricks_star is false (subworkflows/local/prepare_genome_indices/main.nf:149 if-branch precedes :168), the Parabricks consumer needs it true'}
+# ---- family-level adjudication of the remaining pairs (scripts/family_rules.py)
+from family_rules import adjudicate
+FAM = adjudicate(edges, {(p['src'], p['dst']) for p in pairs.values()})
+verified_family = set()
+for _k, _v in FAM.items(): verified_family |= set(_v['edge_ids'])
+core_verified = set(verified_ok)
+verified_ok |= verified_family
+fam_rows = []
+for _i, (_k, _v) in enumerate(sorted(FAM.items()), 1):
+    fam_rows.append({'pair_id': f'F{_i:03d}', 'source_software': _k[0], 'target_software': _k[1], 'decision': _v['decision'], 'decision_confidence': 'high' if _v['decision'] == 'Gold' else 'medium',
+                     'flow_type': _v['flow_type'], 'family': _v['family'], 'verification_level': 'family-rule', 'supporting_process_edges': ';'.join(_v['edge_ids']), 'n_supporting_process_edges': len(_v['edge_ids']),
+                     'source_lines_read_by_auditor': _v['evidence'], 'explanation': _v['explanation']})
+wr(os.path.join(C, 'family_pair_decisions.csv'), fam_rows)
 rows_v2 = []
 for e in edges:
     eid = e['edge_id']; v = e['payload_check']
@@ -89,6 +102,7 @@ for e in edges:
     rows_v2.append({'edge_id': eid, 'src_instance': e['src_instance'], 'src_emit': e['src_emit'], 'dst_instance': e['dst_instance'], 'dst_input_index': e['dst_input_index'],
                     'edge_class': e['edge_class'], 'evidence_tier': e['evidence_tier'], 'confidence_v1': e['confidence_v1'], 'confidence_v2_rule': e['confidence_v2'], 'confidence_final': c2, 'final_reason': why,
                     'merged_audit_verdict': v, 'merged_audit_detail': e['payload_check_detail'],
+                    'verification_level': (('family' if eid not in core_verified else 'pair') if eid in verified_ok else ''),
                     'manual_verification': 'verified_positive' if (eid in verified_ok and c2 == 'high') else ('verified_negative' if (eid in EXTRA_REJECT or eid in verified_bad or why.startswith('pipeline validation') or e['confidence_v2_reason'].startswith('pipeline validation')) else '')})
 wr(os.path.join(A, 'process_edges_final_confidence.csv'), rows_v2)
 V1 = {r['edge_id']: r['confidence_v1'] for r in rows_v2}; V2 = {r['edge_id']: r['confidence_final'] for r in rows_v2}
@@ -187,6 +201,24 @@ for r in directional:
         r['verification'] = 'manual source read: subworkflows/nf-core/fastq_fastqc_umitools_trimgalore/main.nf:42 FASTQC(reads) and :74 TRIMGALORE(ch_trimmer_reads) read the same reads; FASTQC html/zip are assigned to ch_fastqc_html/zip (:43-45) only'; r['decision_confidence'] = 'high'
 neg += directional
 
+S1 = {'Preseq', 'Qualimap', 'dupRadar', 'featureCounts (Subread)', 'StringTie', 'BEDTools', 'RSeQC', 'RustQC'}
+MANUAL = 'manual source read: all consume the genome BAM (workflows/rnaseq/main.nf:551 StringTie, :670-674 genomecov; subworkflows/nf-core/bam_qc_rnaseq/main.nf:27-70 Preseq/featureCounts/Qualimap/dupRadar, :74+ BAM_RSEQC with RSEQC_*(bam, bed) at subworkflows/nf-core/bam_rseqc/main.nf:20-50, RustQC :571-575 with ch_genome_bam = ch_bam_bai.map{meta,bam,_bai -> ...}); outputs go only to their own downstream/MultiQC bundles'
+# sibling QC tools run side by side on the same BAM: every ordered pair is a source-read negative (RustQC replaces the others via use_rustqc)
+NAME2KEY = {v: k for k, v in KEY2NAME.items()}
+QC_SIBLINGS = ['Preseq', 'Qualimap', 'dupRadar', 'featureCounts (Subread)', 'RSeQC']
+SIB_ALL = QC_SIBLINGS + ['StringTie', 'BEDTools', 'RustQC']
+have = {(r['source_software'], r['target_software']) for r in neg}
+for a_ in SIB_ALL:
+    for b_ in SIB_ALL:
+        if a_ == b_ or (a_, b_) in have or a_ not in NAME2KEY or b_ not in NAME2KEY: continue
+        A2, B2 = members.get(NAME2KEY[a_], []), members.get(NAME2KEY[b_], [])
+        if not A2 or not B2 or any(y in desc[x] for x in A2 for y in B2): continue
+        excl_ = 'RustQC' in (a_, b_) and (a_ in QC_SIBLINGS or b_ in QC_SIBLINGS)
+        neg.append({'source_software': a_, 'target_software': b_, 'direction_tested': f'{a_} -> {b_}', 'negative_kind': 'mutually-exclusive-alternatives' if excl_ else 'shared-input',
+                    'coexecuted_in_previews': '', 'decision': 'Negative', 'decision_confidence': 'high',
+                    'evidence': ('workflows/rnaseq/main.nf:571 RUSTQC under if (params.use_rustqc) vs :619-623 BAM_QC_RNASEQ in the else branch' if excl_ else 'both consume the genome BAM (see MANUAL text); no process of ' + a_ + ' feeds ' + b_),
+                    'verification': 'manual source read: workflows/rnaseq/main.nf:571,619-623' if excl_ else MANUAL})
+
 # pairs whose every extracted edge carries no payload / was rejected
 byp = collections.defaultdict(list)
 for e in edges:
@@ -226,8 +258,6 @@ for ka, kb in sorted(pos_pairs):
                 'negative_kind': 'reverse-of-verified-positive', 'coexecuted_in_previews': '', 'decision': 'Negative', 'decision_confidence': 'high',
                 'evidence': f'{KEY2NAME[ka]} -> {KEY2NAME[kb]} is a source-verified data flow; no process of {KEY2NAME[kb]} reaches any process of {KEY2NAME[ka]} in the extracted graph (static process graph is acyclic)',
                 'verification': 'graph-computed on top of source-verified forward edge'})
-S1 = {'Preseq', 'Qualimap', 'dupRadar', 'featureCounts (Subread)', 'StringTie', 'BEDTools'}
-MANUAL = 'manual source read: all consume the genome BAM (workflows/rnaseq/main.nf:551 StringTie, :670-674 genomecov; subworkflows/nf-core/bam_qc_rnaseq/main.nf:27-70 Preseq/featureCounts/Qualimap/dupRadar with ch_genome_bam = ch_bam_bai.map{meta,bam,_bai -> ...}); outputs go only to their own downstream/MultiQC bundles'
 for r in neg:
     if r['source_software'] in S1 and r['target_software'] in S1 and r['negative_kind'] != 'mutually-exclusive-alternatives':
         r['verification'] = MANUAL; r['decision_confidence'] = 'high'

@@ -2,20 +2,20 @@
  "parquet_written": true,
  "process_level": {
   "algorithmic_negative_candidate": 172,
-  "algorithmic_supported": 814,
+  "algorithmic_supported": 244,
+  "functional_dependency_non_data": 128,
   "source_verified_negative": 5,
-  "source_verified_positive": 115,
-  "unresolved": 128
+  "source_verified_positive": 685
  },
  "process_total": 1234,
  "software_level": {
-  "Algorithmic_supported": 282,
-  "Gold": 29,
-  "Negative_unverified": 127,
-  "Negative_verified": 19,
-  "Silver": 22,
-  "Unresolved": 37
+  "Algorithmic_supported": 46,
+  "Dependency_gate_metadata": 41,
+  "Gold": 203,
+  "Negative_unverified": 229,
+  "Negative_verified": 56,
+  "Silver": 91
  },
- "software_total": 516,
+ "software_total": 666,
  "unclassified_breakdown": {}
 }

@@ -26,7 +26,7 @@ CANON = {
  'sortmerna': ('SortMeRNA', 'analysis'), 'ribodetector': ('RiboDetector', 'analysis'), 'kallisto': ('kallisto', 'quantification'),
  'kraken2': ('Kraken 2', 'analysis'), 'bracken': ('Bracken', 'analysis'), 'sylph': ('Sylph', 'analysis'),
  'sylphtax': ('sylph-tax', 'analysis'), 'rsem': ('RSEM', 'quantification'), 'picard': ('Picard', 'analysis'),
- 'stringtie': ('StringTie', 'analysis'), 'rseqc': ('RSeQC', 'qc'), 'qualimap': ('Qualimap', 'qc'),
+ 'stringtie': ('StringTie', 'analysis'), 'rseqc': ('RSeQC', 'qc'), 'rustqc': ('RustQC', 'qc'), 'qualimap': ('Qualimap', 'qc'),
  'dupradar': ('dupRadar', 'qc'), 'preseq': ('Preseq', 'qc'), 'featurecounts': ('featureCounts (Subread)', 'quantification'),
  'bedtools': ('BEDTools', 'analysis'), 'ucsc_bedclip': ('UCSC bedClip', 'analysis'), 'ucsc_bedgraphtobigwig': ('UCSC bedGraphToBigWig', 'analysis'),
  'umi_tools': ('UMI-tools', 'analysis'), 'umicollapse': ('UMICollapse', 'analysis'), 'multiqc': ('MultiQC', 'reporting'),
@@ -54,7 +54,7 @@ PRIMARY = {
  'QUALIMAP_RNASEQ': ['qualimap'], 'RIBODETECTOR': ['ribodetector'], 'RSEM_CALCULATEEXPRESSION': ['rsem'], 'RSEM_PREPAREREFERENCE': ['rsem'],
  'RSEQC_BAMSTAT': ['rseqc'], 'RSEQC_INFEREXPERIMENT': ['rseqc'], 'RSEQC_INNERDISTANCE': ['rseqc'], 'RSEQC_JUNCTIONANNOTATION': ['rseqc'],
  'RSEQC_JUNCTIONSATURATION': ['rseqc'], 'RSEQC_READDISTRIBUTION': ['rseqc'], 'RSEQC_READDUPLICATION': ['rseqc'], 'RSEQC_TIN': ['rseqc'],
- 'RUSTQC': ['rseqc'], 'SALMON_INDEX': ['salmon'], 'SALMON_QUANT': ['salmon'], 'SAMTOOLS_FAIDX': ['samtools'], 'SAMTOOLS_FASTQ': ['samtools'],
+ 'RUSTQC': ['rustqc'], 'SALMON_INDEX': ['salmon'], 'SALMON_QUANT': ['salmon'], 'SAMTOOLS_FAIDX': ['samtools'], 'SAMTOOLS_FASTQ': ['samtools'],
  'SAMTOOLS_FLAGSTAT': ['samtools'], 'SAMTOOLS_IDXSTATS': ['samtools'], 'SAMTOOLS_INDEX': ['samtools'], 'SAMTOOLS_SORT': ['samtools'],
  'SAMTOOLS_STATS': ['samtools'], 'SAMTOOLS_VIEW': ['samtools'], 'SENTIEON_RSEMCALCULATEEXPRESSION': ['sentieon_rsem'],
  'SENTIEON_RSEMPREPAREREFERENCE': ['sentieon_rsem'], 'SENTIEON_STARALIGN': ['sentieon_star'], 'SEQKIT_REPLACE': ['seqkit'], 'SEQKIT_STATS': ['seqkit'],
@@ -154,7 +154,7 @@ def main():
         sec = sorted(set(re.sub(r'-', '_', e) for e in env) - set(prim))
         notes = []
         if i['module'].startswith('RSEM') and 'rseqc' in tools: notes.append("meta.yml lists tool 'rseqc' (upstream metadata error); curated to RSEM")
-        if i['module'] == 'RUSTQC': notes.append("RustQC is a Rust re-implementation of RSeQC/dupRadar/featureCounts-style QC; curated tool key 'rseqc' is a PLACEHOLDER pending review" if False else '')
+        if i['module'] == 'RUSTQC': notes.append('RustQC (rustqc rna) is a distinct Rust re-implementation of RSeQC/dupRadar/featureCounts/Preseq/Qualimap-style QC, not RSeQC')
         pmap.append({'process_instance': p, 'process_module': i['module'], 'module_file': i['module_file'], 'module_line': i['module_line'],
                      'primary_software_keys': ';'.join(prim), 'primary_software': ';'.join(names),
                      'roles': ';'.join(CANON[k][1] for k in prim), 'alternative_of': ';'.join(ALTERNATIVE_OF.get(k, '') for k in prim).strip(';'),

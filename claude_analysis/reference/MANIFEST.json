@@ -5,7 +5,7 @@
  "pipeline_commit_sha": "a1fcdddd3b826fe46eb46f0479f2ff8a7815af05",
  "pipeline_commit_verified_in_checkout": true,
  "analysis_repository": "https://github.com/kbobryshava/rnaseq (fork), branch claude/directed-software-analysis-3.27.0",
- "analysis_base_commit": "4d9498f18d4d9b1ca1eb43312e7684ab0912768c",
+ "analysis_base_commit": "b3f688a9cb03915f2da4826e255c856b10a4a989",
  "generation_date_utc": "2026-11-10",
  "python": "3.13.1",
  "libraries": {
@@ -17,25 +17,25 @@
   "parquet_written": true,
   "process_level": {
    "algorithmic_negative_candidate": 172,
-   "algorithmic_supported": 814,
+   "algorithmic_supported": 244,
+   "functional_dependency_non_data": 128,
    "source_verified_negative": 5,
-   "source_verified_positive": 115,
-   "unresolved": 128
+   "source_verified_positive": 685
   },
   "process_total": 1234,
   "software_level": {
-   "Algorithmic_supported": 282,
-   "Gold": 29,
-   "Negative_unverified": 127,
-   "Negative_verified": 19,
-   "Silver": 22,
-   "Unresolved": 37
+   "Algorithmic_supported": 46,
+   "Dependency_gate_metadata": 41,
+   "Gold": 203,
+   "Negative_unverified": 229,
+   "Negative_verified": 56,
+   "Silver": 91
   },
-  "software_total": 516,
+  "software_total": 666,
   "unclassified_breakdown": {}
  },
  "validation": {
-  "pass": 37,
+  "pass": 42,
   "warn": 0,
   "fail": 0
  },
@@ -53,93 +53,93 @@
  },
  "files": {
   "DATA_DICTIONARY.md": {
-   "sha256": "ce63810990a8207ab381f40c562da29d2dc8894ba85a1cefd4882388336ba974",
-   "bytes": 7707
+   "sha256": "c8cbe3869bc310171e85ff45e9e29d3412a3ce07cf55d6daeab6626b2a6f6ed0",
+   "bytes": 8601
   },
   "METHODOLOGY.md": {
-   "sha256": "e54c7a144b120260578f22c455386c7f0c80f99111140a54eef9d061a47bfc1a",
-   "bytes": 8024
+   "sha256": "0ccfada5e0534dbdcfedec0e4d79a864962d688d497ae09c13b50fed7dd055f5",
+   "bytes": 9516
   },
   "README.md": {
-   "sha256": "d83c862dda2aebdf03af6c751e74e66c8bd7e03e0b9d351019b9d62335a4758a",
-   "bytes": 5671
+   "sha256": "3bb2c07f6671b26e628ff510c5e47d8f7bc04a8d5c799a71a37a28d3c7de6ddb",
+   "bytes": 6998
   },
   "VALIDATION_SUMMARY.md": {
-   "sha256": "1f45d7e4e10a56a5800c903cfad5528a2456993ede58ba98de063ccd7637c444",
-   "bytes": 5385
+   "sha256": "e6c1401e5c1837aead804a83b1699c0e47f978c66325c3b63148ec3d43ddd838",
+   "bytes": 7688
   },
   "_build_counts.json": {
-   "sha256": "d42c6564a3139ddac7d3c19cbd1d0054348b6b40c4ed9e6f7da7d49b18512055",
-   "bytes": 475
+   "sha256": "1ae83d1925681636eb73ee0d50b630582033b15efe0b0100660703ec9645552c",
+   "bytes": 509
   },
   "process_level/process_algorithmic_negative_candidates.csv": {
-   "sha256": "be13e098d7355fcbcfd4c92c871c156398d25023ec61cf64b8047795475ee1f2",
-   "bytes": 158633,
+   "sha256": "5eb435fb6ee3cb81130f4326b27ab08bdf3f746657fc98ce5ca68558bdaecab4",
+   "bytes": 161725,
    "records": 172
   },
   "process_level/process_algorithmic_supported.csv": {
-   "sha256": "40e7fc786c5fcd29281d8c115747d88c81d93c2f8b92bc82948bf83fed176bd9",
-   "bytes": 708165,
-   "records": 814
+   "sha256": "21dfbe09812607bd42172f8dba20a2a2150f895fac6a989805f43b3dee8410a7",
+   "bytes": 234406,
+   "records": 244
+  },
+  "process_level/process_dependencies_gate_metadata.csv": {
+   "sha256": "e3bb6f63584ec37d55ce03439d85c772921a5700c769e58636a254ecb6a84e26",
+   "bytes": 125091,
+   "records": 128
   },
   "process_level/process_relationships_all.csv": {
-   "sha256": "875b978c66e8ec55493606a6f158cbd6d4b4c80303317663f6e8922c6a4b6754",
-   "bytes": 1108061,
+   "sha256": "e4562c771ee25d7787031d27f10c486b923fd522c49a96da4131d77186bffedb",
+   "bytes": 1197736,
    "records": 1234
   },
   "process_level/process_source_verified_negative.csv": {
-   "sha256": "e16c408f8417d918de7a9c0d7bd054d5645b08d850a857a87d8b654152f93dcf",
-   "bytes": 5467,
+   "sha256": "f3c0743c898f96955bdd7f3e194a19b42d431cb6a0ec50b120a3dcc134dc923a",
+   "bytes": 5522,
    "records": 5
   },
   "process_level/process_source_verified_positive.csv": {
-   "sha256": "910e66a78c77e64f4d2f25e6f74b6e0a47f839887b22d1306b0bb740da3092e4",
-   "bytes": 123071,
-   "records": 115
-  },
-  "process_level/process_unresolved.csv": {
-   "sha256": "5adb0056c73a21c9b81deec84493685917e8d6b406b3e293aca5ac208bd23e32",
-   "bytes": 114777,
-   "records": 128
+   "sha256": "146cd0349db46ee76bb213ccdb8585500c72a1eaae2a5c53edae7fc514657375",
+   "bytes": 673120,
+   "records": 685
   },
   "software_level/algorithmic_supported_pairs.csv": {
-   "sha256": "cee782108185b8459b0f8feec1983e53579cb3d7339ac888624a6be5a08f0c2b",
-   "bytes": 84505,
-   "records": 282
+   "sha256": "0ddbe59a24dad97526d8f29eedb15878b60aed392c414cdb6f0f6aa7e6d29763",
+   "bytes": 18111,
+   "records": 46
+  },
+  "software_level/dependencies_gate_metadata.csv": {
+   "sha256": "4ff520a039fe9b6dcab402ce73e1e56f862f1f979d0b2cebbadcf86f738cf98c",
+   "bytes": 34657,
+   "records": 41
   },
   "software_level/gold_positive_controls.csv": {
-   "sha256": "16dfab05c4da165b2f65cb9212d39a607cab2969d6491c66892183fc5684a4a9",
-   "bytes": 21384,
-   "records": 29
+   "sha256": "e4c0c6269480d6dc6cb7df9e1100fa72b3edf837e0edd05ca8f89c79784f59cc",
+   "bytes": 161271,
+   "records": 203
   },
   "software_level/negative_candidates_unverified.csv": {
-   "sha256": "ebc9e8cbba7a348840e6520ea37ea9219a039943e7c8e7e389f3d7d49a82f0ee",
-   "bytes": 67183,
-   "records": 127
+   "sha256": "6806b19e1f4b6dfd70869360fd6f9f6b9fd12977273fcce2a3eac957ce13b663",
+   "bytes": 110686,
+   "records": 229
   },
   "software_level/negative_controls_verified.csv": {
-   "sha256": "143da435eb60f8d6e8fe4e51cab3bcfe851ff62b0bd55cdd01179f37b1bad1b8",
-   "bytes": 14033,
-   "records": 19
+   "sha256": "3c0c843ec0f77e3f9a21b1ada249e3647c4cc558f1ac998653b8e75198456917",
+   "bytes": 39037,
+   "records": 56
   },
   "software_level/silver_positive_controls.csv": {
-   "sha256": "d9b965105c4e2b06b3e8df35638c8103b1dfbeec4696bdc66dc67517f6abb478",
-   "bytes": 19728,
-   "records": 22
+   "sha256": "0d81271020480e4c6dc7e305dcf0c7fb8950cfc311e522575835f45ff73b4e63",
+   "bytes": 73256,
+   "records": 91
   },
   "software_level/software_relationships_all.csv": {
-   "sha256": "48467ad1d0a66f495e4f82c99427a32b3c795a5bd6b8a425eaaea39b88700f19",
-   "bytes": 231047,
-   "records": 516
-  },
-  "software_level/unresolved_gate_metadata.csv": {
-   "sha256": "b12208b196609f62afe584bf885499cccf1a4544ebf09f5dd268b9172f3f73f8",
-   "bytes": 26049,
-   "records": 37
+   "sha256": "c2141eacff36d532023b2613498726f86b1ddbfa765c7630b06fdaf4f982500d",
+   "bytes": 435088,
+   "records": 666
   },
   "validation.json": {
-   "sha256": "af7102d00d2c1e061c8003c80e925accad7fabdc4c9b26de2f8feedbea8aa736",
-   "bytes": 7133
+   "sha256": "f7a9a8452d96231038ef325c7f9c71cd0ba4b95f8c3f48f9ff4747001c2739de",
+   "bytes": 9687
   }
  },
  "checksum_file": "SHA256SUMS (verify with: cd claude_analysis/reference && sha256sum -c SHA256SUMS)"

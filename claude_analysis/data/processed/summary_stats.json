@@ -2,8 +2,8 @@
  "process_instances": 178,
  "process_edges(emit-level)": 1234,
  "process_pairs": 1125,
- "software_nodes": 46,
- "software_edges_total": 391,
+ "software_nodes": 47,
+ "software_edges_total": 402,
  "software_self_loops": 15,
  "static_process_graph_sccs>1": [],
  "software_graph_sccs>1": [

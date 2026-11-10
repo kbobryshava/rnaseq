@@ -717,7 +717,7 @@
 </node>
 <node id="NFCORE_RNASEQ:RNASEQ:RUSTQC">
   <data key="d0">RUSTQC</data>
-  <data key="d1">RSeQC</data>
+  <data key="d1">RustQC</data>
   <data key="d2">True</data>
 </node>
 <node id="NFCORE_RNASEQ:RNASEQ:BAM_QC_RNASEQ:PRESEQ_LCEXTRAP">

@@ -8,11 +8,12 @@ All CSVs: UTF-8, `\n` line endings, comma separated, header row, sorted determin
 |---|---|
 | `software_pair_id` | `SW0001…`, stable only within one build (key on the software names) |
 | `source_software`, `target_software` | canonical software names; the producer is the source. Nodes are curated per process module (`data/processed/process_software_map.csv`) |
-| `category` | `Gold`, `Silver`, `Negative_verified`, `Negative_unverified`, `Unresolved`, `Algorithmic_supported` (see below) |
-| `validation_category` | `source_verified_positive` · `source_verified_negative` · `algorithmic_negative_candidate` · `unresolved` · `algorithmic_supported` |
-| `validation_subtype` | Gold/Silver: `analysis-data`, `reference-resource`, `utility-script`, `utility staging`, `partial-payload`. Negatives: `shared-input`, `reverse-of-verified-positive`, `extractor-artifact-or-sync-only`, `extractor-false-positive`, `key-only-synchronisation`, `mutually-exclusive-alternatives`, `same-subworkflow-no-exchange`. Unresolved: `information-dependency`. Other: `static_channel_provenance`, `self_loop` |
+| `category` | `Gold`, `Silver`, `Negative_verified`, `Negative_unverified`, `Dependency_gate_metadata`, `Algorithmic_supported` (see below) |
+| `validation_category` | `source_verified_positive` · `source_verified_negative` · `algorithmic_negative_candidate` · `functional_dependency_non_data` · `algorithmic_supported` |
+| `validation_subtype` | Gold/Silver: `analysis-data`, `reference-resource`, `utility-script`, `utility staging`, `partial-payload`. Negatives: `shared-input`, `reverse-of-verified-positive`, `extractor-artifact-or-sync-only`, `extractor-false-positive`, `key-only-synchronisation`, `mutually-exclusive-alternatives`, `same-subworkflow-no-exchange`. Dependency_gate_metadata: `percent-mapped gate`, `strandedness-inference`, `trimming-yield gate`, `other gate / metadata`. Other: `static_channel_provenance`, `self_loop` |
 | `decision_confidence` | confidence in the *label* (high/medium/low) |
-| `pair_id` | `P01…P53` for the 53 core (tier A) pairs of the audit, else empty |
+| `verification_level` | `pair` (read pair by pair) or `family-rule` (workflow family read once; every member needs a live edge of that family) |
+| `pair_id` | `P01…P53` for the 53 individually adjudicated core pairs, `F001…` for family-rule pairs, else empty |
 | `flow_type` | what moves: `analysis-data`, `reference-resource` (index, FASTA, GTF, chrom.sizes), `utility-script`, `utility staging`, `partial-payload` |
 | `identity_flag` | `weak-identity (utility / local script)` when an end is tar/gzip/sed/custom script |
 | `is_self_loop` | source = target (different processes of the same software) |
@@ -29,9 +30,9 @@ All CSVs: UTF-8, `\n` line endings, comma separated, header row, sorted determin
 ### Categories
 * **Gold** – payload verified to reach the consumer's input slot; both ends named tools; feasible under stated parameters.
 * **Silver** – real, verified flow; an end is a generic utility / local script, or only part of the payload is consumed.
-* **Negative_verified** – no data exchange, confirmed by reading the source (19).
+* **Negative_verified** – no data exchange, confirmed by reading the source (56 at freeze).
 * **Negative_unverified** – candidate negative from the algorithm: no directed path from any process of A to any process of B in the extracted graph (all 1,234 edges, incl. low-confidence), plus one of: shared input in a co-executed preview configuration / reverse of a verified flow / only payload-free or rejected edges / contradictory conditions / same sub-workflow scope. It says nothing about B → A.
-* **Unresolved** – only gate / metadata dependencies (e.g. `STAR.log_final` filters BAMs by percent mapped; Salmon `lib_format_counts` sets `meta` strandedness).
+* **Dependency_gate_metadata** – the only extracted edges are gates or metadata that set parameters (percent-mapped filter; Salmon `lib_format_counts` sets `meta.strandedness`). A real functional dependency, but not a data payload, so kept out of the positive and negative controls.
 * **Algorithmic_supported** – extracted and not rejected, not adjudicated; **not a control**.
 
 ## process_level/process_relationships_all.csv  (one row per edge: source instance + emit → target instance + input slot)
@@ -39,16 +40,17 @@ All CSVs: UTF-8, `\n` line endings, comma separated, header row, sorted determin
 | column | meaning |
 |---|---|
 | `edge_id` | `E00001…`, stable for a given source commit and analyzer version |
-| `validation_category`, `validation_subtype`, `validation_basis` | `source_verified_positive` (115) · `source_verified_negative` (5) · `algorithmic_supported` (814) · `algorithmic_negative_candidate` (172: `payload_check_rejected` 78, `key_only_synchronisation` 94) · `unresolved` (128: `gate_or_metadata`) |
+| `validation_category`, `validation_subtype`, `validation_basis` | `source_verified_positive` (685; `verification_level` pair 115 / family 570) · `source_verified_negative` (5) · `algorithmic_supported` (244) · `algorithmic_negative_candidate` (172: `payload_check_rejected` 78, `key_only_synchronisation` 94) · `functional_dependency_non_data` (128: `gate_or_metadata`) |
 | `pair_id` | core pair `P01…P53` the edge supports (verified edges only) |
 | `src_instance`, `dst_instance` | fully qualified call path, e.g. `NFCORE_RNASEQ:RNASEQ:ALIGN_STAR:STAR_ALIGN` |
 | `src_process`, `dst_process` | last path element (call alias, e.g. `MAKE_TRANSCRIPTS_FASTA`) |
 | `src_module`, `dst_module` | underlying nf-core/local module (e.g. `RSEM_PREPAREREFERENCE`) |
 | `src_emit`, `dst_input_index` | output name of the producer; 0-based input slot of the consumer |
 | `src_software`, `dst_software` | canonical software of the process (curated) |
-| `src_operation`, `dst_operation` | operation performed by the process |
+| `src_operation`, `dst_operation` | operation performed by the process, including its role: Salmon = subsample strandedness inference / alignment-mode quantification / mapping-based quantification; STAR and other aligners carry the output (`[output: genome BAM]`, `[output: transcriptome BAM]`, `[output: unaligned/filtered reads]`); SAMtools/UMI/Picard processes carry the sub-workflow they run in |
 | `edge_class` | `direct`, `merged-channel`, `reporting-aggregation`, `key-only-synchronization`, `metadata-dependency`, `gating-or-metadata` |
 | `evidence_tier` | `A-dag-confirmed`, `B-static-only`, `C-review` (see `documentation/data_dictionary.md`) |
+| `verification_level` | for verified positives: `pair` or `family` |
 | `confidence_v1` | **original** rule (kept for comparison): high = direct and no alternative-branch flag. Known defect: exclusive if/else branches demoted direct edges |
 | `confidence_v2_rule` | corrected canonical rule (`build_datasets.py`): rejected (payload check / pipeline-forbidden flag combination) · low (sync/gate/metadata) · high (direct) · medium (merged / reporting) |
 | `confidence_final` | `confidence_v2_rule` plus the manual audit: verified edges `high`, verified-negative `rejected` |
