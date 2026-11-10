@@ -1,0 +1,18 @@
+# Worked example: nf-core/fetchngs 1.13.0 (commit 955c892d80927cee633765e6e390f9cc6b7235c9)
+# python generic/nfrel.py --repo pipelines/fetchngs --out results/fetchngs --software-map generic/examples/fetchngs/software_map.yaml --curation generic/examples/fetchngs/decisions.csv
+primary:
+  SRA_IDS_TO_RUNINFO: [fetchngs_script]
+  SRA_RUNINFO_TO_FTP: [fetchngs_script]
+  MULTIQC_MAPPINGS_CONFIG: [fetchngs_script]
+  SRA_FASTQ_FTP: [wget]
+  ASPERA_CLI: [aspera_cli]
+  FASTQDL: [fastq_dl]
+  SRATOOLS_PREFETCH: [sra_tools]
+  SRATOOLS_FASTERQDUMP: [sra_tools]
+  CUSTOM_SRATOOLSNCBISETTINGS: [sra_tools]
+canon:
+  fetchngs_script: [fetchngs local script (Python), utility]
+  wget: [wget (FTP download), analysis]
+  aspera_cli: [Aspera CLI, analysis]
+  fastq_dl: [fastq-dl, analysis]
+  sra_tools: [SRA Toolkit, analysis]

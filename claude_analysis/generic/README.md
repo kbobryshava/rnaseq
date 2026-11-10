@@ -56,4 +56,8 @@ Optional rules the analysis cannot see go in the map file: `callsite_infeasible`
 * Channel operators are treated as unions: merged channels are `medium` until read; the payload check removes three known false-positive patterns (dropped tuple element, `multiMap`, constant call argument) but is not a proof.
 * Software identity comes from the map you give; auto-guessing from `environment.yml` is only a starting point.
 * Conditions are recorded (`required_params`), not penalised: a pair counts whenever the tools can be combined in some valid configuration.
+* Channels that carry only the sample `meta` map, built from a file's name or path (e.g. fetchngs downloaders -> `MULTIQC_MAPPINGS_CONFIG`), look like data edges (`merged-channel`, medium). The analyzer only recognises the `{ meta, _x -> meta }` key-only pattern, so review such edges before curating them.
+* `parsed-content` edges: a file's contents are parsed (`splitCsv`, `splitText`, ...) and the values feed the consumer (fetchngs: runinfo TSV -> downloaders). They count as data dependencies (confidence medium).
+* `Negative_candidate / shared-input-no-path` can also be mutually exclusive alternatives; the tool labels them `mutually-exclusive-alternatives` only when `if` conditions contradict (not for `.branch { }` splits).
+* Worked example (tested): `generic/examples/fetchngs/` - nf-core/fetchngs 1.13.0, 52 files / 235 KB downloaded, 9 processes, 14 edges, curated in minutes.
 * Self-test: `python claude_analysis/generic/tests/test_generic.py` (synthetic mini pipeline, no network).

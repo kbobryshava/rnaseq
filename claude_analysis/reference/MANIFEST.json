@@ -5,7 +5,7 @@
  "pipeline_commit_sha": "a1fcdddd3b826fe46eb46f0479f2ff8a7815af05",
  "pipeline_commit_verified_in_checkout": true,
  "analysis_repository": "https://github.com/kbobryshava/rnaseq (fork), branch claude/directed-software-analysis-3.27.0",
- "analysis_base_commit": "ad14de03b5a720248a08c6658556d6d7828c7cfb",
+ "analysis_base_commit": "3cbbd60d6574589ccfb32ce1748f68af703ba340",
  "generation_date_utc": "2026-11-10",
  "python": "3.13.1",
  "libraries": {

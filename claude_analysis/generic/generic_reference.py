@@ -66,6 +66,10 @@ for k, rows in sorted(by.items()):
     elif any(r['category'] == 'functional_dependency_non_data' for r in rows): add(k, 'Dependency_gate_metadata', 'gate_or_metadata', rows)
     else: add(k, 'Negative_candidate', 'rejected_or_sync_only', rows, 'every extracted edge is rejected or key-only')
 
+# conditions per instance (for detecting mutually exclusive alternatives)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'scripts'))
+from nf_static_analyzer import infeasible
+CONDS = {i['path']: i.get('conds', []) for i in json.load(open(os.path.join(P, 'static_graph.json')))['instances']}
 # graph-computed negatives: no path in either direction + a shared producer output
 G = nx.DiGraph([(r['src_instance'], r['dst_instance']) for r in prow]); desc = {n: nx.descendants(G, n) for n in G}
 mem = collections.defaultdict(list)
@@ -83,7 +87,8 @@ for (s1, s2), (port, x, y) in sorted(shared.items()):
     if (s1, s2) in used: continue
     A, B = mem.get(s1, []), mem.get(s2, [])
     if any(q in desc.get(p, ()) or p in desc.get(q, ()) for p in A for q in B): continue
-    add((s1, s2), 'Negative_candidate', 'shared-input-no-path', [], 'both consume ' + port[0].split(':')[-1] + '.' + port[1] + ' (' + x[2] + ', ' + y[2] + '); no directed path between any process of the two software in the extracted graph')
+    excl = any(infeasible(CONDS.get(p, []) + CONDS.get(q, [])) for p in A for q in B)
+    add((s1, s2), 'Negative_candidate', 'mutually-exclusive-alternatives' if excl else 'shared-input-no-path', [], 'both consume ' + port[0].split(':')[-1] + '.' + port[1] + ' (' + x[2] + ', ' + y[2] + '); no directed path between any process of the two software in the extracted graph')
 
 # optional curation overlay (your decisions)
 conflicts = []

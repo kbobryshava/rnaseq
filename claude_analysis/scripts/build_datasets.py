@@ -185,6 +185,7 @@ def main():
 
     # ---- process edges with classification
     METADATA_EMITS = {'lib_format_counts', 'json_info', 'lint'}   # inferred strandedness / lint verdicts travel in meta or act as gates
+    PARSE_OPS = {'splitCsv', 'splitText', 'splitJson', 'splitYaml', 'splitFasta', 'splitFastq', 'readLines'}
     GATING_EMITS = re.compile(r'^(log|lint|stats|flagstat|idxstats|json|html|zip|tsv|txt|summary|report|metrics)', re.I)
     edges, evid, review = [], [], []
     for e in G['edges']:
@@ -195,6 +196,7 @@ def main():
         if dst_mod == 'MULTIQC': cls = 'reporting-aggregation'
         elif any(f.startswith('key-only') for f in flags): cls = 'key-only-synchronization'
         elif (e['src_emit'] or '') in METADATA_EMITS: cls = 'metadata-dependency'
+        elif ops & PARSE_OPS and not (ops & {'mix', 'join', 'combine', 'merge', 'cross', 'concat'}): cls = 'parsed-content'   # file CONTENT is parsed into values (splitCsv ...) that feed the consumer: a data dependency
         elif GATING_EMITS.match(e['src_emit'] or '') and (ops & {'join', 'mix', 'combine', 'filter'}): cls = 'gating-or-metadata'
         elif ops & {'mix', 'join', 'combine', 'merge', 'cross', 'concat'}: cls = 'merged-channel'
         else: cls = 'direct'
@@ -219,7 +221,7 @@ def main():
         crosses = any(st['var'].startswith('emit:') for st in e['channel_trail'])
         ex = [c for c in configs if s in dagsets[c] and d in dagsets[c]]
         conf_by_dag = [c for c in ex if (s, d) in dagfree[c]]
-        tier = 'A-dag-confirmed' if conf_by_dag else ('B-static-only' if cls in ('direct', 'merged-channel', 'reporting-aggregation') else 'C-review')
+        tier = 'A-dag-confirmed' if conf_by_dag else ('B-static-only' if cls in ('direct', 'merged-channel', 'reporting-aggregation', 'parsed-content') else 'C-review')
         row = {'edge_id': f'E{len(edges)+1:05d}', 'src_instance': s, 'src_module': insts[s]['module'], 'src_emit': e['src_emit'],
                'dst_instance': d, 'dst_module': dst_mod, 'dst_input_index': e['dst_input_index'], 'edge_class': cls, 'confidence_v1': conf, 'confidence_v2': conf2, 'confidence_v2_reason': why2, 'payload_check': pv, 'payload_check_detail': pr, 'evidence_tier': tier,
                'src_software': pm[s]['primary_software'], 'dst_software': pm[d]['primary_software'],
