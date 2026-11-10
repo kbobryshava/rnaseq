@@ -22,12 +22,13 @@ TRUST = [  # (code, rank, meaning)
     ('verified_family_rule', 2, 'Silver: verified by a family rule (rnaseq only)'),
     ('algorithmic_curated_names', 3, 'edge found by static analysis; software names curated by hand (rnaseq only)'),
     ('algorithmic_unreviewed_names', 4, 'edge found by static analysis; software names auto-guessed and NOT reviewed'),
-    ('gate_metadata', 5, 'dependency through a gate / metadata, not a data payload'),
+    ('gate_metadata', 5, 'valid but weaker: B depends on A through a gate, verdict, sample key or metadata, not a data payload'),
     ('negative_verified', 6, 'verified: A cannot feed B'),
     ('negative_unverified', 7, 'graph says A cannot feed B; not individually verified'),
 ]
 RANK = {c: r for c, r, _ in TRUST}
-POSITIVE = {'verified_pair', 'verified_family_rule', 'algorithmic_curated_names', 'algorithmic_unreviewed_names'}
+DATA_FLOW = {'verified_pair', 'verified_family_rule', 'algorithmic_curated_names', 'algorithmic_unreviewed_names'}   # an output of A is a data input of B
+POSITIVE = DATA_FLOW | {'gate_metadata'}   # a VALID pair: data flow, or B depends on A only through a key / verdict / metadata (rank 5)
 NEGATIVE = {'negative_verified', 'negative_unverified'}
 UTILITY = {'multiqc', 'gunzip', 'gzip', 'cat', 'untar', 'tar', 'xz', 'unzip', 'bzip2', 'pigz', 'gawk', 'sed', 'python', 'rbase', 'coreutils', 'wget', 'curl', 'custom', 'gzipgunzip', 'untarunzip'}
 
@@ -113,7 +114,8 @@ def main():
         rev = sorted({r['pipeline'] for r in groups.get((kd, ks), []) if r['trust'] in POSITIVE})
         best = min(rs, key=lambda r: r['trust_rank'])['trust']
         edges = sum(int(r['n_process_edges'] or 0) for r in rs if r['trust'] in POSITIVE)
-        uniq.append({'source_software': disp(ks), 'target_software': disp(kd), 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'source_has_any_id': rs[0]['source_has_any_id'], 'target_has_any_id': rs[0]['target_has_any_id'], 'n_pipelines_positive': len(pos), 'n_pipelines_negative': len(neg),
+        n_data = len({r['pipeline'] for r in rs if r['trust'] in DATA_FLOW}); n_gate = len({r['pipeline'] for r in rs if r['trust'] == 'gate_metadata'})
+        uniq.append({'source_software': disp(ks), 'target_software': disp(kd), 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'source_has_any_id': rs[0]['source_has_any_id'], 'target_has_any_id': rs[0]['target_has_any_id'], 'n_pipelines_positive': len(pos), 'n_pipelines_data_flow': n_data, 'n_pipelines_metadata_gate': n_gate, 'n_pipelines_negative': len(neg),
                      'n_process_edges_positive': edges, 'best_trust': best, 'best_trust_rank': RANK[best], 'categories': ';'.join(sorted({r['category'] for r in rs})),
                      'reverse_direction_pipelines': len(rev), 'involves_utility_or_reporting': ks.replace('bt:', '') in UTILITY or kd.replace('bt:', '') in UTILITY,
                      'in_verified_reference': any(r['pipeline'] == 'rnaseq_3.27.0_reference' and r['trust'] in ('verified_pair', 'verified_family_rule') for r in rs),

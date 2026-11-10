@@ -33,8 +33,8 @@ def op(inst, module): return module.lower().replace('_', ' ', 1) + ('' if inst.s
 prow = []
 for e in edges:
     fin = e['confidence_v2']; cls = e['edge_class']
-    if fin == 'rejected' or cls == 'key-only-synchronization': cat = 'algorithmic_negative_candidate'
-    elif cls in ('gating-or-metadata', 'metadata-dependency'): cat = 'functional_dependency_non_data'
+    if fin == 'rejected': cat = 'algorithmic_negative_candidate'     # extractor artefact proved by the payload check (dropped tuple element, constant call argument ...)
+    elif cls in ('gating-or-metadata', 'metadata-dependency', 'key-only-synchronization'): cat = 'functional_dependency_non_data'   # B receives a key, verdict or metadata from A: a valid (weaker) pair
     else: cat = 'algorithmic_supported'
     prow.append({'edge_id': e['edge_id'], 'category': cat, 'src_instance': e['src_instance'], 'src_process': e['src_instance'].split(':')[-1], 'src_module': e['src_module'], 'src_emit': e['src_emit'],
                  'dst_instance': e['dst_instance'], 'dst_process': e['dst_instance'].split(':')[-1], 'dst_module': e['dst_module'], 'dst_input_index': e['dst_input_index'],
