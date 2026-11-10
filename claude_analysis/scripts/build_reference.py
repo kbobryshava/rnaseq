@@ -84,7 +84,8 @@ for e in edges:
         'payload_check': e['payload_check'], 'required_params': e['required_param_assumptions'], 'conditional': e['conditional'],
         'producer_call': e['producer_call'], 'consumer_call': e['consumer_call'], 'src_module_file': ev['src_module_file'], 'dst_module_file': ev['dst_module_file'],
         'src_output_decl': ev['src_output_decl'], 'dst_input_decl': ev['dst_input_decl'], 'operators': e['operators'],
-        'hubfree_dag_configs': e['confirmed_by_hubfree_dag_in'], 'configs_with_both_endpoints': e['both_endpoints_in_configs']})
+        'hubfree_dag_configs': e['confirmed_by_hubfree_dag_in'], 'configs_with_both_endpoints': e['both_endpoints_in_configs'],
+        'in_default_test_profile': 'test' in e['both_endpoints_in_configs'].split(';')})
 prow.sort(key=lambda r: r['edge_id'])
 PCOLS = list(prow[0].keys())
 n_all = wr(os.path.join(RP, 'process_relationships_all.csv'), prow, PCOLS)
@@ -102,7 +103,8 @@ def agg(rows):
     return {'n_process_edges': len(rows), 'process_edge_ids': ';'.join(r['edge_id'] for r in rows),
             'source_processes': ';'.join(sorted({r['src_process'] for r in rows})), 'target_processes': ';'.join(sorted({r['dst_process'] for r in rows})),
             'source_operations': ' | '.join(sorted({r['src_operation'] for r in rows})), 'target_operations': ' | '.join(sorted({r['dst_operation'] for r in rows})),
-            'hubfree_dag_configs': ';'.join(sorted({c for r in rows for c in r['hubfree_dag_configs'].split(';') if c}))}
+            'hubfree_dag_configs': ';'.join(sorted({c for r in rows for c in r['hubfree_dag_configs'].split(';') if c})),
+            'in_default_test_profile': any(r['in_default_test_profile'] for r in rows)}
 
 
 srows, used = [], set()
@@ -146,7 +148,7 @@ srows.sort(key=lambda r: (r['category'], r['source_software'], r['target_softwar
 for i, r in enumerate(srows, 1): r['software_pair_id'] = f'SW{i:04d}'
 SCOLS = ['software_pair_id', 'source_software', 'target_software', 'category', 'validation_category', 'validation_subtype', 'decision_confidence', 'pair_id', 'flow_type', 'identity_flag',
          'is_self_loop', 'only_reporting', 'n_process_edges', 'process_edge_ids', 'source_processes', 'target_processes', 'source_operations', 'target_operations', 'required_params',
-         'hubfree_dag_configs', 'evidence_basis', 'explanation']
+         'hubfree_dag_configs', 'in_default_test_profile', 'evidence_basis', 'explanation']
 for r in srows: r.setdefault('required_params', '')
 wr(os.path.join(RS, 'software_relationships_all.csv'), srows, SCOLS)
 for cat, fn in (('Gold', 'gold_positive_controls.csv'), ('Silver', 'silver_positive_controls.csv'), ('Negative_verified', 'negative_controls_verified.csv'), ('Negative_unverified', 'negative_candidates_unverified.csv'),

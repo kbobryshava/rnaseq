@@ -54,7 +54,7 @@ check('C4', 'every Gold/Silver pair has a source-verified positive supporting ed
 check('C5', 'no verified-positive process edge is rejected by the payload check', [e for e, r in PBY.items() if r['validation_category'] == 'source_verified_positive' and r['payload_check'] in ('PROJECTION-DROPPED', 'MULTIMAP-SPLIT', 'INFEASIBLE-CALLSITE-CONSTANT')])
 check('C6', 'no source-verified-negative process edge also appears in a Gold/Silver pair', [e for r in SW if r['category'] in ('Gold', 'Silver') for e in r['process_edge_ids'].split(';') if PBY[e]['validation_category'] == 'source_verified_negative'])
 both = sorted(k for k in pos if (k[1], k[0]) in pos and k[0] < k[1])
-check('C7', 'reverse-direction positives (A->B and B->A both positive): software identity reused at different stages', both, 'none', warn=True)
+info('C7', 'software pairs that are positive in both directions (allowed: the same software is used at different stages)', f'{len(both)}: ' + '; '.join(f'{a} <-> {b}' for a, b in both))
 
 # ---- 3 process -> software mapping
 check('M1', 'every process instance in an edge has a software mapping', sorted({i for r in PR for i in (r['src_instance'], r['dst_instance']) if i not in SWM}))

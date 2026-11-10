@@ -3,7 +3,7 @@
 Pipeline: nf-core/rnaseq 3.27.0, commit `a1fcdddd3b826fe46eb46f0479f2ff8a7815af05`. Everything ran locally; no workflow was executed (only `nextflow run . -profile test -preview -with-dag`, Nextflow 26.10.5, Java 17, in WSL Ubuntu 22.04).
 
 ## 1. Definition
-Software A → B holds when data produced by a process that runs A is consumed as an input of a process that runs B. Relationships are derived at **process-instance level** (fully qualified call path) and then collapsed to software; process identities are kept. Not used as evidence: source order, diagram proximity (the nf-core metro map was compared and found to be layout, 24 of 46 mappable connections coincide with a data edge), shared workflow membership, co-occurrence, shared inputs. No transitive closure.
+Software A → B holds when data produced by a process that runs A is consumed as an input of a process that runs B. Relationships are derived at **process-instance level** (fully qualified call path) and then collapsed to software; process identities are kept. Not used as evidence: source order, diagram proximity (the nf-core metro map was compared and found to be layout, 24 of 46 mappable connections coincide with a data edge), shared workflow membership, co-occurrence, shared inputs. No transitive closure. Parameter policy: any valid parameter combination counts, default or not; a software pair may also be positive in both directions.
 
 ## 2. Sources and their role
 | source | role |
@@ -41,7 +41,7 @@ Negative = no directed path from any process of A to any process of B in the ext
 2. **Single reviewer.** All adjudications and the curated software map were made by one reviewer (an AI assistant) against the source. No independent second annotation, no inter-annotator agreement.
 3. **Software identity is a lossy projection** (one node, several operations; the "custom script" node merges distinct scripts; "sed" for `CUSTOM_RSEMMERGECOUNTS` is a version-reporting artifact). Use the `*_operations` columns and the process level.
 4. **Coverage/recall is unknown and biased.** Gold derives from tier-A pairs; real flows whose DAG path is fused (STAR → Salmon via the transcriptome BAM) are only `algorithmic_supported`. 282 software pairs are unadjudicated.
-5. **Parameter dependence.** Several positives exist only under non-default options; one derived selector (`contaminant_screening_input`) is documented in text, not as a condition atom. Condition atoms are matched by name across scopes.
+5. **Parameter policy.** Non-default options are treated like any other: a pair counts if the tools can be combined in some valid configuration. Conditions are recorded (`required_params`), not penalised. One derived selector (`contaminant_screening_input`) is documented in text rather than as a condition atom, and condition atoms are matched by name across scopes. Combinations the pipeline forbids are excluded.
 6. **Negatives** assert absence in the extracted graph; flows through Groovy code not modelled (`for/while/switch/try`, closures calling processes: none occur in 3.27.0) would be missed. 127 negatives are unverified and some "shared input" claims hold only for configurations where no later step intervenes.
 7. **Payload check is pattern-based**; there may be a further false-positive mechanism. The constant-argument rule is specific to `QUANTIFY_BAM_SALMON`.
 8. **Single pipeline, single version.** Nothing here generalises beyond nf-core/rnaseq 3.27.0.

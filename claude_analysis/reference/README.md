@@ -62,7 +62,7 @@ Re-generating the preview DAGs (`--with-previews`) additionally needs Java 17 an
 
 ## Read this before using it as a benchmark
 
-* Gold/Silver mean **verified by reading the source for the stated parameters**, not observed running. Many pairs are conditional (`required_params`): Parabricks, Sentieon, UMI, kallisto, `--additional_fasta`, Kraken/Bracken.
+* Gold/Silver mean **verified by reading the source**, not observed running. **Parameter policy.** A relationship counts whenever the two tools *can* be used together in some valid parameter combination, whether or not it is the default. `required_params` records the options that activate it and `in_default_test_profile` says whether it also appears in the default `-profile test` run; neither affects the category. Only combinations the pipeline itself forbids (e.g. `--use_parabricks_star` with `--use_sentieon_star`) are excluded.
 * **Software identity ≠ operation performed.** Always read `source_operations` / `target_operations`. Example: *RSEM → kallisto* is `rsem-prepare-reference` used only to extract the transcriptome FASTA that `kallisto index` consumes; it has nothing to do with RSEM quantification.
 * Software nodes collapse several processes (SAMtools: 9 operations; "nf-core custom script (Python)": several distinct scripts). Software-level graphs contain cycles that do not exist at process level (the process graph is acyclic).
 * The positive set is **not complete** (e.g. STAR → Salmon via the transcriptome BAM is real but only `algorithmic_supported`). It is a precision-oriented control set, not a recall estimate.

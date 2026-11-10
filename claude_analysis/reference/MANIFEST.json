@@ -5,8 +5,8 @@
  "pipeline_commit_sha": "a1fcdddd3b826fe46eb46f0479f2ff8a7815af05",
  "pipeline_commit_verified_in_checkout": true,
  "analysis_repository": "https://github.com/kbobryshava/rnaseq (fork), branch claude/directed-software-analysis-3.27.0",
- "analysis_base_commit": "3b38fcf8d7cda92e25830cb51911b54014bab0ab",
- "generation_date_utc": "2026-11-09",
+ "analysis_base_commit": "4d9498f18d4d9b1ca1eb43312e7684ab0912768c",
+ "generation_date_utc": "2026-11-10",
  "python": "3.13.1",
  "libraries": {
   "networkx": "3.5",
@@ -36,7 +36,7 @@
  },
  "validation": {
   "pass": 37,
-  "warn": 1,
+  "warn": 0,
   "fail": 0
  },
  "preview_dag_inputs_sha256": {
@@ -53,93 +53,93 @@
  },
  "files": {
   "DATA_DICTIONARY.md": {
-   "sha256": "29ba0a2aa88f4ba1ebaf29b9a051c29c41db9d9b8ad03f1abd9b48717dba0816",
-   "bytes": 7416
+   "sha256": "ce63810990a8207ab381f40c562da29d2dc8894ba85a1cefd4882388336ba974",
+   "bytes": 7707
   },
   "METHODOLOGY.md": {
-   "sha256": "2dded34ccc0865dc29173934e1124a68cc5d382038ec0756fbb48d9ca5da5c76",
-   "bytes": 7714
+   "sha256": "e54c7a144b120260578f22c455386c7f0c80f99111140a54eef9d061a47bfc1a",
+   "bytes": 8024
   },
   "README.md": {
-   "sha256": "a72404787690079ab2be2ec056d5534a26263d0e98fe9e32039deddd51a49377",
-   "bytes": 5361
+   "sha256": "d83c862dda2aebdf03af6c751e74e66c8bd7e03e0b9d351019b9d62335a4758a",
+   "bytes": 5671
   },
   "VALIDATION_SUMMARY.md": {
-   "sha256": "5c68dd923bfa762d393b96125c0bd6e6c76bc9e5347aaf4b33c974c5f1e8c51c",
-   "bytes": 5398
+   "sha256": "1f45d7e4e10a56a5800c903cfad5528a2456993ede58ba98de063ccd7637c444",
+   "bytes": 5385
   },
   "_build_counts.json": {
    "sha256": "d42c6564a3139ddac7d3c19cbd1d0054348b6b40c4ed9e6f7da7d49b18512055",
    "bytes": 475
   },
   "process_level/process_algorithmic_negative_candidates.csv": {
-   "sha256": "1a404312120aba9e78fd704d8fe39972fd55a6453a4bc0332f562ee5b4fa0e41",
-   "bytes": 157615,
+   "sha256": "be13e098d7355fcbcfd4c92c871c156398d25023ec61cf64b8047795475ee1f2",
+   "bytes": 158633,
    "records": 172
   },
   "process_level/process_algorithmic_supported.csv": {
-   "sha256": "6554c248fb529f5ec541cd199dd13bb4b88c4185a8d69aa505cf5aa4341803f8",
-   "bytes": 703419,
+   "sha256": "40e7fc786c5fcd29281d8c115747d88c81d93c2f8b92bc82948bf83fed176bd9",
+   "bytes": 708165,
    "records": 814
   },
   "process_level/process_relationships_all.csv": {
-   "sha256": "1b6c29d4352f184b196fd10f1e66adfc6a9ebad9d5c206fd7e375259ff750942",
-   "bytes": 1100935,
+   "sha256": "875b978c66e8ec55493606a6f158cbd6d4b4c80303317663f6e8922c6a4b6754",
+   "bytes": 1108061,
    "records": 1234
   },
   "process_level/process_source_verified_negative.csv": {
-   "sha256": "d87ad8827d0d4f81b7df0a1964e98533d999337320f834457d0f310197cb2047",
-   "bytes": 5416,
+   "sha256": "e16c408f8417d918de7a9c0d7bd054d5645b08d850a857a87d8b654152f93dcf",
+   "bytes": 5467,
    "records": 5
   },
   "process_level/process_source_verified_positive.csv": {
-   "sha256": "ac6b5817ee7ef8d1d36c241206e746acd6f125b3abb71da10646f3aebd6b27bd",
-   "bytes": 122432,
+   "sha256": "910e66a78c77e64f4d2f25e6f74b6e0a47f839887b22d1306b0bb740da3092e4",
+   "bytes": 123071,
    "records": 115
   },
   "process_level/process_unresolved.csv": {
-   "sha256": "9a3c137f6a7b627b5b411f115e33b1b5730f61ded5f8807b809099d453242607",
-   "bytes": 114009,
+   "sha256": "5adb0056c73a21c9b81deec84493685917e8d6b406b3e293aca5ac208bd23e32",
+   "bytes": 114777,
    "records": 128
   },
   "software_level/algorithmic_supported_pairs.csv": {
-   "sha256": "061a87f223e54658cfecf36fdc4269d1d53bd3e4668b2fc1a161d70c655fca49",
-   "bytes": 82843,
+   "sha256": "cee782108185b8459b0f8feec1983e53579cb3d7339ac888624a6be5a08f0c2b",
+   "bytes": 84505,
    "records": 282
   },
   "software_level/gold_positive_controls.csv": {
-   "sha256": "9a733bf83e784e9f002b1d3c691e1d43ced57cd15f59276104d5aa50e05c7b79",
-   "bytes": 21203,
+   "sha256": "16dfab05c4da165b2f65cb9212d39a607cab2969d6491c66892183fc5684a4a9",
+   "bytes": 21384,
    "records": 29
   },
   "software_level/negative_candidates_unverified.csv": {
-   "sha256": "77a522ac636aa427496d4f087a00f272532d6a2d060ca4d6525f392b867f3185",
-   "bytes": 66400,
+   "sha256": "ebc9e8cbba7a348840e6520ea37ea9219a039943e7c8e7e389f3d7d49a82f0ee",
+   "bytes": 67183,
    "records": 127
   },
   "software_level/negative_controls_verified.csv": {
-   "sha256": "0646049951202efc6a2440d8e0e0962f4c21d4fb32abf434f483c7b5d378fe67",
-   "bytes": 13897,
+   "sha256": "143da435eb60f8d6e8fe4e51cab3bcfe851ff62b0bd55cdd01179f37b1bad1b8",
+   "bytes": 14033,
    "records": 19
   },
   "software_level/silver_positive_controls.csv": {
-   "sha256": "928845509337912826bbdf6b3ba8bfe988729efbe449090f6d7738484706578d",
-   "bytes": 19584,
+   "sha256": "d9b965105c4e2b06b3e8df35638c8103b1dfbeec4696bdc66dc67517f6abb478",
+   "bytes": 19728,
    "records": 22
   },
   "software_level/software_relationships_all.csv": {
-   "sha256": "0d9cb99504b6e1889f06409660516d800d892f71b12ec0053b93615f563ba449",
-   "bytes": 228023,
+   "sha256": "48467ad1d0a66f495e4f82c99427a32b3c795a5bd6b8a425eaaea39b88700f19",
+   "bytes": 231047,
    "records": 516
   },
   "software_level/unresolved_gate_metadata.csv": {
-   "sha256": "efc0858411312b916627bb8d05c28fef7888fd7dcbbbc84a3828000a0e9959df",
-   "bytes": 25811,
+   "sha256": "b12208b196609f62afe584bf885499cccf1a4544ebf09f5dd268b9172f3f73f8",
+   "bytes": 26049,
    "records": 37
   },
   "validation.json": {
-   "sha256": "cdbcc26a0ef2178f35283f97ad0260b7152c654bcbc813702e10c4a507259844",
-   "bytes": 7146
+   "sha256": "af7102d00d2c1e061c8003c80e925accad7fabdc4c9b26de2f8feedbea8aa736",
+   "bytes": 7133
   }
  },
  "checksum_file": "SHA256SUMS (verify with: cd claude_analysis/reference && sha256sum -c SHA256SUMS)"

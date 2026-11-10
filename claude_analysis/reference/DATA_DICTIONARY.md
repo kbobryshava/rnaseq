@@ -22,6 +22,7 @@ All CSVs: UTF-8, `\n` line endings, comma separated, header row, sorted determin
 | `source_operations`, `target_operations` | **the operation actually performed** (e.g. `rsem-prepare-reference used only to extract the transcriptome FASTA (no RSEM quantification)`); software identity alone is not the operation |
 | `required_params` | parameter atoms that must hold (Gold/Silver; first supporting edge) |
 | `hubfree_dag_configs` | preview configurations (`data/raw/<label>_dag.html`) whose Nextflow DAG contains the process pair without crossing a fused operator node |
+| `in_default_test_profile` | informational only: some supporting edge has both endpoints in the default `-profile test` DAG. Does not affect `category` |
 | `evidence_basis` | for Gold/Silver/Negative_verified: the source lines read (`file:line`); for unverified negatives: rule and evidence |
 | `explanation` | one-paragraph rationale (conditions, caveats) |
 
@@ -58,6 +59,7 @@ All CSVs: UTF-8, `\n` line endings, comma separated, header row, sorted determin
 | `src_output_decl`, `dst_input_decl` | the output / input declarations read from the module |
 | `operators` | channel operators on the path |
 | `hubfree_dag_configs`, `configs_with_both_endpoints` | preview configurations confirming the pair / containing both processes |
+| `in_default_test_profile` | informational only: both endpoints are in the default `-profile test` DAG. Does not affect the category |
 
 ## Other
 * `MANIFEST.json` – pipeline, commit, date, tool versions, record counts, checksums, preview-DAG input hashes.

@@ -1,6 +1,6 @@
 # Validation summary
 
-Result: **PASS** (37 pass, 1 warn, 0 fail, 6 informational)
+Result: **PASS** (37 pass, 0 warn, 0 fail, 7 informational)
 
 | id | check | status | detail |
 |---|---|---|---|
@@ -15,7 +15,7 @@ Result: **PASS** (37 pass, 1 warn, 0 fail, 6 informational)
 | C4 | every Gold/Silver pair has a source-verified positive supporting edge and no rejected supporting edge | PASS |  |
 | C5 | no verified-positive process edge is rejected by the payload check | PASS |  |
 | C6 | no source-verified-negative process edge also appears in a Gold/Silver pair | PASS |  |
-| C7 | reverse-direction positives (A->B and B->A both positive): software identity reused at different stages | WARN | 3 issue(s): ('RSEM', 'nf-core custom script (Python)'); ('Salmon', 'nf-core custom script (Python)'); ('kallisto', 'nf-core custom script (Python)') |
+| C7 | software pairs that are positive in both directions (allowed: the same software is used at different stages) | INFO | 3: RSEM <-> nf-core custom script (Python); Salmon <-> nf-core custom script (Python); kallisto <-> nf-core custom script (Python) |
 | M1 | every process instance in an edge has a software mapping | PASS |  |
 | M2 | mapped software keys exist in the canonical software table | PASS |  |
 | M3 | edge src/dst software equals the process->software map | PASS |  |

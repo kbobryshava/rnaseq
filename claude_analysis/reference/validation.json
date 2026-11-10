@@ -67,9 +67,9 @@
  },
  {
   "id": "C7",
-  "title": "reverse-direction positives (A->B and B->A both positive): software identity reused at different stages",
-  "status": "WARN",
-  "detail": "3 issue(s): ('RSEM', 'nf-core custom script (Python)'); ('Salmon', 'nf-core custom script (Python)'); ('kallisto', 'nf-core custom script (Python)')"
+  "title": "software pairs that are positive in both directions (allowed: the same software is used at different stages)",
+  "status": "INFO",
+  "detail": "3: RSEM <-> nf-core custom script (Python); Salmon <-> nf-core custom script (Python); kallisto <-> nf-core custom script (Python)"
  },
  {
   "id": "M1",
