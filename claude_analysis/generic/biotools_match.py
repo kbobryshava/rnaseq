@@ -23,7 +23,7 @@ Nothing is downloaded.
 import argparse, collections, csv, json, os, re, shutil, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from tool_ids import key, resolve_parents, NO_NAME_LOOKUP, OPS, strip_pkg_prefix
+from tool_ids import key, resolve_parents, NO_NAME_LOOKUP, GENERIC, strip_pkg_prefix
 
 DOI_RX = re.compile(r'10\.\d{4,9}/[^\s"<>,;]+', re.I)
 STRONG = ('doi', 'pmid', 'pmcid', 'rrid')
@@ -157,7 +157,7 @@ def main():
             return None, 'ambiguous'
         chosen, amb = pick(STRONG)
         if not chosen and not amb: chosen, amb = pick(('url',))
-        generic_only = all(k in OPS or k in NO_NAME_LOOKUP for k in names)   # a name like `filter` or `merge` alone is never enough
+        generic_only = all(k in GENERIC for k in names)   # a name like `filter` or `merge` alone is never enough
         if not chosen and not amb and not a.no_name_only and not generic_only:
             nm = {b: k for b, k in cand.items() if 'name' in k}
             if len(nm) == 1: chosen = next(iter(nm))

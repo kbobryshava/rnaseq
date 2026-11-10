@@ -33,6 +33,10 @@ NO_NAME_LOOKUP = {'cat', 'gzip', 'gunzip', 'tar', 'untar', 'unzip', 'sed', 'awk'
 # words that name an OPERATION of a tool, not another tool: `star_align`, `samtools_sort`, `bwa_index` are STAR / SAMtools / BWA doing that step
 OPS = set('align alignment aligner index indexing build genomegenerate generate sort view merge stats flagstat idxstats quant quantification count counts run call calling mem extract dedup markduplicates mark duplicates trim trimming filter convert fastq bam sam cram vcf prepare reference calculate expression profile pileup coverage depth report summary make fai faidx bgzip tabix stat metrics lint check collapse annotate detect predict classify assemble assembly map mapping split cat'.split())
 
+# ordinary words that are also names of bio.tools records or of sub-commands (`bcftools filter`, `bcftools merge`): never looked up by name, never a parent tool
+GENERIC_EXTRA = set('find search get list make generate select plot report check test parse read write load rename replace remove clean combine concat compare create design fix format import export label mask match normalize pack process rank refine sample scan score simulate subset summarize tag transform unpack update validate visualize'.split())
+GENERIC = OPS | GENERIC_EXTRA | NO_NAME_LOOKUP
+
 
 def strip_pkg_prefix(name):
     """bioconda package names carry an ecosystem prefix that bio.tools does not: bioconductor-deseq2 -> deseq2, r-ggplot2 -> ggplot2, perl-bioperl -> bioperl"""
@@ -108,7 +112,7 @@ def api(url, tries=3):
 
 def lookup(k, name, known_id, cache):
     ck = known_id or ('name:' + k)
-    if not known_id and (k in NO_NAME_LOOKUP or k in OPS): return {'found': False}   # `filter`, `merge`, `find`, `align` ... are operation words: a bio.tools record of that name is a homonym
+    if not known_id and k in GENERIC: return {'found': False}   # `filter`, `merge`, `find`, `align` ... are operation words: a bio.tools record of that name is a homonym
     if ck in cache: return cache[ck]
     rec = None; how = ''
     if known_id:
@@ -140,7 +144,7 @@ def lookup(k, name, known_id, cache):
 
 def resolve_parents(rows):
     """names that are a known tool plus an operation (star_align -> star) get parent_key / parent_biotools_id / operation_suffix / parent_confidence"""
-    with_id = {r['tool_key']: r['biotools_id'] for r in rows if r['biotools_id'] and r['tool_key'] not in NO_NAME_LOOKUP and len(r['tool_key']) >= 3}
+    with_id = {r['tool_key']: r['biotools_id'] for r in rows if r['biotools_id'] and r['tool_key'] not in GENERIC and len(r['tool_key']) >= 3}
     for r in rows:
         r.update({'parent_key': '', 'parent_biotools_id': '', 'operation_suffix': '', 'parent_confidence': ''})
         if r['biotools_id']: continue
