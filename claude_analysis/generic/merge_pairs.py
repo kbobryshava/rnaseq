@@ -33,19 +33,21 @@ UTILITY = {'multiqc', 'gunzip', 'gzip', 'cat', 'untar', 'tar', 'xz', 'unzip', 'b
 
 
 BTID = {}   # name key -> bio.tools ID (filled from --tool-ids)
+PARENT = {}   # name key -> parent tool key, only for names that are a tool plus an operation (star_align -> star)
 ANYID = set()   # name keys that have ANY identifier: bio.tools ID, bioconda package, DOI / publication, other ID
 
 
 def rawkey(name, aliases):
     n = re.sub(r'\(.*?\)', '', name or '').lower()
     k = re.sub(r'[^a-z0-9]', '', n) or re.sub(r'[^a-z0-9]', '', (name or '').lower())
-    return aliases.get(k, k)
+    k = aliases.get(k, k)
+    return PARENT.get(k, k)
 
 
 def key(name, aliases):
     n = re.sub(r'\(.*?\)', '', name or '').lower()
     k = re.sub(r'[^a-z0-9]', '', n) or re.sub(r'[^a-z0-9]', '', (name or '').lower())
-    k = aliases.get(k, k)
+    k = aliases.get(k, k); k = PARENT.get(k, k)
     return ('bt:' + BTID[k].lower()) if k in BTID else k
 
 
@@ -70,6 +72,7 @@ def main():
     if a.tool_ids and os.path.exists(a.tool_ids):
         for r in csv.DictReader(open(a.tool_ids, encoding='utf-8')):
             if r['biotools_id']: BTID[r['tool_key']] = r['biotools_id']
+            if r.get('parent_confidence') == 'operation-suffix' and r.get('parent_key'): PARENT[r['tool_key']] = r['parent_key']
             if any(r.get(c) for c in ('biotools_id', 'bioconda_package', 'doi', 'publications', 'other_ids')): ANYID.add(r['tool_key'])
         print('tool IDs loaded:', len(BTID))
     long_rows = []

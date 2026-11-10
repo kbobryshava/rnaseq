@@ -30,6 +30,10 @@ def key(name):
 NO_NAME_LOOKUP = {'cat', 'gzip', 'gunzip', 'tar', 'untar', 'unzip', 'sed', 'awk', 'gawk', 'grep', 'sort', 'cut', 'head', 'tail', 'echo', 'python', 'rbase', 'r', 'perl', 'bash', 'java', 'custom', 'print', 'def', 'zcat', 'xz', 'bzip2', 'pigz', 'wget', 'curl', 'ln', 'cp', 'mv', 'rm', 'mkdir', 'touch', 'cd', 'wc', 'tee', 'join', 'paste'}
 
 
+# words that name an OPERATION of a tool, not another tool: `star_align`, `samtools_sort`, `bwa_index` are STAR / SAMtools / BWA doing that step
+OPS = set('align alignment aligner index indexing build genomegenerate generate sort view merge stats flagstat idxstats quant quantification count counts run call calling mem extract dedup markduplicates mark duplicates trim trimming filter convert fastq bam sam cram vcf prepare reference calculate expression profile pileup coverage depth report summary make fai faidx bgzip tabix stat metrics lint check collapse annotate detect predict classify assemble assembly map mapping split cat'.split())
+
+
 def pick(counter):
     return counter.most_common(1)[0][0] if counter else ''
 
@@ -155,12 +159,23 @@ def main():
                      'bioconda_package': pick(t['conda']), 'doi': ';'.join(d for d, _ in t['doi'].most_common(3)), 'homepage': pick(t['homepage']) or res.get('homepage', ''),
                      'documentation': pick(t['doc']), 'other_ids': ';'.join(res.get('other_ids', [])), 'publications': ';'.join(res.get('publications', [])),
                      'n_modules': len(t['modules']), 'n_pipelines': len(t['pipelines']), 'name_variants': ' | '.join(n for n, _ in t['names'].most_common(4))})
+    with_id = {r['tool_key']: r['biotools_id'] for r in rows if r['biotools_id'] and r['tool_key'] not in NO_NAME_LOOKUP and len(r['tool_key']) >= 3}
+    for r in rows:
+        r.update({'parent_key': '', 'parent_biotools_id': '', 'operation_suffix': '', 'parent_confidence': ''})
+        if r['biotools_id']: continue
+        toks = [t for t in re.split(r'[_\-\s]+', re.sub(r'\(.*?\)', '', r['tool_name']).lower()) if t]
+        if len(toks) < 2: continue
+        par = key(toks[0])
+        if par in with_id and par != r['tool_key']:
+            rest = toks[1:]
+            r.update({'parent_key': par, 'parent_biotools_id': with_id[par], 'operation_suffix': ' '.join(rest), 'parent_confidence': 'operation-suffix' if all(t in OPS or t.isdigit() for t in rest) else 'first-word-review'})
     rows.sort(key=lambda r: (-r['n_pipelines'], r['tool_key']))
     f = os.path.join(a.out, 'tool_identifiers.csv')
     with open(f, 'w', newline='', encoding='utf-8') as fh:
         w = csv.DictWriter(fh, fieldnames=list(rows[0].keys()) if rows else ['tool_key'], lineterminator='\n'); w.writeheader(); w.writerows(rows)
     c = collections.Counter(r['id_source'] for r in rows)
     print(f'{len(rows)} tools -> {f}\nwith a bio.tools ID: {sum(1 for r in rows if r["biotools_id"])} | by source: {dict(c)}')
+    print('names resolved to a parent tool (e.g. star_align -> star):', sum(1 for r in rows if r['parent_confidence'] == 'operation-suffix'), '| first-word matches to review:', sum(1 for r in rows if r['parent_confidence'] == 'first-word-review'))
     print('with a bioconda package:', sum(1 for r in rows if r['bioconda_package']), '| with a DOI:', sum(1 for r in rows if r['doi'] or r['publications']))
 
 
