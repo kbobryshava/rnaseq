@@ -9,6 +9,7 @@ Steps (run them in this order, from the terminal):
   python catalogue_run.py run --limit 3         # test on 3 pipelines
   python catalogue_run.py run                   # all runnable pipelines (minutes)
   python catalogue_run.py report                # summary + software pairs that recur across pipelines
+  python catalogue_run.py ids --lookup          # collect tool identifiers (bio.tools ID, bioconda package, DOI) -> tool_identifiers.csv
   python catalogue_run.py merge                 # ONE table of all pairs (verified rnaseq + candidates from the other pipelines) with a trust level and the number of pipelines per pair
 
 Options: --catalogue DIR (default: current folder)  --tools DIR (default: ~/nfrel_tools)  --out DIR (default: <catalogue>/../../processed/nfrel_results if it exists, else ./nfrel_results)
@@ -21,10 +22,10 @@ BRANCH = 'claude/directed-software-analysis-3.27.0'
 UNNAMED = re.compile(r'^\s*workflow\s*\{', re.M)
 
 ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-ap.add_argument('step', nargs='?', choices=['setup', 'survey', 'run', 'report', 'merge'])
+ap.add_argument('step', nargs='?', choices=['setup', 'survey', 'run', 'report', 'ids', 'merge'])
 ap.add_argument('--catalogue', default='.'); ap.add_argument('--tools', default=os.path.expanduser('~/nfrel_tools'))
 ap.add_argument('--out'); ap.add_argument('--limit', type=int, default=0); ap.add_argument('--only', default=''); ap.add_argument('--jobs', type=int, default=4)
-ap.add_argument('--timeout', type=int, default=900); ap.add_argument('--no-update', action='store_true')
+ap.add_argument('--timeout', type=int, default=900); ap.add_argument('--no-update', action='store_true'); ap.add_argument('--lookup', action='store_true', help='ids step: also ask bio.tools (needs internet)')
 a = ap.parse_args()
 if not a.step: ap.print_help(); sys.exit(0)
 cat = os.path.abspath(a.catalogue)
@@ -141,9 +142,14 @@ def report():
     print('\nwritten:', pf, '\n        ', f)
 
 
+def ids():
+    cmd = [sys.executable, os.path.join(G, 'tool_ids.py'), '--catalogue', cat, '--results', out, '--out', out] + (['--lookup'] if a.lookup else [])
+    sys.exit(sh(*cmd).returncode)
+
+
 def merge():
     ref = os.path.join(a.tools, 'claude_analysis', 'reference', 'software_level', 'software_relationships_all.csv')
-    sys.exit(sh(sys.executable, os.path.join(G, 'merge_pairs.py'), '--results', out, '--rnaseq-reference', ref).returncode)
+    sys.exit(sh(sys.executable, os.path.join(G, 'merge_pairs.py'), '--results', out, '--rnaseq-reference', ref, *(['--tool-ids', os.path.join(out, 'tool_identifiers.csv')] if os.path.exists(os.path.join(out, 'tool_identifiers.csv')) else [])).returncode)
 
 
-{'setup': setup, 'survey': survey, 'run': run, 'report': report, 'merge': merge}[a.step]()
+{'setup': setup, 'survey': survey, 'run': run, 'report': report, 'ids': ids, 'merge': merge}[a.step]()

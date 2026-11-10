@@ -32,10 +32,14 @@ NEGATIVE = {'negative_verified', 'negative_unverified'}
 UTILITY = {'multiqc', 'gunzip', 'gzip', 'cat', 'untar', 'tar', 'xz', 'unzip', 'bzip2', 'pigz', 'gawk', 'sed', 'python', 'rbase', 'coreutils', 'wget', 'curl', 'custom', 'gzipgunzip', 'untarunzip'}
 
 
+BTID = {}   # name key -> bio.tools ID (filled from --tool-ids)
+
+
 def key(name, aliases):
     n = re.sub(r'\(.*?\)', '', name or '').lower()
     k = re.sub(r'[^a-z0-9]', '', n) or re.sub(r'[^a-z0-9]', '', (name or '').lower())
-    return aliases.get(k, k)
+    k = aliases.get(k, k)
+    return ('bt:' + BTID[k].lower()) if k in BTID else k
 
 
 def trust_of(category, curated):
@@ -50,12 +54,16 @@ def trust_of(category, curated):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('--results', required=True); ap.add_argument('--rnaseq-reference'); ap.add_argument('--out'); ap.add_argument('--aliases')
+    ap.add_argument('--results', required=True); ap.add_argument('--rnaseq-reference'); ap.add_argument('--out'); ap.add_argument('--aliases'); ap.add_argument('--tool-ids', help='tool_identifiers.csv from tool_ids.py: tools with the same bio.tools ID are merged and the ID is added to the output')
     a = ap.parse_args()
     out = a.out or a.results; os.makedirs(out, exist_ok=True)
     aliases = {}
     if a.aliases:
         for r in csv.DictReader(open(a.aliases, encoding='utf-8')): aliases[re.sub(r'[^a-z0-9]', '', r['from'].lower())] = re.sub(r'[^a-z0-9]', '', r['to'].lower())
+    if a.tool_ids and os.path.exists(a.tool_ids):
+        for r in csv.DictReader(open(a.tool_ids, encoding='utf-8')):
+            if r['biotools_id']: BTID[r['tool_key']] = r['biotools_id']
+        print('tool IDs loaded:', len(BTID))
     long_rows = []
 
     def add(pipeline, src, dst, category, curated, n_edges, selfloop):
@@ -63,8 +71,8 @@ def main():
         if not t or str(selfloop) == 'True': return
         ks, kd = key(src, aliases), key(dst, aliases)
         if ks == kd: return
-        long_rows.append({'pipeline': pipeline, 'source_software': src, 'target_software': dst, 'source_key': ks, 'target_key': kd, 'category': category, 'trust': t, 'trust_rank': RANK[t],
-                          'n_process_edges': n_edges, 'names_reviewed': curated, 'involves_utility_or_reporting': ks in UTILITY or kd in UTILITY})
+        long_rows.append({'pipeline': pipeline, 'source_software': src, 'target_software': dst, 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'category': category, 'trust': t, 'trust_rank': RANK[t],
+                          'n_process_edges': n_edges, 'names_reviewed': curated, 'involves_utility_or_reporting': ks.replace('bt:', '') in UTILITY or kd.replace('bt:', '') in UTILITY})
 
     have_ref = bool(a.rnaseq_reference and os.path.exists(a.rnaseq_reference))
     if have_ref:
@@ -94,9 +102,9 @@ def main():
         rev = sorted({r['pipeline'] for r in groups.get((kd, ks), []) if r['trust'] in POSITIVE})
         best = min(rs, key=lambda r: r['trust_rank'])['trust']
         edges = sum(int(r['n_process_edges'] or 0) for r in rs if r['trust'] in POSITIVE)
-        uniq.append({'source_software': disp(ks), 'target_software': disp(kd), 'source_key': ks, 'target_key': kd, 'n_pipelines_positive': len(pos), 'n_pipelines_negative': len(neg),
+        uniq.append({'source_software': disp(ks), 'target_software': disp(kd), 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'n_pipelines_positive': len(pos), 'n_pipelines_negative': len(neg),
                      'n_process_edges_positive': edges, 'best_trust': best, 'best_trust_rank': RANK[best], 'categories': ';'.join(sorted({r['category'] for r in rs})),
-                     'reverse_direction_pipelines': len(rev), 'involves_utility_or_reporting': ks in UTILITY or kd in UTILITY,
+                     'reverse_direction_pipelines': len(rev), 'involves_utility_or_reporting': ks.replace('bt:', '') in UTILITY or kd.replace('bt:', '') in UTILITY,
                      'in_verified_reference': any(r['pipeline'] == 'rnaseq_3.27.0_reference' and r['trust'] in ('verified_pair', 'verified_family_rule') for r in rs),
                      'pipelines_positive': ';'.join(pos), 'pipelines_negative': ';'.join(neg)})
     uniq.sort(key=lambda r: (-r['n_pipelines_positive'], r['best_trust_rank'], r['source_key'], r['target_key']))
