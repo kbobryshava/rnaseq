@@ -1,3 +1,5 @@
+> **Superseded by `claude_analysis/generic/README.md`** (one command, sparse download, software-map and curation files, self-test). The text below is the first-release manual procedure.
+
 # Applying the method to another nf-core pipeline
 
 The scripts are pipeline-agnostic for any Nextflow DSL2 repository whose entry script is `main.nf` with an

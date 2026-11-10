@@ -1,0 +1,27 @@
+# Software map for ONE pipeline (pass with --software-map). Everything is optional: modules you do not list are guessed from the
+# module's environment.yml / meta.yml and flagged UNREVIEWED in reference/validation.md.
+#
+# primary: process MODULE name (the `process X {` name, not the alias) -> software key(s) that really transform the data.
+#          Use the tool that does the work, not the tool listed first in meta.yml. A process that only uses a utility (tar, gzip, sed)
+#          is mapped to that utility key.
+primary:
+  FASTP: [fastp]
+  HISAT2_ALIGN: [hisat2]
+  SAMTOOLS_SORT: [samtools]
+  SUBREAD_COUNT: [featurecounts]
+  QUALIMAP_QC: [qualimap]
+
+# canon: key -> [display name, role]   roles: analysis | qc | quantification | reference-prep | reporting | utility
+canon:
+  fastp: [fastp, analysis]
+  hisat2: [HISAT2, analysis]
+  samtools: [SAMtools, analysis]
+  featurecounts: [featureCounts (Subread), quantification]
+  qualimap: [Qualimap, qc]
+
+# alternative_of: key -> display name of the tool it re-implements (vendor-accelerated or drop-in alternatives)
+alternative_of: {}
+
+# Rules the static analysis cannot see (optional). Each is documented with the source line that justifies it.
+callsite_infeasible: []      # - {dst_suffix: 'SUBWORKFLOW:PROCESS', reason: 'main.nf:123 SUBWORKFLOW is called with the literal "x"; this branch cannot run'}
+forbidden_flag_pairs: []     # - {a: use_x, b: use_y, reason: 'main.nf:45 errors when both are set'}

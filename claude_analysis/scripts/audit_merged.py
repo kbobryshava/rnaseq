@@ -2,7 +2,10 @@
 """Writes audit/payload_audit.csv, merged_channel_audit.csv, merged_sites.csv from data/processed (thin wrapper around payload_checks.py)."""
 import json, os, csv, collections, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import payload_checks
 from payload_checks import payload_verdict
+import build_datasets   # audit layer is rnaseq-specific: apply the rnaseq profile rules
+payload_checks.CALLSITE_INFEASIBLE = build_datasets.RNASEQ_RULES['callsite_infeasible']; payload_checks.MULTIMAP_NOTE = build_datasets.RNASEQ_RULES['multimap_note']
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); P = os.path.join(root, 'data', 'processed'); A = os.path.join(root, 'audit'); REPO = os.path.dirname(root)
 rows = []
 for l in open(os.path.join(P, 'process_edges_evidence.jsonl'), encoding='utf-8'):

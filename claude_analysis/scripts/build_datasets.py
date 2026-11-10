@@ -13,6 +13,7 @@ import yaml
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from parse_dag import parse as parse_dag
 from nf_static_analyzer import cond_atoms
+import payload_checks
 from payload_checks import payload_verdict, REJECT_VERDICTS
 
 # --------------------------------------------------------------------------
@@ -64,6 +65,12 @@ PRIMARY = {
  'UCSC_BEDCLIP': ['ucsc_bedclip'], 'UCSC_BEDGRAPHTOBIGWIG': ['ucsc_bedgraphtobigwig'], 'UMICOLLAPSE': ['umicollapse'],
  'UMITOOLS_DEDUP': ['umi_tools'], 'UMITOOLS_EXTRACT': ['umi_tools'], 'UMITOOLS_PREPAREFORRSEM': ['umi_tools'], 'UNTAR': ['untar'],
 }
+
+RNASEQ_RULES = {
+    'callsite_infeasible': [{'dst_suffix': 'QUANTIFY_BAM_SALMON:KALLISTO_QUANT', 'reason': 'workflows/rnaseq/main.nf:461 QUANTIFY_BAM_SALMON is called with the literal "salmon"; its kallisto branch cannot run'}],
+    'forbidden_flag_pairs': [{'a': 'use_parabricks_star', 'b': 'use_sentieon_star', 'reason': 'pipeline validation forbids --use_parabricks_star with --use_sentieon_star (subworkflows/local/utils_nfcore_rnaseq_pipeline/main.nf:323-325)'}],
+    'multimap_note': 'workflows/rnaseq/main.nf:495-512 multiMap separates the bam and index branches; the analyzer unions them'}
+
 
 def module_meta(repo, module_file):
     d = os.path.join(repo, os.path.dirname(module_file))
@@ -119,7 +126,17 @@ def dag_instances_and_edges(dag):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--repo', required=True); ap.add_argument('--out', required=True)
+    ap.add_argument('--profile', default='rnaseq', choices=['rnaseq', 'generic'], help='rnaseq = curated nf-core/rnaseq 3.27.0 software map and rules; generic = nothing pre-curated (software is auto-guessed and flagged UNREVIEWED)')
+    ap.add_argument('--software-map', help='YAML overlay: primary: {MODULE: [keys]}, canon: {key: [name, role]}, alternative_of: {key: name}, callsite_infeasible: [...], forbidden_flag_pairs: [...]')
     a = ap.parse_args()
+    RULES = dict(RNASEQ_RULES) if a.profile == 'rnaseq' else {'callsite_infeasible': [], 'forbidden_flag_pairs': [], 'multimap_note': payload_checks.MULTIMAP_NOTE}
+    if a.profile == 'generic': CANON.clear(); PRIMARY.clear(); ALTERNATIVE_OF.clear()
+    if a.software_map:
+        ov = yaml.safe_load(open(a.software_map, encoding='utf-8')) or {}
+        PRIMARY.update({k: list(v) for k, v in (ov.get('primary') or {}).items()}); CANON.update({k: tuple(v) for k, v in (ov.get('canon') or {}).items()})
+        ALTERNATIVE_OF.update(ov.get('alternative_of') or {})
+        for k in ('callsite_infeasible', 'forbidden_flag_pairs'): RULES[k] = RULES[k] + list(ov.get(k) or [])
+    payload_checks.CALLSITE_INFEASIBLE = RULES['callsite_infeasible']; payload_checks.MULTIMAP_NOTE = RULES['multimap_note']
     out = a.out; proc = os.path.join(out, 'data', 'processed'); gr = os.path.join(out, 'data', 'graphs'); raw = os.path.join(out, 'data', 'raw')
     G = json.load(open(os.path.join(proc, 'static_graph.json')))
     insts = {i['path']: i for i in G['instances']}
@@ -147,7 +164,7 @@ def main():
         if not prim:
             method = 'auto-from-environment-yml (UNREVIEWED)'
             helpers = {'htslib', 'coreutils', 'grep', 'gzip', 'lbzip2', 'sed', 'tar', 'pigz', 'python', 'r-base'}
-            prim = [e for e in env if e not in helpers][:1] or tools[:1]
+            prim = [e for e in env if e not in helpers][:1] or tools[:1] or [i['module'].lower()]   # last resort: the module name itself
             for k in prim: CANON.setdefault(k, (k, 'unknown'))
         names = [CANON[k][0] for k in prim]
         for k in prim: canon_used[k] = CANON[k]
@@ -197,8 +214,8 @@ def main():
         elif cls == 'direct': conf2, why2 = 'high', 'direct single-source path' + ('; exclusive alternative branches recorded as conditions' if alt else '')
         else: conf2, why2 = 'medium', cls + ' (payload check: ' + pv + ')'
         atoms = sorted({f'{k} {o} {v}' for c in (e['conditions_consumer'] + e['path_branch_conditions'] + e['conditions_producer']) for k, o, v in cond_atoms(c)})
-        if 'use_parabricks_star truthy True' in atoms and 'use_sentieon_star truthy True' in atoms:
-            conf2, why2 = 'rejected', 'pipeline validation forbids --use_parabricks_star with --use_sentieon_star (subworkflows/local/utils_nfcore_rnaseq_pipeline/main.nf:323-325)'
+        for fp in RULES['forbidden_flag_pairs']:
+            if f"{fp['a']} truthy True" in atoms and f"{fp['b']} truthy True" in atoms: conf2, why2 = 'rejected', fp['reason']
         crosses = any(st['var'].startswith('emit:') for st in e['channel_trail'])
         ex = [c for c in configs if s in dagsets[c] and d in dagsets[c]]
         conf_by_dag = [c for c in ex if (s, d) in dagfree[c]]

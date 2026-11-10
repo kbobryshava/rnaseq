@@ -5,6 +5,10 @@ return (verdict, reason). Verdicts: compatible | unknown-producer-family | INCOM
 false-positive mechanisms of a union-semantics channel analysis; see audit/AUDIT_REPORT.md section 5."""
 import re, os
 REJECT_VERDICTS = {'PROJECTION-DROPPED', 'MULTIMAP-SPLIT', 'INFEASIBLE-CALLSITE-CONSTANT'}
+# pipeline-specific rules, set by build_datasets.py from the profile / software-map file:
+#   CALLSITE_INFEASIBLE = [{'dst_suffix': 'SUBWF:PROCESS', 'reason': '...'}]  (a subworkflow called with a literal argument that disables this branch)
+CALLSITE_INFEASIBLE = []
+MULTIMAP_NOTE = 'a multiMap on the channel path separates the bam and index outputs; the analyzer unions the branches'
 FAM = [('fai', r'\bfai\b|\.fai'), ('sizes', r'sizes'), ('bai', r'\bbai\b|\bcsi\b|\bcrai\b|\bindex\b.*(bam|cram)|bam_index'),
        ('bam', r'\bbam|\bcram|\bsam\b|bam_transcript'), ('fastq', r'fastq|fastx|reads|\.fq'), ('gtf', r'\bgtf\b|\.gtf|annotation'),
        ('fasta', r'fasta|\.fa\b|genome|primary_ref|gunzip'), ('tx2gene', r'tx2gene'), ('counts', r'counts|matrix|tpm|lengths|quants|results'),
@@ -63,10 +67,11 @@ def payload_verdict(r, repo):
                     if prm.startswith('_') and prm != '_meta' and any(fam in pf and any(k in nm for k in keys) for fam, keys in DROP.items()): dr = r['consumer_call'] + ' (inline) drops ' + prm
         except Exception: pass
     multimap = any(st.get('var', '').startswith('map_filtered') or 'multiMap' in st.get('operators', []) for st in r['channel_trail'])
-    if r['dst_instance'].endswith('QUANTIFY_BAM_SALMON:KALLISTO_QUANT'): v = 'INFEASIBLE-CALLSITE-CONSTANT'; dr = 'workflows/rnaseq/main.nf:461 QUANTIFY_BAM_SALMON is called with the literal "salmon"; its kallisto branch cannot run'
+    hit = next((x for x in CALLSITE_INFEASIBLE if r['dst_instance'].endswith(x['dst_suffix'])), None)
+    if hit: v = 'INFEASIBLE-CALLSITE-CONSTANT'; dr = hit['reason']
     elif dr: v = 'PROJECTION-DROPPED'
     elif not pf: v = 'unknown-producer-family'
     elif pf & cf: v = 'compatible'
     else: v = 'INCOMPATIBLE'
-    if v == 'INCOMPATIBLE' and multimap and 'bai' in pf: v = 'MULTIMAP-SPLIT'; dr = 'workflows/rnaseq/main.nf:495-512 multiMap separates the bam and index branches; the analyzer unions them'
+    if v == 'INCOMPATIBLE' and multimap and 'bai' in pf: v = 'MULTIMAP-SPLIT'; dr = MULTIMAP_NOTE
     return v, dr, pf, cf
