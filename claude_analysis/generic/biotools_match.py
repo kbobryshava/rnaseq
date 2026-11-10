@@ -130,7 +130,8 @@ def main():
     print(f'bio.tools dump: {n_lines} lines ({bad} unreadable), {len(info)} tool records; index sizes: ' + ', '.join(f'{k} {len(v)}' for k, v in idx.items()))
     if not info: sys.exit('no records with a biotoolsID found - is this the right file? first characters: ' + open(a.jsonl, encoding='utf-8', errors='replace').read(200))
     rows = list(csv.DictReader(open(a.tools, encoding='utf-8'))); fields = list(rows[0].keys())
-    shutil.copy(a.tools, os.path.join(out, 'tool_identifiers.before_jsonl.csv'))
+    bk = os.path.join(out, 'tool_identifiers.before_jsonl.csv')
+    if not os.path.exists(bk): shutil.copy(a.tools, bk)   # kept from the FIRST run, so a re-run never overwrites the real 'before'
     for c in ('match_evidence', 'match_doi', 'match_candidates'):
         if c not in fields: fields.append(c)
     report = []; counts = collections.Counter()
@@ -182,7 +183,18 @@ def main():
     rf = os.path.join(out, 'biotools_match_report.csv')
     with open(rf, 'w', newline='', encoding='utf-8') as fh:
         w = csv.DictWriter(fh, fieldnames=['tool_key', 'tool_name', 'evidence', 'accepted', 'chosen_biotools_id', 'chosen_name', 'candidates', 'tool_ids_and_links', 'name_variants'], lineterminator='\n'); w.writeheader(); w.writerows(report)
-    print('tools without an ID before:', sum(counts.values()), '| by evidence:', dict(counts.most_common()))
+    was = lambda r: bool(r['biotools_id']) and not r['id_source'].startswith('biotools-jsonl')   # had an ID before any dump matching (meta.yml or API lookup)
+    npipe = lambda r: int(r.get('n_pipelines') or 0)
+    summ = [('tools in the table', len(rows), sum(npipe(r) for r in rows)), ('with a bio.tools ID BEFORE matching', sum(1 for r in rows if was(r)), sum(npipe(r) for r in rows if was(r))),
+            ('with a bio.tools ID AFTER matching', sum(1 for r in rows if r['biotools_id']), sum(npipe(r) for r in rows if r['biotools_id'])),
+            ('gained by matching', sum(1 for r in rows if r['biotools_id'] and not was(r)), sum(npipe(r) for r in rows if r['biotools_id'] and not was(r))),
+            ('still without an ID', sum(1 for r in rows if not r['biotools_id']), sum(npipe(r) for r in rows if not r['biotools_id']))]
+    for ev, n in collections.Counter(r['id_source'][len('biotools-jsonl-'):] for r in rows if r['id_source'].startswith('biotools-jsonl-')).most_common(): summ.append(('  gained via ' + ev, n, sum(npipe(r) for r in rows if r['id_source'] == 'biotools-jsonl-' + ev)))
+    with open(os.path.join(out, 'biotools_match_summary.csv'), 'w', newline='', encoding='utf-8') as fh:
+        w = csv.writer(fh, lineterminator='\n'); w.writerow(['metric', 'n_tools', 'sum_of_n_pipelines (a tool used in 10 pipelines counts 10)', 'share_of_tools']); [w.writerow([m, n, pw, f'{n / max(1, len(rows)):.1%}']) for m, n, pw in summ]
+    print('\nBEFORE vs AFTER matching (tools | tool-uses over pipelines | share of tools)')
+    for m, n, pw in summ: print(f'  {m:40s} {n:6d} | {pw:7d} | {n / max(1, len(rows)):6.1%}')
+    print('\ntools without an ID before:', sum(counts.values()), '| by evidence:', dict(counts.most_common()))
     print('now with a bio.tools ID:', sum(1 for r in rows if r['biotools_id']), 'of', len(rows))
     print('updated:', os.path.join(out, 'tool_identifiers.csv'), '| report (review `ambiguous` and name-only rows):', rf)
 
