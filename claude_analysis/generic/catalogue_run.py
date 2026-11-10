@@ -25,7 +25,7 @@ ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDe
 ap.add_argument('step', nargs='?', choices=['setup', 'survey', 'run', 'report', 'ids', 'merge'])
 ap.add_argument('--catalogue', default='.'); ap.add_argument('--tools', default=os.path.expanduser('~/nfrel_tools'))
 ap.add_argument('--out'); ap.add_argument('--limit', type=int, default=0); ap.add_argument('--only', default=''); ap.add_argument('--jobs', type=int, default=4)
-ap.add_argument('--timeout', type=int, default=900); ap.add_argument('--no-update', action='store_true'); ap.add_argument('--lookup', action='store_true', help='ids step: also ask bio.tools (needs internet)')
+ap.add_argument('--timeout', type=int, default=900); ap.add_argument('--no-update', action='store_true'); ap.add_argument('--only-with-ids', choices=['biotools', 'any'], help='merge step: also write *_with_ids.csv with only pairs whose two tools both have a bio.tools ID (biotools) or any identifier (any)'); ap.add_argument('--lookup', action='store_true', help='ids step: also ask bio.tools (needs internet)')
 a = ap.parse_args()
 if not a.step: ap.print_help(); sys.exit(0)
 cat = os.path.abspath(a.catalogue)
@@ -149,7 +149,7 @@ def ids():
 
 def merge():
     ref = os.path.join(a.tools, 'claude_analysis', 'reference', 'software_level', 'software_relationships_all.csv')
-    sys.exit(sh(sys.executable, os.path.join(G, 'merge_pairs.py'), '--results', out, '--rnaseq-reference', ref, *(['--tool-ids', os.path.join(out, 'tool_identifiers.csv')] if os.path.exists(os.path.join(out, 'tool_identifiers.csv')) else [])).returncode)
+    sys.exit(sh(sys.executable, os.path.join(G, 'merge_pairs.py'), '--results', out, '--rnaseq-reference', ref, *(['--tool-ids', os.path.join(out, 'tool_identifiers.csv')] if os.path.exists(os.path.join(out, 'tool_identifiers.csv')) else []), *(['--only-with-ids', a.only_with_ids] if a.only_with_ids else [])).returncode)
 
 
 {'setup': setup, 'survey': survey, 'run': run, 'report': report, 'ids': ids, 'merge': merge}[a.step]()

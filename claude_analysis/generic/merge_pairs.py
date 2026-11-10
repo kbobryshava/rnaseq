@@ -33,6 +33,13 @@ UTILITY = {'multiqc', 'gunzip', 'gzip', 'cat', 'untar', 'tar', 'xz', 'unzip', 'b
 
 
 BTID = {}   # name key -> bio.tools ID (filled from --tool-ids)
+ANYID = set()   # name keys that have ANY identifier: bio.tools ID, bioconda package, DOI / publication, other ID
+
+
+def rawkey(name, aliases):
+    n = re.sub(r'\(.*?\)', '', name or '').lower()
+    k = re.sub(r'[^a-z0-9]', '', n) or re.sub(r'[^a-z0-9]', '', (name or '').lower())
+    return aliases.get(k, k)
 
 
 def key(name, aliases):
@@ -54,7 +61,7 @@ def trust_of(category, curated):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('--results', required=True); ap.add_argument('--rnaseq-reference'); ap.add_argument('--out'); ap.add_argument('--aliases'); ap.add_argument('--tool-ids', help='tool_identifiers.csv from tool_ids.py: tools with the same bio.tools ID are merged and the ID is added to the output')
+    ap.add_argument('--results', required=True); ap.add_argument('--rnaseq-reference'); ap.add_argument('--out'); ap.add_argument('--aliases'); ap.add_argument('--only-with-ids', choices=['biotools', 'any'], help='also write *_with_ids.csv files that keep only pairs where BOTH tools have a bio.tools ID (biotools) or at least one identifier of any kind (any); needs --tool-ids'); ap.add_argument('--tool-ids', help='tool_identifiers.csv from tool_ids.py: tools with the same bio.tools ID are merged and the ID is added to the output')
     a = ap.parse_args()
     out = a.out or a.results; os.makedirs(out, exist_ok=True)
     aliases = {}
@@ -63,6 +70,7 @@ def main():
     if a.tool_ids and os.path.exists(a.tool_ids):
         for r in csv.DictReader(open(a.tool_ids, encoding='utf-8')):
             if r['biotools_id']: BTID[r['tool_key']] = r['biotools_id']
+            if any(r.get(c) for c in ('biotools_id', 'bioconda_package', 'doi', 'publications', 'other_ids')): ANYID.add(r['tool_key'])
         print('tool IDs loaded:', len(BTID))
     long_rows = []
 
@@ -71,7 +79,7 @@ def main():
         if not t or str(selfloop) == 'True': return
         ks, kd = key(src, aliases), key(dst, aliases)
         if ks == kd: return
-        long_rows.append({'pipeline': pipeline, 'source_software': src, 'target_software': dst, 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'category': category, 'trust': t, 'trust_rank': RANK[t],
+        long_rows.append({'pipeline': pipeline, 'source_software': src, 'target_software': dst, 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'source_has_any_id': ks.startswith('bt:') or rawkey(src, aliases) in ANYID, 'target_has_any_id': kd.startswith('bt:') or rawkey(dst, aliases) in ANYID, 'category': category, 'trust': t, 'trust_rank': RANK[t],
                           'n_process_edges': n_edges, 'names_reviewed': curated, 'involves_utility_or_reporting': ks.replace('bt:', '') in UTILITY or kd.replace('bt:', '') in UTILITY})
 
     have_ref = bool(a.rnaseq_reference and os.path.exists(a.rnaseq_reference))
@@ -102,7 +110,7 @@ def main():
         rev = sorted({r['pipeline'] for r in groups.get((kd, ks), []) if r['trust'] in POSITIVE})
         best = min(rs, key=lambda r: r['trust_rank'])['trust']
         edges = sum(int(r['n_process_edges'] or 0) for r in rs if r['trust'] in POSITIVE)
-        uniq.append({'source_software': disp(ks), 'target_software': disp(kd), 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'n_pipelines_positive': len(pos), 'n_pipelines_negative': len(neg),
+        uniq.append({'source_software': disp(ks), 'target_software': disp(kd), 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'source_has_any_id': rs[0]['source_has_any_id'], 'target_has_any_id': rs[0]['target_has_any_id'], 'n_pipelines_positive': len(pos), 'n_pipelines_negative': len(neg),
                      'n_process_edges_positive': edges, 'best_trust': best, 'best_trust_rank': RANK[best], 'categories': ';'.join(sorted({r['category'] for r in rs})),
                      'reverse_direction_pipelines': len(rev), 'involves_utility_or_reporting': ks.replace('bt:', '') in UTILITY or kd.replace('bt:', '') in UTILITY,
                      'in_verified_reference': any(r['pipeline'] == 'rnaseq_3.27.0_reference' and r['trust'] in ('verified_pair', 'verified_family_rule') for r in rs),
@@ -111,6 +119,14 @@ def main():
     with open(os.path.join(out, 'pairs_merged_unique.csv'), 'w', newline='', encoding='utf-8') as fh:
         w = csv.DictWriter(fh, fieldnames=list(uniq[0].keys()) if uniq else ['x'], lineterminator='\n'); w.writeheader(); w.writerows(uniq)
 
+    if a.only_with_ids:
+        if not BTID and not ANYID: sys.exit('--only-with-ids needs --tool-ids (run: python catalogue_run.py ids --lookup first)')
+        if a.only_with_ids == 'biotools': keep = lambda r: r['source_biotools_id'] and r['target_biotools_id']
+        else: keep = lambda r: r['source_has_any_id'] and r['target_has_any_id']
+        for name, rows_, fields in (('pairs_merged_unique_with_ids.csv', [u for u in uniq if keep(u)], uniq), ('pairs_merged_long_with_ids.csv', [r for r in long_rows if keep(r)], long_rows)):
+            with open(os.path.join(out, name), 'w', newline='', encoding='utf-8') as fh:
+                w = csv.DictWriter(fh, fieldnames=list(fields[0].keys()), lineterminator='\n'); w.writeheader(); w.writerows(rows_)
+            print(f'{name}: {len(rows_)} of {len(fields)} rows kept (both tools have {"a bio.tools ID" if a.only_with_ids == "biotools" else "at least one identifier"})')
     posu = [u for u in uniq if u['n_pipelines_positive']]
     core = [u for u in posu if not u['involves_utility_or_reporting']]
     multi = [u for u in posu if u['n_pipelines_positive'] >= 2]
