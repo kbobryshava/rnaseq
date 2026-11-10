@@ -23,7 +23,7 @@ Nothing is downloaded.
 import argparse, collections, csv, json, os, re, shutil, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from tool_ids import key, resolve_parents, NO_NAME_LOOKUP
+from tool_ids import key, resolve_parents, NO_NAME_LOOKUP, OPS, strip_pkg_prefix
 
 DOI_RX = re.compile(r'10\.\d{4,9}/[^\s"<>,;]+', re.I)
 STRONG = ('doi', 'pmid', 'pmcid', 'rrid')
@@ -138,7 +138,7 @@ def main():
     for r in rows:
         r.setdefault('match_evidence', ''); r.setdefault('match_doi', ''); r.setdefault('match_candidates', '')
         if r['biotools_id'] or r['tool_key'] in NO_NAME_LOOKUP: continue
-        names = {r['tool_key']} | {key(n) for n in (r.get('name_variants') or '').split('|') if n.strip()} | {key(r.get('bioconda_package', ''))}
+        names = {r['tool_key']} | {key(n) for n in (r.get('name_variants') or '').split('|') if n.strip()} | {key(strip_pkg_prefix(n)) for n in (r.get('name_variants') or '').split('|') + [r.get('bioconda_package', '')] if n.strip()} | {key(r.get('bioconda_package', ''))}
         names.discard('')
         mine = tool_ids_of(r)
         cand = collections.defaultdict(lambda: collections.defaultdict(set))   # biotoolsID -> kind -> matched values
@@ -157,7 +157,8 @@ def main():
             return None, 'ambiguous'
         chosen, amb = pick(STRONG)
         if not chosen and not amb: chosen, amb = pick(('url',))
-        if not chosen and not amb and not a.no_name_only:
+        generic_only = all(k in OPS or k in NO_NAME_LOOKUP for k in names)   # a name like `filter` or `merge` alone is never enough
+        if not chosen and not amb and not a.no_name_only and not generic_only:
             nm = {b: k for b, k in cand.items() if 'name' in k}
             if len(nm) == 1: chosen = next(iter(nm))
             elif len(nm) > 1: amb = 'ambiguous'

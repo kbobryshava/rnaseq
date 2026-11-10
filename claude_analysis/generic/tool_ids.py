@@ -34,6 +34,11 @@ NO_NAME_LOOKUP = {'cat', 'gzip', 'gunzip', 'tar', 'untar', 'unzip', 'sed', 'awk'
 OPS = set('align alignment aligner index indexing build genomegenerate generate sort view merge stats flagstat idxstats quant quantification count counts run call calling mem extract dedup markduplicates mark duplicates trim trimming filter convert fastq bam sam cram vcf prepare reference calculate expression profile pileup coverage depth report summary make fai faidx bgzip tabix stat metrics lint check collapse annotate detect predict classify assemble assembly map mapping split cat'.split())
 
 
+def strip_pkg_prefix(name):
+    """bioconda package names carry an ecosystem prefix that bio.tools does not: bioconductor-deseq2 -> deseq2, r-ggplot2 -> ggplot2, perl-bioperl -> bioperl"""
+    return re.sub(r'^(bioconductor|r|perl|python|py|ucsc)-', '', (name or '').strip().lower())
+
+
 def pick(counter):
     return counter.most_common(1)[0][0] if counter else ''
 
@@ -103,22 +108,24 @@ def api(url, tries=3):
 
 def lookup(k, name, known_id, cache):
     ck = known_id or ('name:' + k)
+    if not known_id and (k in NO_NAME_LOOKUP or k in OPS): return {'found': False}   # `filter`, `merge`, `find`, `align` ... are operation words: a bio.tools record of that name is a homonym
     if ck in cache: return cache[ck]
     rec = None; how = ''
     if known_id:
         rec = api('https://bio.tools/api/tool/' + urllib.parse.quote(known_id) + '/?format=json'); how = 'meta.yml'
     else:
         if k in NO_NAME_LOOKUP: cache[ck] = {'found': False}; return cache[ck]
-        base = re.sub(r'\(.*?\)', '', name).strip().lower()
+        base = strip_pkg_prefix(re.sub(r'\(.*?\)', '', name))
+        ks = {k, key(base)}   # the key with and without the ecosystem prefix (bioconductor-deseq2 / deseq2)
         for cand in dict.fromkeys([base.replace(' ', '_'), base.replace(' ', '-'), base.replace('_', '-'), base.replace('-', '_'), base.replace(' ', ''), k]):
             if not cand: continue
             r = api('https://bio.tools/api/tool/' + urllib.parse.quote(cand) + '/?format=json')
-            if isinstance(r, dict) and r.get('biotoolsID') and key(r['biotoolsID']) == k: rec = r; how = 'bio.tools-exact-id'; break
+            if isinstance(r, dict) and r.get('biotoolsID') and key(r['biotoolsID']) in ks: rec = r; how = 'bio.tools-exact-id'; break
         if rec is None:
             r = api('https://bio.tools/api/tool/?q=' + urllib.parse.quote(name) + '&format=json')
             if isinstance(r, dict):
                 for it in r.get('list', []):
-                    if key(it.get('name', '')) == k or key(it.get('biotoolsID', '')) == k: rec = it; how = 'bio.tools-exact-name'; break
+                    if key(it.get('name', '')) in ks or key(it.get('biotoolsID', '')) in ks: rec = it; how = 'bio.tools-exact-name'; break
     out = {'found': False}
     if isinstance(rec, dict) and rec.get('biotoolsID'):
         pubs = []
