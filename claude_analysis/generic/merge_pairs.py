@@ -10,6 +10,7 @@ so rnaseq is not counted twice.
 Writes:
   pairs_merged_long.csv    one row per (pipeline, pair): names, category, trust level, number of process edges
   pairs_merged_unique.csv  one row per distinct directed pair: in how many pipelines it appears (positive / negative), which, best trust level
+  pairs_merged_unique_positive.csv  the same, only pairs with n_pipelines_positive > 0 (no negative-only pairs)
   pairs_merged_summary.md  the most frequent pairs (analysis tools only)
 
 Software names are normalised for matching only (lower case, text in brackets removed, non-letters removed: 'SAMtools' = 'samtools', 'Trim Galore' = 'trimgalore').
@@ -132,6 +133,8 @@ def main():
             with open(os.path.join(out, name), 'w', newline='', encoding='utf-8') as fh:
                 w = csv.DictWriter(fh, fieldnames=list(fields[0].keys()), lineterminator='\n'); w.writeheader(); w.writerows(rows_)
             print(f'{name}: {len(rows_)} of {len(fields)} rows kept (both tools have {"a bio.tools ID" if a.only_with_ids == "biotools" else "at least one identifier"})')
+    with open(os.path.join(out, 'pairs_merged_unique_positive.csv'), 'w', newline='', encoding='utf-8') as fh:   # valid pairs only: no negative-only rows
+        w = csv.DictWriter(fh, fieldnames=list(uniq[0].keys()) if uniq else ['x'], lineterminator=chr(10)); w.writeheader(); w.writerows([u for u in uniq if u['n_pipelines_positive']])
     posu = [u for u in uniq if u['n_pipelines_positive']]
     core = [u for u in posu if not u['involves_utility_or_reporting']]
     multi = [u for u in posu if u['n_pipelines_positive'] >= 2]
