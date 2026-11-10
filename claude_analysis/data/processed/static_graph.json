@@ -76,12 +76,14 @@
      "decl": "tuple val(meta), path(\"${gunzip}\"), emit: gunzip",
      "emit": "gunzip",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('gunzip'), eval('gunzip --version 2>&1 | head -1 | sed \"s/^.*(gzip) //; s/ Copyright.*//\"'), topic: versions, emit: versions_gunzip",
      "emit": "versions_gunzip",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -111,12 +113,14 @@
      "decl": "tuple val(meta), path(\"${gunzip}\"), emit: gunzip",
      "emit": "gunzip",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('gunzip'), eval('gunzip --version 2>&1 | head -1 | sed \"s/^.*(gzip) //; s/ Copyright.*//\"'), topic: versions, emit: versions_gunzip",
      "emit": "versions_gunzip",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -149,30 +153,35 @@
      "decl": "tuple val(meta), path(\"*.gtf\") , emit: gtf , optional: true",
      "emit": "gtf",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.gff3\") , emit: gffread_gff , optional: true",
      "emit": "gffread_gff",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.fasta\"), emit: gffread_fasta , optional: true",
      "emit": "gffread_fasta",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*.bed\") , emit: bed , optional: true",
      "emit": "bed",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('gffread'), eval('gffread --version 2>&1'), topic: versions, emit: versions_gffread",
      "emit": "versions_gffread",
      "topic": true,
+     "topic_name": "versions",
      "line": 19
     }
    ]
@@ -201,12 +210,14 @@
      "decl": "tuple val(meta), path(\"${gunzip}\"), emit: gunzip",
      "emit": "gunzip",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('gunzip'), eval('gunzip --version 2>&1 | head -1 | sed \"s/^.*(gzip) //; s/ Copyright.*//\"'), topic: versions, emit: versions_gunzip",
      "emit": "versions_gunzip",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -238,12 +249,14 @@
      "decl": "tuple val(meta), path(\"${prefix}.${suffix}\"), emit: gtf",
      "emit": "gtf",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -272,12 +285,14 @@
      "decl": "tuple val(meta), path(\"${gunzip}\"), emit: gunzip",
      "emit": "gunzip",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('gunzip'), eval('gunzip --version 2>&1 | head -1 | sed \"s/^.*(gzip) //; s/ Copyright.*//\"'), topic: versions, emit: versions_gunzip",
      "emit": "versions_gunzip",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -313,18 +328,21 @@
      "decl": "tuple val(meta), path(\"out/${prefix}.fasta\"), emit: fasta",
      "emit": "fasta",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"out/${prefix}.gtf\") , emit: gtf",
      "emit": "gtf",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 17
     }
    ]
@@ -353,12 +371,14 @@
      "decl": "tuple val(meta), path(\"${gunzip}\"), emit: gunzip",
      "emit": "gunzip",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('gunzip'), eval('gunzip --version 2>&1 | head -1 | sed \"s/^.*(gzip) //; s/ Copyright.*//\"'), topic: versions, emit: versions_gunzip",
      "emit": "versions_gunzip",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -391,30 +411,35 @@
      "decl": "tuple val(meta), path(\"*.gtf\") , emit: gtf , optional: true",
      "emit": "gtf",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.gff3\") , emit: gffread_gff , optional: true",
      "emit": "gffread_gff",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.fasta\"), emit: gffread_fasta , optional: true",
      "emit": "gffread_fasta",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*.bed\") , emit: bed , optional: true",
      "emit": "bed",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('gffread'), eval('gffread --version 2>&1'), topic: versions, emit: versions_gffread",
      "emit": "versions_gffread",
      "topic": true,
+     "topic_name": "versions",
      "line": 19
     }
    ]
@@ -443,12 +468,14 @@
      "decl": "tuple val(meta), path(\"${prefix}.bed\") , emit: bed",
      "emit": "bed",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -477,12 +504,14 @@
      "decl": "tuple val(meta), path(\"${gunzip}\"), emit: gunzip",
      "emit": "gunzip",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('gunzip'), eval('gunzip --version 2>&1 | head -1 | sed \"s/^.*(gzip) //; s/ Copyright.*//\"'), topic: versions, emit: versions_gunzip",
      "emit": "versions_gunzip",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -511,12 +540,14 @@
      "decl": "path \"*.fa\", emit: fasta",
      "emit": "fasta",
      "topic": false,
+     "topic_name": null,
      "line": 13
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('sed'), eval(\"sed --version 2>&1 | sed '1!d;s/^.*) //'\"), topic: versions",
      "emit": null,
      "topic": true,
+     "topic_name": "versions",
      "line": 14
     }
    ]
@@ -550,30 +581,35 @@
      "decl": "tuple val(meta), path(\"*.gtf\") , emit: gtf , optional: true",
      "emit": "gtf",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.gff3\") , emit: gffread_gff , optional: true",
      "emit": "gffread_gff",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.fasta\"), emit: gffread_fasta , optional: true",
      "emit": "gffread_fasta",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*.bed\") , emit: bed , optional: true",
      "emit": "bed",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('gffread'), eval('gffread --version 2>&1'), topic: versions, emit: versions_gffread",
      "emit": "versions_gffread",
      "topic": true,
+     "topic_name": "versions",
      "line": 19
     }
    ]
@@ -608,30 +644,35 @@
      "decl": "path \"rsem\" , emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "path \"*transcripts.fa\", emit: transcript_fasta",
      "emit": "transcript_fasta",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('rsem'), eval('rsem-calculate-expression --version | sed -e \"s/Current version: RSEM v//g\"'), topic: versions, emit: versions_rsem",
      "emit": "versions_rsem",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('star'), eval('STAR --version | sed -e \"s/STAR_//g\"'), topic: versions, emit: versions_star",
      "emit": "versions_star",
      "topic": true,
+     "topic_name": "versions",
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('sentieon'), eval('sentieon driver --version 2>&1 | sed -e \"s/sentieon-genomics-//g\"'), topic: versions, emit: versions_sentieon",
      "emit": "versions_sentieon",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -666,18 +707,21 @@
      "decl": "path \"rsem\" , emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "path \"*transcripts.fa\", emit: transcript_fasta",
      "emit": "transcript_fasta",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('rsem'), eval('rsem-calculate-expression --version | sed -e \"s/Current version: RSEM v//g\"'), topic: versions, emit: versions_rsem",
      "emit": "versions_rsem",
      "topic": true,
+     "topic_name": "versions",
      "line": 17
     }
    ]
@@ -709,30 +753,35 @@
      "decl": "tuple val(meta), path(\"*.{fa,fasta}\"), emit: fa, optional: true",
      "emit": "fa",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.sizes\"), emit: sizes, optional: true",
      "emit": "sizes",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.fai\"), emit: fai, optional: true",
      "emit": "fai",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*.gzi\"), emit: gzi, optional: true",
      "emit": "gzi",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), topic: versions, emit: versions_samtools",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 19
     }
    ]
@@ -760,12 +809,14 @@
      "decl": "tuple val(meta), path(\"${gunzip}\"), emit: gunzip",
      "emit": "gunzip",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('gunzip'), eval('gunzip --version 2>&1 | head -1 | sed \"s/^.*(gzip) //; s/ Copyright.*//\"'), topic: versions, emit: versions_gunzip",
      "emit": "versions_gunzip",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -794,12 +845,14 @@
      "decl": "tuple val(meta), path(\"${prefix}\"), emit: untar",
      "emit": "untar",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('untar'), eval('tar --version 2>&1 | head -1 | sed \"s/tar (GNU tar) //; s/ Copyright.*//\"'), emit: versions_untar, topic: versions",
      "emit": "versions_untar",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -842,12 +895,14 @@
      "decl": "tuple val(meta), path(\"${prefix}\"), emit: untar",
      "emit": "untar",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('untar'), eval('tar --version 2>&1 | head -1 | sed \"s/tar (GNU tar) //; s/ Copyright.*//\"'), emit: versions_untar, topic: versions",
      "emit": "versions_untar",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -893,36 +948,42 @@
      "decl": "path \"bbsplit_index\" , optional:true, emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path('*primary*fastq.gz'), optional:true, emit: primary_fastq",
      "emit": "primary_fastq",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path('*fastq.gz') , optional:true, emit: all_fastq",
      "emit": "all_fastq",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path('*txt') , optional:true, emit: stats",
      "emit": "stats",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(meta), path('*.log') , optional:true, emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('bbmap'), eval('bbversion.sh | grep -v \"Duplicate cpuset\"'), topic: versions, emit: versions_bbmap",
      "emit": "versions_bbmap",
      "topic": true,
+     "topic_name": "versions",
      "line": 24
     }
    ]
@@ -952,12 +1013,14 @@
      "decl": "tuple val(meta), path(\"${prefix}\"), emit: untar",
      "emit": "untar",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('untar'), eval('tar --version 2>&1 | head -1 | sed \"s/tar (GNU tar) //; s/ Copyright.*//\"'), emit: versions_untar, topic: versions",
      "emit": "versions_untar",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -994,24 +1057,28 @@
      "decl": "tuple val(meta), path(\"*non_rRNA.fastq.gz\"), emit: reads, optional: true",
      "emit": "reads",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: log, optional: true",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta2), path(\"idx\") , emit: index, optional: true",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('sortmerna'), eval('sortmerna --version 2>&1 | grep -oE \"[0-9]+\\\\.[0-9]+\\\\.[0-9]+\" | head -1'), topic: versions, emit: versions_sortmerna",
      "emit": "versions_sortmerna",
      "topic": true,
+     "topic_name": "versions",
      "line": 19
     }
    ]
@@ -1040,12 +1107,14 @@
      "decl": "tuple val(meta), path(\"${prefix}\"), emit: untar",
      "emit": "untar",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('untar'), eval('tar --version 2>&1 | head -1 | sed \"s/tar (GNU tar) //; s/ Copyright.*//\"'), emit: versions_untar, topic: versions",
      "emit": "versions_untar",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -1078,24 +1147,28 @@
      "decl": "tuple val(meta), path(\"star\") , emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('star'), eval('STAR --version | sed -e \"s/STAR_//g\"'), emit: versions_star, topic: versions",
      "emit": "versions_star",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools --version | sed -n '1s/samtools //p'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 17
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('gawk'), eval(\"gawk --version | sed -n '1{s/GNU Awk //;s/,.*//;p}'\"), emit: versions_gawk, topic: versions",
      "emit": "versions_gawk",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -1125,12 +1198,14 @@
      "decl": "tuple val(meta), path(\"${prefix}\"), emit: untar",
      "emit": "untar",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('untar'), eval('tar --version 2>&1 | head -1 | sed \"s/tar (GNU tar) //; s/ Copyright.*//\"'), emit: versions_untar, topic: versions",
      "emit": "versions_untar",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -1160,12 +1235,14 @@
      "decl": "tuple val(meta), path('star'), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('gawk'), eval(\"awk -Wversion | sed '1!d; s/.*Awk //; s/,.*//'\"), topic: versions, emit: versions_gawk",
      "emit": "versions_gawk",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -1200,24 +1277,28 @@
      "decl": "tuple val(meta), path(\"star\") , emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('star'), eval('STAR --version | sed -e \"s/STAR_//g\"'), emit: versions_star, topic: versions",
      "emit": "versions_star",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools --version | sed -n '1s/samtools //p'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 17
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('gawk'), eval(\"gawk --version | sed -n '1{s/GNU Awk //;s/,.*//;p}'\"), emit: versions_gawk, topic: versions",
      "emit": "versions_gawk",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -1247,12 +1328,14 @@
      "decl": "tuple val(meta), path(\"${prefix}\"), emit: untar",
      "emit": "untar",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('untar'), eval('tar --version 2>&1 | head -1 | sed \"s/tar (GNU tar) //; s/ Copyright.*//\"'), emit: versions_untar, topic: versions",
      "emit": "versions_untar",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -1287,30 +1370,35 @@
      "decl": "path \"rsem\" , emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "path \"*transcripts.fa\", emit: transcript_fasta",
      "emit": "transcript_fasta",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('rsem'), eval('rsem-calculate-expression --version | sed -e \"s/Current version: RSEM v//g\"'), topic: versions, emit: versions_rsem",
      "emit": "versions_rsem",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('star'), eval('STAR --version | sed -e \"s/STAR_//g\"'), topic: versions, emit: versions_star",
      "emit": "versions_star",
      "topic": true,
+     "topic_name": "versions",
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('sentieon'), eval('sentieon driver --version 2>&1 | sed -e \"s/sentieon-genomics-//g\"'), topic: versions, emit: versions_sentieon",
      "emit": "versions_sentieon",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -1345,18 +1433,21 @@
      "decl": "path \"rsem\" , emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "path \"*transcripts.fa\", emit: transcript_fasta",
      "emit": "transcript_fasta",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('rsem'), eval('rsem-calculate-expression --version | sed -e \"s/Current version: RSEM v//g\"'), topic: versions, emit: versions_rsem",
      "emit": "versions_rsem",
      "topic": true,
+     "topic_name": "versions",
      "line": 17
     }
    ]
@@ -1386,18 +1477,21 @@
      "decl": "tuple val(meta), path(\"*.splice_sites.txt\"), emit: txt",
      "emit": "txt",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('hisat2'), eval('hisat2 --version | grep -o \"version [^ ]*\" | cut -d \" \" -f 2'), topic: versions, emit: versions_hisat2",
      "emit": "versions_hisat2",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools --version | sed -n '1s/samtools //p'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -1427,12 +1521,14 @@
      "decl": "tuple val(meta), path(\"${prefix}\"), emit: untar",
      "emit": "untar",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('untar'), eval('tar --version 2>&1 | head -1 | sed \"s/tar (GNU tar) //; s/ Copyright.*//\"'), emit: versions_untar, topic: versions",
      "emit": "versions_untar",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -1466,12 +1562,14 @@
      "decl": "tuple val(meta), path(\"hisat2\"), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('hisat2'), eval(\"hisat2 --version | sed -n 's/.*version \\\\([^ ]*\\\\).*/\\\\1/p'\"), emit: versions_hisat2, topic: versions",
      "emit": "versions_hisat2",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -1501,12 +1599,14 @@
      "decl": "tuple val(meta), path(\"${prefix}\"), emit: untar",
      "emit": "untar",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('untar'), eval('tar --version 2>&1 | head -1 | sed \"s/tar (GNU tar) //; s/ Copyright.*//\"'), emit: versions_untar, topic: versions",
      "emit": "versions_untar",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -1536,12 +1636,14 @@
      "decl": "tuple val(meta), path('bowtie2') , emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('bowtie2'), eval(\"bowtie2 --version 2>&1 | sed -n 's/.*bowtie2-align-s version //p'\"), emit: versions_bowtie2, topic: versions",
      "emit": "versions_bowtie2",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -1570,12 +1672,14 @@
      "decl": "tuple val(meta), path(\"${prefix}\"), emit: untar",
      "emit": "untar",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('untar'), eval('tar --version 2>&1 | head -1 | sed \"s/tar (GNU tar) //; s/ Copyright.*//\"'), emit: versions_untar, topic: versions",
      "emit": "versions_untar",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -1605,12 +1709,14 @@
      "decl": "tuple val(meta), path(\"salmon\"), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('salmon'), eval(\"salmon --version | sed 's/salmon //'\"), emit: versions_salmon, topic: versions",
      "emit": "versions_salmon",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -1639,12 +1745,14 @@
      "decl": "tuple val(meta), path(\"${prefix}\"), emit: untar",
      "emit": "untar",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('untar'), eval('tar --version 2>&1 | head -1 | sed \"s/tar (GNU tar) //; s/ Copyright.*//\"'), emit: versions_untar, topic: versions",
      "emit": "versions_untar",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -1673,12 +1781,14 @@
      "decl": "tuple val(meta), path(\"kallisto\") , emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('kallisto'), eval('kallisto 2>&1 | head -1 | sed \"s/^kallisto //; s/Usage.*//\"'), emit: versions_kallisto, topic: versions",
      "emit": "versions_kallisto",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -1717,12 +1827,14 @@
      "decl": "tuple val(meta), path(\"*.{bai,csi,crai}\"), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -1761,12 +1873,14 @@
      "decl": "tuple val(meta), path(\"*.merged.fastq.gz\"), emit: reads",
      "emit": "reads",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val(\"cat\"), eval(\"cat --version 2>&1 | head -n 1 | sed 's/^.*coreutils) //; s/ .*\\$//'\"), emit: versions_cat, topic: versions",
      "emit": "versions_cat",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -1794,12 +1908,14 @@
      "decl": "tuple val(meta), path(\"*.fq_lint.txt\"), emit: lint",
      "emit": "lint",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('fq'), eval(\"fq lint --version | sed 's/fq-lint //; s/ .*//'\"), emit: versions_fq, topic: versions",
      "emit": "versions_fq",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -1843,18 +1959,21 @@
      "decl": "tuple val(meta), path(\"*.html\"), emit: html",
      "emit": "html",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(meta), path(\"*.zip\"), emit: zip",
      "emit": "zip",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('fastqc'), eval('fastqc --version | sed \"/FastQC v/!d; s/.*v//\"'), emit: versions_fastqc, topic: versions",
      "emit": "versions_fastqc",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -1883,18 +2002,21 @@
      "decl": "tuple val(meta), path(\"*.fastq.gz\"), emit: reads",
      "emit": "reads",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('umitools'), eval(\"umi_tools --version | sed -n '/version:/s/.*: //p'\"), emit: versions_umitools, topic: versions",
      "emit": "versions_umitools",
      "topic": true,
+     "topic_name": "versions",
      "line": 17
     }
    ]
@@ -1923,42 +2045,49 @@
      "decl": "tuple val(meta), path(\"*{3prime,5prime,trimmed,val}{,_1,_2}.fq.gz\"), emit: reads",
      "emit": "reads",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(meta), path(\"*report.txt\") , emit: log , optional: true",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*report.json\") , emit: json , optional: true",
      "emit": "json",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*unpaired{,_1,_2}.fq.gz\") , emit: unpaired, optional: true",
      "emit": "unpaired",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*.html\") , emit: html , optional: true",
      "emit": "html",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*.zip\") , emit: zip , optional: true",
      "emit": "zip",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val(\"trimgalore\"), eval('trim_galore --version | grep -Eo \"[0-9]+(\\\\.[0-9]+)+\"'), topic: versions, emit: versions_trimgalore",
      "emit": "versions_trimgalore",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -2002,18 +2131,21 @@
      "decl": "tuple val(meta), path(\"*.html\"), emit: html",
      "emit": "html",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(meta), path(\"*.zip\"), emit: zip",
      "emit": "zip",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('fastqc'), eval('fastqc --version | sed \"/FastQC v/!d; s/.*v//\"'), emit: versions_fastqc, topic: versions",
      "emit": "versions_fastqc",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -2042,18 +2174,21 @@
      "decl": "tuple val(meta), path(\"*.fastq.gz\"), emit: reads",
      "emit": "reads",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('umitools'), eval(\"umi_tools --version | sed -n '/version:/s/.*: //p'\"), emit: versions_umitools, topic: versions",
      "emit": "versions_umitools",
      "topic": true,
+     "topic_name": "versions",
      "line": 17
     }
    ]
@@ -2094,42 +2229,49 @@
      "decl": "tuple val(meta), path('*.fastp.fastq.gz') , optional:true, emit: reads",
      "emit": "reads",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path('*.json') , emit: json",
      "emit": "json",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path('*.html') , emit: html",
      "emit": "html",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path('*.log') , emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path('*.fail.fastq.gz') , optional:true, emit: reads_fail",
      "emit": "reads_fail",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path('*.merged.fastq.gz'), optional:true, emit: reads_merged",
      "emit": "reads_merged",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('fastp'), eval('fastp --version 2>&1 | sed -e \"s/fastp //g\"'), emit: versions_fastp, topic: versions",
      "emit": "versions_fastp",
      "topic": true,
+     "topic_name": "versions",
      "line": 23
     }
    ]
@@ -2159,18 +2301,21 @@
      "decl": "tuple val(meta), path(\"*.html\"), emit: html",
      "emit": "html",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(meta), path(\"*.zip\"), emit: zip",
      "emit": "zip",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('fastqc'), eval('fastqc --version | sed \"/FastQC v/!d; s/.*v//\"'), emit: versions_fastqc, topic: versions",
      "emit": "versions_fastqc",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -2198,12 +2343,14 @@
      "decl": "tuple val(meta), path(\"*.fq_lint.txt\"), emit: lint",
      "emit": "lint",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('fq'), eval(\"fq lint --version | sed 's/fq-lint //; s/ .*//'\"), emit: versions_fq, topic: versions",
      "emit": "versions_fq",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -2247,36 +2394,42 @@
      "decl": "path \"bbsplit_index\" , optional:true, emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path('*primary*fastq.gz'), optional:true, emit: primary_fastq",
      "emit": "primary_fastq",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path('*fastq.gz') , optional:true, emit: all_fastq",
      "emit": "all_fastq",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path('*txt') , optional:true, emit: stats",
      "emit": "stats",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(meta), path('*.log') , optional:true, emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('bbmap'), eval('bbversion.sh | grep -v \"Duplicate cpuset\"'), topic: versions, emit: versions_bbmap",
      "emit": "versions_bbmap",
      "topic": true,
+     "topic_name": "versions",
      "line": 24
     }
    ]
@@ -2305,12 +2458,14 @@
      "decl": "tuple val(meta), path(\"*.fq_lint.txt\"), emit: lint",
      "emit": "lint",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('fq'), eval(\"fq lint --version | sed 's/fq-lint //; s/ .*//'\"), emit: versions_fq, topic: versions",
      "emit": "versions_fq",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -2363,24 +2518,28 @@
      "decl": "tuple val(meta), path(\"*non_rRNA.fastq.gz\"), emit: reads, optional: true",
      "emit": "reads",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: log, optional: true",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta2), path(\"idx\") , emit: index, optional: true",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('sortmerna'), eval('sortmerna --version 2>&1 | grep -oE \"[0-9]+\\\\.[0-9]+\\\\.[0-9]+\" | head -1'), topic: versions, emit: versions_sortmerna",
      "emit": "versions_sortmerna",
      "topic": true,
+     "topic_name": "versions",
      "line": 19
     }
    ]
@@ -2417,24 +2576,28 @@
      "decl": "tuple val(meta), path(\"*non_rRNA.fastq.gz\"), emit: reads, optional: true",
      "emit": "reads",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: log, optional: true",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta2), path(\"idx\") , emit: index, optional: true",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('sortmerna'), eval('sortmerna --version 2>&1 | grep -oE \"[0-9]+\\\\.[0-9]+\\\\.[0-9]+\" | head -1'), topic: versions, emit: versions_sortmerna",
      "emit": "versions_sortmerna",
      "topic": true,
+     "topic_name": "versions",
      "line": 19
     }
    ]
@@ -2464,12 +2627,14 @@
      "decl": "tuple val(meta), path(\"*.tsv\"), emit: stats",
      "emit": "stats",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('seqkit'), eval(\"seqkit version | sed 's/^.*v//'\"), emit: versions_seqkit, topic: versions",
      "emit": "versions_seqkit",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -2503,24 +2668,28 @@
      "decl": "tuple val(meta), path(\"*.nonrna*.fastq.gz\"), emit: fastq",
      "emit": "fastq",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('ribodetector'), eval('ribodetector --version | sed \"s/ribodetector //\"'), emit: versions_ribodetector, topic: versions",
      "emit": "versions_ribodetector",
      "topic": true,
+     "topic_name": "versions",
      "line": 17
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('cuda'), eval('python -c \"import torch; print(torch.version.cuda or \\'no CUDA available\\')\"'), emit: versions_cuda, topic: versions",
      "emit": "versions_cuda",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -2556,12 +2725,14 @@
      "decl": "tuple val(meta), path(\"*.fast*\"), emit: fastx",
      "emit": "fastx",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('seqkit'), eval(\"seqkit version | sed 's/^.*v//'\"), emit: versions_seqkit, topic: versions",
      "emit": "versions_seqkit",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -2597,12 +2768,14 @@
      "decl": "tuple val(meta), path(\"*.fast*\"), emit: fastx",
      "emit": "fastx",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('seqkit'), eval(\"seqkit version | sed 's/^.*v//'\"), emit: versions_seqkit, topic: versions",
      "emit": "versions_seqkit",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -2634,12 +2807,14 @@
      "decl": "tuple val(meta), path('bowtie2') , emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('bowtie2'), eval(\"bowtie2 --version 2>&1 | sed -n 's/.*bowtie2-align-s version //p'\"), emit: versions_bowtie2, topic: versions",
      "emit": "versions_bowtie2",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -2686,60 +2861,70 @@
      "decl": "tuple val(meta), path(\"*.sam\") , emit: sam , optional:true",
      "emit": "sam",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*.bam\") , emit: bam , optional:true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"*.cram\") , emit: cram , optional:true",
      "emit": "cram",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path(\"*.csi\") , emit: csi , optional:true",
      "emit": "csi",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path(\"*.crai\") , emit: crai , optional:true",
      "emit": "crai",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "tuple val(meta), path(\"*fastq.gz\") , emit: fastq , optional:true",
      "emit": "fastq",
      "topic": false,
+     "topic_name": null,
      "line": 24
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('bowtie2'), eval(\"bowtie2 --version 2>&1 | sed -n 's/.*bowtie2-align-s version //p'\"), emit: versions_bowtie2, topic: versions",
      "emit": "versions_bowtie2",
      "topic": true,
+     "topic_name": "versions",
      "line": 25
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 26
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('pigz'), eval(\"pigz --version 2>&1 | sed 's/pigz //'\"), emit: versions_pigz, topic: versions",
      "emit": "versions_pigz",
      "topic": true,
+     "topic_name": "versions",
      "line": 27
     }
    ]
@@ -2786,60 +2971,70 @@
      "decl": "tuple val(meta), path(\"*.sam\") , emit: sam , optional:true",
      "emit": "sam",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*.bam\") , emit: bam , optional:true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"*.cram\") , emit: cram , optional:true",
      "emit": "cram",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path(\"*.csi\") , emit: csi , optional:true",
      "emit": "csi",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path(\"*.crai\") , emit: crai , optional:true",
      "emit": "crai",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "tuple val(meta), path(\"*fastq.gz\") , emit: fastq , optional:true",
      "emit": "fastq",
      "topic": false,
+     "topic_name": null,
      "line": 24
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('bowtie2'), eval(\"bowtie2 --version 2>&1 | sed -n 's/.*bowtie2-align-s version //p'\"), emit: versions_bowtie2, topic: versions",
      "emit": "versions_bowtie2",
      "topic": true,
+     "topic_name": "versions",
      "line": 25
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 26
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('pigz'), eval(\"pigz --version 2>&1 | sed 's/pigz //'\"), emit: versions_pigz, topic: versions",
      "emit": "versions_pigz",
      "topic": true,
+     "topic_name": "versions",
      "line": 27
     }
    ]
@@ -2886,54 +3081,63 @@
      "decl": "tuple val(meta), path(\"${prefix}.bam\"), emit: bam, optional: true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.cram\"), emit: cram, optional: true",
      "emit": "cram",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.sam\"), emit: sam, optional: true",
      "emit": "sam",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.${file_type}.bai\"), emit: bai, optional: true",
      "emit": "bai",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.${file_type}.csi\"), emit: csi, optional: true",
      "emit": "csi",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.${file_type}.crai\"), emit: crai, optional: true",
      "emit": "crai",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.unselected.${file_type}\"), emit: unselected, optional: true",
      "emit": "unselected",
      "topic": false,
+     "topic_name": null,
      "line": 24
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.unselected.${file_type}.{csi,crai}\"), emit: unselected_index, optional: true",
      "emit": "unselected_index",
      "topic": false,
+     "topic_name": null,
      "line": 25
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval('samtools version | sed \"1!d;s/.* //\"'), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 26
     }
    ]
@@ -2968,30 +3172,35 @@
      "decl": "tuple val(meta), path(\"*_{1,2}.fastq.gz\"), optional: true, emit: fastq",
      "emit": "fastq",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*_interleaved.fastq\"), optional: true, emit: interleaved",
      "emit": "interleaved",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*_singleton.fastq.gz\"), optional: true, emit: singleton",
      "emit": "singleton",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*_other.fastq.gz\"), optional: true, emit: other",
      "emit": "other",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 19
     }
    ]
@@ -3020,12 +3229,14 @@
      "decl": "tuple val(meta), path(\"*.fq_lint.txt\"), emit: lint",
      "emit": "lint",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('fq'), eval(\"fq lint --version | sed 's/fq-lint //; s/ .*//'\"), emit: versions_fq, topic: versions",
      "emit": "versions_fq",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -3053,18 +3264,21 @@
      "decl": "tuple val(meta), path(\"*.html\"), emit: html",
      "emit": "html",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(meta), path(\"*.zip\"), emit: zip",
      "emit": "zip",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('fastqc'), eval('fastqc --version | sed \"/FastQC v/!d; s/.*v//\"'), emit: versions_fastqc, topic: versions",
      "emit": "versions_fastqc",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -3105,12 +3319,14 @@
      "decl": "tuple val(meta), path(\"salmon\"), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('salmon'), eval(\"salmon --version | sed 's/salmon //'\"), emit: versions_salmon, topic: versions",
      "emit": "versions_salmon",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -3136,12 +3352,14 @@
      "decl": "tuple val(meta), path(\"*.fastq.gz\"), emit: fastq",
      "emit": "fastq",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('fq'), eval(\"fq subsample --version | sed 's/fq-subsample //; s/ .*//'\"), emit: versions_fq, topic: versions",
      "emit": "versions_fq",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -3171,24 +3389,28 @@
      "decl": "tuple val(meta), path(\"${prefix}\"), emit: results",
      "emit": "results",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*info.json\"), emit: json_info, optional: true",
      "emit": "json_info",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*lib_format_counts.json\"), emit: lib_format_counts, optional: true",
      "emit": "lib_format_counts",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('salmon'), eval('salmon --version | sed -e \"s/salmon //g\"'), topic: versions, emit: versions_salmon",
      "emit": "versions_salmon",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -3244,108 +3466,126 @@
      "decl": "tuple val(meta), path('*Log.final.out'), emit: log_final",
      "emit": "log_final",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path('*Log.out'), emit: log_out",
      "emit": "log_out",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path('*Log.progress.out'), emit: log_progress",
      "emit": "log_progress",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path('*d.out.bam'), emit: bam, optional: true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.sortedByCoord.out.bam\"), emit: bam_sorted, optional: true",
      "emit": "bam_sorted",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.Aligned.sortedByCoord.out.bam\"), emit: bam_sorted_aligned, optional: true",
      "emit": "bam_sorted_aligned",
      "topic": false,
+     "topic_name": null,
      "line": 24
     },
     {
      "decl": "tuple val(meta), path('*toTranscriptome.out.bam'), emit: bam_transcript, optional: true",
      "emit": "bam_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 25
     },
     {
      "decl": "tuple val(meta), path('*Aligned.unsort.out.bam'), emit: bam_unsorted, optional: true",
      "emit": "bam_unsorted",
      "topic": false,
+     "topic_name": null,
      "line": 26
     },
     {
      "decl": "tuple val(meta), path('*fastq.gz'), emit: fastq, optional: true",
      "emit": "fastq",
      "topic": false,
+     "topic_name": null,
      "line": 27
     },
     {
      "decl": "tuple val(meta), path('*.tab'), emit: tab, optional: true",
      "emit": "tab",
      "topic": false,
+     "topic_name": null,
      "line": 28
     },
     {
      "decl": "tuple val(meta), path('*.SJ.out.tab'), emit: spl_junc_tab, optional: true",
      "emit": "spl_junc_tab",
      "topic": false,
+     "topic_name": null,
      "line": 29
     },
     {
      "decl": "tuple val(meta), path('*.ReadsPerGene.out.tab'), emit: read_per_gene_tab, optional: true",
      "emit": "read_per_gene_tab",
      "topic": false,
+     "topic_name": null,
      "line": 30
     },
     {
      "decl": "tuple val(meta), path('*.out.junction'), emit: junction, optional: true",
      "emit": "junction",
      "topic": false,
+     "topic_name": null,
      "line": 31
     },
     {
      "decl": "tuple val(meta), path('*.out.sam'), emit: sam, optional: true",
      "emit": "sam",
      "topic": false,
+     "topic_name": null,
      "line": 32
     },
     {
      "decl": "tuple val(meta), path('*.wig'), emit: wig, optional: true",
      "emit": "wig",
      "topic": false,
+     "topic_name": null,
      "line": 33
     },
     {
      "decl": "tuple val(meta), path('*.bg'), emit: bedgraph, optional: true",
      "emit": "bedgraph",
      "topic": false,
+     "topic_name": null,
      "line": 34
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('star'), eval('sentieon STAR --version | sed -e \"s/STAR_//g\"'), topic: versions, emit: versions_star",
      "emit": "versions_star",
      "topic": true,
+     "topic_name": "versions",
      "line": 35
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('sentieon'), eval('sentieon driver --version 2>&1 | sed -e \"s/sentieon-genomics-//g\"'), topic: versions, emit: versions_sentieon",
      "emit": "versions_sentieon",
      "topic": true,
+     "topic_name": "versions",
      "line": 36
     }
    ]
@@ -3391,120 +3631,140 @@
      "decl": "tuple val(meta), path(\"${prefix}.Log.final.out\"), emit: log_final",
      "emit": "log_final",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.Log.out\"), emit: log_out",
      "emit": "log_out",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.Log.progress.out\"), emit: log_progress",
      "emit": "log_progress",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.bam\"), emit: bam, optional:true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.bam.bai\"), emit: bai, optional:true",
      "emit": "bai",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(meta), path(\"*.sortedByCoord.out.bam\"), emit: bam_sorted, optional:true",
      "emit": "bam_sorted",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "tuple val(meta), path(\"*.Aligned.sortedByCoord.out.bam\"), emit: bam_sorted_aligned, optional:true",
      "emit": "bam_sorted_aligned",
      "topic": false,
+     "topic_name": null,
      "line": 24
     },
     {
      "decl": "tuple val(meta), path('*toTranscriptome.out.bam'), emit: bam_transcript, optional:true",
      "emit": "bam_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 25
     },
     {
      "decl": "tuple val(meta), path('*Aligned.unsort.out.bam'), emit: bam_unsorted, optional:true",
      "emit": "bam_unsorted",
      "topic": false,
+     "topic_name": null,
      "line": 26
     },
     {
      "decl": "tuple val(meta), path('*fastq.gz'), emit: fastq, optional:true",
      "emit": "fastq",
      "topic": false,
+     "topic_name": null,
      "line": 27
     },
     {
      "decl": "tuple val(meta), path('*.tab'), emit: tab, optional:true",
      "emit": "tab",
      "topic": false,
+     "topic_name": null,
      "line": 28
     },
     {
      "decl": "tuple val(meta), path('*.SJ.out.tab'), emit: spl_junc_tab, optional:true",
      "emit": "spl_junc_tab",
      "topic": false,
+     "topic_name": null,
      "line": 29
     },
     {
      "decl": "tuple val(meta), path('*.ReadsPerGene.out.tab'), emit: read_per_gene_tab, optional:true",
      "emit": "read_per_gene_tab",
      "topic": false,
+     "topic_name": null,
      "line": 30
     },
     {
      "decl": "tuple val(meta), path('*.out.junction'), emit: junction, optional:true",
      "emit": "junction",
      "topic": false,
+     "topic_name": null,
      "line": 31
     },
     {
      "decl": "tuple val(meta), path('*.out.sam'), emit: sam, optional:true",
      "emit": "sam",
      "topic": false,
+     "topic_name": null,
      "line": 32
     },
     {
      "decl": "tuple val(meta), path('*.wig'), emit: wig, optional:true",
      "emit": "wig",
      "topic": false,
+     "topic_name": null,
      "line": 33
     },
     {
      "decl": "tuple val(meta), path('*.bg'), emit: bedgraph, optional:true",
      "emit": "bedgraph",
      "topic": false,
+     "topic_name": null,
      "line": 34
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}_qc_metrics\"), emit: qc_metrics, optional:true",
      "emit": "qc_metrics",
      "topic": false,
+     "topic_name": null,
      "line": 35
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.duplicate-metrics.txt\"), emit: duplicate_metrics, optional:true",
      "emit": "duplicate_metrics",
      "topic": false,
+     "topic_name": null,
      "line": 36
     },
     {
      "decl": "tuple val(\"${task.process}\"), val(\"parabricks\"), eval(\"pbrun version 2>&1 | grep -Po '(?<=^pbrun: ).*'\"), emit: versions_parabricks, topic: versions",
      "emit": "versions_parabricks",
      "topic": true,
+     "topic_name": "versions",
      "line": 37
     }
    ]
@@ -3546,114 +3806,133 @@
      "decl": "tuple val(meta), path('*Log.final.out') , emit: log_final",
      "emit": "log_final",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path('*Log.out') , emit: log_out",
      "emit": "log_out",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path('*Log.progress.out'), emit: log_progress",
      "emit": "log_progress",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('star'), eval('STAR --version | sed \"s/STAR_//\"'), emit: versions_star, topic: versions",
      "emit": "versions_star",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools --version | sed -n '1s/samtools //p'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 21
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('gawk'), eval(\"gawk --version | sed -n '1s/GNU Awk \\\\([0-9.]*\\\\).*/\\\\1/p'\"), emit: versions_gawk, topic: versions",
      "emit": "versions_gawk",
      "topic": true,
+     "topic_name": "versions",
      "line": 22
     },
     {
      "decl": "tuple val(meta), path('*d.out.bam') , optional:true, emit: bam",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 24
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.sortedByCoord.out.bam\") , optional:true, emit: bam_sorted",
      "emit": "bam_sorted",
      "topic": false,
+     "topic_name": null,
      "line": 25
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.Aligned.sortedByCoord.out.bam\") , optional:true, emit: bam_sorted_aligned",
      "emit": "bam_sorted_aligned",
      "topic": false,
+     "topic_name": null,
      "line": 26
     },
     {
      "decl": "tuple val(meta), path('*toTranscriptome.out.bam') , optional:true, emit: bam_transcript",
      "emit": "bam_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 27
     },
     {
      "decl": "tuple val(meta), path('*Aligned.unsort.out.bam') , optional:true, emit: bam_unsorted",
      "emit": "bam_unsorted",
      "topic": false,
+     "topic_name": null,
      "line": 28
     },
     {
      "decl": "tuple val(meta), path('*fastq.gz') , optional:true, emit: fastq",
      "emit": "fastq",
      "topic": false,
+     "topic_name": null,
      "line": 29
     },
     {
      "decl": "tuple val(meta), path('*.tab') , optional:true, emit: tab",
      "emit": "tab",
      "topic": false,
+     "topic_name": null,
      "line": 30
     },
     {
      "decl": "tuple val(meta), path('*.SJ.out.tab') , optional:true, emit: spl_junc_tab",
      "emit": "spl_junc_tab",
      "topic": false,
+     "topic_name": null,
      "line": 31
     },
     {
      "decl": "tuple val(meta), path('*.ReadsPerGene.out.tab') , optional:true, emit: read_per_gene_tab",
      "emit": "read_per_gene_tab",
      "topic": false,
+     "topic_name": null,
      "line": 32
     },
     {
      "decl": "tuple val(meta), path('*.out.junction') , optional:true, emit: junction",
      "emit": "junction",
      "topic": false,
+     "topic_name": null,
      "line": 33
     },
     {
      "decl": "tuple val(meta), path('*.out.sam') , optional:true, emit: sam",
      "emit": "sam",
      "topic": false,
+     "topic_name": null,
      "line": 34
     },
     {
      "decl": "tuple val(meta), path('*.wig') , optional:true, emit: wig",
      "emit": "wig",
      "topic": false,
+     "topic_name": null,
      "line": 35
     },
     {
      "decl": "tuple val(meta), path('*.bg') , optional:true, emit: bedgraph",
      "emit": "bedgraph",
      "topic": false,
+     "topic_name": null,
      "line": 36
     }
    ]
@@ -3704,30 +3983,35 @@
      "decl": "tuple val(meta), path(\"${prefix}.bam\"), emit: bam, optional: true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.cram\"), emit: cram, optional: true",
      "emit": "cram",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.sam\"), emit: sam, optional: true",
      "emit": "sam",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.${extension}.{crai,csi,bai}\"), emit: index, optional: true",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), topic: versions, emit: versions_samtools",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -3755,12 +4039,14 @@
      "decl": "tuple val(meta), path(\"*.{bai,csi,crai}\"), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -3807,12 +4093,14 @@
      "decl": "tuple val(meta), path(\"*.stats\"), emit: stats",
      "emit": "stats",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval('samtools version | sed \"1!d;s/.* //\"'), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -3840,12 +4128,14 @@
      "decl": "tuple val(meta), path(\"*.flagstat\"), emit: flagstat",
      "emit": "flagstat",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -3873,12 +4163,14 @@
      "decl": "tuple val(meta), path(\"*.idxstats\"), emit: idxstats",
      "emit": "idxstats",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -3937,60 +4229,70 @@
      "decl": "tuple val(meta), path(\"*.sam\") , emit: sam , optional:true",
      "emit": "sam",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*.bam\") , emit: bam , optional:true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"*.cram\") , emit: cram , optional:true",
      "emit": "cram",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path(\"*.csi\") , emit: csi , optional:true",
      "emit": "csi",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path(\"*.crai\") , emit: crai , optional:true",
      "emit": "crai",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "tuple val(meta), path(\"*fastq.gz\") , emit: fastq , optional:true",
      "emit": "fastq",
      "topic": false,
+     "topic_name": null,
      "line": 24
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('bowtie2'), eval(\"bowtie2 --version 2>&1 | sed -n 's/.*bowtie2-align-s version //p'\"), emit: versions_bowtie2, topic: versions",
      "emit": "versions_bowtie2",
      "topic": true,
+     "topic_name": "versions",
      "line": 25
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 26
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('pigz'), eval(\"pigz --version 2>&1 | sed 's/pigz //'\"), emit: versions_pigz, topic: versions",
      "emit": "versions_pigz",
      "topic": true,
+     "topic_name": "versions",
      "line": 27
     }
    ]
@@ -4041,30 +4343,35 @@
      "decl": "tuple val(meta), path(\"${prefix}.bam\"), emit: bam, optional: true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.cram\"), emit: cram, optional: true",
      "emit": "cram",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.sam\"), emit: sam, optional: true",
      "emit": "sam",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.${extension}.{crai,csi,bai}\"), emit: index, optional: true",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), topic: versions, emit: versions_samtools",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -4092,12 +4399,14 @@
      "decl": "tuple val(meta), path(\"*.{bai,csi,crai}\"), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -4144,12 +4453,14 @@
      "decl": "tuple val(meta), path(\"*.stats\"), emit: stats",
      "emit": "stats",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval('samtools version | sed \"1!d;s/.* //\"'), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -4177,12 +4488,14 @@
      "decl": "tuple val(meta), path(\"*.flagstat\"), emit: flagstat",
      "emit": "flagstat",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -4210,12 +4523,14 @@
      "decl": "tuple val(meta), path(\"*.idxstats\"), emit: idxstats",
      "emit": "idxstats",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -4270,30 +4585,35 @@
      "decl": "tuple val(meta), path(\"*.bam\"), emit: bam",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*.log\"), emit: summary",
      "emit": "summary",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*fastq.gz\"), optional: true, emit: fastq",
      "emit": "fastq",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('hisat2'), eval(\"hisat2 --version | sed -n '1s/.*version //p'\"), emit: versions_hisat2, topic: versions",
      "emit": "versions_hisat2",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools --version | sed -n '1s/samtools //p'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 21
     }
    ]
@@ -4344,30 +4664,35 @@
      "decl": "tuple val(meta), path(\"${prefix}.bam\"), emit: bam, optional: true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.cram\"), emit: cram, optional: true",
      "emit": "cram",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.sam\"), emit: sam, optional: true",
      "emit": "sam",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.${extension}.{crai,csi,bai}\"), emit: index, optional: true",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), topic: versions, emit: versions_samtools",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -4395,12 +4720,14 @@
      "decl": "tuple val(meta), path(\"*.{bai,csi,crai}\"), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -4447,12 +4774,14 @@
      "decl": "tuple val(meta), path(\"*.stats\"), emit: stats",
      "emit": "stats",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval('samtools version | sed \"1!d;s/.* //\"'), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -4480,12 +4809,14 @@
      "decl": "tuple val(meta), path(\"*.flagstat\"), emit: flagstat",
      "emit": "flagstat",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -4513,12 +4844,14 @@
      "decl": "tuple val(meta), path(\"*.idxstats\"), emit: idxstats",
      "emit": "idxstats",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -4582,24 +4915,28 @@
      "decl": "tuple val(meta), path(\"*.bam\"), emit: bam, optional: true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*dedup*fastq.gz\"), emit: fastq, optional: true",
      "emit": "fastq",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*_UMICollapse.log\"), emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('umicollapse'), val(\"1.1.0-0\"), emit: versions_umicollapse, topic: versions",
      "emit": "versions_umicollapse",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -4628,12 +4965,14 @@
      "decl": "tuple val(meta), path(\"*.{bai,csi,crai}\"), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -4682,12 +5021,14 @@
      "decl": "tuple val(meta), path(\"*.stats\"), emit: stats",
      "emit": "stats",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval('samtools version | sed \"1!d;s/.* //\"'), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -4716,12 +5057,14 @@
      "decl": "tuple val(meta), path(\"*.flagstat\"), emit: flagstat",
      "emit": "flagstat",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -4750,12 +5093,14 @@
      "decl": "tuple val(meta), path(\"*.idxstats\"), emit: idxstats",
      "emit": "idxstats",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -4819,54 +5164,63 @@
      "decl": "tuple val(meta), path(\"${prefix}.bam\"), emit: bam, optional: true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.cram\"), emit: cram, optional: true",
      "emit": "cram",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.sam\"), emit: sam, optional: true",
      "emit": "sam",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.${file_type}.bai\"), emit: bai, optional: true",
      "emit": "bai",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.${file_type}.csi\"), emit: csi, optional: true",
      "emit": "csi",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.${file_type}.crai\"), emit: crai, optional: true",
      "emit": "crai",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.unselected.${file_type}\"), emit: unselected, optional: true",
      "emit": "unselected",
      "topic": false,
+     "topic_name": null,
      "line": 24
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.unselected.${file_type}.{csi,crai}\"), emit: unselected_index, optional: true",
      "emit": "unselected_index",
      "topic": false,
+     "topic_name": null,
      "line": 25
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval('samtools version | sed \"1!d;s/.* //\"'), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 26
     }
    ]
@@ -4897,12 +5251,14 @@
      "decl": "tuple val(meta), path(\"*.{bai,csi,crai}\"), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -4936,36 +5292,42 @@
      "decl": "tuple val(meta), path(\"${prefix}.bam\") , emit: bam",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*edit_distance.tsv\"), optional:true, emit: tsv_edit_distance",
      "emit": "tsv_edit_distance",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*per_umi.tsv\") , optional:true, emit: tsv_per_umi",
      "emit": "tsv_per_umi",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*per_position.tsv\") , optional:true, emit: tsv_umi_per_position",
      "emit": "tsv_umi_per_position",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('umitools'), eval(\"umi_tools --version | sed 's/UMI-tools version: //'\"), emit: versions_umitools, topic: versions",
      "emit": "versions_umitools",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -4995,12 +5357,14 @@
      "decl": "tuple val(meta), path(\"*.{bai,csi,crai}\"), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -5051,12 +5415,14 @@
      "decl": "tuple val(meta), path(\"*.stats\"), emit: stats",
      "emit": "stats",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval('samtools version | sed \"1!d;s/.* //\"'), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -5086,12 +5452,14 @@
      "decl": "tuple val(meta), path(\"*.flagstat\"), emit: flagstat",
      "emit": "flagstat",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -5121,12 +5489,14 @@
      "decl": "tuple val(meta), path(\"*.idxstats\"), emit: idxstats",
      "emit": "idxstats",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -5177,30 +5547,35 @@
      "decl": "tuple val(meta), path(\"${prefix}.bam\"), emit: bam, optional: true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.cram\"), emit: cram, optional: true",
      "emit": "cram",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.sam\"), emit: sam, optional: true",
      "emit": "sam",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.${extension}.{crai,csi,bai}\"), emit: index, optional: true",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), topic: versions, emit: versions_samtools",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -5228,12 +5603,14 @@
      "decl": "tuple val(meta), path(\"*.{bai,csi,crai}\"), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -5280,12 +5657,14 @@
      "decl": "tuple val(meta), path(\"*.stats\"), emit: stats",
      "emit": "stats",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval('samtools version | sed \"1!d;s/.* //\"'), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -5313,12 +5692,14 @@
      "decl": "tuple val(meta), path(\"*.flagstat\"), emit: flagstat",
      "emit": "flagstat",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -5346,12 +5727,14 @@
      "decl": "tuple val(meta), path(\"*.idxstats\"), emit: idxstats",
      "emit": "idxstats",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -5400,24 +5783,28 @@
      "decl": "tuple val(meta), path(\"*.bam\"), emit: bam, optional: true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*dedup*fastq.gz\"), emit: fastq, optional: true",
      "emit": "fastq",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*_UMICollapse.log\"), emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('umicollapse'), val(\"1.1.0-0\"), emit: versions_umicollapse, topic: versions",
      "emit": "versions_umicollapse",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -5446,12 +5833,14 @@
      "decl": "tuple val(meta), path(\"*.{bai,csi,crai}\"), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -5500,12 +5889,14 @@
      "decl": "tuple val(meta), path(\"*.stats\"), emit: stats",
      "emit": "stats",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval('samtools version | sed \"1!d;s/.* //\"'), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -5534,12 +5925,14 @@
      "decl": "tuple val(meta), path(\"*.flagstat\"), emit: flagstat",
      "emit": "flagstat",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -5568,12 +5961,14 @@
      "decl": "tuple val(meta), path(\"*.idxstats\"), emit: idxstats",
      "emit": "idxstats",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -5637,54 +6032,63 @@
      "decl": "tuple val(meta), path(\"${prefix}.bam\"), emit: bam, optional: true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.cram\"), emit: cram, optional: true",
      "emit": "cram",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.sam\"), emit: sam, optional: true",
      "emit": "sam",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.${file_type}.bai\"), emit: bai, optional: true",
      "emit": "bai",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.${file_type}.csi\"), emit: csi, optional: true",
      "emit": "csi",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.${file_type}.crai\"), emit: crai, optional: true",
      "emit": "crai",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.unselected.${file_type}\"), emit: unselected, optional: true",
      "emit": "unselected",
      "topic": false,
+     "topic_name": null,
      "line": 24
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.unselected.${file_type}.{csi,crai}\"), emit: unselected_index, optional: true",
      "emit": "unselected_index",
      "topic": false,
+     "topic_name": null,
      "line": 25
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval('samtools version | sed \"1!d;s/.* //\"'), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 26
     }
    ]
@@ -5715,12 +6119,14 @@
      "decl": "tuple val(meta), path(\"*.{bai,csi,crai}\"), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -5754,36 +6160,42 @@
      "decl": "tuple val(meta), path(\"${prefix}.bam\") , emit: bam",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*edit_distance.tsv\"), optional:true, emit: tsv_edit_distance",
      "emit": "tsv_edit_distance",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*per_umi.tsv\") , optional:true, emit: tsv_per_umi",
      "emit": "tsv_per_umi",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*per_position.tsv\") , optional:true, emit: tsv_umi_per_position",
      "emit": "tsv_umi_per_position",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('umitools'), eval(\"umi_tools --version | sed 's/UMI-tools version: //'\"), emit: versions_umitools, topic: versions",
      "emit": "versions_umitools",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -5813,12 +6225,14 @@
      "decl": "tuple val(meta), path(\"*.{bai,csi,crai}\"), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -5869,12 +6283,14 @@
      "decl": "tuple val(meta), path(\"*.stats\"), emit: stats",
      "emit": "stats",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval('samtools version | sed \"1!d;s/.* //\"'), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -5904,12 +6320,14 @@
      "decl": "tuple val(meta), path(\"*.flagstat\"), emit: flagstat",
      "emit": "flagstat",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -5939,12 +6357,14 @@
      "decl": "tuple val(meta), path(\"*.idxstats\"), emit: idxstats",
      "emit": "idxstats",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -5980,30 +6400,35 @@
      "decl": "tuple val(meta), path(\"${prefix}.bam\"), emit: bam, optional: true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.cram\"), emit: cram, optional: true",
      "emit": "cram",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.sam\"), emit: sam, optional: true",
      "emit": "sam",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.${extension}.{crai,csi,bai}\"), emit: index, optional: true",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), topic: versions, emit: versions_samtools",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -6031,18 +6456,21 @@
      "decl": "tuple val(meta), path('*.bam'), emit: bam",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(meta), path('*.log'), emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('umitools'), eval(\"umi_tools --version | sed 's/UMI-tools version: //'\"), emit: versions_umitools, topic: versions",
      "emit": "versions_umitools",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -6090,60 +6518,70 @@
      "decl": "tuple val(meta), path(\"*.genes.results\") , emit: counts_gene",
      "emit": "counts_gene",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.isoforms.results\"), emit: counts_transcript",
      "emit": "counts_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*.stat\") , emit: stat",
      "emit": "stat",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: logs, optional:true",
      "emit": "logs",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"*.STAR.genome.bam\") , optional:true, emit: bam_star",
      "emit": "bam_star",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.genome.bam\") , optional:true, emit: bam_genome",
      "emit": "bam_genome",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.transcript.bam\"), optional:true, emit: bam_transcript",
      "emit": "bam_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('rsem'), eval('rsem-calculate-expression --version | sed -e \"s/Current version: RSEM v//g\"'), topic: versions, emit: versions_rsem",
      "emit": "versions_rsem",
      "topic": true,
+     "topic_name": "versions",
      "line": 25
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('star'), eval('STAR --version | sed -e \"s/STAR_//g\"'), topic: versions, emit: versions_star",
      "emit": "versions_star",
      "topic": true,
+     "topic_name": "versions",
      "line": 26
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('sentieon'), eval('sentieon driver --version 2>&1 | sed -e \"s/sentieon-genomics-//g\"'), topic: versions, emit: versions_sentieon",
      "emit": "versions_sentieon",
      "topic": true,
+     "topic_name": "versions",
      "line": 27
     }
    ]
@@ -6176,48 +6614,56 @@
      "decl": "tuple val(meta), path(\"*.genes.results\") , emit: counts_gene",
      "emit": "counts_gene",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.isoforms.results\"), emit: counts_transcript",
      "emit": "counts_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.stat\") , emit: stat",
      "emit": "stat",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: logs, optional:true",
      "emit": "logs",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('rsem'), eval(\"rsem-calculate-expression --version | sed 's/Current version: RSEM v//'\"), emit: versions_rsem, topic: versions",
      "emit": "versions_rsem",
      "topic": true,
+     "topic_name": "versions",
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"*.STAR.genome.bam\") , optional:true, emit: bam_star",
      "emit": "bam_star",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.genome.bam\") , optional:true, emit: bam_genome",
      "emit": "bam_genome",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.transcript.bam\"), optional:true, emit: bam_transcript",
      "emit": "bam_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 23
     }
    ]
@@ -6250,42 +6696,49 @@
      "decl": "tuple val(meta), path(\"${prefix}.gene_counts.tsv\") , emit: counts_gene",
      "emit": "counts_gene",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.gene_tpm.tsv\") , emit: tpm_gene",
      "emit": "tpm_gene",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.transcript_counts.tsv\"), emit: counts_transcript",
      "emit": "counts_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.transcript_tpm.tsv\") , emit: tpm_transcript",
      "emit": "tpm_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.genes_long.tsv\") , emit: genes_long",
      "emit": "genes_long",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.isoforms_long.tsv\") , emit: isoforms_long",
      "emit": "isoforms_long",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('sed'), eval(\"sed --version 2>&1 | sed '1!d;s/^.*) //'\"), emit: versions_sed, topic: versions",
      "emit": "versions_sed",
      "topic": true,
+     "topic_name": "versions",
      "line": 21
     }
    ]
@@ -6344,12 +6797,14 @@
      "decl": "tuple val(meta), path(\"*tx2gene.tsv\"), emit: tx2gene",
      "emit": "tx2gene",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 19
     }
    ]
@@ -6385,60 +6840,70 @@
      "decl": "tuple val(meta), path(\"*gene_tpm.tsv\") , emit: tpm_gene",
      "emit": "tpm_gene",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*gene_counts.tsv\") , emit: counts_gene",
      "emit": "counts_gene",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*gene_counts_length_scaled.tsv\"), emit: counts_gene_length_scaled",
      "emit": "counts_gene_length_scaled",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*gene_counts_scaled.tsv\") , emit: counts_gene_scaled",
      "emit": "counts_gene_scaled",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"*gene_lengths.tsv\") , emit: lengths_gene",
      "emit": "lengths_gene",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path(\"*transcript_tpm.tsv\") , emit: tpm_transcript",
      "emit": "tpm_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path(\"*transcript_counts.tsv\") , emit: counts_transcript",
      "emit": "counts_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(meta), path(\"*transcript_lengths.tsv\") , emit: lengths_transcript",
      "emit": "lengths_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "tuple val(meta), path(\"*tx2gene_augmented.tsv\") , emit: tx2gene_augmented",
      "emit": "tx2gene_augmented",
      "topic": false,
+     "topic_name": null,
      "line": 24
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 25
     }
    ]
@@ -6475,18 +6940,21 @@
      "decl": "tuple val(meta), path(\"*.rds\") , emit: rds",
      "emit": "rds",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.R_sessionInfo.log\"), emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -6523,18 +6991,21 @@
      "decl": "tuple val(meta), path(\"*.rds\") , emit: rds",
      "emit": "rds",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.R_sessionInfo.log\"), emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -6571,60 +7042,70 @@
      "decl": "path \"*.pdf\" , optional:true, emit: pdf",
      "emit": "pdf",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "path \"*.RData\" , optional:true, emit: rdata",
      "emit": "rdata",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "path \"*pca.vals.txt\" , optional:true, emit: pca_txt",
      "emit": "pca_txt",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "path \"*pca.vals_mqc.tsv\" , optional:true, emit: pca_multiqc",
      "emit": "pca_multiqc",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "path \"*sample.dists.txt\" , optional:true, emit: dists_txt",
      "emit": "dists_txt",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "path \"*sample.dists_mqc.tsv\", optional:true, emit: dists_multiqc",
      "emit": "dists_multiqc",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "path \"*.log\" , optional:true, emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "path \"size_factors\" , optional:true, emit: size_factors",
      "emit": "size_factors",
      "topic": false,
+     "topic_name": null,
      "line": 24
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('r-base'), eval(\"Rscript -e 'cat(as.character(getRversion()))'\"), emit: versions_r_base, topic: versions",
      "emit": "versions_r_base",
      "topic": true,
+     "topic_name": "versions",
      "line": 25
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('bioconductor-deseq2'), eval(\"Rscript -e \\\"library(DESeq2); cat(as.character(packageVersion('DESeq2')))\\\"\"), emit: versions_deseq2, topic: versions",
      "emit": "versions_deseq2",
      "topic": true,
+     "topic_name": "versions",
      "line": 26
     }
    ]
@@ -6674,24 +7155,28 @@
      "decl": "tuple val(meta), path(\"${prefix}\"), emit: results",
      "emit": "results",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*info.json\"), emit: json_info, optional: true",
      "emit": "json_info",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*lib_format_counts.json\"), emit: lib_format_counts, optional: true",
      "emit": "lib_format_counts",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('salmon'), eval('salmon --version | sed -e \"s/salmon //g\"'), topic: versions, emit: versions_salmon",
      "emit": "versions_salmon",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -6733,24 +7218,28 @@
      "decl": "tuple val(meta), path(\"${prefix}\") , emit: results",
      "emit": "results",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*.run_info.json\") , emit: json_info",
      "emit": "json_info",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('kallisto'), eval(\"kallisto version | sed 's/.*version //'\"), emit: versions_kallisto, topic: versions",
      "emit": "versions_kallisto",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -6811,12 +7300,14 @@
      "decl": "tuple val(meta), path(\"*tx2gene.tsv\"), emit: tx2gene",
      "emit": "tx2gene",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 19
     }
    ]
@@ -6853,60 +7344,70 @@
      "decl": "tuple val(meta), path(\"*gene_tpm.tsv\") , emit: tpm_gene",
      "emit": "tpm_gene",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*gene_counts.tsv\") , emit: counts_gene",
      "emit": "counts_gene",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*gene_counts_length_scaled.tsv\"), emit: counts_gene_length_scaled",
      "emit": "counts_gene_length_scaled",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*gene_counts_scaled.tsv\") , emit: counts_gene_scaled",
      "emit": "counts_gene_scaled",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"*gene_lengths.tsv\") , emit: lengths_gene",
      "emit": "lengths_gene",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path(\"*transcript_tpm.tsv\") , emit: tpm_transcript",
      "emit": "tpm_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path(\"*transcript_counts.tsv\") , emit: counts_transcript",
      "emit": "counts_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(meta), path(\"*transcript_lengths.tsv\") , emit: lengths_transcript",
      "emit": "lengths_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "tuple val(meta), path(\"*tx2gene_augmented.tsv\") , emit: tx2gene_augmented",
      "emit": "tx2gene_augmented",
      "topic": false,
+     "topic_name": null,
      "line": 24
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 25
     }
    ]
@@ -6944,18 +7445,21 @@
      "decl": "tuple val(meta), path(\"*.rds\") , emit: rds",
      "emit": "rds",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.R_sessionInfo.log\"), emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -6993,18 +7497,21 @@
      "decl": "tuple val(meta), path(\"*.rds\") , emit: rds",
      "emit": "rds",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.R_sessionInfo.log\"), emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -7042,60 +7549,70 @@
      "decl": "path \"*.pdf\" , optional:true, emit: pdf",
      "emit": "pdf",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "path \"*.RData\" , optional:true, emit: rdata",
      "emit": "rdata",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "path \"*pca.vals.txt\" , optional:true, emit: pca_txt",
      "emit": "pca_txt",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "path \"*pca.vals_mqc.tsv\" , optional:true, emit: pca_multiqc",
      "emit": "pca_multiqc",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "path \"*sample.dists.txt\" , optional:true, emit: dists_txt",
      "emit": "dists_txt",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "path \"*sample.dists_mqc.tsv\", optional:true, emit: dists_multiqc",
      "emit": "dists_multiqc",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "path \"*.log\" , optional:true, emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "path \"size_factors\" , optional:true, emit: size_factors",
      "emit": "size_factors",
      "topic": false,
+     "topic_name": null,
      "line": 24
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('r-base'), eval(\"Rscript -e 'cat(as.character(getRversion()))'\"), emit: versions_r_base, topic: versions",
      "emit": "versions_r_base",
      "topic": true,
+     "topic_name": "versions",
      "line": 25
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('bioconductor-deseq2'), eval(\"Rscript -e \\\"library(DESeq2); cat(as.character(packageVersion('DESeq2')))\\\"\"), emit: versions_deseq2, topic: versions",
      "emit": "versions_deseq2",
      "topic": true,
+     "topic_name": "versions",
      "line": 26
     }
    ]
@@ -7142,30 +7659,35 @@
      "decl": "tuple val(meta), path(\"*.bam\"), emit: bam, optional: true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.bai\"), emit: bai, optional: true",
      "emit": "bai",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.cram\"), emit: cram, optional: true",
      "emit": "cram",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*.metrics.txt\"), emit: metrics",
      "emit": "metrics",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('picard'), eval(\"picard MarkDuplicates --version 2>&1 | sed -n 's/.*Version://p'\"), topic: versions, emit: versions_picard",
      "emit": "versions_picard",
      "topic": true,
+     "topic_name": "versions",
      "line": 19
     }
    ]
@@ -7193,12 +7715,14 @@
      "decl": "tuple val(meta), path(\"*.{bai,csi,crai}\"), emit: index",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -7245,12 +7769,14 @@
      "decl": "tuple val(meta), path(\"*.stats\"), emit: stats",
      "emit": "stats",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval('samtools version | sed \"1!d;s/.* //\"'), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -7278,12 +7804,14 @@
      "decl": "tuple val(meta), path(\"*.flagstat\"), emit: flagstat",
      "emit": "flagstat",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -7311,12 +7839,14 @@
      "decl": "tuple val(meta), path(\"*.idxstats\"), emit: idxstats",
      "emit": "idxstats",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), emit: versions_samtools, topic: versions",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -7369,30 +7899,35 @@
      "decl": "tuple val(meta), path(\"${prefix}.transcripts.gtf\") , emit: transcript_gtf",
      "emit": "transcript_gtf",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.gene.abundance.txt\"), emit: abundance",
      "emit": "abundance",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.coverage.gtf\") , optional: true, emit: coverage_gtf",
      "emit": "coverage_gtf",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.ballgown/*.ctab\") , optional: true, emit: ballgown",
      "emit": "ballgown",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('stringtie'), eval('stringtie --version'), emit: versions_stringtie, topic: versions",
      "emit": "versions_stringtie",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -7425,12 +7960,14 @@
      "decl": "tuple val(meta), path(\"${prefix}.gtf\"), emit: merged_gtf",
      "emit": "merged_gtf",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('stringtie'), eval('stringtie --version'), emit: versions_stringtie, topic: versions",
      "emit": "versions_stringtie",
      "topic": true,
+     "topic_name": "versions",
      "line": 17
     }
    ]
@@ -7466,30 +8003,35 @@
      "decl": "tuple val(meta), path(\"${prefix}.transcripts.gtf\") , emit: transcript_gtf",
      "emit": "transcript_gtf",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.gene.abundance.txt\"), emit: abundance",
      "emit": "abundance",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.coverage.gtf\") , optional: true, emit: coverage_gtf",
      "emit": "coverage_gtf",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.ballgown/*.ctab\") , optional: true, emit: ballgown",
      "emit": "ballgown",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('stringtie'), eval('stringtie --version'), emit: versions_stringtie, topic: versions",
      "emit": "versions_stringtie",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -7522,42 +8064,49 @@
      "decl": "tuple val(meta), path(\"${prefix}/dupradar/*\"), emit: dupradar",
      "emit": "dupradar",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}/featurecounts/*\"), emit: featurecounts",
      "emit": "featurecounts",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}/preseq/*\"), emit: preseq",
      "emit": "preseq",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}/samtools/*\"), emit: samtools",
      "emit": "samtools",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}/rseqc/**\"), emit: rseqc",
      "emit": "rseqc",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}/qualimap/**\"), emit: qualimap",
      "emit": "qualimap",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('rustqc'), eval(\"rustqc --version 2>&1 | sed -n '1s/rustqc //; 1s/ .*//p'\"), emit: versions_rustqc, topic: versions",
      "emit": "versions_rustqc",
      "topic": true,
+     "topic_name": "versions",
      "line": 21
     }
    ]
@@ -7602,18 +8151,21 @@
      "decl": "tuple val(meta), path(\"*.lc_extrap.txt\"), emit: lc_extrap",
      "emit": "lc_extrap",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('preseq'), eval(\"preseq 2>&1 | sed -n 's/Version: //p'\"), emit: versions_preseq, topic: versions",
      "emit": "versions_preseq",
      "topic": true,
+     "topic_name": "versions",
      "line": 17
     }
    ]
@@ -7642,18 +8194,21 @@
      "decl": "tuple val(meta), path(\"*featureCounts.tsv\"), emit: counts",
      "emit": "counts",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(meta), path(\"*featureCounts.tsv.summary\"), emit: summary",
      "emit": "summary",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('subread'), eval(\"featureCounts -v 2>&1 | sed 's/featureCounts v//'\"), emit: versions_subread, topic: versions",
      "emit": "versions_subread",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -7686,18 +8241,21 @@
      "decl": "tuple val(meta), path(\"*biotype_counts_mqc.tsv\") , emit: tsv",
      "emit": "tsv",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*biotype_counts_rrna_mqc.tsv\") , emit: rrna",
      "emit": "rrna",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 17
     }
    ]
@@ -7734,30 +8292,35 @@
      "decl": "tuple val(meta), path(\"${prefix}.bam\"), emit: bam, optional: true",
      "emit": "bam",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.cram\"), emit: cram, optional: true",
      "emit": "cram",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.sam\"), emit: sam, optional: true",
      "emit": "sam",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"${prefix}.${extension}.{crai,csi,bai}\"), emit: index, optional: true",
      "emit": "index",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('samtools'), eval(\"samtools version | sed '1!d;s/.* //'\"), topic: versions, emit: versions_samtools",
      "emit": "versions_samtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -7790,12 +8353,14 @@
      "decl": "tuple val(meta), path(\"${prefix}\"), emit: results",
      "emit": "results",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('qualimap'), eval(\"qualimap -h | sed -n 's/^QualiMap v.//p'\"), topic: versions, emit: versions_qualimap",
      "emit": "versions_qualimap",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -7828,48 +8393,56 @@
      "decl": "tuple val(meta), path(\"*_duprateExpDens.pdf\") , emit: scatter2d",
      "emit": "scatter2d",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*_duprateExpBoxplot.pdf\"), emit: boxplot",
      "emit": "boxplot",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*_expressionHist.pdf\") , emit: hist",
      "emit": "hist",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*_dupMatrix.txt\") , emit: dupmatrix",
      "emit": "dupmatrix",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*_intercept_slope.txt\") , emit: intercept_slope",
      "emit": "intercept_slope",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"*_mqc.txt\") , emit: multiqc",
      "emit": "multiqc",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path(\"*.R_sessionInfo.log\") , emit: session_info",
      "emit": "session_info",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 22
     }
    ]
@@ -7915,12 +8488,14 @@
      "decl": "tuple val(meta), path(\"*.bam_stat.txt\"), emit: txt",
      "emit": "txt",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('rseqc'), eval('bam_stat.py --version | sed \"s/bam_stat.py //\"'), emit: versions_rseqc, topic: versions",
      "emit": "versions_rseqc",
      "topic": true,
+     "topic_name": "versions",
      "line": 15
     }
    ]
@@ -7954,36 +8529,42 @@
      "decl": "tuple val(meta), path(\"*distance.txt\"), optional:true, emit: distance",
      "emit": "distance",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*freq.txt\") , optional:true, emit: freq",
      "emit": "freq",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*mean.txt\") , optional:true, emit: mean",
      "emit": "mean",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*.pdf\") , optional:true, emit: pdf",
      "emit": "pdf",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*.r\") , optional:true, emit: rscript",
      "emit": "rscript",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('rseqc'), eval('inner_distance.py --version | sed \"s/inner_distance.py //\"'), emit: versions_rseqc, topic: versions",
      "emit": "versions_rseqc",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -8017,12 +8598,14 @@
      "decl": "tuple val(meta), path(\"*.infer_experiment.txt\"), emit: txt",
      "emit": "txt",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('rseqc'), eval('infer_experiment.py --version | sed \"s/infer_experiment.py //\"'), emit: versions_rseqc, topic: versions",
      "emit": "versions_rseqc",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -8056,48 +8639,56 @@
      "decl": "tuple val(meta), path(\"*.xls\") , emit: xls",
      "emit": "xls",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.r\") , emit: rscript",
      "emit": "rscript",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*.junction.bed\"), optional:true, emit: bed",
      "emit": "bed",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*.Interact.bed\"), optional:true, emit: interact_bed",
      "emit": "interact_bed",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"*junction.pdf\") , optional:true, emit: pdf",
      "emit": "pdf",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path(\"*events.pdf\") , optional:true, emit: events_pdf",
      "emit": "events_pdf",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('rseqc'), eval('junction_annotation.py --version | sed \"s/junction_annotation.py //\"'), emit: versions_rseqc, topic: versions",
      "emit": "versions_rseqc",
      "topic": true,
+     "topic_name": "versions",
      "line": 22
     }
    ]
@@ -8131,18 +8722,21 @@
      "decl": "tuple val(meta), path(\"*.pdf\"), emit: pdf",
      "emit": "pdf",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.r\") , emit: rscript",
      "emit": "rscript",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('rseqc'), eval('junction_saturation.py --version | sed \"s/junction_saturation.py //\"'), emit: versions_rseqc, topic: versions",
      "emit": "versions_rseqc",
      "topic": true,
+     "topic_name": "versions",
      "line": 17
     }
    ]
@@ -8176,12 +8770,14 @@
      "decl": "tuple val(meta), path(\"*.read_distribution.txt\"), emit: txt",
      "emit": "txt",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('rseqc'), eval('read_distribution.py --version | sed \"s/read_distribution.py //\"'), emit: versions_rseqc, topic: versions",
      "emit": "versions_rseqc",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -8211,30 +8807,35 @@
      "decl": "tuple val(meta), path(\"*seq.DupRate.xls\"), emit: seq_xls",
      "emit": "seq_xls",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(meta), path(\"*pos.DupRate.xls\"), emit: pos_xls",
      "emit": "pos_xls",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.pdf\") , emit: pdf",
      "emit": "pdf",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.r\") , emit: rscript",
      "emit": "rscript",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('rseqc'), eval('read_duplication.py --version | sed \"s/read_duplication.py //\"'), emit: versions_rseqc, topic: versions",
      "emit": "versions_rseqc",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -8268,18 +8869,21 @@
      "decl": "tuple val(meta), path(\"*.txt\"), emit: txt",
      "emit": "txt",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*.xls\"), emit: xls",
      "emit": "xls",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('rseqc'), eval('tin.py --version | sed \"s/tin.py //\"'), emit: versions_rseqc, topic: versions",
      "emit": "versions_rseqc",
      "topic": true,
+     "topic_name": "versions",
      "line": 17
     }
    ]
@@ -8319,12 +8923,14 @@
      "decl": "tuple val(meta), path(\"*.${extension}\"), emit: genomecov",
      "emit": "genomecov",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('bedtools'), eval(\"bedtools --version | sed -e 's/bedtools v//g'\"), topic: versions, emit: versions_bedtools",
      "emit": "versions_bedtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -8364,12 +8970,14 @@
      "decl": "tuple val(meta), path(\"*.${extension}\"), emit: genomecov",
      "emit": "genomecov",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('bedtools'), eval(\"bedtools --version | sed -e 's/bedtools v//g'\"), topic: versions, emit: versions_bedtools",
      "emit": "versions_bedtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -8409,12 +9017,14 @@
      "decl": "tuple val(meta), path(\"*.${extension}\"), emit: genomecov",
      "emit": "genomecov",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('bedtools'), eval(\"bedtools --version | sed -e 's/bedtools v//g'\"), topic: versions, emit: versions_bedtools",
      "emit": "versions_bedtools",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -8461,12 +9071,14 @@
      "decl": "tuple val(meta), path(\"*.bedGraph\"), emit: bedgraph",
      "emit": "bedgraph",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('ucsc'), val('482'), topic: versions, emit: versions_ucsc",
      "emit": "versions_ucsc",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -8498,12 +9110,14 @@
      "decl": "tuple val(meta), path(\"*.bigWig\"), emit: bigwig",
      "emit": "bigwig",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('ucsc'), val('482'), topic: versions, emit: versions_ucsc",
      "emit": "versions_ucsc",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -8550,12 +9164,14 @@
      "decl": "tuple val(meta), path(\"*.bedGraph\"), emit: bedgraph",
      "emit": "bedgraph",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('ucsc'), val('482'), topic: versions, emit: versions_ucsc",
      "emit": "versions_ucsc",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -8587,12 +9203,14 @@
      "decl": "tuple val(meta), path(\"*.bigWig\"), emit: bigwig",
      "emit": "bigwig",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('ucsc'), val('482'), topic: versions, emit: versions_ucsc",
      "emit": "versions_ucsc",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -8639,12 +9257,14 @@
      "decl": "tuple val(meta), path(\"*.bedGraph\"), emit: bedgraph",
      "emit": "bedgraph",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('ucsc'), val('482'), topic: versions, emit: versions_ucsc",
      "emit": "versions_ucsc",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -8676,12 +9296,14 @@
      "decl": "tuple val(meta), path(\"*.bigWig\"), emit: bigwig",
      "emit": "bigwig",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('ucsc'), val('482'), topic: versions, emit: versions_ucsc",
      "emit": "versions_ucsc",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -8722,36 +9344,42 @@
      "decl": "tuple val(meta), path('*.classified{.,_}*') , optional:true, emit: classified_reads_fastq",
      "emit": "classified_reads_fastq",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path('*.unclassified{.,_}*') , optional:true, emit: unclassified_reads_fastq",
      "emit": "unclassified_reads_fastq",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path('*classifiedreads.txt') , optional:true, emit: classified_reads_assignment",
      "emit": "classified_reads_assignment",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path('*report.txt') , emit: report",
      "emit": "report",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('kraken2'), eval('kraken2 --version 2>&1 | head -1 | sed \"s/^.*Kraken version //; s/ .*//\"'), topic: versions, emit: versions_kraken2",
      "emit": "versions_kraken2",
      "topic": true,
+     "topic_name": "versions",
      "line": 21
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('pigz'), eval('pigz --version 2>&1 | sed \"s/pigz //g\"'), topic: versions, emit: versions_pigz",
      "emit": "versions_pigz",
      "topic": true,
+     "topic_name": "versions",
      "line": 22
     }
    ]
@@ -8786,18 +9414,21 @@
      "decl": "tuple val(meta), path(bracken_report) , emit: reports",
      "emit": "reports",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(bracken_kraken_style_report), emit: txt",
      "emit": "txt",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('bracken'), eval('bracken -v | cut -f2 -d\"v\"'), topic: versions, emit: versions_bracken",
      "emit": "versions_bracken",
      "topic": true,
+     "topic_name": "versions",
      "line": 17
     }
    ]
@@ -8831,12 +9462,14 @@
      "decl": "tuple val(meta), path('*.tsv'), emit: profile_out",
      "emit": "profile_out",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('sylph'), eval('sylph -V | sed \"s/sylph //g\"'), topic: versions, emit: versions_sylph",
      "emit": "versions_sylph",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -8870,12 +9503,14 @@
      "decl": "tuple val(meta), path(\"*.sylphmpa\"), emit: taxprof_output",
      "emit": "taxprof_output",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('sylph-tax'), eval(\"sylph-tax --version 2>&1 | tail -1\"), emit: versions_sylphtax, topic: versions",
      "emit": "versions_sylphtax",
      "topic": true,
+     "topic_name": "versions",
      "line": 16
     }
    ]
@@ -8923,24 +9558,28 @@
      "decl": "tuple val(meta), path(\"${prefix}\"), emit: results",
      "emit": "results",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*info.json\"), emit: json_info, optional: true",
      "emit": "json_info",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*lib_format_counts.json\"), emit: lib_format_counts, optional: true",
      "emit": "lib_format_counts",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('salmon'), eval('salmon --version | sed -e \"s/salmon //g\"'), topic: versions, emit: versions_salmon",
      "emit": "versions_salmon",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -8981,24 +9620,28 @@
      "decl": "tuple val(meta), path(\"${prefix}\") , emit: results",
      "emit": "results",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*.run_info.json\") , emit: json_info",
      "emit": "json_info",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*.log\") , emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('kallisto'), eval(\"kallisto version | sed 's/.*version //'\"), emit: versions_kallisto, topic: versions",
      "emit": "versions_kallisto",
      "topic": true,
+     "topic_name": "versions",
      "line": 20
     }
    ]
@@ -9057,12 +9700,14 @@
      "decl": "tuple val(meta), path(\"*tx2gene.tsv\"), emit: tx2gene",
      "emit": "tx2gene",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 19
     }
    ]
@@ -9098,60 +9743,70 @@
      "decl": "tuple val(meta), path(\"*gene_tpm.tsv\") , emit: tpm_gene",
      "emit": "tpm_gene",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*gene_counts.tsv\") , emit: counts_gene",
      "emit": "counts_gene",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "tuple val(meta), path(\"*gene_counts_length_scaled.tsv\"), emit: counts_gene_length_scaled",
      "emit": "counts_gene_length_scaled",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "tuple val(meta), path(\"*gene_counts_scaled.tsv\") , emit: counts_gene_scaled",
      "emit": "counts_gene_scaled",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "tuple val(meta), path(\"*gene_lengths.tsv\") , emit: lengths_gene",
      "emit": "lengths_gene",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "tuple val(meta), path(\"*transcript_tpm.tsv\") , emit: tpm_transcript",
      "emit": "tpm_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "tuple val(meta), path(\"*transcript_counts.tsv\") , emit: counts_transcript",
      "emit": "counts_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "tuple val(meta), path(\"*transcript_lengths.tsv\") , emit: lengths_transcript",
      "emit": "lengths_transcript",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "tuple val(meta), path(\"*tx2gene_augmented.tsv\") , emit: tx2gene_augmented",
      "emit": "tx2gene_augmented",
      "topic": false,
+     "topic_name": null,
      "line": 24
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 25
     }
    ]
@@ -9188,18 +9843,21 @@
      "decl": "tuple val(meta), path(\"*.rds\") , emit: rds",
      "emit": "rds",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.R_sessionInfo.log\"), emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -9236,18 +9894,21 @@
      "decl": "tuple val(meta), path(\"*.rds\") , emit: rds",
      "emit": "rds",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(meta), path(\"*.R_sessionInfo.log\"), emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "path \"versions.yml\" , emit: versions, topic: versions",
      "emit": "versions",
      "topic": true,
+     "topic_name": "versions",
      "line": 18
     }
    ]
@@ -9284,60 +9945,70 @@
      "decl": "path \"*.pdf\" , optional:true, emit: pdf",
      "emit": "pdf",
      "topic": false,
+     "topic_name": null,
      "line": 17
     },
     {
      "decl": "path \"*.RData\" , optional:true, emit: rdata",
      "emit": "rdata",
      "topic": false,
+     "topic_name": null,
      "line": 18
     },
     {
      "decl": "path \"*pca.vals.txt\" , optional:true, emit: pca_txt",
      "emit": "pca_txt",
      "topic": false,
+     "topic_name": null,
      "line": 19
     },
     {
      "decl": "path \"*pca.vals_mqc.tsv\" , optional:true, emit: pca_multiqc",
      "emit": "pca_multiqc",
      "topic": false,
+     "topic_name": null,
      "line": 20
     },
     {
      "decl": "path \"*sample.dists.txt\" , optional:true, emit: dists_txt",
      "emit": "dists_txt",
      "topic": false,
+     "topic_name": null,
      "line": 21
     },
     {
      "decl": "path \"*sample.dists_mqc.tsv\", optional:true, emit: dists_multiqc",
      "emit": "dists_multiqc",
      "topic": false,
+     "topic_name": null,
      "line": 22
     },
     {
      "decl": "path \"*.log\" , optional:true, emit: log",
      "emit": "log",
      "topic": false,
+     "topic_name": null,
      "line": 23
     },
     {
      "decl": "path \"size_factors\" , optional:true, emit: size_factors",
      "emit": "size_factors",
      "topic": false,
+     "topic_name": null,
      "line": 24
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('r-base'), eval(\"Rscript -e 'cat(as.character(getRversion()))'\"), emit: versions_r_base, topic: versions",
      "emit": "versions_r_base",
      "topic": true,
+     "topic_name": "versions",
      "line": 25
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('bioconductor-deseq2'), eval(\"Rscript -e \\\"library(DESeq2); cat(as.character(packageVersion('DESeq2')))\\\"\"), emit: versions_deseq2, topic: versions",
      "emit": "versions_deseq2",
      "topic": true,
+     "topic_name": "versions",
      "line": 26
     }
    ]
@@ -9380,24 +10051,28 @@
      "decl": "tuple val(meta), path(\"*.html\"), emit: report",
      "emit": "report",
      "topic": false,
+     "topic_name": null,
      "line": 14
     },
     {
      "decl": "tuple val(meta), path(\"*_data\"), emit: data",
      "emit": "data",
      "topic": false,
+     "topic_name": null,
      "line": 15
     },
     {
      "decl": "tuple val(meta), path(\"*_plots\"), emit: plots, optional: true",
      "emit": "plots",
      "topic": false,
+     "topic_name": null,
      "line": 16
     },
     {
      "decl": "tuple val(\"${task.process}\"), val('multiqc'), eval('multiqc --version | sed \"s/.* //g\"'), emit: versions",
      "emit": "versions",
      "topic": false,
+     "topic_name": null,
      "line": 18
     }
    ]

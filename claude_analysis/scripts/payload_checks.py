@@ -49,6 +49,7 @@ def dropped_in_trail(r, pfam):
 def payload_verdict(r, repo):
     global REPO
     REPO = repo
+    r = dict(r, src_emit=r.get('src_emit') or '', src_output_decl=r.get('src_output_decl') or '', dst_input_decl=r.get('dst_input_decl') or '')   # outputs used positionally (.out[0]) have no emit/declaration
     pf = fams(r['src_emit'] + ' ' + r['src_output_decl'])
     idecl = r['dst_input_decl']; sl = slots(idecl); cs = ' '.join(sl) + ' ' + idecl
     cf = fams(cs)

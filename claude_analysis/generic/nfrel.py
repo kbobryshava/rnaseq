@@ -27,5 +27,12 @@ def run(*cmd):
 
 py = sys.executable
 run(py, '-I', os.path.join(S, 'nf_static_analyzer.py'), '--root', repo, '--out', os.path.join(out, 'data', 'processed'))
+import json
+g = json.load(open(os.path.join(out, 'data', 'processed', 'static_graph.json')))
+if not g['edges']:     # e.g. pipelines made of independent processes: a valid result, nothing to tabulate
+    os.makedirs(os.path.join(out, 'reference'), exist_ok=True)
+    json.dump({'no_edges': True, 'process_instances': sum(1 for i in g['instances'] if i['kind'] == 'process'), 'counts': {'process_edges': {}, 'software_pairs': {}}, 'unreviewed_modules': []}, open(os.path.join(out, 'reference', 'manifest.json'), 'w'))
+    json.dump([], open(os.path.join(out, 'reference', 'validation.json'), 'w'))
+    print('NO_EDGES: %d process instances but no data flows between them' % sum(1 for i in g['instances'] if i['kind'] == 'process')); sys.exit(0)
 run(py, os.path.join(S, 'build_datasets.py'), '--repo', repo, '--out', out, '--profile', 'generic', *(['--software-map', os.path.abspath(a.software_map)] if a.software_map else []))
 sys.exit(subprocess.call([py, os.path.join(H, 'generic_reference.py'), '--out', out, '--repo', repo, *(['--curation', os.path.abspath(a.curation)] if a.curation else [])]))

@@ -126,7 +126,8 @@ def chk(n, bad, warn=False): res.append({'check': n, 'status': ('WARN' if warn e
 chk('no duplicate ordered software pair', [k for k, n in collections.Counter((r['source_software'], r['target_software']) for r in srows).items() if n > 1])
 chk('no duplicate edge id', [k for k, n in collections.Counter(r['edge_id'] for r in prow).items() if n > 1])
 chk('process graph is acyclic', [sorted(c)[:2] for c in nx.strongly_connected_components(G) if len(c) > 1])
-REF = re.compile(r'((?:[\w.\-]+/)*[\w.\-]+\.(?:nf|config|py)):(\d+)'); bad = []
+REF = re.compile(r'([^\s:]+):(\d+)')   # include paths without extension exist in some pipelines
+bad = []
 for r in prow:
     for c in ('producer_call', 'consumer_call'):
         m = REF.fullmatch(r[c] or ''); pth = os.path.join(a.repo, m.group(1)) if m else None

@@ -44,6 +44,9 @@ def run_one(repo):
             row['status'] = 'FAILED'; row['error'] = (r.stderr.strip().splitlines() or r.stdout.strip().splitlines() or ['?'])[-1][:300]
         else:
             m = json.load(open(os.path.join(out, 'reference', 'manifest.json'))); v = json.load(open(os.path.join(out, 'reference', 'validation.json')))
+            if m.get('no_edges'):
+                row.update(status='NO_EDGES', process_instances=m.get('process_instances', ''), process_edges=0, supported_edges=0, software_pairs=0, unreviewed_modules=0, warnings=0)
+                row['seconds'] = round(time.time() - t0, 1); return row
             pe = m['counts']['process_edges']; sp = m['counts']['software_pairs']
             g = json.load(open(os.path.join(out, 'data', 'processed', 'static_graph.json')))
             row.update(status='OK', process_instances=sum(1 for i in g['instances'] if i['kind'] == 'process'), process_edges=sum(pe.values()), supported_edges=pe.get('algorithmic_supported', 0),

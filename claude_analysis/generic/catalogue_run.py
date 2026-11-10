@@ -120,16 +120,18 @@ def report():
                 k = (x['source_software'], x['target_software']); pairs[k]['pipelines'].add(r['pipeline']); pairs[k]['n_edges'] += int(x['n_live_edges'])
     pf = os.path.join(out, 'software_pairs_across_pipelines.csv')
     ranked = sorted(pairs.items(), key=lambda kv: -len(kv[1]['pipelines']))
+    WEAK = {'multiqc', 'gunzip', 'gzip', 'cat', 'untar', 'tar', 'xz', 'unzip', 'bzip2', 'pigz', 'gawk', 'sed', 'python', 'r-base', 'coreutils', 'wget', 'curl', 'custom'}
     with open(pf, 'w', newline='', encoding='utf-8') as fh:
-        w = csv.writer(fh, lineterminator='\n'); w.writerow(['source_software', 'target_software', 'n_pipelines', 'n_edges_total', 'example_pipelines'])
-        for (s, t), v in ranked: w.writerow([s, t, len(v['pipelines']), v['n_edges'], ';'.join(sorted(v['pipelines'])[:5])])
+        w = csv.writer(fh, lineterminator='\n'); w.writerow(['source_software', 'target_software', 'n_pipelines', 'n_edges_total', 'involves_utility_or_reporting', 'example_pipelines'])
+        for (s, t), v in ranked: w.writerow([s, t, len(v['pipelines']), v['n_edges'], s in WEAK or t in WEAK, ';'.join(sorted(v['pipelines'])[:5])])
+    core = [kv for kv in ranked if kv[0][0] not in WEAK and kv[0][1] not in WEAK]
     print(f'pipelines analysed: {dict(st)}')
     if ok:
         print(f"edges per pipeline: median {sorted(int(r['process_edges']) for r in ok)[len(ok)//2]}, max {max(int(r['process_edges']) for r in ok)}; unreviewed modules median {sorted(int(r['unreviewed_modules']) for r in ok)[len(ok)//2]}")
     bad = [r for r in rows if r['status'] != 'OK']
     if bad: print('\nproblems (first 10):'); [print('  ', r['pipeline'], r['status'], r['error'][:90]) for r in bad[:10]]
-    print(f'\n{len(ranked)} distinct software pairs; most common across pipelines:')
-    for (s, t), v in ranked[:15]: print(f"  {len(v['pipelines']):4d} pipelines   {s} -> {t}")
+    print(f'\n{len(ranked)} distinct software pairs ({len(core)} without utilities/MultiQC). Most common across pipelines (analysis tools only):')
+    for (s, t), v in core[:15]: print(f"  {len(v['pipelines']):4d} pipelines   {s} -> {t}")
     print('\nwritten:', pf, '\n        ', f)
 
 

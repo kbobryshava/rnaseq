@@ -20,6 +20,8 @@ import re, json, sys, os, argparse
 from collections import OrderedDict
 
 IDENT = re.compile(r'[A-Za-z_]\w*')
+CASE_RX = re.compile(r'(case\b[^:\n]*|default\b)\s*:(?!:)')
+TOPIC_RX = re.compile(r'[Cc]hannel\s*\.\s*topic\s*\(\s*[\x27\x22](\w+)[\x27\x22]\s*\)')   # channel.topic('name')
 
 # ----------------------------------------------------------------- text utils
 def strip_comments(t):
@@ -257,7 +259,7 @@ class NFFile:
                 d = ' '.join(t[a:b].split())
                 em = re.search(r'emit:\s*(\w+)', d)
                 outs.append({'decl': d, 'emit': em.group(1) if em else None,
-                             'topic': bool(re.search(r'topic:\s*versions', d)), 'line': self.line(a)})
+                             'topic': bool(re.search(r'topic:\s*versions', d)), 'topic_name': (re.search(r'topic:\s*(\w+)', d) or [None, None])[1], 'line': self.line(a)})
         return {'name': name, 'file': self.rel, 'line': self.line(defpos), 'inputs': ins, 'outputs': outs}
 
     def _workflow(self, s, e, defpos):
@@ -332,7 +334,8 @@ class Analyzer:
         s = t[a:b]
         if re.match(r'if\s*\(', s): return self.exec_if(ctx, a, b)
         if re.match(r'(def|final)\s+\w+\s*=\s*\{', s) or re.match(r'(def|final)\s+\w+\s*\(', s): return
-        if re.match(r'(for|while|switch|try)\b', s):
+        if re.match(r'switch\s*\(', s): return self.exec_switch(ctx, a, b)
+        if re.match(r'(for|while|try)\b', s):
             self.unresolved.append({'kind': 'unsupported-statement', 'file': f.rel, 'line': f.line(a), 'text': ' '.join(s.split())[:120]})
         m = re.match(r'(?:def\s+|final\s+)?(\w+)\s*=(?!=)\s*', s)
         if m:
@@ -402,6 +405,49 @@ class Analyzer:
                     if it not in merged or better(tr, merged[it]): merged[it] = tr
             ctx['env'][var] = merged
 
+    def exec_switch(self, ctx, a, b):
+        """switch (expr) { case X: ... break  case Y: ... default: ... } explored like if / else-if chains: every case is a branch with condition `expr == X`."""
+        f = ctx['f']; t = f.text
+        po = t.index('(', a); pe = match(t, po)
+        expr = ' '.join(t[po + 1:pe - 1].split())
+        i = pe
+        while i < b and t[i] in ' \t\r\n': i += 1
+        if i >= b or t[i] != '{': return
+        bs, bend = i + 1, match(t, i) - 1
+        body = blank_strings(t[bs:bend]); marks = []; depth = 0; j = 0
+        while j < len(body):
+            ch = body[j]
+            if ch in '({[': depth += 1
+            elif ch in ')}]': depth -= 1
+            elif depth == 0 and (j == 0 or body[j - 1] in ' \t\r\n;}'):
+                m = CASE_RX.match(body, j)
+                if m:
+                    marks.append((bs + m.start(1), bs + m.end(1), bs + m.end())); j = m.end(); continue
+            j += 1
+        groups, pending = [], []
+        for n_, (ls, le, cs) in enumerate(marks):
+            ce = marks[n_ + 1][0] if n_ + 1 < len(marks) else bend
+            lab = ' '.join(t[ls:le].split()); pending.append(lab)
+            if t[cs:ce].strip():      # a non-empty body closes the group (empty body = fall-through label)
+                groups.append((pending, cs, ce)); pending = []
+        if pending: groups.append((pending, bend, bend))
+        base = {k_: dict(v) for k_, v in ctx['env'].items()}
+        envs = []
+        for labs, cs, ce in groups:
+            conds = [expr + ' == ' + l[4:].strip() if l.startswith('case') else 'default' for l in labs]
+            cond = ' || '.join(conds) if len(conds) > 1 else conds[0]
+            c2 = dict(ctx); c2['env'] = {k_: dict(v) for k_, v in base.items()}; c2['conds'] = ctx['conds'] + [cond]
+            self.exec_range(c2, cs, ce)
+            envs.append((cond, c2['env']))
+        if not any(l == 'default' for labs, _, _ in groups for l in labs): envs.append(('NOT(' + expr + ' matches a case)', {k_: dict(v) for k_, v in base.items()}))
+        for var in set().union(*[set(e) for _, e in envs]) if envs else []:
+            merged = {}
+            for lab, env in envs:
+                for it, tr in env.get(var, {}).items():
+                    if it not in base.get(var, {}): tr = tr + (('branch:' + lab, f.rel, f.line(a), (), False),)
+                    if it not in merged or better(tr, merged[it]): merged[it] = tr
+            ctx['env'][var] = merged
+
     # ---- expression evaluation
     @staticmethod
     def closure_masks(txt):
@@ -432,6 +478,21 @@ class Analyzer:
     def scan(self, ctx, txt, base, masks):
         f = ctx['f']; env = ctx['env']; names = ctx['names']
         res = {}
+        # topic channels used as DATA channels: channel.topic('x') = every process output declared `topic: x` (instantiated so far).
+        # The 'versions' topic is bookkeeping, never data.
+        raw = f.text[base:base + len(txt)]
+        for mt in TOPIC_RX.finditer(raw):
+            tn = mt.group(1)
+            if tn == 'versions': continue
+            found_ = {}
+            for inst_, info_ in self.instances.items():
+                if info_['kind'] != 'process': continue
+                for k_, o_ in enumerate(info_['outputs']):
+                    if o_.get('topic_name') == tn: found_[('port', inst_, o_['emit'] or f'#{k_}')] = inst_
+            # a topic is global in Nextflow, but pipelines read it right after running the producing tool inside the same (sub)workflow instance:
+            # prefer producers under the current call path (avoids linking the WGTS and TARGETED runs of the same tool); otherwise all producers
+            local_ = {k: v for k, v in found_.items() if ctx['path'] and v.startswith(ctx['path'] + ':')}
+            for k_ in (local_ or found_): res.setdefault(k_, ())
         kspans = key_only_spans(txt)
         i = 0
         def masked(pos, name):
