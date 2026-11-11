@@ -38,6 +38,7 @@ UTILITY = {'multiqc', 'gunzip', 'gzip', 'cat', 'untar', 'tar', 'xz', 'unzip', 'b
 
 BTID = {}   # name key -> bio.tools ID (filled from --tool-ids)
 PARENT = {}   # name key -> parent tool key, only for names that are a tool plus an operation (star_align -> star)
+METHOD = {}   # bio.tools ID (lower case) -> (rank, method, detail): how the ID was found, strongest evidence over all names that carry it
 ANYID = set()   # name keys that have ANY identifier: bio.tools ID, bioconda package, DOI / publication, other ID
 
 
@@ -46,6 +47,11 @@ def rawkey(name, aliases):
     k = re.sub(r'[^a-z0-9]', '', n) or re.sub(r'[^a-z0-9]', '', (name or '').lower())
     k = aliases.get(k, k)
     return PARENT.get(k, k)
+
+
+def mm(k, i=1):
+    """match method (i=1) or detail (i=2) of the bio.tools ID behind a pair key `bt:<id>`"""
+    return METHOD.get(k[3:], (0, '', ''))[i] if k.startswith('bt:') else ''
 
 
 def key(name, aliases):
@@ -81,7 +87,16 @@ def main():
         for r in csv.DictReader(open(a.aliases, encoding='utf-8')): aliases[re.sub(r'[^a-z0-9]', '', r['from'].lower())] = re.sub(r'[^a-z0-9]', '', r['to'].lower())
     if a.tool_ids and os.path.exists(a.tool_ids):
         for r in csv.DictReader(open(a.tool_ids, encoding='utf-8')):
-            if r['biotools_id']: BTID[r['tool_key']] = r['biotools_id']
+            if r['biotools_id']:
+                BTID[r['tool_key']] = r['biotools_id']
+                src = r.get('id_source', '') or ''
+                if src == 'meta.yml': rk, m, dt = 1, 'meta_id', 'identifier in the nf-core module meta.yml'
+                elif src.startswith('biotools-jsonl-'):
+                    kinds = src[len('biotools-jsonl-'):].split('+'); dt = 'bio.tools dump: ' + '+'.join(kinds)
+                    rk, m = (2, 'doi') if 'doi' in kinds else ((3, 'other_id') if set(kinds) & {'pmid', 'pmcid', 'rrid'} else ((4, 'url') if 'url' in kinds else (5, 'name')))
+                else: rk, m, dt = 5, 'name', 'bio.tools API exact ' + src.replace('bio.tools-exact-', '')
+                bi = r['biotools_id'].lower()
+                if bi not in METHOD or rk < METHOD[bi][0]: METHOD[bi] = (rk, m, dt)
             if r.get('parent_confidence') == 'operation-suffix' and r.get('parent_key'): PARENT[r['tool_key']] = r['parent_key']
             if any(r.get(c) for c in ('biotools_id', 'bioconda_package', 'doi', 'publications', 'other_ids')): ANYID.add(r['tool_key'])
         print('tool IDs loaded:', len(BTID))
@@ -97,7 +112,7 @@ def main():
         if t == 'parallel_co_use' and not _rev: add(pipeline, dst, src, category, curated, n_edges, selfloop, subtype, True)   # parallel pairs exist in both directions
         ks, kd = key(src, aliases), key(dst, aliases)
         if ks == kd: return
-        long_rows.append({'pipeline': pipeline, 'source_software': src, 'target_software': dst, 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'source_has_any_id': ks.startswith('bt:') or rawkey(src, aliases) in ANYID, 'target_has_any_id': kd.startswith('bt:') or rawkey(dst, aliases) in ANYID, 'category': category, 'trust': t, 'trust_rank': RANK[t],
+        long_rows.append({'pipeline': pipeline, 'source_software': src, 'target_software': dst, 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'source_match_method': mm(ks), 'target_match_method': mm(kd), 'source_match_detail': mm(ks, 2), 'target_match_detail': mm(kd, 2), 'source_has_any_id': ks.startswith('bt:') or rawkey(src, aliases) in ANYID, 'target_has_any_id': kd.startswith('bt:') or rawkey(dst, aliases) in ANYID, 'category': category, 'trust': t, 'trust_rank': RANK[t],
                           'n_process_edges': n_edges, 'names_reviewed': curated, 'involves_utility_or_reporting': ks.replace('bt:', '') in UTILITY or kd.replace('bt:', '') in UTILITY})
 
     have_ref = bool(a.rnaseq_reference and os.path.exists(a.rnaseq_reference))
@@ -129,7 +144,7 @@ def main():
         best = min(rs, key=lambda r: r['trust_rank'])['trust']
         edges = sum(int(r['n_process_edges'] or 0) for r in rs if r['trust'] in POSITIVE)
         n_data = len({r['pipeline'] for r in rs if r['trust'] in DATA_FLOW}); n_gate = len({r['pipeline'] for r in rs if r['trust'] == 'gate_metadata'}); n_par = len({r['pipeline'] for r in rs if r['trust'] == 'parallel_co_use'})
-        uniq.append({'source_software': disp(ks), 'target_software': disp(kd), 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'source_has_any_id': rs[0]['source_has_any_id'], 'target_has_any_id': rs[0]['target_has_any_id'], 'n_pipelines_positive': len(pos), 'n_pipelines_data_flow': n_data, 'n_pipelines_metadata_gate': n_gate, 'n_pipelines_parallel': n_par, 'n_pipelines_negative': len(neg),
+        uniq.append({'source_software': disp(ks), 'target_software': disp(kd), 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'source_match_method': mm(ks), 'target_match_method': mm(kd), 'source_match_detail': mm(ks, 2), 'target_match_detail': mm(kd, 2), 'source_has_any_id': rs[0]['source_has_any_id'], 'target_has_any_id': rs[0]['target_has_any_id'], 'n_pipelines_positive': len(pos), 'n_pipelines_data_flow': n_data, 'n_pipelines_metadata_gate': n_gate, 'n_pipelines_parallel': n_par, 'n_pipelines_negative': len(neg),
                      'n_process_edges_positive': edges, 'best_trust': best, 'best_trust_rank': RANK[best], 'categories': ';'.join(sorted({r['category'] for r in rs})),
                      'reverse_direction_pipelines': len(rev), 'involves_utility_or_reporting': ks.replace('bt:', '') in UTILITY or kd.replace('bt:', '') in UTILITY,
                      'in_verified_reference': any(r['pipeline'] == 'rnaseq_3.27.0_reference' and r['trust'] in ('verified_pair', 'verified_family_rule') for r in rs),
@@ -142,10 +157,10 @@ def main():
         if not BTID and not ANYID: sys.exit('--only-with-ids needs --tool-ids (run: python catalogue_run.py ids --lookup first)')
         if a.only_with_ids == 'biotools': keep = lambda r: r['source_biotools_id'] and r['target_biotools_id']
         else: keep = lambda r: r['source_has_any_id'] and r['target_has_any_id']
-        for name, rows_, fields in (('pairs_merged_unique_with_ids.csv', [u for u in uniq if keep(u)], uniq), ('pairs_merged_long_with_ids.csv', [r for r in long_rows if keep(r)], long_rows)):
+        for name, rows_, fields in (('pairs_merged_unique_with_ids.csv', [u for u in uniq if keep(u) and u['n_pipelines_positive']], uniq), ('pairs_merged_long_with_ids.csv', [r for r in long_rows if keep(r) and r['trust'] in POSITIVE], long_rows), ('negatives_with_ids.csv', [u for u in uniq if keep(u) and not u['n_pipelines_positive'] and u['n_pipelines_negative']], uniq)):
             with open(os.path.join(out, name), 'w', newline='', encoding='utf-8') as fh:
                 w = csv.DictWriter(fh, fieldnames=list(fields[0].keys()), lineterminator='\n'); w.writeheader(); w.writerows(rows_)
-            print(f'{name}: {len(rows_)} of {len(fields)} rows kept (both tools have {"a bio.tools ID" if a.only_with_ids == "biotools" else "at least one identifier"})')
+            print(f'{name}: {len(rows_)} of {len(fields)} rows kept, valid pairs only except negatives_with_ids.csv (both tools have {"a bio.tools ID" if a.only_with_ids == "biotools" else "at least one identifier"})')
     with open(os.path.join(out, 'pairs_merged_unique_positive.csv'), 'w', newline='', encoding='utf-8') as fh:   # valid pairs only: no negative-only rows
         w = csv.DictWriter(fh, fieldnames=list(uniq[0].keys()) if uniq else ['x'], lineterminator=chr(10)); w.writeheader(); w.writerows([u for u in uniq if u['n_pipelines_positive']])
     TIER = {'verified_pair': 'gold', 'verified_family_rule': 'silver', 'algorithmic_curated_names': 'curated_algorithmic', 'algorithmic_unreviewed_names': 'candidate_algorithmic', 'gate_metadata': 'metadata_gate', 'parallel_co_use': 'parallel'}
@@ -156,7 +171,7 @@ def main():
         pool.sort(key=lambda u: (u['best_trust_rank'], -u['n_pipelines_positive'], u['source_key'], u['target_key']))
         with open(os.path.join(out, 'control_pool_full.csv'), 'w', newline='', encoding='utf-8') as fh:   # every column, incl. pool_tier, trust, pipelines
             w = csv.DictWriter(fh, fieldnames=['pool_tier'] + list(uniq[0].keys()), lineterminator=chr(10)); w.writeheader(); w.writerows(pool)
-        SLIM = ['source_software', 'target_software', 'source_key', 'target_key', 'source_biotools_id', 'target_biotools_id', 'n_pipelines_positive', 'reverse_direction_pipelines']
+        SLIM = ['source_software', 'target_software', 'source_key', 'target_key', 'source_biotools_id', 'target_biotools_id', 'source_match_method', 'target_match_method', 'n_pipelines_positive', 'reverse_direction_pipelines']
         with open(os.path.join(out, 'control_pool.csv'), 'w', newline='', encoding='utf-8') as fh:
             w = csv.DictWriter(fh, fieldnames=SLIM, extrasaction='ignore', lineterminator=chr(10)); w.writeheader(); w.writerows(pool)
         print('control_pool.csv:', len(pool), 'directed pairs by tier', dict(collections.Counter(u['pool_tier'] for u in pool)), '| pairs also present in the reverse direction:', sum(1 for u in pool if u['reverse_direction_pipelines']))
