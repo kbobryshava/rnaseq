@@ -3,7 +3,7 @@
 
 No pipeline-specific knowledge is used. Categories are algorithmic unless you pass --curation (a CSV of your own decisions).
   process_relationships.csv   one row per process edge   (category: algorithmic_supported | algorithmic_negative_candidate | functional_dependency_non_data)
-  software_relationships.csv  one row per ordered software pair (Algorithmic_supported | Dependency_gate_metadata | Negative_candidate | Gold | Silver | Negative_verified)
+  software_relationships.csv  one row per ordered software pair (Algorithmic_supported | Dependency_gate_metadata | Parallel_co_use | Negative_candidate | Gold | Silver | Negative_verified); Parallel_co_use = both tools read the same upstream output, no path either way, and they can run in the same run: a valid pair in BOTH directions
   curation_template.csv       review worklist: every supported non-self pair with its first supporting edge and call sites -> fill `decision` and pass back with --curation
   validation.md/json, manifest.json
 """
@@ -87,8 +87,9 @@ for (s1, s2), (port, x, y) in sorted(shared.items()):
     if (s1, s2) in used: continue
     A, B = mem.get(s1, []), mem.get(s2, [])
     if any(q in desc.get(p, ()) or p in desc.get(q, ()) for p in A for q in B): continue
-    excl = any(infeasible(CONDS.get(p, []) + CONDS.get(q, [])) for p in A for q in B)
-    add((s1, s2), 'Negative_candidate', 'mutually-exclusive-alternatives' if excl else 'shared-input-no-path', [], 'both consume ' + port[0].split(':')[-1] + '.' + port[1] + ' (' + x[2] + ', ' + y[2] + '); no directed path between any process of the two software in the extracted graph')
+    excl = bool(A and B) and all(infeasible(CONDS.get(p, []) + CONDS.get(q, [])) for p in A for q in B)   # exclusive only when EVERY pair of instances can never run together
+    if excl: continue   # mutually exclusive alternatives (--aligner star vs hisat2): never in one run, so not a pair and not in the dataset
+    add((s1, s2), 'Parallel_co_use', 'shared-input-no-path', [],'both consume ' + port[0].split(':')[-1] + '.' + port[1] + ' (' + x[2] + ', ' + y[2] + '); no directed path between any process of the two software in the extracted graph')
 
 # optional curation overlay (your decisions)
 conflicts = []

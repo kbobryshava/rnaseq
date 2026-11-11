@@ -25,12 +25,13 @@ TRUST = [  # (code, rank, meaning)
     ('algorithmic_curated_names', 3, 'edge found by static analysis; software names curated by hand (rnaseq only)'),
     ('algorithmic_unreviewed_names', 4, 'edge found by static analysis; software names auto-guessed and NOT reviewed'),
     ('gate_metadata', 5, 'valid but weaker: B depends on A through a gate, verdict, sample key or metadata, not a data payload'),
-    ('negative_verified', 6, 'verified: A cannot feed B'),
-    ('negative_unverified', 7, 'graph says A cannot feed B; not individually verified'),
+    ('parallel_co_use', 6, 'valid, parallel: both tools read the same upstream output in one run, side by side, with no path either way; kept in BOTH directions'),
+    ('negative_verified', 7, 'verified: A cannot feed B'),
+    ('negative_unverified', 8, 'graph says A cannot feed B; not individually verified'),
 ]
 RANK = {c: r for c, r, _ in TRUST}
 DATA_FLOW = {'verified_pair', 'verified_family_rule', 'algorithmic_curated_names', 'algorithmic_unreviewed_names'}   # an output of A is a data input of B
-POSITIVE = DATA_FLOW | {'gate_metadata'}   # a VALID pair: data flow, or B depends on A only through a key / verdict / metadata (rank 5)
+POSITIVE = DATA_FLOW | {'gate_metadata', 'parallel_co_use'}   # a VALID pair: data flow, or B depends on A only through a key / verdict / metadata (rank 5)
 NEGATIVE = {'negative_verified', 'negative_unverified'}
 UTILITY = {'multiqc', 'gunzip', 'gzip', 'cat', 'untar', 'tar', 'xz', 'unzip', 'bzip2', 'pigz', 'gawk', 'sed', 'python', 'rbase', 'coreutils', 'wget', 'curl', 'custom', 'gzipgunzip', 'untarunzip'}
 
@@ -54,7 +55,13 @@ def key(name, aliases):
     return ('bt:' + BTID[k].lower()) if k in BTID else k
 
 
-def trust_of(category, curated):
+PARALLEL_SUBTYPES = {'shared-input', 'shared-input-no-path', 'same-subworkflow-no-exchange'}
+
+
+def trust_of(category, curated, subtype=''):
+    if category == 'Parallel_co_use': return 'parallel_co_use'
+    if category.startswith('Negative') and subtype == 'mutually-exclusive-alternatives': return 'DROP'   # exclusive alternatives are not in the dataset
+    if category.startswith('Negative') and subtype in PARALLEL_SUBTYPES: return 'parallel_co_use'   # older results / the rnaseq reference label these as negatives
     if category == 'Gold': return 'verified_pair'
     if category == 'Silver': return 'verified_family_rule'
     if category == 'Algorithmic_supported': return 'algorithmic_curated_names' if curated else 'algorithmic_unreviewed_names'
@@ -84,9 +91,10 @@ def main():
         print('tool list loaded:', len(ANYID), 'tools with at least one identifier')
     long_rows = []
 
-    def add(pipeline, src, dst, category, curated, n_edges, selfloop):
-        t = trust_of(category, curated)
-        if not t or str(selfloop) == 'True': return
+    def add(pipeline, src, dst, category, curated, n_edges, selfloop, subtype='', _rev=False):
+        t = trust_of(category, curated, subtype)
+        if not t or t == 'DROP' or str(selfloop) == 'True': return
+        if t == 'parallel_co_use' and not _rev: add(pipeline, dst, src, category, curated, n_edges, selfloop, subtype, True)   # parallel pairs exist in both directions
         ks, kd = key(src, aliases), key(dst, aliases)
         if ks == kd: return
         long_rows.append({'pipeline': pipeline, 'source_software': src, 'target_software': dst, 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'source_has_any_id': ks.startswith('bt:') or rawkey(src, aliases) in ANYID, 'target_has_any_id': kd.startswith('bt:') or rawkey(dst, aliases) in ANYID, 'category': category, 'trust': t, 'trust_rank': RANK[t],
@@ -95,7 +103,7 @@ def main():
     have_ref = bool(a.rnaseq_reference and os.path.exists(a.rnaseq_reference))
     if have_ref:
         for r in csv.DictReader(open(a.rnaseq_reference, encoding='utf-8')):
-            add('rnaseq_3.27.0_reference', r['source_software'], r['target_software'], r['category'], True, r.get('n_process_edges', ''), r['is_self_loop'])
+            add('rnaseq_3.27.0_reference', r['source_software'], r['target_software'], r['category'], True, r.get('n_process_edges', ''), r['is_self_loop'], r.get('validation_subtype', ''))
     elif a.rnaseq_reference: print('WARNING: rnaseq reference not found:', a.rnaseq_reference, file=sys.stderr)
     n_pipes = 0
     for p in sorted(os.listdir(a.results)):
@@ -104,7 +112,7 @@ def main():
         if have_ref and p.split('__')[0] == 'rnaseq': continue
         n_pipes += 1
         for r in csv.DictReader(open(f, encoding='utf-8')):
-            add(p, r['source_software'], r['target_software'], r['category'], False, r.get('n_process_edges', ''), r['is_self_loop'])
+            add(p, r['source_software'], r['target_software'], r['category'], False, r.get('n_process_edges', ''), r['is_self_loop'], r.get('subtype', ''))
     cols = list(long_rows[0].keys()) if long_rows else ['pipeline']
     with open(os.path.join(out, 'pairs_merged_long.csv'), 'w', newline='', encoding='utf-8') as fh:
         w = csv.DictWriter(fh, fieldnames=cols, lineterminator='\n'); w.writeheader(); w.writerows(sorted(long_rows, key=lambda r: (r['source_key'], r['target_key'], r['trust_rank'], r['pipeline'])))
@@ -120,8 +128,8 @@ def main():
         rev = sorted({r['pipeline'] for r in groups.get((kd, ks), []) if r['trust'] in POSITIVE})
         best = min(rs, key=lambda r: r['trust_rank'])['trust']
         edges = sum(int(r['n_process_edges'] or 0) for r in rs if r['trust'] in POSITIVE)
-        n_data = len({r['pipeline'] for r in rs if r['trust'] in DATA_FLOW}); n_gate = len({r['pipeline'] for r in rs if r['trust'] == 'gate_metadata'})
-        uniq.append({'source_software': disp(ks), 'target_software': disp(kd), 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'source_has_any_id': rs[0]['source_has_any_id'], 'target_has_any_id': rs[0]['target_has_any_id'], 'n_pipelines_positive': len(pos), 'n_pipelines_data_flow': n_data, 'n_pipelines_metadata_gate': n_gate, 'n_pipelines_negative': len(neg),
+        n_data = len({r['pipeline'] for r in rs if r['trust'] in DATA_FLOW}); n_gate = len({r['pipeline'] for r in rs if r['trust'] == 'gate_metadata'}); n_par = len({r['pipeline'] for r in rs if r['trust'] == 'parallel_co_use'})
+        uniq.append({'source_software': disp(ks), 'target_software': disp(kd), 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'source_has_any_id': rs[0]['source_has_any_id'], 'target_has_any_id': rs[0]['target_has_any_id'], 'n_pipelines_positive': len(pos), 'n_pipelines_data_flow': n_data, 'n_pipelines_metadata_gate': n_gate, 'n_pipelines_parallel': n_par, 'n_pipelines_negative': len(neg),
                      'n_process_edges_positive': edges, 'best_trust': best, 'best_trust_rank': RANK[best], 'categories': ';'.join(sorted({r['category'] for r in rs})),
                      'reverse_direction_pipelines': len(rev), 'involves_utility_or_reporting': ks.replace('bt:', '') in UTILITY or kd.replace('bt:', '') in UTILITY,
                      'in_verified_reference': any(r['pipeline'] == 'rnaseq_3.27.0_reference' and r['trust'] in ('verified_pair', 'verified_family_rule') for r in rs),
@@ -140,7 +148,7 @@ def main():
             print(f'{name}: {len(rows_)} of {len(fields)} rows kept (both tools have {"a bio.tools ID" if a.only_with_ids == "biotools" else "at least one identifier"})')
     with open(os.path.join(out, 'pairs_merged_unique_positive.csv'), 'w', newline='', encoding='utf-8') as fh:   # valid pairs only: no negative-only rows
         w = csv.DictWriter(fh, fieldnames=list(uniq[0].keys()) if uniq else ['x'], lineterminator=chr(10)); w.writeheader(); w.writerows([u for u in uniq if u['n_pipelines_positive']])
-    TIER = {'verified_pair': 'gold', 'verified_family_rule': 'silver', 'algorithmic_curated_names': 'curated_algorithmic', 'algorithmic_unreviewed_names': 'candidate_algorithmic', 'gate_metadata': 'metadata_gate'}
+    TIER = {'verified_pair': 'gold', 'verified_family_rule': 'silver', 'algorithmic_curated_names': 'curated_algorithmic', 'algorithmic_unreviewed_names': 'candidate_algorithmic', 'gate_metadata': 'metadata_gate', 'parallel_co_use': 'parallel'}
     if BTID or ANYID:   # control pool: valid in >= 1 pipeline AND both tools have at least one identifier; A->B and B->A are separate rows
         s_ok = (lambda u: bool(u['source_biotools_id'])) if a.pool_ids == 'biotools' else (lambda u: bool(u['source_has_any_id']))
         t_ok = (lambda u: bool(u['target_biotools_id'])) if a.pool_ids == 'biotools' else (lambda u: bool(u['target_has_any_id']))

@@ -11,7 +11,7 @@ r = subprocess.run(cmd, capture_output=True, text=True)
 assert r.returncode == 0, r.stdout[-800:] + r.stderr[-800:]
 rows = {(x['source_software'], x['target_software']): x for x in csv.DictReader(open(os.path.join(out, 'reference', 'software_relationships.csv'), encoding='utf-8'))}
 exp = {('fastp', 'HISAT2'): 'Gold', ('HISAT2', 'SAMtools'): 'Algorithmic_supported', ('SAMtools', 'Qualimap'): 'Algorithmic_supported', ('SAMtools', 'featureCounts (Subread)'): 'Algorithmic_supported',
-       ('Qualimap', 'featureCounts (Subread)'): 'Negative_verified', ('featureCounts (Subread)', 'Qualimap'): 'Negative_candidate'}
+       ('Qualimap', 'featureCounts (Subread)'): 'Negative_verified', ('featureCounts (Subread)', 'Qualimap'): 'Parallel_co_use'}
 bad = {k: (rows.get(k, {}).get('category'), v) for k, v in exp.items() if rows.get(k, {}).get('category') != v}
 assert not bad, bad
 assert not any(k[0] == 'Qualimap' and k[1] == 'SAMtools' for k in rows), 'reverse direction must not appear'
