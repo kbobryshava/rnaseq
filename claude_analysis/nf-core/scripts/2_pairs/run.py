@@ -12,7 +12,7 @@ Expected layout of the catalogue:  <catalogue>/<pipeline>/<version>/main.nf   (w
   python run.py merge [--pool-ids biotools]  # ONE table of all pairs over all pipelines -> RESULTS/pairs_merged_unique.csv, control_pool.csv
   python run.py all [--lookup]             # analyze, ids, match, idtable and merge one after the other
 
-Options: --catalogue DIR (default: current folder)   --out DIR (default: <catalogue>/../../processed/nfrel_results if that exists, else ./nfrel_results)
+Options: --catalogue DIR (default: current folder)   --out DIR (default: nf-core/results, next to scripts/ and data/)
          --jobs N (pipelines analysed in parallel, default 4)   --timeout SECONDS (per pipeline, default 900)   --only TEXT (only pipelines whose path contains TEXT)
 Nothing from the pipelines is executed and nothing is downloaded (except bio.tools answers with --lookup). Only text files are read.
 """
@@ -129,8 +129,7 @@ def main():
     ap.add_argument('--pool-ids', choices=['any', 'biotools'], default='any', help='merge: control pool needs both tools to have any identifier (any) or a bio.tools ID (biotools)')
     a = ap.parse_args()
     a.cat = os.path.abspath(a.catalogue)
-    proc = os.path.join(a.cat, '..', '..', 'processed')
-    a.out = os.path.abspath(a.out or (os.path.join(proc, 'nfrel_results') if os.path.isdir(proc) else 'nfrel_results'))
+    a.out = os.path.abspath(a.out or os.path.join(HERE, '..', '..', 'results'))   # nf-core/results, next to scripts/ and data/
     steps = {'setup': [setup], 'survey': [survey], 'analyze': [analyze], 'ids': [ids], 'match': [match], 'idtable': [idtable], 'merge': [merge], 'all': [analyze, ids, match, idtable, merge]}[a.step]
     for f in steps:
         rc = f(a)
