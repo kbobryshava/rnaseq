@@ -1,0 +1,3 @@
+pyyaml>=6
+networkx>=3
+# optional (parquet copies only): pandas>=2, pyarrow>=14
