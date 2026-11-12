@@ -33,6 +33,7 @@ RANK = {c: r for c, r, _ in TRUST}
 DATA_FLOW = {'verified_pair', 'verified_family_rule', 'algorithmic_curated_names', 'algorithmic_unreviewed_names'}   # an output of A is a data input of B
 POSITIVE = DATA_FLOW | {'gate_metadata', 'parallel_co_use'}   # a VALID pair: data flow, or B depends on A only through a key / verdict / metadata (rank 5)
 NEGATIVE = {'negative_verified', 'negative_unverified'}
+SEQUENCE = DATA_FLOW | {'gate_metadata'}   # A is used before B in a sequence (as opposed to parallel_co_use: side by side)
 UTILITY = {'multiqc', 'gunzip', 'gzip', 'cat', 'untar', 'tar', 'xz', 'unzip', 'bzip2', 'pigz', 'gawk', 'sed', 'python', 'rbase', 'coreutils', 'wget', 'curl', 'custom', 'gzipgunzip', 'untarunzip'}
 
 
@@ -142,11 +143,15 @@ def main():
         pos = sorted({r['pipeline'] for r in rs if r['trust'] in POSITIVE}); neg = sorted({r['pipeline'] for r in rs if r['trust'] in NEGATIVE})
         rev = sorted({r['pipeline'] for r in groups.get((kd, ks), []) if r['trust'] in POSITIVE})
         best = min(rs, key=lambda r: r['trust_rank'])['trust']
+        seq_pipes = {r['pipeline'] for r in rs if r['trust'] in SEQUENCE}; rev_seq = {r['pipeline'] for r in groups.get((kd, ks), []) if r['trust'] in SEQUENCE}
+        if seq_pipes: dtype = 'both_directions' if rev_seq else 'one_direction'   # A feeds B (or B depends on A) in a sequence; the reverse counts only when B->A is a sequence too, not a parallel pair
+        elif pos: dtype = 'parallel'   # only side-by-side use (shared input, no path either way)
+        else: dtype = ''
         edges = sum(int(r['n_process_edges'] or 0) for r in rs if r['trust'] in POSITIVE)
         n_data = len({r['pipeline'] for r in rs if r['trust'] in DATA_FLOW}); n_gate = len({r['pipeline'] for r in rs if r['trust'] == 'gate_metadata'}); n_par = len({r['pipeline'] for r in rs if r['trust'] == 'parallel_co_use'})
         uniq.append({'source_software': disp(ks), 'target_software': disp(kd), 'source_key': ks, 'target_key': kd, 'source_biotools_id': ks[3:] if ks.startswith('bt:') else '', 'target_biotools_id': kd[3:] if kd.startswith('bt:') else '', 'source_match_method': mm(ks), 'target_match_method': mm(kd), 'source_match_detail': mm(ks, 2), 'target_match_detail': mm(kd, 2), 'source_has_any_id': rs[0]['source_has_any_id'], 'target_has_any_id': rs[0]['target_has_any_id'], 'n_pipelines_positive': len(pos), 'n_pipelines_data_flow': n_data, 'n_pipelines_metadata_gate': n_gate, 'n_pipelines_parallel': n_par, 'n_pipelines_negative': len(neg),
                      'n_process_edges_positive': edges, 'best_trust': best, 'best_trust_rank': RANK[best], 'categories': ';'.join(sorted({r['category'] for r in rs})),
-                     'reverse_direction_pipelines': len(rev), 'involves_utility_or_reporting': ks.replace('bt:', '') in UTILITY or kd.replace('bt:', '') in UTILITY,
+                     'reverse_direction_pipelines': len(rev), 'direction_type': dtype, 'reverse_sequence_pipelines': len(rev_seq), 'involves_utility_or_reporting': ks.replace('bt:', '') in UTILITY or kd.replace('bt:', '') in UTILITY,
                      'in_verified_reference': any(r['pipeline'] == 'rnaseq_3.27.0_reference' and r['trust'] in ('verified_pair', 'verified_family_rule') for r in rs),
                      'pipelines_positive': ';'.join(pos), 'pipelines_negative': ';'.join(neg)})
     uniq.sort(key=lambda r: (-r['n_pipelines_positive'], r['best_trust_rank'], r['source_key'], r['target_key']))
@@ -171,10 +176,10 @@ def main():
         pool.sort(key=lambda u: (u['best_trust_rank'], -u['n_pipelines_positive'], u['source_key'], u['target_key']))
         with open(os.path.join(out, 'control_pool_full.csv'), 'w', newline='', encoding='utf-8') as fh:   # every column, incl. pool_tier, trust, pipelines
             w = csv.DictWriter(fh, fieldnames=['pool_tier'] + list(uniq[0].keys()), lineterminator=chr(10)); w.writeheader(); w.writerows(pool)
-        SLIM = ['source_software', 'target_software', 'source_key', 'target_key', 'source_biotools_id', 'target_biotools_id', 'source_match_method', 'target_match_method', 'n_pipelines_positive', 'reverse_direction_pipelines']
+        SLIM = ['source_software', 'target_software', 'source_key', 'target_key', 'source_biotools_id', 'target_biotools_id', 'source_match_method', 'target_match_method', 'n_pipelines_positive', 'direction_type', 'reverse_direction_pipelines']
         with open(os.path.join(out, 'control_pool.csv'), 'w', newline='', encoding='utf-8') as fh:
             w = csv.DictWriter(fh, fieldnames=SLIM, extrasaction='ignore', lineterminator=chr(10)); w.writeheader(); w.writerows(pool)
-        print('control_pool.csv:', len(pool), 'directed pairs by tier', dict(collections.Counter(u['pool_tier'] for u in pool)), '| pairs also present in the reverse direction:', sum(1 for u in pool if u['reverse_direction_pipelines']))
+        print('control_pool.csv:', len(pool), 'directed pairs by tier', dict(collections.Counter(u['pool_tier'] for u in pool)), '| direction_type', dict(collections.Counter(u['direction_type'] for u in pool)))
         lacking = [dict(source_software=u['source_software'], target_software=u['target_software'], source_key=u['source_key'], target_key=u['target_key'], n_pipelines_positive=u['n_pipelines_positive'],
                         tool_without_id=('both' if not s_ok(u) and not t_ok(u) else ('source' if not s_ok(u) else 'target')))
                    for u in uniq if u['n_pipelines_positive'] >= 1 and not (s_ok(u) and t_ok(u))]
