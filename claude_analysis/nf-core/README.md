@@ -41,10 +41,9 @@ If a pair is a sequence in some workflows and parallel in others, it is `one_dir
 
 | file | one row per | main columns |
 |---|---|---|
-| `biotools_pairs.csv` | workflow and tool pair | `workflow_id`, `source`, `target`, `direction_type`, `source_biotools_name`, `target_biotools_name` |
-| `biotools_edges.csv` | tool pair | `source`, `target`, `direction_type`, `n_workflows`, `workflow_ids` |
+| `biotools_pairs.csv` | workflow and tool pair (the same pair once for every workflow where it is valid) | `workflow_id`, `source`, `target`, `direction_type`, `source_biotools_name`, `target_biotools_name` |
+| `biotools_edges.csv` | tool pair (the workflows are listed in `workflow_ids`) | `source`, `target`, `direction_type`, `n_workflows`, `workflow_ids` |
 | `biotools_nodes.csv` | tool | `biotoolsID`, `biotools_name`, `n_workflows`, `matching_method` |
-| `pairs_biotools.csv` | tool pair, all columns | the edge columns plus `n_pipelines_negative`, `n_process_edges_positive`, `reverse_direction_pipelines`, `pipelines_negative`, match methods |
 
 `source` and `target` in the edges and pairs are bio.tools IDs. `matching_method` says how the ID was found: `biotool_id` (written in the module `meta.yml`), `doi`, `url` or `name`.
 
@@ -57,19 +56,19 @@ If a pair is a sequence in some workflows and parallel in others, it is `one_dir
 
 ## Results (`results/`)
 
-Everything the scripts write, so the tables in `data/` can be traced back. Not included: the bio.tools dump `biotools_raw_14-10-2026.jsonl` (about 100 MB, a public input: put it into `results/`, or pass its place with `--dump`; it is only read and can stay where it is) and the logs.
+What the scripts write, so the tables in `data/` can be traced back.
 
 | file | content |
 |---|---|
-| `<pipeline>/software_pairs.csv` | software pairs of one pipeline with their `pair_type` |
-| `<pipeline>/process_edges.csv` | the process edges behind them: class, payload check, conditions, call sites |
-| `<pipeline>/process_software_map.csv`, `summary.json` | which software each process was mapped to; counts and warnings |
-| `batch_summary.csv`, `survey.csv` | status of every pipeline |
-| `tool_identifiers.csv`, `tools_with_ids.csv` | identifiers of every tool; tools with at least one ID and why a bio.tools ID is missing |
-| `biotools_match_report.csv`, `biotools_match_summary.csv`, `biotools_cache.json` | how bio.tools IDs were matched; cached API answers |
-| `pairs_merged_long.csv` | one row per workflow and pair |
-| `pairs_merged_unique.csv`, `pairs_merged_summary.md` | one row per directed pair over all workflows; the most frequent pairs |
-| `control_pool.csv`, `control_pool_full.csv`, `control_pool_excluded.csv` | valid pairs where both tools have an identifier; the same with all columns; valid pairs left out |
+| `pairs_merged_unique.csv` | one row per directed pair over all workflows: in how many workflows it is valid, which, `direction_type`, bio.tools IDs |
+| `pairs_merged_summary.md` | counts and the most frequent pairs |
+| `control_pool.csv` | valid pairs where both tools have at least one identifier |
+| `tools_with_ids.csv`, `tool_identifiers.csv` | tools with at least one ID and why a bio.tools ID is missing; every identifier we hold for every tool |
+| `pairs_biotools.csv` | the pairs with a bio.tools ID on both sides, all columns; `data/` is made from it |
+| `batch_summary.csv` | status of every pipeline |
+| `pipelines/<pipeline>/` | `software_pairs.csv` (the software pairs of one pipeline with their `pair_type`), `process_edges.csv` (the process edges behind them: class, payload check, conditions, call sites), `process_software_map.csv` (software of each process), `summary.json` |
+
+Not in git (see `.gitignore`): the bio.tools dump `biotools_raw_14-10-2026.jsonl` (about 100 MB, a public input: put it into `results/`, or pass its place with `--dump`; it is only read and can stay where it is), the files that only serve to check the ID matching (`biotools_match_report.csv`, `biotools_match_summary.csv`, `biotools_cache.json`) and the logs.
 
 ## Scripts (`scripts/`)
 

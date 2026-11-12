@@ -97,8 +97,8 @@ def scan(cat):
 
 def add_results_names(tools, results):
     n = 0
-    for p in sorted(os.listdir(results)):
-        f = os.path.join(results, p, 'software_pairs.csv')
+    for p in sorted(os.listdir(os.path.join(results, 'pipelines'))) if os.path.isdir(os.path.join(results, 'pipelines')) else []:
+        f = os.path.join(results, 'pipelines', p, 'software_pairs.csv')
         if not os.path.exists(f): continue
         for row in csv.DictReader(open(f, encoding='utf-8')):
             for nm in (row['source_software'], row['target_software']):

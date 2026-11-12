@@ -5,7 +5,7 @@ Expected layout of the catalogue:  <catalogue>/<pipeline>/<version>/main.nf   (w
 
   python run.py setup                      # installs pyyaml and networkx (once)
   python run.py survey                     # what is in the catalogue: which pipelines can be analysed; changes nothing
-  python run.py analyze [--limit 3]        # software pairs of every pipeline -> RESULTS/<pipeline>/software_pairs.csv (a few minutes; --limit for a test)
+  python run.py analyze [--limit 3]        # software pairs of every pipeline -> RESULTS/pipelines/<pipeline>/software_pairs.csv (a few minutes; --limit for a test)
   python run.py ids [--lookup]             # tool identifiers -> RESULTS/tool_identifiers.csv (--lookup also asks bio.tools, needs internet)
   python run.py match [--dump FILE]        # fill missing bio.tools IDs from a local bio.tools dump (biotools_raw*.jsonl in RESULTS, or --dump; the file can stay where it is)
   python run.py idtable                    # RESULTS/tools_with_ids.csv: every tool with at least one identifier
@@ -62,14 +62,10 @@ def survey(a):
     print(f'catalogue: {a.cat}\n{len(found)} pipelines can be analysed (modern DSL2: {c["dsl2"]}, old-style DSL1: {c["dsl1"]}); {len(skipped)} folders cannot:')
     for r, n in collections.Counter(w for _, w in skipped).most_common(): print(f'  {n:4d}  {r}')
     for p, w in skipped[:15]: print('   ', os.path.relpath(p, a.cat), '->', w)
-    os.makedirs(a.out, exist_ok=True)
-    with open(os.path.join(a.out, 'survey.csv'), 'w', newline='', encoding='utf-8') as fh:
-        w = csv.writer(fh, lineterminator='\n'); w.writerow(['pipeline', 'status']); [w.writerow([name_of(a.cat, p), k]) for p, k in found]; [w.writerow([name_of(a.cat, p), w_]) for p, w_ in skipped]
-    print('written:', os.path.join(a.out, 'survey.csv'))
 
 
 def analyze_one(a, repo):
-    name = name_of(a.cat, repo); out = os.path.join(a.out, name); os.makedirs(out, exist_ok=True)
+    name = name_of(a.cat, repo); out = os.path.join(a.out, 'pipelines', name); os.makedirs(out, exist_ok=True)
     t0 = time.time(); row = {'pipeline': name, 'path': repo, 'status': '', 'seconds': '', 'process_instances': '', 'process_edges': '', 'software_pairs': '', 'error': ''}
     try:
         r = subprocess.run([sys.executable, os.path.join(HERE, 'pairs.py'), '--repo', repo, '--out', out], capture_output=True, text=True, timeout=a.timeout)

@@ -3,7 +3,7 @@
 
   python merge_pairs.py --results RESULTS_DIR [--out OUT_DIR] [--pool-ids any|biotools]
 
-RESULTS_DIR is the folder written by `run.py analyze` (one sub-folder per pipeline with software_pairs.csv). If tool_identifiers.csv (from
+RESULTS_DIR is the folder written by `run.py analyze` (RESULTS_DIR/pipelines/<pipeline>/software_pairs.csv). If tool_identifiers.csv (from
 `run.py ids` / `match`) and tools_with_ids.csv (from `run.py idtable`) are there, tools are merged by bio.tools ID and the IDs are added.
 
 pair_type of a pair in one pipeline (rank = strength of the evidence)
@@ -19,11 +19,8 @@ direction_type of a valid pair
   parallel         A and B only run side by side (type 3 only)
 
 Writes
-  pairs_merged_long.csv     one row per (pipeline, pair)
   pairs_merged_unique.csv   one row per distinct directed pair: in how many pipelines it is valid / rejected, which, direction_type, bio.tools IDs
   control_pool.csv          the pool: valid pairs where BOTH tools have an identifier (see --pool-ids); a short list of columns
-  control_pool_full.csv     the same rows with every column
-  control_pool_excluded.csv valid pairs left out because a tool has no identifier
   pairs_merged_summary.md   counts and the most frequent pairs
 
 Tool names are compared in a normalised form (lower case, text in brackets and non-letters removed: 'SAMtools' = 'samtools'); tools with the same
@@ -91,8 +88,9 @@ def write_csv(path, rows, cols=None):
 def read_pipelines(results):
     """-> list of (pipeline, source, target, pair_type, n_process_edges); a parallel pair is added in both directions"""
     rows, n = [], 0
-    for p in sorted(os.listdir(results)):
-        f = os.path.join(results, p, 'software_pairs.csv')
+    pdir = os.path.join(results, 'pipelines')
+    for p in sorted(os.listdir(pdir)) if os.path.isdir(pdir) else []:
+        f = os.path.join(pdir, p, 'software_pairs.csv')
         if not os.path.exists(f): continue
         n += 1
         for r in csv.DictReader(open(f, encoding='utf-8')):
@@ -122,8 +120,6 @@ def main():
                           'source_has_any_id': ks.startswith('bt:') or rawkey(src) in ANYID, 'target_has_any_id': kd.startswith('bt:') or rawkey(dst) in ANYID,
                           'pair_type': t, 'pair_type_rank': RANK[t], 'n_process_edges': n_edges,
                           'involves_utility_or_reporting': ks.replace('bt:', '') in UTILITY or kd.replace('bt:', '') in UTILITY})
-    long_rows.sort(key=lambda r: (r['source_key'], r['target_key'], r['pair_type_rank'], r['pipeline']))
-    write_csv(os.path.join(out, 'pairs_merged_long.csv'), long_rows, list(long_rows[0].keys()) if long_rows else ['pipeline'])
 
     groups = collections.defaultdict(list)
     for r in long_rows: groups[(r['source_key'], r['target_key'])].append(r)
@@ -159,13 +155,10 @@ def main():
         valid = [u for u in uniq if u['n_pipelines_positive'] >= 1]
         pool = [u for u in valid if ok_s(u) and ok_t(u)]
         slim = ['source_software', 'target_software', 'source_key', 'target_key', 'source_biotools_id', 'target_biotools_id', 'source_match_method', 'target_match_method', 'n_pipelines_positive', 'direction_type', 'reverse_direction_pipelines']
-        write_csv(os.path.join(out, 'control_pool_full.csv'), pool, list(uniq[0].keys()))
         write_csv(os.path.join(out, 'control_pool.csv'), pool, slim)
-        left_out = [{'source_software': u['source_software'], 'target_software': u['target_software'], 'source_key': u['source_key'], 'target_key': u['target_key'], 'n_pipelines_positive': u['n_pipelines_positive'],
-                     'tool_without_id': 'both' if not ok_s(u) and not ok_t(u) else ('source' if not ok_s(u) else 'target')} for u in valid if not (ok_s(u) and ok_t(u))]
-        write_csv(os.path.join(out, 'control_pool_excluded.csv'), left_out, ['source_software', 'target_software', 'source_key', 'target_key', 'n_pipelines_positive', 'tool_without_id'])
+        left_out = [u for u in valid if not (ok_s(u) and ok_t(u))]
         print('control pool:', len(pool), 'directed pairs | best_pair_type', dict(collections.Counter(u['best_pair_type'] for u in pool)), '| direction_type', dict(collections.Counter(u['direction_type'] for u in pool)))
-        print('pool rule:', 'both tools have a bio.tools ID' if a.pool_ids == 'biotools' else 'both tools have at least one identifier', '| valid pairs left out because a tool has no ID:', len(left_out), '(control_pool_excluded.csv)')
+        print('pool rule:', 'both tools have a bio.tools ID' if a.pool_ids == 'biotools' else 'both tools have at least one identifier', '| valid pairs left out because a tool has no ID:', len(left_out))
     else: print('NOTE: no tool_identifiers.csv in the results folder, so no control pool (run `run.py ids` first)')
 
     valid = [u for u in uniq if u['n_pipelines_positive']]

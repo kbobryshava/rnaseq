@@ -7,11 +7,12 @@ Reads  (from --results, default nf-core/results):
   tools_with_ids.csv        from `run.py idtable`
   pairs_merged_unique.csv   from `run.py merge` (must contain direction_type)
   the bio.tools dump        biotools_raw*.jsonl: found in --results, or give its place with --dump (it can stay where it is, it is only read)
-Writes (to --out, default nf-core/data):
-  biotools_pairs.csv   one row per workflow and tool pair
-  biotools_edges.csv   one row per tool pair
+Writes to --out (default nf-core/data):
+  biotools_pairs.csv   one row per WORKFLOW and tool pair (the same pair appears once for every workflow where it is valid)
+  biotools_edges.csv   one row per tool pair, with the list of workflows
   biotools_nodes.csv   one row per tool
-  pairs_biotools.csv   one row per tool pair, all columns
+and to --results:
+  pairs_biotools.csv   one row per tool pair with all columns (the table the other three are made from; not a final table)
 
 Only pairs where BOTH tools have a bio.tools ID and that are valid in at least one workflow are kept.
 direction_type: one_direction (A feeds B, never B feeds A) | both_directions | parallel (side by side, no path between them).
@@ -95,8 +96,9 @@ def main():
     assert edges['direction_type'].notna().all() and workflow_pairs['direction_type'].notna().all()
 
     os.makedirs(out, exist_ok=True)
-    for name, df in (('pairs_biotools.csv', pairs), ('biotools_edges.csv', edges), ('biotools_pairs.csv', workflow_pairs), ('biotools_nodes.csv', nodes)): df.to_csv(os.path.join(out, name), index=False)
-    print(f'\nnodes {len(nodes):,} | edges {len(edges):,} | workflow pairs {len(workflow_pairs):,}\nwritten to {out}')
+    pairs.to_csv(os.path.join(results, 'pairs_biotools.csv'), index=False)
+    for name, df in (('biotools_edges.csv', edges), ('biotools_pairs.csv', workflow_pairs), ('biotools_nodes.csv', nodes)): df.to_csv(os.path.join(out, name), index=False)
+    print(f'\nnodes {len(nodes):,} | edges {len(edges):,} | workflow pairs {len(workflow_pairs):,}\nwritten to {out} (pairs_biotools.csv to {results})')
 
 
 if __name__ == '__main__':
