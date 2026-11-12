@@ -42,7 +42,7 @@ If a pair is a sequence in some workflows and parallel in others, it is `one_dir
 | file | one row per | main columns |
 |---|---|---|
 | `biotools_pairs.csv` | workflow and tool pair (the same pair once for every workflow where it is valid) | `workflow_id`, `source`, `target`, `direction_type`, `source_biotools_name`, `target_biotools_name` |
-| `biotools_edges.csv` | directed tool pair | `source`, `target`, `n_workflows`, `workflow_ids`. The workflows are counted without direction: the number of workflows where the two tools are a valid pair in either direction. A `both_directions` or `parallel` pair has two rows, A to B and B to A, with the same numbers |
+| `biotools_edges.csv` | directed tool pair | `source`, `target`, `n_workflows`, `workflow_ids`. `n_workflows` is the number of workflows where this direction appears. A to B and B to A are two rows with their own counts. A `parallel` pair appears once forward and once reverse in each workflow, so its two rows have the same count |
 | `biotools_nodes.csv` | tool | `biotoolsID`, `biotools_name`, `n_workflows`, `matching_method` |
 
 `source` and `target` in the edges and pairs are bio.tools IDs. `matching_method` says how the ID was found: `biotool_id` (written in the module `meta.yml`), `doi`, `url` or `name`.

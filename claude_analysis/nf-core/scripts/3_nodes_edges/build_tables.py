@@ -9,7 +9,7 @@ Reads  (from --results, default nf-core/data):
   the bio.tools dump        biotools_raw*.jsonl: found in --results, or give its place with --dump (it can stay where it is, it is only read)
 Writes to --out (default nf-core/final tables):
   biotools_pairs.csv   one row per WORKFLOW and tool pair (the same pair appears once for every workflow where it is valid)
-  biotools_edges.csv   source, target, n_workflows, workflow_ids; counted without direction (A->B and B->A have the same numbers)
+  biotools_edges.csv   source, target, n_workflows, workflow_ids; one row per direction, each with its own count (A->B and B->A are two rows)
   biotools_nodes.csv   one row per tool
 and to --results:
   pairs_biotools.csv   one row per tool pair with all columns (the table the other three are made from; not a final table)
@@ -54,14 +54,10 @@ def pair_table(tools_file, pairs_file):
 
 
 def edge_table(pairs):
-    """one row per directed tool pair. n_workflows / workflow_ids count the workflows where the two tools are a valid pair in EITHER direction,
-    so A -> B and B -> A get the same numbers; a both_directions or parallel pair has both rows"""
-    wf = {(r.source_biotool_id, r.target_biotool_id): set(r.pipelines_positive.split(';')) for r in pairs.itertuples()}
-    rows = []
-    for r in pairs.itertuples():
-        both = wf[(r.source_biotool_id, r.target_biotool_id)] | wf.get((r.target_biotool_id, r.source_biotool_id), set())
-        rows.append({'source': r.source_biotool_id, 'target': r.target_biotool_id, 'n_workflows': len(both), 'workflow_ids': ';'.join(sorted(both))})
-    return pd.DataFrame(rows)
+    """one row per DIRECTED tool pair. n_workflows / workflow_ids: the workflows where this direction (source -> target) appears.
+    A -> B and B -> A are two rows with their own counts; a parallel pair appears once forward and once reverse in each workflow, so both rows have the same count"""
+    return pairs[['source_biotool_id', 'target_biotool_id', 'n_pipelines_positive', 'pipelines_positive']].rename(columns={
+        'source_biotool_id': 'source', 'target_biotool_id': 'target', 'n_pipelines_positive': 'n_workflows', 'pipelines_positive': 'workflow_ids'})
 
 
 def workflow_pair_table(pairs):
@@ -100,8 +96,6 @@ def main():
     assert len(edges) == len(pairs) and len(workflow_pairs) == pairs['n_pipelines_positive'].sum()
     assert set(nodes['biotoolsID']) == set(edges['source']) | set(edges['target'])
     assert workflow_pairs['direction_type'].notna().all()
-    rev = edges.set_index(['source', 'target'])['n_workflows']
-    assert all(rev.get((t, s), n) == n for (s, t), n in rev.items()), 'A->B and B->A must have the same n_workflows'
 
     os.makedirs(out, exist_ok=True)
     pairs.to_csv(os.path.join(results, 'pairs_biotools.csv'), index=False)
