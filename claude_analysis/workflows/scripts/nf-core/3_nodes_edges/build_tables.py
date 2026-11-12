@@ -52,7 +52,7 @@ def pair_table(tools_file, pairs_file):
                        'source_match_method': 'source_match', 'target_match_method': 'target_match'}).reset_index(drop=True)
     out[['source_match', 'target_match']] = out[['source_match', 'target_match']].replace('meta_id', 'biotool_id')   # an ID written in the module's meta.yml
     print(f'All pairs: {len(pairs):,} | both tools have a bio.tools ID: {both.sum():,} | and valid in at least one workflow: {len(out):,}')
-    print(out['direction_type'].value_counts().to_string())
+    print('direction_type of the pairs (kept in pairs_biotools.csv, not in the final tables):'); print(out['direction_type'].value_counts().to_string())
     return out
 
 
@@ -119,6 +119,7 @@ def main():
     os.makedirs(out, exist_ok=True)
     pairs.to_csv(os.path.join(results, 'pairs_biotools.csv'), index=False)
     for name, df in (('biotools_edges.csv', edges), ('biotools_pairs.csv', workflow_pairs), ('biotools_nodes.csv', nodes)): df.to_csv(os.path.join(out, name), index=False)
+    print('\nparallel flag in biotools_pairs.csv (rows = workflow x directed pair):'); print(workflow_pairs['parallel'].value_counts().to_string())
     print(f'\nnodes {len(nodes):,} | edges {len(edges):,} | workflow pairs {len(workflow_pairs):,}\nwritten to {out} (pairs_biotools.csv to {results})')
 
 
