@@ -3,11 +3,11 @@
 
   python build_tables.py [--results DIR] [--out DIR] [--dump FILE]
 
-Reads  (from --results, default nf-core/data):
+Reads  (from --results, default workflows/data/nf-core):
   tools_with_ids.csv        from `run.py idtable`
   pairs_merged_unique.csv   from `run.py merge` (must contain direction_type)
   the bio.tools dump        biotools_raw*.jsonl: found in --results, or give its place with --dump (it can stay where it is, it is only read)
-Writes to --out (default nf-core/final tables):
+Writes to --out (default: the same folder, workflows/data/nf-core):
   biotools_pairs.csv   one row per WORKFLOW and directed tool pair: workflow_id, source, target, parallel (`parallel` = the two tools run side by side
                        in that workflow, `not parallel` = one comes after the other). The flag is exact for every workflow
   biotools_edges.csv   source, target, n_workflows, workflow_ids; one row per direction, each with its own count (A->B and B->A are two rows)
@@ -101,11 +101,12 @@ def node_table(pairs, dump):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('--results', default=os.path.join(HERE, '..', '..', 'data')); ap.add_argument('--out', default=os.path.join(HERE, '..', '..', 'final tables')); ap.add_argument('--dump')
+    DATA = os.path.join(HERE, '..', '..', '..', 'data', 'nf-core')
+    ap.add_argument('--results', default=DATA); ap.add_argument('--out', default=DATA); ap.add_argument('--dump')
     a = ap.parse_args()
     results, out = os.path.abspath(a.results), os.path.abspath(a.out)
     tools_file, pairs_file, dump = os.path.join(results, 'tools_with_ids.csv'), os.path.join(results, 'pairs_merged_unique.csv'), find_dump(results, a.dump)
-    missing = [f for f in (tools_file, pairs_file) if not os.path.exists(f)] + ([] if dump and os.path.exists(dump) else ['bio.tools dump (biotools_raw*.jsonl: put it into the data folder or pass --dump FILE)'])
+    missing = [f for f in (tools_file, pairs_file) if not os.path.exists(f)] + ([] if dump and os.path.exists(dump) else ['bio.tools dump (biotools_raw*.jsonl: put it into the data folder (workflows/data/nf-core) or pass --dump FILE)'])
     for f in (tools_file, pairs_file, dump): print(('found    ' if f and os.path.exists(f) else 'MISSING  ') + str(f))
     if missing: sys.exit('missing: ' + '; '.join(missing))
 
