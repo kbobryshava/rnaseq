@@ -25,7 +25,7 @@ A pair means: a process that uses software A is followed by a process that uses 
 5. **Merge over all workflows.** Pairs are merged by tool, and the number of workflows where each pair is valid is counted. Tools with the same bio.tools ID are one tool (`star_align` counts as `star`).
 6. **bio.tools IDs.** From the module `meta.yml`, then from the local dump by DOI, other IDs (PMID, PMCID, RRID), homepage URL and last by name. Stronger evidence wins over weaker. Generic words (`cat`, `find`, `filter`, `gzip` ...) never get an ID by name.
 7. **Filter.** Only pairs where both tools have a bio.tools ID and that are valid in at least one workflow are kept.
-8. **Tables.** The notebook `scripts/3_nodes_edges/build_biotools_tables.ipynb` writes the three data files.
+8. **Tables.** `scripts/3_nodes_edges/build_tables.py` writes the data files.
 
 ### `direction_type`
 
@@ -57,7 +57,7 @@ If a pair is a sequence in some workflows and parallel in others, it is `one_dir
 
 ## Results (`results/`)
 
-Everything the scripts write, so the tables in `data/` can be traced back. Not included: the bio.tools dump `biotools_raw_14-10-2026.jsonl` (about 100 MB, a public input: put it into `results/` before the `match` step) and the logs.
+Everything the scripts write, so the tables in `data/` can be traced back. Not included: the bio.tools dump `biotools_raw_14-10-2026.jsonl` (about 100 MB, a public input: put it into `results/`, or pass its place with `--dump`; it is only read and can stay where it is) and the logs.
 
 | file | content |
 |---|---|
@@ -77,9 +77,9 @@ Everything the scripts write, so the tables in `data/` can be traced back. Not i
 |---|---|
 | `1_download/` | `downloader.py`: downloads the pipeline files from GitHub. Edit the paths and options at the top of the file, run it with `DRY_RUN = True` first. Its output (the catalogue) is not part of this folder. |
 | `2_pairs/` | the analysis, in five files. `run.py` is the entry point; `pairs.py` builds the pairs of one pipeline (using `graph_dsl2.py` for modern and `graph_dsl1.py` for old-style pipelines); `tool_ids.py` finds the bio.tools IDs; `merge_pairs.py` merges all pipelines and writes `direction_type`. |
-| `3_nodes_edges/` | `build_biotools_tables.ipynb`: filters the pairs and writes the three data files. |
+| `3_nodes_edges/` | `build_tables.py`: filters the pairs and writes the data files. |
 
-Python 3.10 or newer and `pip install -r requirements.txt` (pyyaml, networkx; the notebook also needs pandas).
+Python 3.10 or newer and `pip install -r requirements.txt` (pyyaml, networkx; `build_tables.py` also needs pandas).
 
 ### How to reproduce
 
@@ -96,7 +96,8 @@ python scripts/2_pairs/run.py match                              # put the bio.t
 python scripts/2_pairs/run.py idtable                            # tools_with_ids.csv
 python scripts/2_pairs/run.py merge                              # pairs_merged_unique.csv, control_pool.csv
 
-# 3. open scripts/3_nodes_edges/build_biotools_tables.ipynb (in its own folder) and run all cells: it reads results/ and writes data/
+# 3. the final tables: reads results/, writes data/. The bio.tools dump is found in results/, or give its place (it can stay where it is)
+python scripts/2_pairs/run.py tables --dump /path/to/biotools_raw_14-10-2026.jsonl
 ```
 
-`run.py all --catalogue CATALOGUE --lookup` runs the five analysis steps one after the other. Results go to `results/` (change with `--out`).
+`run.py all --catalogue CATALOGUE --lookup` runs all the steps from `analyze` to `tables` one after the other. Results go to `results/` (change with `--out`).
