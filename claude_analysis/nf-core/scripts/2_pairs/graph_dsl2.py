@@ -8,7 +8,7 @@ edge only exists where the producer's channel reaches the consumer's call
 through channel variables, operators and workflow take/emit interfaces.
 
 Method (all verified by reading the source; heuristics are flagged):
-  * Instances are named by call path (e.g. NFCORE_RNASEQ:RNASEQ:ALIGN_STAR:STAR_ALIGN),
+  * Instances are named by call path (e.g. NFCORE_PIPELINE:WORKFLOW:ALIGN_STAR:STAR_ALIGN),
     identical to Nextflow's own fully-qualified process names.
   * Each channel variable carries a *provenance set* of (instance, emit) ports.
   * Operators are treated conservatively as union of receiver + argument

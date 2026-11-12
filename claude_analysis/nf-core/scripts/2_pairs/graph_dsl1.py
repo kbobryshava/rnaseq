@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Static channel-provenance analysis for OLD-STYLE (Nextflow DSL1) pipelines: one main.nf, `process x { input: ... from ch  output: ... into ch2 }`,
 channels wired with `.set{}`, `.into{}`, `ch = a.mix(b)` and operator chains. There are no modules, so software is guessed from the process
-directives (container / conda) and the commands of the script block, and is always flagged UNREVIEWED downstream.
+directives (container / conda) and the commands of the script block.
 
-Writes data/processed/static_graph.json in the SAME schema as nf_static_analyzer.py, so build_datasets.py / generic_reference.py work unchanged.
+Returns the same graph structure as graph_dsl2.py, so pairs.py treats both kinds of pipeline the same way (analyse() is called by pairs.py; the command line below is for debugging).
 Semantics (same as the DSL2 analyzer): an edge P -> Q exists when a channel that Q reads in `from` can carry (through any chain of operators,
 union semantics) an output declared by P in `into`. Source order, shared inputs and co-occurrence create no edge.
 Limitations: only the entry file is read; for/while/try blocks are not interpreted; channels built inside functions are invisible.
@@ -11,7 +11,7 @@ Limitations: only the entry file is read; for/while/try blocks are not interpret
 import argparse, json, os, re, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from nf_static_analyzer import strip_comments, infeasible
+from graph_dsl2 import strip_comments, infeasible
 
 IDENT = re.compile(r'[A-Za-z_]\w*')
 SECTION = re.compile(r'^[ \t]*(input|output|when|script|shell|exec|stub)[ \t]*:', re.M)
